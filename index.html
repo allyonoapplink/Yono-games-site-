@@ -172,27 +172,25 @@
     .tag-box .tag-bonus { color: #dc2626; font-weight: 700; }
     .tag-box .tag-ref { color: #2563eb; font-weight: 600; }
     
-    /* ====== VIEW TAGS BUTTON ====== */
+    /* ====== VIEW TAGS BUTTON - BLUE SMALL ====== */
     .view-tags-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #1e293b;
+      display: inline-block;
+      background: #2563eb;
       color: white;
       border: none;
-      padding: 10px 16px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 0.8rem;
+      padding: 5px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.65rem;
       cursor: pointer;
-      width: 100%;
-      margin: 10px 0;
       transition: 0.2s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+      letter-spacing: 0.3px;
+      margin: 8px 0;
+      text-align: center;
     }
-    .view-tags-btn:active { transform: scale(0.97); }
-    .view-tags-btn .ai-icon { font-size: 1.2rem; }
+    .view-tags-btn:active { transform: scale(0.95); }
+    .view-tags-btn:hover { background: #1d4ed8; }
     
     .extra-tags { display: none; margin-top: 10px; }
     .extra-tags.open { display: block; }
@@ -655,10 +653,8 @@
               <div class="tag-grid">${offerTags}</div>
             </div>
 
-            <!-- View Tags Button -->
-            <button class="view-tags-btn" id="viewTagsBtn">
-              <span class="ai-icon">🤖</span> View Tags
-            </button>
+            <!-- View Tags Button - Blue Small (No AI Icon) -->
+            <button class="view-tags-btn" id="viewTagsBtn">View Tags</button>
 
             <!-- Extra Tags (hidden initially) -->
             <div class="extra-tags" id="extraTagsContainer">
@@ -673,11 +669,11 @@
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
-      // Toggle extra tags
+      // Toggle extra tags (no AI icon)
       document.getElementById('viewTagsBtn').addEventListener('click', function() {
         const container = document.getElementById('extraTagsContainer');
         container.classList.toggle('open');
-        this.innerHTML = container.classList.contains('open') ? '<span class="ai-icon">🤖</span> Hide Tags' : '<span class="ai-icon">🤖</span> View Tags';
+        this.textContent = container.classList.contains('open') ? 'Hide Tags' : 'View Tags';
       });
 
       document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
