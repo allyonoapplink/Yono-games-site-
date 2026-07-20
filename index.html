@@ -34,43 +34,42 @@
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif; }
     body { background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%); min-height: 100vh; padding-bottom: 30px; }
     
-    /* ====== TOP NAV - 4 Black Options + Telegram ====== */
+    /* ====== TOP NAV - White Background ====== */
     .top-nav { 
-      background: #0a0a0a; 
+      background: #ffffff; 
       padding: 10px 16px; 
       display: flex; 
       justify-content: flex-start; 
       align-items: center; 
       flex-wrap: wrap; 
       gap: 6px 20px;
-      border-bottom: 2px solid #ffcf8a; 
+      border-bottom: 2px solid #e2e8f0; 
       position: sticky; 
       top: 0; 
       z-index: 100; 
     }
     .top-nav a { 
-      color: #ffffff; 
+      color: #0a0a0a; 
       text-decoration: none; 
       font-weight: 700; 
       font-size: 0.85rem; 
       padding: 6px 16px; 
       border-radius: 40px; 
       cursor: pointer; 
-      background: rgba(255,255,255,0.06); 
+      background: transparent; 
       white-space: nowrap; 
       transition: 0.2s; 
       letter-spacing: 0.3px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid transparent;
     }
     .top-nav a:hover { 
-      background: #ffcf8a; 
-      color: #0a0a0a; 
-      border-color: #ffcf8a;
+      background: #f1f5f9; 
+      border-color: #d0d9e8;
     }
     .top-nav a.active { 
-      background: #ffcf8a; 
-      color: #0a0a0a; 
-      border-color: #ffcf8a;
+      background: #eef2ff; 
+      color: #1e293b; 
+      border-color: #b3c8e6;
     }
     .nav-spacer { flex: 1; }
     
@@ -79,11 +78,11 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      border: 1px solid #e2e8f0;
       padding: 4px 12px 4px 8px;
       border-radius: 40px;
-      color: #ffffff;
+      color: #0a0a0a;
       font-weight: 600;
       font-size: 0.8rem;
       text-decoration: none;
@@ -93,9 +92,8 @@
       margin-left: auto;
     }
     .telegram-nav-btn:hover {
-      background: #0088cc;
-      border-color: #0088cc;
-      transform: scale(1.04);
+      background: #eef2ff;
+      border-color: #b3c8e6;
     }
     .telegram-nav-btn img {
       width: 28px;
@@ -105,93 +103,7 @@
       display: block;
     }
     
-    /* ====== HEADER BANNER ====== */
-    header { background: linear-gradient(135deg, #0a2e1d, #0d5c2e, #1a6e3a, #0a4a2a); background-size: 300% 300%; color: white; padding: 20px 20px; text-align: center; box-shadow: 0 12px 28px rgba(0,0,0,0.2); position: relative; overflow: hidden; }
-    .custom-banner { background: linear-gradient(145deg, #0a2e1d 0%, #124d2b 50%, #0a2e1d 100%); border-radius: 24px; padding: 28px 20px 22px; color: white; text-align: center; border: 2px solid #ffcf8a; box-shadow: 0 15px 40px rgba(0,0,0,0.6), inset 0 0 60px rgba(255,207,138,0.08); position: relative; overflow: hidden; max-width: 1200px; margin: 0 auto; }
-    .custom-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(255,215,0,0.06) 0%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(255,64,129,0.04) 0%, transparent 50%); animation: pulseGlow 6s ease-in-out infinite alternate; z-index: 0; }
-    @keyframes pulseGlow { 0% { transform: scale(1) rotate(0deg); opacity: 0.5; } 100% { transform: scale(1.08) rotate(3deg); opacity: 1; } }
-    .banner-inner { position: relative; z-index: 2; }
-    .banner-top-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
-    .banner-top-text { font-size: 0.8rem; color: #ffcf8a; letter-spacing: 2.5px; font-weight: 600; text-transform: uppercase; }
-    .banner-age-group { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin: 8px 0 10px; }
-    .banner-age-badge { display: inline-block; background: #d50000; padding: 3px 18px; border-radius: 40px; font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(213,0,0,0.4); border: 1px solid #ff6666; }
-    .banner-age-badge.second { background: transparent; border: 2px solid #ffcf8a; color: #ffcf8a; box-shadow: none; font-size: 1rem; padding: 3px 14px; }
-    .banner-main-heading { font-size: clamp(1.6rem, 5.5vw, 3rem); font-weight: 900; text-shadow: 0 4px 20px rgba(0,0,0,0.6); margin: 12px 0 8px; line-height: 1.2; }
-    .banner-main-heading .gold { color: #ffcf8a; background: linear-gradient(135deg, #ffcf8a, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .banner-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 22px; margin: 14px 0 14px; }
-    .banner-feature { background: rgba(255,255,255,0.07); backdrop-filter: blur(4px); padding: 6px 18px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.12); font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 7px; color: #e8f5e9; }
-    .banner-feature .icon { font-size: 1.1rem; }
-    .banner-cta { font-size: clamp(0.95rem, 1.8vw, 1.2rem); font-weight: 700; margin: 12px 0 10px; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.4; }
-    .banner-cta strong { color: #ffcf8a; font-weight: 900; }
-    .banner-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 14px; }
-    .banner-tag { background: linear-gradient(135deg, #ffcf8a, #f5a623); color: #0a2e1d; padding: 5px 16px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.4px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(255,207,138,0.25); border: 1px solid rgba(255,255,255,0.25); }
-    
-    /* ====== APP TAGS WRAPPER - WHITE BACKGROUND ====== */
-    .app-tags-wrapper { 
-      margin-top: 16px; 
-      padding: 14px 0 10px; 
-      background: #ffffff; 
-      border-radius: 16px;
-      border: 1px solid #e9edf4;
-      overflow: hidden; 
-      position: relative; 
-    }
-    .app-tags-label { 
-      font-size: 1rem; 
-      color: #1e293b; 
-      opacity: 0.9; 
-      letter-spacing: 1.5px; 
-      text-transform: uppercase; 
-      font-weight: 700; 
-      margin-bottom: 10px; 
-      display: block; 
-      text-align: center; 
-    }
-    .app-tags-scroll { 
-      display: flex; 
-      gap: 8px; 
-      overflow-x: auto; 
-      padding: 6px 12px 10px 12px; 
-      scrollbar-width: thin; 
-      scrollbar-color: #ffcf8a transparent; 
-      -webkit-overflow-scrolling: touch; 
-      flex-wrap: nowrap; 
-      scroll-behavior: smooth; 
-    }
-    .app-tags-scroll::-webkit-scrollbar { height: 4px; }
-    .app-tags-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
-    .app-tags-scroll::-webkit-scrollbar-thumb { background: #ffcf8a; border-radius: 4px; }
-    .app-tag-item { 
-      flex: 0 0 auto; 
-      background: #f1f5f9; 
-      border: 1px solid #e2e8f0; 
-      color: #1e293b; 
-      padding: 4px 14px; 
-      border-radius: 40px; 
-      font-size: 0.65rem; 
-      font-weight: 600; 
-      white-space: nowrap; 
-      letter-spacing: 0.3px; 
-      transition: 0.3s; 
-    }
-    .app-tag-item:hover { 
-      background: #ffcf8a; 
-      border-color: #ffcf8a; 
-      transform: scale(1.05); 
-      color: #0a0a0a;
-    }
-    
     @media (max-width: 640px) {
-      .custom-banner { padding: 18px 12px 16px; border-radius: 16px; }
-      .banner-features { gap: 8px 14px; }
-      .banner-feature { padding: 4px 12px; font-size: 0.75rem; }
-      .banner-tag { font-size: 0.6rem; padding: 3px 10px; }
-      .banner-age-badge { font-size: 0.95rem; padding: 2px 12px; }
-      .banner-age-badge.second { font-size: 0.85rem; padding: 2px 10px; }
-      .banner-top-text { font-size: 0.65rem; letter-spacing: 1.5px; }
-      .app-tag-item { font-size: 0.55rem; padding: 3px 10px; }
-      .app-tags-label { font-size: 0.85rem; }
-      .banner-top-row { gap: 6px; }
       .top-nav a { font-size: 0.7rem; padding: 4px 10px; }
       .top-nav { gap: 4px 10px; padding: 8px 10px; }
       .telegram-nav-btn { font-size: 0.6rem; padding: 3px 8px 3px 6px; }
@@ -283,13 +195,12 @@
       .small-download { font-size: 0.75rem; padding: 6px 0; }
       .info-grid { gap: 10px; }
       .info-card { min-width: 120px; }
-      .app-tags-wrapper { padding: 10px 0 8px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== TOP NAV - HOME | About | Contact | Disclaimer | Telegram ===== -->
+<!-- ===== TOP NAV - White Background ===== -->
 <nav class="top-nav">
   <a href="#" class="active" id="homeNavLink">🏠 HOME</a>
   <a href="#" id="navAbout">About</a>
@@ -310,40 +221,6 @@
   </div>
 </div>
 
-<!-- ===== HEADER BANNER (Share button removed) ===== -->
-<header>
-  <div class="custom-banner">
-    <div class="banner-inner">
-      <div class="banner-top-row">
-        <span class="banner-top-text"> YONO GAMES SITE INFORMS YOU</span>
-        <!-- Share button removed -->
-      </div>
-      <div class="banner-age-group">
-        <span class="banner-age-badge">18+</span>
-        <span class="banner-age-badge second">ADULTS ONLY</span>
-      </div>
-      <div class="banner-main-heading">India's Top <span class="gold">Rummy Games</span> Download Platform</div>
-      <div class="banner-features">
-        <span class="banner-feature"><span class="icon">✔️</span> 100% Safe & Secure</span>
-        <span class="banner-feature"><span class="icon">⚡</span> Fast & Easy Downloads</span>
-        <span class="banner-feature"><span class="icon">🎁</span> Top Bonuses & Rewards</span>
-      </div>
-      <div class="banner-cta"><strong>Download India's Most Trusted Rummy Apps</strong> & Win Real Cash Prizes. <br>Play More, Win More!</div>
-      <div class="banner-tags">
-        <span class="banner-tag"> REAL CASH GAMES</span>
-        <span class="banner-tag"> FAST PAYOUTS</span>
-        <span class="banner-tag"> DAILY BONUSES</span>
-        <span class="banner-tag">⌛ 24X7 SUPPORT</span>
-      </div>
-      <!-- ===== APP TAGS - WHITE BACKGROUND ===== -->
-      <div class="app-tags-wrapper">
-        <span class="app-tags-label">🎮 ALL APPS</span>
-        <div class="app-tags-scroll" id="appTagsScroll"></div>
-      </div>
-    </div>
-  </div>
-</header>
-
 <!-- ===== MAIN CONTAINER ===== -->
 <div class="container" id="mainContainer">
   <div id="allAppsGrid" class="cards-grid"></div>
@@ -352,26 +229,6 @@
 
 <script>
   (function() {
-    // ===== ALL APP NAMES FOR TAGS =====
-    const allAppNames = [
-      "567 Slots", "Jaiho 91", "Rummy Ludo", "ABC Rummy", "Rummy 91", "Love Rummy", "Bingo 101", "Yono 777",
-      "Saga Slots", "Spin Crush", "Top Rummy", "New Yono Games", "Hello Rummy", "All Yono Apps", "Rummy 365",
-      "Taurus App", "Teen Patti Gold", "Teen Patti Master", "Yono Rummy", "Slots Winner", "Good Slots", "Diwa Slot",
-      "GoGo Rummy", "Joy Rummy", "Spin Gold", "Yes Spin", "Yono Arcade", "SVIP 777", "OK Rummy", "Hind 777",
-      "Rummy Most", "Bet 213", "Teen Patti", "Boss Rummy", "Diwa VIP", "Diwa 777"
-    ];
-
-    // ===== POPULATE APP TAGS =====
-    const container = document.getElementById('appTagsScroll');
-    if (container) {
-      allAppNames.forEach(name => {
-        const span = document.createElement('span');
-        span.className = 'app-tag-item';
-        span.textContent = name;
-        container.appendChild(span);
-      });
-    }
-
     // ===== 38 APPS DATA =====
     const appsData = [
       { name: "Yono Games", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209", img: "https://i.ibb.co/LXqV77rd/yono-games.jpg", category: "Slots" },
