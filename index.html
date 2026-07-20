@@ -71,6 +71,7 @@
             border: 2px solid #22c55e;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.2s;
+            background: #f0f4fa; /* fallback background */
         }
         .nav-logo-img:hover {
             transform: scale(1.02);
@@ -145,6 +146,7 @@
             border-radius: 4px;
             object-fit: cover;
             display: block;
+            background: #f0f4fa; /* fallback */
         }
         .gmail-text-gradient {
             background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
@@ -881,8 +883,8 @@
     <!-- ===== TOP NAV - Updated with new logo and Gmail icon ===== -->
     <nav class="top-nav">
         <div class="nav-left">
-            <img src="https://i.ibb.co/wrp64y9d" alt="Yono Games Logo" class="nav-logo-img" loading="eager">
-            <span class="site-title">YONO GAMES SITE</span>
+            <img src="https://i.ibb.co/wrp64y9d" alt="Yono Games Logo" class="nav-logo-img" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="site-title" style="display:inline-block;">YONO GAMES SITE</span>
         </div>
         <div class="nav-center">
             <a href="#" class="active" id="homeNavLink">HOME</a>
@@ -892,7 +894,7 @@
         </div>
         <div class="nav-right">
             <a href="mailto:support@YonoGamesSite.com" class="gmail-link">
-                <img src="https://i.ibb.co/0v3305v" alt="Gmail" class="gmail-icon">
+                <img src="https://i.ibb.co/0v3305v" alt="Gmail" class="gmail-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                 <span class="gmail-text-gradient">Gmail</span>
             </a>
             <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
