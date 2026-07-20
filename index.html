@@ -368,9 +368,9 @@
       return `Download ${appName} APK and get ₹${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI.`;
     }
 
-    // ===== GENERATE MBM BET TAGS (5 offer tags + extra tags) =====
+    // ===== GENERATE TAGS WITH SINGLE REFERRAL BONUS PER APP =====
     function generateMBMTags(appName, bonusNum) {
-      // Generate unique numbers for all tags based on app name
+      // Generate unique seed for the app
       let seed = 0;
       for (let i = 0; i < appName.length; i++) {
         seed = ((seed << 5) - seed) + appName.charCodeAt(i);
@@ -394,48 +394,40 @@
       const b15 = 20 + (Math.abs(seed * 15) % 481);
       const b16 = 20 + (Math.abs(seed * 16) % 481);
       const b17 = 20 + (Math.abs(seed * 17) % 481);
-      // Referral bonuses (5-25)
-      const r1 = 5 + (Math.abs(seed * 18) % 20);
-      const r2 = 5 + (Math.abs(seed * 19) % 20);
-      const r3 = 5 + (Math.abs(seed * 20) % 20);
-      const r4 = 5 + (Math.abs(seed * 21) % 20);
-      const r5 = 5 + (Math.abs(seed * 22) % 20);
-      const r6 = 5 + (Math.abs(seed * 23) % 20);
-      const r7 = 5 + (Math.abs(seed * 24) % 20);
-      const r8 = 5 + (Math.abs(seed * 25) % 20);
-      const r9 = 5 + (Math.abs(seed * 26) % 20);
-      const r10 = 5 + (Math.abs(seed * 27) % 20);
-      const r11 = 5 + (Math.abs(seed * 28) % 20);
-      const r12 = 5 + (Math.abs(seed * 29) % 20);
-      const r13 = 5 + (Math.abs(seed * 30) % 20);
-      const r14 = 5 + (Math.abs(seed * 31) % 20);
-      const r15 = 5 + (Math.abs(seed * 32) % 20);
+      
+      // Single referral bonus for this app (used in all 5 offer tags)
+      const refBonus = 5 + (Math.abs(seed * 18) % 20);
+      // Different referral bonuses for extra tags (FAQ etc.) if needed
+      const refFaq1 = 5 + (Math.abs(seed * 19) % 20);
+      const refFaq2 = 5 + (Math.abs(seed * 20) % 20);
+      const refFaq3 = 5 + (Math.abs(seed * 21) % 20);
+      const refFaq4 = 5 + (Math.abs(seed * 22) % 20);
 
-      // Build 5 offer tags
+      // Build 5 offer tags - all use the same refBonus
       const offerTags = `
         <div class="tag-box">
           <div class="tag-title">🏆 ${appName} APK Download – Get ₹${b1} Instant Bonus!</div>
-          <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today! Referral Bonus: <span class="tag-ref">₹${r1}</span></div>
+          <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today! Referral Bonus: <span class="tag-ref">₹${refBonus}</span></div>
         </div>
         <div class="tag-box">
           <div class="tag-title">💰 Unlock ₹${b2} Bonus in ${appName} App!</div>
-          <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now! Referral Bonus: <span class="tag-ref">₹${r2}</span></div>
+          <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now! Referral Bonus: <span class="tag-ref">₹${refBonus}</span></div>
         </div>
         <div class="tag-box">
           <div class="tag-title">🎁 ${appName} – Signup for ₹${b3}-₹${b4} Free Bonus</div>
-          <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily! Referral Bonus: <span class="tag-ref">₹${r3}</span></div>
+          <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily! Referral Bonus: <span class="tag-ref">₹${refBonus}</span></div>
         </div>
         <div class="tag-box">
           <div class="tag-title">🎰 Experience ${appName} – ₹${b5} Welcome Bonus on Download</div>
-          <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today! Referral Bonus: <span class="tag-ref">₹${r4}</span></div>
+          <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today! Referral Bonus: <span class="tag-ref">₹${refBonus}</span></div>
         </div>
         <div class="tag-box">
           <div class="tag-title">🇮🇳 Dive into ${appName} – India’s Top Online Gaming App</div>
-          <div class="tag-content">Get ₹${b6} signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now! Referral Bonus: <span class="tag-ref">₹${r5}</span></div>
+          <div class="tag-content">Get ₹${b6} signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now! Referral Bonus: <span class="tag-ref">₹${refBonus}</span></div>
         </div>
       `;
 
-      // Extra tags (hidden initially)
+      // Extra tags (FAQ, Overview, etc.) with their own referral bonuses
       const extraTags = `
         <!-- FAQ Section -->
         <div class="extra-tag-box">
@@ -443,11 +435,11 @@
           <div class="tag-content">
             <div class="faq-item">
               <div class="faq-q">1. What Is The ${appName} app APK?</div>
-              <div class="faq-a">The ${appName} APP APK is an excellent application that offers users a sign-up bonus of ₹${b7} when they join. This game includes a fantastic bonus program, and you can learn more by reading the complete post. Additionally, ${appName} APK is a popular slots game with a minimum withdrawal amount of ₹100. Referral Bonus: <span class="tag-ref">₹${r6}</span></div>
+              <div class="faq-a">The ${appName} APP APK is an excellent application that offers users a sign-up bonus of ₹${b7} when they join. This game includes a fantastic bonus program, and you can learn more by reading the complete post. Additionally, ${appName} APK is a popular slots game with a minimum withdrawal amount of ₹100. Referral Bonus: <span class="tag-ref">₹${refFaq1}</span></div>
             </div>
             <div class="faq-item">
               <div class="faq-q">2. How to Sign Up for ${appName} APK?</div>
-              <div class="faq-a">To sign up for the ${appName} APK, follow these steps:<br>• Click on the Download Button for the ${appName} APK.<br>• Select OK to start the download.<br>• Install the App application on your smartphone.<br>• Open the new app and click on Play as Guest.<br>• Click on the Profile Button and bind your mobile number.<br>After completing these steps, you will receive a sign-up bonus of ₹${b8}. Referral Bonus: <span class="tag-ref">₹${r7}</span></div>
+              <div class="faq-a">To sign up for the ${appName} APK, follow these steps:<br>• Click on the Download Button for the ${appName} APK.<br>• Select OK to start the download.<br>• Install the App application on your smartphone.<br>• Open the new app and click on Play as Guest.<br>• Click on the Profile Button and bind your mobile number.<br>After completing these steps, you will receive a sign-up bonus of ₹${b8}. Referral Bonus: <span class="tag-ref">₹${refFaq2}</span></div>
             </div>
             <div class="faq-item">
               <div class="faq-q">3. How Many Games Are Available In The ${appName} App?</div>
@@ -455,7 +447,7 @@
             </div>
             <div class="faq-item">
               <div class="faq-q">4. What are some of the best features of the ${appName} app APK?</div>
-              <div class="faq-a">• Enjoy a bonus of ₹${b9} for free in the APK.<br>• Access to 20 gaming options.<br>• Earn up to ₹${b10} for inviting friends.<br>• Withdrawals can be made starting from a minimum of ₹${b11}.<br>• Click on the Profile Button and bind your mobile number.<br>• The minimum deposit required is ₹${b12}. Referral Bonus: <span class="tag-ref">₹${r8}</span></div>
+              <div class="faq-a">• Enjoy a bonus of ₹${b9} for free in the APK.<br>• Access to 20 gaming options.<br>• Earn up to ₹${b10} for inviting friends.<br>• Withdrawals can be made starting from a minimum of ₹${b11}.<br>• Click on the Profile Button and bind your mobile number.<br>• The minimum deposit required is ₹${b12}. Referral Bonus: <span class="tag-ref">₹${refFaq3}</span></div>
             </div>
           </div>
         </div>
@@ -600,7 +592,7 @@
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
-      // Generate the new MBM BET tags
+      // Generate the tags with single referral bonus per app
       const { offerTags, extraTags } = generateMBMTags(selectedApp.name, bonusNum);
 
       // Other apps grid
