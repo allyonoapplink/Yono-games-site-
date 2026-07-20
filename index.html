@@ -424,40 +424,6 @@
             flex-direction: column;
             gap: 12px;
         }
-        .tag-box {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 14px 16px;
-            border-left: 4px solid #22c55e;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border-top: 1px solid #e9edf4;
-            border-right: 1px solid #e9edf4;
-            border-bottom: 1px solid #e9edf4;
-        }
-        .tag-box .tag-title {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #0b1e33;
-            margin-bottom: 4px;
-        }
-        .tag-box .tag-content {
-            font-size: 0.75rem;
-            color: #334155;
-            line-height: 1.6;
-        }
-        .tag-box .tag-content strong {
-            color: #0b1e33;
-        }
-        .tag-box .tag-bonus {
-            color: #dc2626;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-        .tag-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, #d0d9e8, transparent);
-            margin: 0 10px;
-        }
 
         /* ====== VIEW TAGS BUTTON ====== */
         .view-tags-btn {
@@ -543,6 +509,54 @@
             height: 1px;
             background: linear-gradient(to right, transparent, #d0d9e8, transparent);
             margin: 12px 0;
+        }
+
+        /* ====== ALL APPS OVERVIEW TAGS ====== */
+        .all-apps-tag-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-left: 4px solid #8b5cf6;
+            border-top: 1px solid #e9edf4;
+            border-right: 1px solid #e9edf4;
+            border-bottom: 1px solid #e9edf4;
+            text-align: left;
+        }
+        .all-apps-tag-box .tag-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #0b1e33;
+            margin-bottom: 4px;
+        }
+        .all-apps-tag-box .tag-content {
+            font-size: 0.75rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+        .all-apps-tag-box .tag-content strong {
+            color: #0b1e33;
+        }
+        .all-apps-tag-box .tag-bonus {
+            color: #dc2626;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .all-apps-tag-box .app-mini-icon {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            overflow: hidden;
+            vertical-align: middle;
+            margin-right: 8px;
+            border: 1px solid #e2e8f0;
+            background: #fff5e6;
+        }
+        .all-apps-tag-box .app-mini-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .ref-badge {
@@ -775,6 +789,16 @@
             display: none !important;
         }
 
+        /* ====== SECTION TITLE ====== */
+        .section-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0b1e33;
+            margin: 18px 0 12px 0;
+            padding-left: 12px;
+            border-left: 4px solid #8b5cf6;
+        }
+
         @media (min-width: 480px) {
             .card {
                 max-width: 380px;
@@ -999,7 +1023,7 @@
                 }
             }
 
-            // ===== GENERATE RICH TAGS FOR EACH APP =====
+            // ===== GENERATE RICH TAGS FOR CURRENT APP =====
             function generateRichTags(appName, bonusNum, category) {
                 const seed = appName.length * 7 + 13;
                 const b1 = 20 + (Math.abs(seed * 1 + 5) % 481);
@@ -1013,8 +1037,6 @@
                 const b9 = 20 + (Math.abs(seed * 9 + 53) % 481);
                 const b10 = 20 + (Math.abs(seed * 10 + 61) % 481);
                 const b11 = 20 + (Math.abs(seed * 11 + 71) % 481);
-
-                const categoryLower = category.toLowerCase();
 
                 return `
                     <div class="rich-tag-box">
@@ -1097,6 +1119,45 @@
                         <div class="tag-content">• Ensure stable internet during login or registration<br>• Use the latest ${appName} new update version for best performance<br>• Make sure OTP messages are not blocked on your device<br>• Claim your ₹${b9} welcome bonus immediately after registration<br>• Refer friends to earn ₹${b10} per referral<br>• Withdraw your winnings starting from ₹${b11}</div>
                     </div>
                 `;
+            }
+
+            // ===== GENERATE ALL APPS OVERVIEW TAGS =====
+            function generateAllAppsOverview(currentAppName) {
+                let html = '';
+                appsData.forEach((app, idx) => {
+                    if (app.name === currentAppName) return; // Skip current app
+
+                    let h = 0;
+                    for (let i = 0; i < app.name.length; i++) {
+                        h = ((h << 5) - h) + app.name.charCodeAt(i);
+                        h |= 0;
+                    }
+                    const appBonus = 20 + (Math.abs(h) % 481);
+                    const refBonus = 5 + (Math.abs(h * 7 + 13) % 20);
+                    const categoryLabel = app.category || "Game";
+
+                    html += `
+                        <div class="all-apps-tag-box">
+                            <div class="tag-title">
+                                <span class="app-mini-icon"><img src="${app.img}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/28?text=App'"></span>
+                                ${app.name} – <span class="tag-bonus">₹${appBonus}</span> Welcome Bonus
+                            </div>
+                            <div class="tag-content">
+                                <strong>📱 ${app.name}</strong> – A popular ${categoryLabel.toLowerCase()} app offering ₹${appBonus} signup bonus, ₹100 min withdrawal, daily rewards, and fast UPI payouts.
+                                <br><br>
+                                <strong>🎁 Key Features:</strong><br>
+                                • Welcome Bonus: ₹${appBonus}<br>
+                                • Referral Bonus: ₹${refBonus} per friend<br>
+                                • Min Withdrawal: ₹100<br>
+                                • Games: ${categoryLabel}, slots, card games & more<br>
+                                • Secure & fast UPI transactions
+                                <br><br>
+                                <strong>📥 Download ${app.name} APK</strong> – Play & win real cash rewards instantly!
+                            </div>
+                        </div>
+                    `;
+                });
+                return html;
             }
 
             // ===== HELPER: get color class =====
@@ -1229,8 +1290,10 @@
                 gridDiv.classList.add('hidden');
                 downloadContainer.classList.remove('hidden');
 
-                // Generate rich tags for this app
+                // Generate rich tags for current app
                 const richTags = generateRichTags(selectedApp.name, bonusNum, selectedApp.category);
+                // Generate all apps overview
+                const allAppsOverview = generateAllAppsOverview(selectedApp.name);
 
                 const finalColorClass = getColorClass(selectedIndex);
 
@@ -1292,10 +1355,17 @@
                                 </div>
                             </div>
 
+                            <div class="tag-section" style="margin-top:20px; border-top: 2px dashed #ffcf8a; padding-top:16px;">
+                                <div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">📱 All Yono Games Apps – Overview</div>
+                                <div class="tag-grid" id="allAppsOverviewContainer">
+                                    ${allAppsOverview}
+                                </div>
+                            </div>
+
                             <button class="view-tags-btn" id="viewTagsBtn">View Tags</button>
 
                             <div class="extra-tags" id="extraTagsContainer">
-                                <!-- Rich tags are already displayed above, but we keep this for the toggle functionality -->
+                                <!-- Content is toggled via JS -->
                             </div>
 
                         </div>
@@ -1307,23 +1377,30 @@
                 downloadContainer.innerHTML = downloadPageHtml;
 
                 // Toggle functionality for View Tags button
-                document.getElementById('viewTagsBtn').addEventListener('click', function() {
-                    const container = document.getElementById('richTagsContainer');
-                    const extraContainer = document.getElementById('extraTagsContainer');
-                    if (container.style.display === 'none') {
-                        container.style.display = 'block';
+                const richContainer = document.getElementById('richTagsContainer');
+                const allAppsContainer = document.getElementById('allAppsOverviewContainer');
+                const extraContainer = document.getElementById('extraTagsContainer');
+                const viewBtn = document.getElementById('viewTagsBtn');
+
+                // Initially show both containers
+                richContainer.style.display = 'block';
+                allAppsContainer.style.display = 'block';
+                extraContainer.classList.add('open');
+                viewBtn.textContent = 'Hide Tags';
+
+                viewBtn.addEventListener('click', function() {
+                    if (richContainer.style.display === 'none') {
+                        richContainer.style.display = 'block';
+                        allAppsContainer.style.display = 'block';
                         extraContainer.classList.add('open');
                         this.textContent = 'Hide Tags';
                     } else {
-                        container.style.display = 'none';
+                        richContainer.style.display = 'none';
+                        allAppsContainer.style.display = 'none';
                         extraContainer.classList.remove('open');
                         this.textContent = 'View Tags';
                     }
                 });
-
-                // Initially show rich tags
-                const container = document.getElementById('richTagsContainer');
-                container.style.display = 'block';
 
                 document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
                     btn.addEventListener('click', (e) => {
