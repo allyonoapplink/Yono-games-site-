@@ -244,7 +244,7 @@
             border: 1px solid #a5f3fc;
         }
 
-        /* ====== DOWNLOAD BUTTONS - GREEN & CYAN HD ====== */
+        /* ====== DOWNLOAD BUTTONS - GREEN & CYAN HD (Main Grid) ====== */
         .download-btn {
             display: block;
             width: 100%;
@@ -624,7 +624,7 @@
             margin-top: 1px;
         }
 
-        /* ====== SMALL DOWNLOAD - GREEN & CYAN HD ====== */
+        /* ====== SMALL DOWNLOAD - BLACK HD (Only for Other Apps) ====== */
         .small-download {
             display: block;
             width: 100%;
@@ -639,23 +639,14 @@
             cursor: pointer;
             border: none;
             transition: 0.25s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.20);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+            background: linear-gradient(145deg, #1e1e1e, #000000);
+            border: 1px solid #333333;
         }
         .small-download:hover {
             transform: scale(0.97);
-            box-shadow: 0 5px 16px rgba(0, 0, 0, 0.28);
-        }
-        .small-download.green-hd {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-        }
-        .small-download.green-hd:hover {
-            background: linear-gradient(135deg, #2dd4bf, #16a34a);
-        }
-        .small-download.cyan-hd {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-        }
-        .small-download.cyan-hd:hover {
-            background: linear-gradient(135deg, #22d3ee, #0891b2);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
         }
 
         .footer-note {
@@ -1213,8 +1204,7 @@
                         h |= 0;
                     }
                     const relBonus = 20 + (Math.abs(h) % 481);
-                    // alternate color for other apps
-                    const otherColorClass = getColorClass(otherIdx);
+                    // BLACK HD for all "Other Yono Apps" download buttons
                     otherAppsHtml += `
                         <div class="other-card">
                             <div style="width:48px;height:48px;margin:0 auto 4px;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
@@ -1223,7 +1213,7 @@
                             <div class="app-name">${app.name}</div>
                             <div class="withdraw-green">🏦 Min Withdrawal: ${app.withdrawal}</div>
                             <div class="signup-bonus-small">🔴 Sign Up Bonus: ₹${relBonus}</div>
-                            <button class="small-download ${otherColorClass}" data-other-index="${originalIndex}">📲 DOWNLOAD</button>
+                            <button class="small-download" data-other-index="${originalIndex}">📲 DOWNLOAD</button>
                         </div>
                     `;
                 });
