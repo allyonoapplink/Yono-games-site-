@@ -673,13 +673,45 @@
             border: 1px solid #ffcf8a;
             max-height: 80vh;
             overflow-y: auto;
+            position: relative;
         }
-        .info-modal-content h4 {
-            font-size: 1.2rem;
+        /* Modal header with close button on right */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 12px;
+            border-bottom: 2px dashed #ffcf8a;
+            padding-bottom: 10px;
+        }
+        .modal-header h4 {
+            font-size: 1.2rem;
             color: #1e562a;
             border-left: 4px solid #ff8c00;
             padding-left: 12px;
+            margin: 0;
+        }
+        .modal-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #666;
+            cursor: pointer;
+            padding: 0 8px;
+            transition: 0.2s;
+            line-height: 1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .modal-close-btn:hover {
+            color: #d50000;
+            background: #fee2e2;
         }
         .info-modal-content p {
             font-size: 0.8rem;
@@ -694,24 +726,6 @@
         .info-modal-content li {
             margin: 4px 0;
             font-size: 0.75rem;
-        }
-        .info-close {
-            background: linear-gradient(135deg, #2ecc71, #e91e63);
-            border: none;
-            padding: 10px 16px;
-            border-radius: 60px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: white;
-            cursor: pointer;
-            margin-top: 12px;
-            width: 100%;
-            transition: 0.25s ease;
-            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
-        }
-        .info-close:hover {
-            transform: scale(0.97);
-            background: linear-gradient(135deg, #27ae60, #c2185b);
         }
         .contact-table {
             width: 100%;
@@ -776,6 +790,10 @@
             margin: 8px 0;
             border: 1px solid #ffcf8a;
         }
+        /* Remove OK button - we don't need it anymore */
+        .info-close {
+            display: none !important;
+        }
 
         @media (min-width: 480px) {
             .card {
@@ -822,9 +840,11 @@
     <!-- ===== CUSTOM INFO MODAL ===== -->
     <div id="customInfoModal" class="info-modal">
         <div class="info-modal-content">
-            <h4 id="modalTitle">Information</h4>
+            <div class="modal-header">
+                <h4 id="modalTitle">Information</h4>
+                <button class="modal-close-btn" id="closeInfoModal">✕</button>
+            </div>
             <div id="modalBody"></div>
-            <button class="info-close" id="closeInfoModal">OK</button>
         </div>
     </div>
 
@@ -1002,7 +1022,7 @@
                     </div>
                     <div class="tag-divider"></div>
                     <div class="tag-box">
-                        <div class="tag-title">🇮🇳 Dive into ${appName} – India’s Top Online Gaming App</div>
+                        <div class="tag-title">🇮🇳 Dive into ${appName} – India's Top Online Gaming App</div>
                         <div class="tag-content">Get ₹${20 + (Math.abs(seed * 7) % 481)} signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
                     </div>
                 `;
@@ -1076,7 +1096,7 @@
 
                     <div class="extra-tag-box">
                         <div class="tag-title">🔒 ${appName} Safety & Security</div>
-                        <div class="tag-content">${appName} is designed to provide a secure and reliable gaming experience. The app uses standard encryption and protected payment systems to help keep user data and transactions safe.<br><br>Deposits and withdrawals are processed through commonly used methods such as UPI and bank transfer, offering a convenient experience for users in India. However, users are advised to play responsibly and review the app’s terms and policies before using it.</div>
+                        <div class="tag-content">${appName} is designed to provide a secure and reliable gaming experience. The app uses standard encryption and protected payment systems to help keep user data and transactions safe.<br><br>Deposits and withdrawals are processed through commonly used methods such as UPI and bank transfer, offering a convenient experience for users in India. However, users are advised to play responsibly and review the app's terms and policies before using it.</div>
                     </div>
 
                     <div class="extra-tag-box">
@@ -1116,7 +1136,9 @@
                 history.replaceState({ page: 'main' }, '', window.location.pathname);
             }
 
+            // Close button on modal (X)
             closeInfoModal.addEventListener('click', closeModalAndResetHistory);
+            // Click outside modal to close
             window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
 
             // ===== RENDER MAIN GRID =====
@@ -1127,7 +1149,6 @@
                 appsData.forEach((app, idx) => {
                     const stats = getCardStats(app.name, app.bonus);
                     const displayBonus = stats.bonus;
-                    // No color class – all download buttons on home page are black
                     html += `
                         <div class="card" data-app-index="${idx}">
                             <div class="card-app-name">${app.name}</div>
@@ -1180,7 +1201,6 @@
 
                 const { offerTags, extraTags, refBonus } = generateTags(selectedApp.name, bonusNum);
 
-                // Color for the final download button (detail page) – alternating green/cyan
                 const finalColorClass = getColorClass(selectedIndex);
 
                 const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
@@ -1206,10 +1226,8 @@
                     `;
                 });
 
-                // ===== BUILD DOWNLOAD PAGE WITH 3 COLOR TAGS =====
                 const downloadPageHtml = `
                     <div class="download-page" id="activeDownloadPage">
-                        <!-- HEADER with 3 color tags -->
                         <div class="download-header">
                             <div class="tag-row">
                                 <span class="app-name-tag">📥 ${selectedApp.name} APK</span>
@@ -1311,36 +1329,33 @@
                 e.preventDefault();
                 document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
                 navAbout.classList.add('active');
+                // Updated About modal: removed AI robot icon + animation
                 showInfoModal('📖 About - Yono Games Site', `
-                        <p><strong>Welcome to Yono Games Site</strong> – a comprehensive hub dedicated to enhancing digital experiences for everyone. Our mission is to empower users with access to a wide range of applications with a unique focus on Indian users.</p>
-                        <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated.</p>
-                        <hr style="margin:14px 0;border:1px dashed #ffcf8a;">
-                        <p><strong>🎯 Our Mission</strong><br>To provide the best gaming and app experience for Indian users with secure downloads and reliable service.</p>
-                        <p><strong>🔒 Secure Downloads</strong><br>All apps are verified and safe only.</p>
-                        <div style="margin-top:16px;text-align:center;border-top:2px solid #ffcf8a;padding-top:14px;">
-                            <div style="display:flex;justify-content:center;align-items:center;margin:12px 0 6px;">
-                                <div style="font-size:3.5rem;animation:spinRobot 3s linear infinite;filter:drop-shadow(0 0 12px rgba(0,200,255,0.6));background:radial-gradient(circle,#e0f7fa,#b2ebf2);border-radius:50%;padding:12px;width:80px;height:80px;display:flex;justify-content:center;align-items:center;box-shadow:0 0 24px rgba(0,150,255,0.3);">🤖</div>
-                            </div>
-                            <style>@keyframes spinRobot{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.1)}100%{transform:rotate(360deg) scale(1)}}</style>
-                            <div style="text-align:center;font-weight:700;color:#0a2e1d;font-size:0.8rem;letter-spacing:1px;margin-top:4px;background:linear-gradient(90deg,#ff4081,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Our intelligent AI is always spinning to help you</div>
-                        </div>
-                    `);
+                    <p><strong>Welcome to Yono Games Site</strong> – a comprehensive hub dedicated to enhancing digital experiences for everyone. Our mission is to empower users with access to a wide range of applications with a unique focus on Indian users.</p>
+                    <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated.</p>
+                    <hr style="margin:14px 0;border:1px dashed #ffcf8a;">
+                    <p><strong>🎯 Our Mission</strong><br>To provide the best gaming and app experience for Indian users with secure downloads and reliable service.</p>
+                    <p><strong>🔒 Secure Downloads</strong><br>All apps are verified and safe only.</p>
+                    <hr style="margin:14px 0;border:1px dashed #ffcf8a;">
+                    <div style="text-align:center;font-weight:700;color:#0a2e1d;font-size:0.8rem;letter-spacing:1px;margin-top:4px;background:linear-gradient(90deg,#ff4081,#ff8c00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;padding:8px 0;">Yono Games Site – Your Trusted Gaming Platform</div>
+                `);
             });
 
             navContact.addEventListener('click', (e) => {
                 e.preventDefault();
                 document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
                 navContact.classList.add('active');
+                // Updated Contact modal: Telegram URL changed to https://t.me/yonogamestite
                 showInfoModal('📞 Contact Us - Yono Games Site', `
-                        <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games.</p>
-                        <p style="margin-top:14px;"><strong style="color:#d50000;">📢 Advertisement/Business Queries</strong><br>If you are a game maker company, operator, or administrator, and you want to promote your application, contact us through the details below.</p>
-                        <table class="contact-table">
-                            <tr><th>Title</th><th>Link</th></tr>
-                            <tr><td><strong>Email</strong></td><td><a href="mailto:support@YonoGamesSite.com" class="contact-email">support@YonoGamesSite.com</a></td></tr>
-                            <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/YonoGamesSite" target="_blank" class="contact-telegram">@YonoGamesSite</a></td></tr>
-                        </table>
-                        <p style="margin-top:12px;background:linear-gradient(135deg,#ff4081,#ff8c00);padding:8px;border-radius:12px;color:white;font-weight:600;text-align:center;">⚡ Contact us through Email or Telegram</p>
-                    `);
+                    <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games.</p>
+                    <p style="margin-top:14px;"><strong style="color:#d50000;">📢 Advertisement/Business Queries</strong><br>If you are a game maker company, operator, or administrator, and you want to promote your application, contact us through the details below.</p>
+                    <table class="contact-table">
+                        <tr><th>Title</th><th>Link</th></tr>
+                        <tr><td><strong>Email</strong></td><td><a href="mailto:support@YonoGamesSite.com" class="contact-email">support@YonoGamesSite.com</a></td></tr>
+                        <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/yonogamestite" target="_blank" class="contact-telegram">@yonogamestite</a></td></tr>
+                    </table>
+                    <p style="margin-top:12px;background:linear-gradient(135deg,#ff4081,#ff8c00);padding:8px;border-radius:12px;color:white;font-weight:600;text-align:center;">⚡ Contact us through Email or Telegram</p>
+                `);
             });
 
             navDisclaimer.addEventListener('click', (e) => {
@@ -1348,18 +1363,18 @@
                 document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
                 navDisclaimer.classList.add('active');
                 showInfoModal('⚠️ Disclaimer - Yono Games Site', `
-                        <div style="background:linear-gradient(135deg,#fff5e6,#ffe6cc);padding:10px;border-radius:14px;margin-bottom:12px;text-align:center;"><h3 style="color:#b45900;font-weight:800;font-size:1.2rem;">Welcome to Yono Games Site</h3></div>
-                        <p style="font-weight:700;color:#1e562a;">This disclaimer applies to all users of the Yono Games Site website and the wide array of applications available on it.</p>
-                        <div class="disclaimer-section"><h4>Understanding the Scope of Our Platform</h4><p>Yono Games Site serves as a digital distribution platform for various third-party applications. Our role is limited to providing access to these apps.</p></div>
-                        <div class="disclaimer-section" style="border-left-color:#d50000;"><h4>User Responsibility and Financial Risk</h4><p><strong>Risk of Financial Activities</strong><br>The Apps may carry inherent risks including significant financial loss. You are solely responsible for any financial outcomes.</p></div>
-                        <div class="disclaimer-section" style="border-left-color:#0088cc;"><h4>Legal Age and Compliance</h4><p><strong>Age Restrictions</strong><br>Some Apps are designed for users above a certain age (usually 18 or 21). You must comply with these age restrictions.</p></div>
-                        <div class="disclaimer-box" style="background:#ffebee;border-color:#d50000;"><p><strong>⚠️ No Liability for Losses</strong><br>Yono Games Site shall not be liable for any direct, indirect, incidental, consequential, or punitive damages, including financial losses.</p></div>
-                        <div class="disclaimer-section" style="border-left-color:#9c27b0;"><h4>Awareness of Addiction Risks</h4><p><strong>Risk of Addiction:</strong> Certain apps can be addictive. We encourage responsible use.</p></div>
-                        <div class="disclaimer-box" style="background:#e8f5e9;border-color:#2ecc71;"><p><strong>Changes and Amendments</strong><br>We reserve the right to modify this disclaimer at any time.</p></div>
-                        <hr style="margin:12px 0;border:2px dashed #ffcf8a;">
-                        <div style="background:#fef4e6;padding:10px;border-radius:12px;margin:10px 0;"><h4 style="color:#b45900;">Disclaimer for Rummy Apps</h4><p>Rummy games are intended for users aged 18+ and involve elements of skill and chance. Play at your own risk.</p></div>
-                        <div style="margin-top:14px;text-align:center;background:linear-gradient(90deg,#ff4081,#ff8c00);padding:6px;border-radius:30px;color:white;font-weight:700;">⚡ Yono Games Site – Your Trusted App Discovery Platform ⚡</div>
-                    `);
+                    <div style="background:linear-gradient(135deg,#fff5e6,#ffe6cc);padding:10px;border-radius:14px;margin-bottom:12px;text-align:center;"><h3 style="color:#b45900;font-weight:800;font-size:1.2rem;">Welcome to Yono Games Site</h3></div>
+                    <p style="font-weight:700;color:#1e562a;">This disclaimer applies to all users of the Yono Games Site website and the wide array of applications available on it.</p>
+                    <div class="disclaimer-section"><h4>Understanding the Scope of Our Platform</h4><p>Yono Games Site serves as a digital distribution platform for various third-party applications. Our role is limited to providing access to these apps.</p></div>
+                    <div class="disclaimer-section" style="border-left-color:#d50000;"><h4>User Responsibility and Financial Risk</h4><p><strong>Risk of Financial Activities</strong><br>The Apps may carry inherent risks including significant financial loss. You are solely responsible for any financial outcomes.</p></div>
+                    <div class="disclaimer-section" style="border-left-color:#0088cc;"><h4>Legal Age and Compliance</h4><p><strong>Age Restrictions</strong><br>Some Apps are designed for users above a certain age (usually 18 or 21). You must comply with these age restrictions.</p></div>
+                    <div class="disclaimer-box" style="background:#ffebee;border-color:#d50000;"><p><strong>⚠️ No Liability for Losses</strong><br>Yono Games Site shall not be liable for any direct, indirect, incidental, consequential, or punitive damages, including financial losses.</p></div>
+                    <div class="disclaimer-section" style="border-left-color:#9c27b0;"><h4>Awareness of Addiction Risks</h4><p><strong>Risk of Addiction:</strong> Certain apps can be addictive. We encourage responsible use.</p></div>
+                    <div class="disclaimer-box" style="background:#e8f5e9;border-color:#2ecc71;"><p><strong>Changes and Amendments</strong><br>We reserve the right to modify this disclaimer at any time.</p></div>
+                    <hr style="margin:12px 0;border:2px dashed #ffcf8a;">
+                    <div style="background:#fef4e6;padding:10px;border-radius:12px;margin:10px 0;"><h4 style="color:#b45900;">Disclaimer for Rummy Apps</h4><p>Rummy games are intended for users aged 18+ and involve elements of skill and chance. Play at your own risk.</p></div>
+                    <div style="margin-top:14px;text-align:center;background:linear-gradient(90deg,#ff4081,#ff8c00);padding:6px;border-radius:30px;color:white;font-weight:700;">⚡ Yono Games Site – Your Trusted App Discovery Platform ⚡</div>
+                `);
             });
 
             // ===== INIT =====
