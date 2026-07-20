@@ -1376,17 +1376,17 @@
                 `;
                 downloadContainer.innerHTML = downloadPageHtml;
 
-                // Toggle functionality for View Tags button - initially hidden
+                // Toggle functionality for View Tags button
                 const richContainer = document.getElementById('richTagsContainer');
                 const allAppsContainer = document.getElementById('allAppsOverviewContainer');
                 const extraContainer = document.getElementById('extraTagsContainer');
                 const viewBtn = document.getElementById('viewTagsBtn');
 
-                // Initially hide both containers
-                richContainer.style.display = 'none';
-                allAppsContainer.style.display = 'none';
-                extraContainer.classList.remove('open');
-                viewBtn.textContent = 'View Tags';
+                // Initially show both containers
+                richContainer.style.display = 'block';
+                allAppsContainer.style.display = 'block';
+                extraContainer.classList.add('open');
+                viewBtn.textContent = 'Hide Tags';
 
                 viewBtn.addEventListener('click', function() {
                     if (richContainer.style.display === 'none') {
