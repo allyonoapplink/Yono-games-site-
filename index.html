@@ -162,15 +162,28 @@
     .final-download-btn:hover { transform: scale(0.97); background: #1a1a1a; }
     .app-description { background: white; padding: 14px 16px; border-radius: 24px; text-align: left; margin: 14px 0; font-size: 0.8rem; line-height: 1.5; color: #2d3e2b; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     
-    /* ====== NEW TAG BOXES ====== */
+    /* ====== TAG BOXES - SEPARATE WITH DISTINCT BONUS ====== */
     .tag-section { margin: 14px 0; }
-    .tag-grid { display: flex; flex-direction: column; gap: 10px; }
-    .tag-box { background: #f8fafc; border-radius: 16px; padding: 14px 16px; border-left: 4px solid #22c55e; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .tag-grid { display: flex; flex-direction: column; gap: 12px; }
+    .tag-box { 
+      background: #f8fafc; 
+      border-radius: 16px; 
+      padding: 14px 16px; 
+      border-left: 4px solid #22c55e; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border-top: 1px solid #e9edf4;
+      border-right: 1px solid #e9edf4;
+      border-bottom: 1px solid #e9edf4;
+    }
     .tag-box .tag-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; margin-bottom: 4px; }
     .tag-box .tag-content { font-size: 0.75rem; color: #334155; line-height: 1.6; }
     .tag-box .tag-content strong { color: #0b1e33; }
-    .tag-box .tag-bonus { color: #dc2626; font-weight: 700; }
-    .tag-box .tag-ref { color: #2563eb; font-weight: 600; }
+    .tag-box .tag-bonus { color: #dc2626; font-weight: 700; font-size: 0.85rem; }
+    .tag-divider { 
+      height: 1px; 
+      background: linear-gradient(to right, transparent, #d0d9e8, transparent); 
+      margin: 0 10px; 
+    }
     
     /* ====== VIEW TAGS BUTTON - BLUE SMALL ====== */
     .view-tags-btn {
@@ -206,6 +219,19 @@
     .faq-item { margin-bottom: 12px; }
     .faq-item .faq-q { font-weight: 700; color: #b45900; font-size: 0.8rem; margin-bottom: 2px; }
     .faq-item .faq-a { font-size: 0.75rem; color: #334155; padding-left: 10px; }
+    
+    /* ====== REFERRAL BONUS BADGE ====== */
+    .ref-badge {
+      background: #eef2ff;
+      padding: 6px 14px;
+      border-radius: 40px;
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #1e293b;
+      border: 1px solid #b3c8e6;
+      margin: 6px 0 10px;
+    }
     
     /* ====== OTHER APPS ====== */
     .other-apps-title { font-size: 1.1rem; font-weight: 800; margin: 24px 0 12px; color: #1e293b; border-left: 4px solid #2ecc71; padding-left: 12px; }
@@ -368,61 +394,66 @@
       return `Download ${appName} APK and get ₹${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI.`;
     }
 
-    // ===== GENERATE TAGS WITH SINGLE REFERRAL BONUS PER APP =====
-    function generateMBMTags(appName, bonusNum) {
+    // ===== GENERATE TAGS WITH UNIQUE BONUS FOR EACH TAG =====
+    function generateTags(appName, bonusNum) {
       // Generate unique seed for the app
       let seed = 0;
       for (let i = 0; i < appName.length; i++) {
         seed = ((seed << 5) - seed) + appName.charCodeAt(i);
         seed |= 0;
       }
-      // Use seed to generate various bonus numbers (20-500 range)
+      
+      // Generate 5 unique bonus numbers for each offer tag (20-500 range)
       const b1 = 20 + (Math.abs(seed * 1) % 481);
       const b2 = 20 + (Math.abs(seed * 2) % 481);
       const b3 = 20 + (Math.abs(seed * 3) % 481);
       const b4 = 20 + (Math.abs(seed * 4) % 481);
       const b5 = 20 + (Math.abs(seed * 5) % 481);
-      const b6 = 20 + (Math.abs(seed * 6) % 481);
-      const b7 = 20 + (Math.abs(seed * 7) % 481);
-      const b8 = 20 + (Math.abs(seed * 8) % 481);
-      const b9 = 20 + (Math.abs(seed * 9) % 481);
-      const b10 = 20 + (Math.abs(seed * 10) % 481);
-      const b11 = 20 + (Math.abs(seed * 11) % 481);
-      const b12 = 20 + (Math.abs(seed * 12) % 481);
-      const b13 = 20 + (Math.abs(seed * 13) % 481);
-      const b14 = 20 + (Math.abs(seed * 14) % 481);
-      const b15 = 20 + (Math.abs(seed * 15) % 481);
-      const b16 = 20 + (Math.abs(seed * 16) % 481);
-      const b17 = 20 + (Math.abs(seed * 17) % 481);
       
-      // Single referral bonus for this app (used only once in the heading)
-      const refBonus = 5 + (Math.abs(seed * 18) % 20);
+      // Single referral bonus for this app
+      const refBonus = 5 + (Math.abs(seed * 6) % 20);
 
-      // Build 5 offer tags - WITHOUT referral bonus mention
+      // Build 5 offer tags with unique bonuses - each tag separated with a divider
       const offerTags = `
         <div class="tag-box">
-          <div class="tag-title">🏆 ${appName} APK Download – Get ₹${b1} Instant Bonus!</div>
+          <div class="tag-title">🏆 ${appName} APK Download – Get <span class="tag-bonus">₹${b1}</span> Instant Bonus!</div>
           <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today!</div>
         </div>
+        <div class="tag-divider"></div>
         <div class="tag-box">
-          <div class="tag-title">💰 Unlock ₹${b2} Bonus in ${appName} App!</div>
+          <div class="tag-title">💰 Unlock <span class="tag-bonus">₹${b2}</span> Bonus in ${appName} App!</div>
           <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now!</div>
         </div>
+        <div class="tag-divider"></div>
         <div class="tag-box">
-          <div class="tag-title">🎁 ${appName} – Signup for ₹${b3}-₹${b4} Free Bonus</div>
+          <div class="tag-title">🎁 ${appName} – Signup for <span class="tag-bonus">₹${b3}</span>-₹${b4} Free Bonus</div>
           <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily!</div>
         </div>
+        <div class="tag-divider"></div>
         <div class="tag-box">
-          <div class="tag-title">🎰 Experience ${appName} – ₹${b5} Welcome Bonus on Download</div>
+          <div class="tag-title">🎰 Experience ${appName} – <span class="tag-bonus">₹${b5}</span> Welcome Bonus on Download</div>
           <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today!</div>
         </div>
+        <div class="tag-divider"></div>
         <div class="tag-box">
           <div class="tag-title">🇮🇳 Dive into ${appName} – India’s Top Online Gaming App</div>
-          <div class="tag-content">Get ₹${b6} signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
+          <div class="tag-content">Get ₹${20 + (Math.abs(seed * 7) % 481)} signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
         </div>
       `;
 
-      // Extra tags (FAQ, Overview, etc.) - also remove referral bonus mentions
+      // Extra tags (FAQ, Overview, etc.)
+      const b7 = 20 + (Math.abs(seed * 8) % 481);
+      const b8 = 20 + (Math.abs(seed * 9) % 481);
+      const b9 = 20 + (Math.abs(seed * 10) % 481);
+      const b10 = 20 + (Math.abs(seed * 11) % 481);
+      const b11 = 20 + (Math.abs(seed * 12) % 481);
+      const b12 = 20 + (Math.abs(seed * 13) % 481);
+      const b13 = 20 + (Math.abs(seed * 14) % 481);
+      const b14 = 20 + (Math.abs(seed * 15) % 481);
+      const b15 = 20 + (Math.abs(seed * 16) % 481);
+      const b16 = 20 + (Math.abs(seed * 17) % 481);
+      const b17 = 20 + (Math.abs(seed * 18) % 481);
+
       const extraTags = `
         <!-- FAQ Section -->
         <div class="extra-tag-box">
@@ -504,7 +535,6 @@
         </div>
       `;
 
-      // Return the offer tags and the referral bonus separately (to be displayed once)
       return { offerTags, extraTags, refBonus };
     }
 
@@ -588,8 +618,8 @@
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
-      // Generate the tags with single referral bonus
-      const { offerTags, extraTags, refBonus } = generateMBMTags(selectedApp.name, bonusNum);
+      // Generate the tags with unique bonuses per tag
+      const { offerTags, extraTags, refBonus } = generateTags(selectedApp.name, bonusNum);
 
       // Other apps grid
       const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
@@ -615,7 +645,7 @@
         `;
       });
 
-      // Build the final HTML with referral bonus shown only once
+      // Build the final HTML
       const downloadPageHtml = `
         <div class="download-page" id="activeDownloadPage">
           <div class="download-header">
@@ -636,18 +666,16 @@
             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">📲 DOWNLOAD ${selectedApp.name}</a>
             <div class="app-description">${description}<br><br><strong>🎯 Extra Benefits:</strong> Daily login rewards, referral cashback, and fast UPI withdrawals. 24/7 customer support.</div>
             
-            <!-- Single referral bonus line -->
-            <div style="background:#eef2ff; padding:6px 12px; border-radius:40px; display:inline-block; margin:6px 0 10px; font-size:0.7rem; font-weight:600; color:#1e293b;">
-              🎁 Referral Bonus: ₹${refBonus}
-            </div>
+            <!-- Single referral bonus badge -->
+            <div class="ref-badge">🎁 Referral Bonus: ₹${refBonus}</div>
 
-            <!-- 5 Offer Tags -->
+            <!-- 5 Offer Tags with unique bonuses -->
             <div class="tag-section">
               <div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">📌 ${selectedApp.name} – Top Offers</div>
               <div class="tag-grid">${offerTags}</div>
             </div>
 
-            <!-- View Tags Button - Blue Small -->
+            <!-- View Tags Button -->
             <button class="view-tags-btn" id="viewTagsBtn">View Tags</button>
 
             <!-- Extra Tags (hidden initially) -->
