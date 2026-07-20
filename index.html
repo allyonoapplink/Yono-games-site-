@@ -31,794 +31,740 @@
   </script>
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    body { background: #f5f7fc; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-    .container { max-width: 480px; width: 100%; background: #fff; min-height: 100vh; overflow: hidden; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif; }
+    body { background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%); min-height: 100vh; padding-bottom: 30px; }
     
-    .top-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: white; border-bottom: 1px solid #e9edf4; position: sticky; top: 0; z-index: 10; }
-    .header-left { display: flex; align-items: center; gap: 8px; }
-    .header-left .logo-img { width: 38px; height: 38px; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; flex-shrink: 0; }
-    .header-left .logo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .header-left .site-name { font-weight: 700; font-size: 0.8rem; color: #0b1e33; line-height: 1.2; }
-    .header-left .site-name small { display: block; font-weight: 400; font-size: 0.5rem; color: #64748b; }
-    .header-right { display: flex; align-items: center; gap: 10px; }
-    .header-right .domain-name { font-weight: 600; font-size: 0.6rem; color: #1e293b; background: #f1f5f9; padding: 3px 10px; border-radius: 40px; border: 1px solid #e2e8f0; white-space: nowrap; }
-    .share-btn { background: #1e293b; color: white; border: none; padding: 4px 12px; border-radius: 40px; font-weight: 600; font-size: 0.55rem; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; transition: 0.15s; }
-    .share-btn:active { transform: scale(0.95); }
-    .share-btn svg { width: 14px; height: 14px; fill: white; }
-    .telegram-btn { display: inline-block; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; border: 1px solid #e2e8f0; transition: 0.15s; flex-shrink: 0; }
-    .telegram-btn:active { transform: scale(0.95); }
-    .telegram-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* ====== TOP NAV ====== */
+    .top-nav { background: #0a2e1d; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-bottom: 2px solid #ffcf8a; position: sticky; top: 0; z-index: 100; }
+    .nav-left a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 40px; cursor: pointer; background: rgba(255,255,240,0.1); white-space: nowrap; transition: 0.2s; }
+    .nav-left a:hover { background: #ffcf8a; color: #0a2e1d; }
+    .menu-container { position: relative; }
+    .menu-btn { background: rgba(255,255,240,0.2); border: none; color: white; font-size: 1.2rem; font-weight: 700; padding: 6px 14px; border-radius: 40px; cursor: pointer; transition: 0.2s; backdrop-filter: blur(4px); }
+    .menu-btn:hover { background: #ffcf8a; color: #0a2e1d; }
+    .dropdown { display: none; position: absolute; top: 45px; right: 0; background: white; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); min-width: 180px; z-index: 150; overflow: hidden; border: 1px solid #ffcf8a; }
+    .dropdown a { display: block; padding: 12px 18px; text-decoration: none; color: #1e562a; font-weight: 600; font-size: 0.9rem; cursor: pointer; border-bottom: 1px solid #ffe6cc; transition: 0.2s; }
+    .dropdown a:last-child { border-bottom: none; }
+    .dropdown a:hover { background: #fef1cf; color: #b45900; }
+    .dropdown.show { display: block; }
     
-    .marquee-container { background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d); padding: 8px 0; overflow: hidden; border-bottom: 2px solid #e9edf4; box-shadow: inset 0 2px 10px rgba(0,0,0,0.1); }
-    .marquee-container marquee { color: #ffffff; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-    .marquee-container marquee span { margin: 0 25px; display: inline-block; }
-    .marquee-container marquee .highlight { color: #facc15; background: rgba(0,0,0,0.2); padding: 2px 12px; border-radius: 20px; }
-    
-    .nav-row-small { display: flex; justify-content: space-around; align-items: center; background: #f8fafc; padding: 4px 6px; border-bottom: 1px solid #e9edf4; gap: 2px; }
-    .nav-small { font-size: 0.55rem; font-weight: 600; color: #1e293b; background: white; padding: 3px 10px; border-radius: 40px; border: 1px solid #e2e8f0; cursor: pointer; text-decoration: none; transition: 0.15s; white-space: nowrap; }
-    .nav-small:active { transform: scale(0.95); }
-    .nav-small.active { background: #1e293b; color: white; border-color: #1e293b; }
-    
-    .game-detail-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; background: #f8fafc; border-bottom: 1px solid #e9edf4; }
-    .back-btn { background: #eef2ff; border: none; padding: 3px 12px; border-radius: 40px; font-weight: 600; font-size: 0.65rem; color: #1e293b; cursor: pointer; }
-    .back-btn:active { transform: scale(0.95); }
-    .game-detail-title { font-weight: 700; font-size: 0.7rem; color: #ffffff !important; background: #1e293b; padding: 4px 14px; border-radius: 40px; cursor: pointer; white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-    .game-detail-title:active { transform: scale(0.95); }
-    
-    .detail-card { background: white; padding: 16px; border-bottom: 1px solid #e9edf4; }
-    .detail-top { display: flex; gap: 14px; align-items: center; }
-    .detail-img { width: 72px; height: 72px; border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; flex-shrink: 0; }
-    .detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .detail-info { flex: 1; }
-    .detail-info .game-name { font-weight: 800; font-size: 1.2rem; color: #0b1e33; letter-spacing: -0.3px; }
-    .detail-info .game-sub { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
-    .detail-info .game-sub .signup-bonus { color: #dc2626; font-weight: 700; font-size: 0.85rem; }
-    .detail-info .game-sub .min-withdraw { color: #0a0a0a; font-weight: 600; font-size: 0.8rem; }
-    .detail-info .game-meta-detail { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 6px; font-size: 0.65rem; color: #475569; }
-    .detail-info .game-meta-detail span { background: #f1f5f9; padding: 2px 10px; border-radius: 40px; }
-    .detail-info .game-meta-detail .rating { background: #fef9c3; color: #854d0e; }
-    .detail-info .game-meta-detail .size { background: #dbeafe; color: #1e4a7a; }
-    .detail-info .game-meta-detail .votes { background: #fce4ec; color: #9a1f3c; }
-    .detail-info .game-meta-detail .bonus-badge { background: #e6f7e6; color: #0b5e2e; }
-    .detail-download { margin-top: 12px; }
-    .detail-download .download-btn { background: #0a0a0a; color: white; border: none; padding: 10px 24px; border-radius: 60px; font-weight: 700; font-size: 0.9rem; width: 100%; cursor: pointer; text-align: center; display: block; text-decoration: none; letter-spacing: 0.5px; }
-    .detail-download .download-btn:active { transform: scale(0.97); }
-    
-    .tag-section { padding: 12px; background: #f8fafc; border-top: 1px solid #e9edf4; }
-    .tag-section .tag-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; margin-bottom: 10px; }
-    .tag-grid { display: flex; flex-direction: column; gap: 8px; }
-    .tag-box { background: white; border-radius: 12px; padding: 14px 16px; border: 1px solid #e9edf4; }
-    .tag-box .tag-head { font-weight: 700; font-size: 0.85rem; color: #0b1e33; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-    .tag-box .tag-head .ticon { font-size: 1rem; }
-    .tag-box .tag-content { font-size: 0.75rem; color: #334155; line-height: 1.7; }
-    .tag-box .tag-content strong { color: #0b1e33; }
-    
-    .faq-section { padding: 12px; background: white; border-top: 1px solid #e9edf4; }
-    .faq-section .faq-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; margin-bottom: 10px; }
-    .faq-grid { display: flex; flex-direction: column; gap: 8px; }
-    .faq-box { background: #f8fafc; border-radius: 12px; padding: 12px 14px; border: 1px solid #e9edf4; }
-    .faq-box .faq-q { font-weight: 700; font-size: 0.8rem; color: #0b1e33; margin-bottom: 4px; }
-    .faq-box .faq-a { font-size: 0.7rem; color: #334155; line-height: 1.6; }
-    
-    /* ====== TABLE OF CONTENTS WITH 5 HIDDEN TAGS ====== */
-    .toc-section { padding: 12px; background: #f8fafc; border-top: 1px solid #e9edf4; }
-    .toc-header { display: flex; justify-content: space-between; align-items: center; background: white; padding: 12px 16px; border-radius: 12px; border: 1px solid #e9edf4; cursor: pointer; transition: 0.2s; }
-    .toc-header:active { transform: scale(0.97); }
-    .toc-header .toc-left { display: flex; align-items: center; gap: 10px; }
-    .toc-header .toc-left .toc-icon { font-size: 1.2rem; color: #1e293b; }
-    .toc-header .toc-left .toc-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; }
-    .toc-header .toc-right { font-size: 1.3rem; color: #64748b; transition: transform 0.3s ease; }
-    .toc-header .toc-right.open { transform: rotate(180deg); }
-    
-    .toc-body { display: none; margin-top: 10px; gap: 8px; flex-direction: column; animation: fadeIn 0.3s ease; }
-    .toc-body.open { display: flex; }
-    @keyframes fadeIn { from { opacity:0; transform: translateY(-10px); } to { opacity:1; transform: translateY(0); } }
-    
-    .toc-item { background: white; border-radius: 12px; padding: 14px 16px; border: 1px solid #e9edf4; }
-    .toc-item .toc-item-head { font-weight: 700; font-size: 0.82rem; color: #0b1e33; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-    .toc-item .toc-item-head .num { background: #1e293b; color: white; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; flex-shrink: 0; }
-    .toc-item .toc-content { font-size: 0.75rem; color: #334155; line-height: 1.7; }
-    .toc-item .toc-content ul { list-style: none; padding: 0; margin: 4px 0 0 0; }
-    .toc-item .toc-content ul li { padding: 2px 0; font-size: 0.75rem; color: #334155; }
-    .toc-item .toc-content ul li::before { content: "• "; color: #2563eb; font-weight: 700; }
-    .toc-item .toc-content strong { color: #0b1e33; }
-    
-    /* ====== REPLACED INFO TAGS WITH GAME TAGS ====== */
-    .game-tags-section { padding: 12px; background: white; border-top: 1px solid #e9edf4; }
-    .game-tags-section .game-tags-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; margin-bottom: 10px; }
-    .game-tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
-    .game-tag { 
-      background: #eef2ff; 
-      color: #2563eb; 
-      padding: 6px 14px; 
-      border-radius: 40px; 
-      font-size: 0.7rem; 
-      font-weight: 600; 
-      border: 1px solid #b3c8e6; 
-      cursor: pointer; 
-      transition: 0.15s;
-      text-decoration: none;
-      display: inline-block;
+    /* ====== HEADER BANNER ====== */
+    header { background: linear-gradient(135deg, #0a2e1d, #0d5c2e, #1a6e3a, #0a4a2a); background-size: 300% 300%; color: white; padding: 20px 20px; text-align: center; box-shadow: 0 12px 28px rgba(0,0,0,0.2); position: relative; overflow: hidden; }
+    .custom-banner { background: linear-gradient(145deg, #0a2e1d 0%, #124d2b 50%, #0a2e1d 100%); border-radius: 24px; padding: 28px 20px 22px; color: white; text-align: center; border: 2px solid #ffcf8a; box-shadow: 0 15px 40px rgba(0,0,0,0.6), inset 0 0 60px rgba(255,207,138,0.08); position: relative; overflow: hidden; max-width: 1200px; margin: 0 auto; }
+    .custom-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(255,215,0,0.06) 0%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(255,64,129,0.04) 0%, transparent 50%); animation: pulseGlow 6s ease-in-out infinite alternate; z-index: 0; }
+    @keyframes pulseGlow { 0% { transform: scale(1) rotate(0deg); opacity: 0.5; } 100% { transform: scale(1.08) rotate(3deg); opacity: 1; } }
+    .banner-inner { position: relative; z-index: 2; }
+    .banner-top-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+    .banner-top-text { font-size: 0.8rem; color: #ffcf8a; letter-spacing: 2.5px; font-weight: 600; text-transform: uppercase; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 4px 16px 4px 12px; border-radius: 40px; font-size: 0.8rem; font-weight: 600; color: #ffcf8a; cursor: pointer; transition: 0.3s; backdrop-filter: blur(4px); }
+    .share-btn:hover { background: rgba(255,207,138,0.18); border-color: #ffcf8a; transform: scale(1.04); }
+    .share-btn svg { width: 18px; height: 18px; fill: none; stroke: #ffcf8a; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: 0.3s; }
+    .share-btn:hover svg { stroke: #fff; }
+    .banner-age-group { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin: 8px 0 10px; }
+    .banner-age-badge { display: inline-block; background: #d50000; padding: 3px 18px; border-radius: 40px; font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(213,0,0,0.4); border: 1px solid #ff6666; }
+    .banner-age-badge.second { background: transparent; border: 2px solid #ffcf8a; color: #ffcf8a; box-shadow: none; font-size: 1rem; padding: 3px 14px; }
+    .banner-main-heading { font-size: clamp(1.6rem, 5.5vw, 3rem); font-weight: 900; text-shadow: 0 4px 20px rgba(0,0,0,0.6); margin: 12px 0 8px; line-height: 1.2; }
+    .banner-main-heading .gold { color: #ffcf8a; background: linear-gradient(135deg, #ffcf8a, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .banner-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 22px; margin: 14px 0 14px; }
+    .banner-feature { background: rgba(255,255,255,0.07); backdrop-filter: blur(4px); padding: 6px 18px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.12); font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 7px; color: #e8f5e9; }
+    .banner-feature .icon { font-size: 1.1rem; }
+    .banner-cta { font-size: clamp(0.95rem, 1.8vw, 1.2rem); font-weight: 700; margin: 12px 0 10px; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.4; }
+    .banner-cta strong { color: #ffcf8a; font-weight: 900; }
+    .banner-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 14px; }
+    .banner-tag { background: linear-gradient(135deg, #ffcf8a, #f5a623); color: #0a2e1d; padding: 5px 16px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.4px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(255,207,138,0.25); border: 1px solid rgba(255,255,255,0.25); }
+    .app-tags-wrapper { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,207,138,0.2); overflow: hidden; position: relative; }
+    .app-tags-label { font-size: 1.1rem; color: #ffcf8a; opacity: 0.9; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; display: block; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .app-tags-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 6px 4px 10px 4px; scrollbar-width: thin; scrollbar-color: #ffcf8a transparent; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; scroll-behavior: smooth; }
+    .app-tags-scroll::-webkit-scrollbar { height: 4px; }
+    .app-tags-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
+    .app-tags-scroll::-webkit-scrollbar-thumb { background: #ffcf8a; border-radius: 4px; }
+    .app-tag-item { flex: 0 0 auto; background: rgba(255,207,138,0.12); border: 1px solid rgba(255,207,138,0.2); color: #e8f5e9; padding: 4px 14px; border-radius: 40px; font-size: 0.65rem; font-weight: 600; white-space: nowrap; letter-spacing: 0.3px; transition: 0.3s; backdrop-filter: blur(2px); }
+    .app-tag-item:hover { background: rgba(255,207,138,0.25); border-color: #ffcf8a; transform: scale(1.05); }
+    @media (max-width: 640px) {
+      .custom-banner { padding: 18px 12px 16px; border-radius: 16px; }
+      .banner-features { gap: 8px 14px; }
+      .banner-feature { padding: 4px 12px; font-size: 0.75rem; }
+      .banner-tag { font-size: 0.6rem; padding: 3px 10px; }
+      .banner-age-badge { font-size: 0.95rem; padding: 2px 12px; }
+      .banner-age-badge.second { font-size: 0.85rem; padding: 2px 10px; }
+      .banner-top-text { font-size: 0.65rem; letter-spacing: 1.5px; }
+      .share-btn { font-size: 0.65rem; padding: 3px 12px 3px 10px; }
+      .share-btn svg { width: 15px; height: 15px; }
+      .app-tag-item { font-size: 0.55rem; padding: 3px 10px; }
+      .app-tags-label { font-size: 0.9rem; }
+      .banner-top-row { gap: 6px; }
     }
-    .game-tag:active { transform: scale(0.95); background: #dbeafe; }
     
-    .related-section { padding: 12px; background: white; border-top: 1px solid #e9edf4; }
-    .related-title { font-weight: 700; font-size: 0.85rem; color: #0b1e33; margin-bottom: 8px; }
-    .related-grid { display: flex; flex-direction: column; gap: 6px; }
-    .related-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; background: #f8fafc; border-radius: 10px; border: 1px solid #e9edf4; text-decoration: none; color: inherit; cursor: pointer; }
-    .related-item:active { transform: scale(0.97); }
-    .related-item img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; display: block; }
-    .related-item .rinfo { flex: 1; display: flex; flex-direction: column; gap: 0px; }
-    .related-item .rname { font-weight: 600; font-size: 0.7rem; color: #0b1e33; }
-    .related-item .rbonus { font-size: 0.5rem; color: #2563eb; font-weight: 600; }
-    .related-item .rwithdraw { font-size: 0.45rem; color: #0a0a0a; font-weight: 500; }
-    .related-item .rdownload { background: #00bcd4; color: white; border: none; padding: 2px 10px; border-radius: 40px; font-weight: 600; font-size: 0.45rem; white-space: nowrap; cursor: pointer; }
+    /* ====== MAIN CONTAINER & GRID ====== */
+    .container { max-width: 1450px; margin: 30px auto; padding: 0 16px; }
+    .cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 40px; }
+    .card { background: white; border-radius: 36px; padding: 20px 18px 24px; flex: 1; min-width: 270px; max-width: 310px; transition: all 0.3s ease; box-shadow: 0 20px 32px -12px rgba(0,0,0,0.15); border: 1px solid #eef2f8; text-align: center; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 30px 44px -16px rgba(0,0,0,0.2); border-color: #ffcf8a; }
+    .card-app-name { font-size: 1.35rem; font-weight: 800; background: linear-gradient(125deg, #1e562a, #2c4c3b); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 12px; letter-spacing: -0.2px; }
+    .card-img { width: 80px; height: 80px; margin: 0 auto 12px; background: linear-gradient(145deg, #fff5e6, #ffe6cc); border-radius: 24px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .card-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; background: #fef4e6; padding: 10px 10px; border-radius: 48px; margin: 12px 0 8px; }
+    .card-stat { text-align: center; min-width: 55px; }
+    .card-stat-value { font-size: 0.95rem; font-weight: 800; color: #1e562a; }
+    .card-stat-label { font-size: 0.55rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.3px; }
+    .withdrawal-note { font-size: 0.7rem; font-weight: 700; color: #146b3a; background: #e0f2e9; display: inline-block; padding: 4px 14px; border-radius: 40px; margin-top: 6px; }
+    .download-btn { display: block; width: 100%; text-align: center; margin-top: 16px; padding: 12px 0; background: linear-gradient(135deg, #00b894, #00cec9); color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.9rem; transition: 0.25s ease; box-shadow: 0 6px 18px rgba(0,206,201,0.35); cursor: pointer; border: none; letter-spacing: 0.3px; }
+    .download-btn:hover { background: linear-gradient(135deg, #00a381, #00b8b4); transform: scale(0.97); box-shadow: 0 8px 24px rgba(0,206,201,0.45); }
     
-    #mainGrid { display: flex; flex-direction: column; gap: 8px; padding: 10px; }
-    .card { background: white; border-radius: 14px; padding: 10px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 10px; border: 1px solid #e9edf4; text-decoration: none; color: inherit; cursor: pointer; }
-    .card:active { transform: scale(0.97); background: #fafcff; }
-    .card-img { width: 48px; height: 48px; border-radius: 12px; background: #f0f4ff; flex-shrink: 0; overflow: hidden; border: 1px solid #e2e8f0; }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .card-info { flex: 1; display: flex; flex-direction: column; gap: 1px; }
-    .card-name { font-weight: 700; font-size: 0.8rem; color: #0b1e33; }
-    .card-bonus { font-size: 0.65rem; color: #dc2626; font-weight: 600; }
-    .card-withdraw { font-size: 0.6rem; color: #0a0a0a; font-weight: 500; }
-    .card-download-sm { background: #0a0a0a; color: white; border: none; padding: 4px 12px; border-radius: 40px; font-weight: 600; font-size: 0.55rem; white-space: nowrap; cursor: pointer; }
-    .card-download-sm:active { transform: scale(0.95); }
+    /* ====== DOWNLOAD PAGE ====== */
+    .hidden { display: none !important; }
+    .download-page { background: white; border-radius: 44px; padding: 28px 24px; box-shadow: 0 30px 50px rgba(0,0,0,0.15); margin-bottom: 30px; border: 1px solid #ffe1b3; animation: fadeSlideUp 0.4s ease; }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .download-header { text-align: center; border-bottom: 2px dashed #ffcf8a; padding-bottom: 18px; margin-bottom: 24px; }
+    .download-header h2 { font-size: 1.7rem; font-weight: 800; background: linear-gradient(125deg, #1e562a, #2c4c3b); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 6px; }
+    .app-highlight { background: #fff7e8; padding: 24px 20px; border-radius: 40px; margin: 16px 0; text-align: center; }
+    .stats-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; background: #fef4e6; padding: 14px 16px; border-radius: 60px; margin: 20px auto; max-width: 750px; }
+    .stat-item { text-align: center; min-width: 70px; }
+    .stat-value { font-size: 1.3rem; font-weight: 800; color: #1e562a; }
+    .stat-label { font-size: 0.7rem; font-weight: 600; color: #6c7a5a; letter-spacing: 0.5px; }
+    .final-download-btn { background: linear-gradient(135deg, #00b894, #00cec9); padding: 14px 20px; font-size: 1rem; font-weight: 800; border-radius: 60px; display: block; width: 100%; margin: 20px 0 16px 0; box-shadow: 0 8px 22px rgba(0,206,201,0.35); text-decoration: none; color: white; transition: 0.25s ease; letter-spacing: 0.5px; cursor: pointer; text-align: center; border: none; }
+    .final-download-btn:hover { transform: scale(0.97); background: linear-gradient(135deg, #00a381, #00b8b4); box-shadow: 0 8px 26px rgba(0,206,201,0.45); }
+    .app-description { background: white; padding: 18px 20px; border-radius: 32px; text-align: left; margin: 20px 0; font-size: 0.9rem; line-height: 1.45; color: #2d3e2b; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
+    .howto-steps { background: #f0f9f0; border-radius: 32px; padding: 18px 22px; margin: 20px 0; text-align: left; }
+    .howto-steps h4 { font-size: 1.1rem; margin-bottom: 12px; color: #1e562a; }
+    .howto-steps ol { padding-left: 20px; margin-top: 8px; }
+    .howto-steps li { margin: 10px 0; font-size: 0.85rem; line-height: 1.4; }
+    .faq-section { background: #fef4e6; border-radius: 32px; padding: 20px 22px; margin: 20px 0; text-align: left; }
+    .faq-item { margin-bottom: 20px; }
+    .faq-question { font-weight: 800; color: #b45900; margin-bottom: 6px; font-size: 0.95rem; }
+    .faq-answer { font-size: 0.85rem; line-height: 1.5; color: #2d3e2b; padding-left: 12px; }
+    .info-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 16px 0; }
+    .info-card { background: #fefcf5; border-radius: 20px; padding: 12px 14px; min-width: 130px; flex: 1; border: 1px solid #ffe1b3; text-align: center; }
+    .info-card .info-title { font-size: 0.7rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .info-card .info-value { font-size: 0.85rem; font-weight: 800; color: #1e562a; }
+    .other-apps-title { font-size: 1.4rem; font-weight: 800; margin: 35px 0 18px; color: #1e293b; border-left: 6px solid #2ecc71; padding-left: 16px; }
+    .other-apps-grid { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-top: 12px; background: #ecf9f0; padding: 16px 12px; border-radius: 40px; }
+    .other-card { background: #fefcf5; border-radius: 32px; padding: 16px 12px; width: 240px; transition: 0.2s; border: 1px solid #a8d5ba; text-align: center; }
+    .other-card .app-name { font-size: 1rem; margin: 8px 0 6px; font-weight: 800; }
+    .other-card .bonus { font-size: 0.75rem; padding: 4px 12px; background: #fef1cf; border-radius: 60px; display: inline-block; }
+    .small-download { background: linear-gradient(135deg, #6c5ce7, #fd79a8); font-size: 0.8rem; padding: 8px 0; margin-top: 12px; text-decoration: none; color: white; display: block; width: 100%; text-align: center; border-radius: 60px; font-weight: 700; cursor: pointer; border: none; transition: 0.25s ease; box-shadow: 0 4px 14px rgba(108,92,231,0.30); }
+    .small-download:hover { background: linear-gradient(135deg, #5a4bd1, #e85d8e); transform: scale(0.97); box-shadow: 0 6px 18px rgba(108,92,231,0.40); }
+    .footer-note { text-align: center; background: #ecf9f0; border-radius: 60px; padding: 12px; font-weight: 500; font-size: 0.75rem; margin-top: 20px; }
     
-    .footer-note { padding: 12px; text-align: center; color: #94a3b8; font-size: 0.55rem; border-top: 1px solid #e9edf4; }
+    /* ====== MODAL ====== */
+    .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
+    .info-modal-content { background: white; max-width: 500px; width: 90%; border-radius: 36px; padding: 24px 20px; text-align: left; animation: fadeInUp 0.3s ease; box-shadow: 0 30px 40px rgba(0,0,0,0.3); border: 1px solid #ffcf8a; max-height: 80vh; overflow-y: auto; }
+    .info-modal-content h4 { font-size: 1.5rem; margin-bottom: 16px; color: #1e562a; border-left: 5px solid #ff8c00; padding-left: 16px; }
+    .info-modal-content p { font-size: 0.9rem; line-height: 1.5; margin: 12px 0; color: #2d3e2b; }
+    .info-modal-content ul { margin-left: 20px; margin-top: 8px; }
+    .info-modal-content li { margin: 6px 0; font-size: 0.85rem; }
+    .info-close { background: linear-gradient(135deg, #2ecc71, #e91e63); border: none; padding: 10px 20px; border-radius: 60px; font-size: 0.9rem; font-weight: 700; color: white; cursor: pointer; margin-top: 16px; width: 100%; transition: 0.25s ease; box-shadow: 0 4px 14px rgba(46,204,113,0.25); }
+    .info-close:hover { transform: scale(0.97); background: linear-gradient(135deg, #27ae60, #c2185b); box-shadow: 0 6px 18px rgba(233,30,99,0.30); }
+    .contact-table { width: 100%; border-collapse: collapse; margin: 15px 0; background: linear-gradient(145deg, #fff9f0, #ffe6cc); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .contact-table th, .contact-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #ffcf8a; font-size: 0.9rem; }
+    .contact-table th { background: #0a2e1d; color: white; font-weight: 700; letter-spacing: 0.5px; }
+    .contact-table td { background: white; }
+    .contact-table tr:last-child td { border-bottom: none; }
+    .contact-email { color: #d50000; font-weight: 700; text-decoration: none; }
+    .contact-email:hover { text-decoration: underline; }
+    .contact-telegram { color: #0088cc; font-weight: 700; text-decoration: none; }
+    .contact-telegram:hover { text-decoration: underline; }
+    .disclaimer-section { margin: 16px 0; padding: 12px 14px; border-radius: 16px; background: #f8f9fa; border-left: 6px solid #ff8c00; }
+    .disclaimer-section h4 { color: #b45900; font-size: 1.1rem; margin-bottom: 6px; }
+    .disclaimer-box { background: #fff7e8; padding: 10px 16px; border-radius: 12px; margin: 10px 0; border: 1px solid #ffcf8a; }
     
-    .info-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(3px); z-index: 99; justify-content: center; align-items: center; }
-    .info-card { background: white; max-width: 400px; width: 90%; padding: 24px 20px; border-radius: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-    .info-card h2 { font-size: 1.3rem; margin-bottom: 10px; color: #0b1e33; }
-    .info-card p { color: #334155; line-height: 1.6; font-size: 0.85rem; }
-    .info-card .close-btn { background: #eef2ff; border: none; padding: 6px 18px; border-radius: 60px; font-weight: 600; margin-top: 14px; cursor: pointer; color: #1e293b; border: 1px solid #cbd5e1; font-size: 0.8rem; }
-    
-    @media (max-width: 420px) {
-      .header-left .site-name { font-size: 0.7rem; }
-      .header-right .domain-name { font-size: 0.5rem; padding: 2px 6px; }
-      .share-btn { font-size: 0.45rem; padding: 3px 8px; }
-      .share-btn svg { width: 12px; height: 12px; }
-      .telegram-btn { width: 28px; height: 28px; }
-      .nav-small { font-size: 0.45rem; padding: 2px 6px; }
-      .detail-img { width: 60px; height: 60px; }
-      .detail-info .game-name { font-size: 1rem; }
-      .card-name { font-size: 0.7rem; }
-      .card-bonus { font-size: 0.55rem; }
-      .card-withdraw { font-size: 0.5rem; }
-      .marquee-container marquee { font-size: 0.6rem; }
-      .marquee-container marquee span { margin: 0 15px; }
-      .game-detail-title { font-size: 0.5rem; padding: 3px 10px; }
-      .toc-header .toc-title { font-size: 0.8rem; }
-      .toc-item .toc-content { font-size: 0.7rem; }
-      .game-tag { font-size: 0.6rem; padding: 4px 10px; }
+    @media (max-width: 640px) {
+      .menu-btn { font-size: 1rem; padding: 4px 12px; }
+      .card { min-width: 250px; padding: 18px 14px; }
+      .card-app-name { font-size: 1.2rem; }
+      .card-stats { gap: 8px; }
+      .card-stat { min-width: 48px; }
+      .stats-row { gap: 12px; }
+      .download-header h2 { font-size: 1.4rem; }
+      .other-card { width: 210px; }
+      .final-download-btn { font-size: 0.9rem; padding: 12px 16px; }
+      .small-download { font-size: 0.75rem; padding: 6px 0; }
+      .dropdown { right: 0; min-width: 160px; }
+      .dropdown a { padding: 10px 16px; font-size: 0.8rem; }
+      .info-grid { gap: 10px; }
+      .info-card { min-width: 120px; }
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <!-- TOP HEADER -->
-  <div class="top-header">
-    <div class="header-left">
-      <div class="logo-img"><img src="https://i.ibb.co/CssC2WbG/1000022725.jpg" alt="All Yono Games Site" loading="eager"></div>
-      <div class="site-name">All Yono Games <small>site</small></div>
-    </div>
-    <div class="header-right">
-      <span class="domain-name">AllYonoGamesSite.com</span>
-      <a href="https://t.me/allyonogamesdite" target="_blank" rel="noopener noreferrer" class="telegram-btn">
-        <img src="https://i.ibb.co/Wp3zwWc3/telegram-icon.jpg" alt="Telegram">
-      </a>
-      <button class="share-btn" id="shareBtn">
-        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-        Share
-      </button>
+
+<!-- ===== TOP NAV ===== -->
+<nav class="top-nav">
+  <div class="nav-left"><a id="homeNavLink" href="#"> HOME</a></div>
+  <div class="menu-container">
+    <button class="menu-btn" id="menuBtn">☰ MENU</button>
+    <div class="dropdown" id="dropdownMenu">
+      <a id="menuHome"> Home</a>
+      <a id="menuContact">📞 Contact Us</a>
+      <a id="menuDisclaimer"> Disclaimer</a>
+      <a id="menuAbout"> About Us</a>
     </div>
   </div>
+</nav>
 
-  <!-- MARQUEE -->
-  <div class="marquee-container">
-    <marquee behavior="scroll" direction="left" scrollamount="5" truespeed>
-      <span class="highlight">🏆 All Yono Games Site</span>
-      <span>🎰 567 Slots</span><span>🎰 Saga Slots</span><span>🎰 Jaiho 91</span>
-      <span>🃏 Rummy Ludo</span><span>🃏 ABC Rummy</span><span>🃏 Rummy 91</span>
-      <span>🃏 Love Rummy</span><span>🎰 Spin Crush</span><span>🃏 Top Rummy</span>
-      <span>🃏 Rummy 365</span><span>🃏 Teen Patti Gold</span>
-      <span>🃏 Teen Patti Master</span><span>🃏 Yono Rummy</span><span>🎰 Slots Winner</span>
-      <span>🎰 Good Slots</span><span>🎰 Diwa Slot</span><span>🃏 GoGo Rummy</span>
-      <span>🃏 Joy Rummy</span><span>🎰 Spin Gold</span><span>🎰 Bingo 101</span>
-      <span>🎰 Yes Spin</span><span>🎰 Yono Arcade</span><span>🎰 SVIP 777</span>
-      <span>🃏 OK Rummy</span><span>🎰 Hind 777</span><span>🎰 Bet 213</span>
-      <span>🃏 Boss Rummy</span><span>🎰 Yono 777</span><span>🎰 Diwa VIP</span>
-      <span>🎰 Diwa 777</span><span>🎰 Yono Games</span><span>🃏 INR Rummy</span>
-      <span>🎰 Slots Winner Pro</span><span>🎰 MBM BET</span>
-      <span class="highlight">🔥 Download Now!</span>
-    </marquee>
+<!-- ===== CUSTOM INFO MODAL ===== -->
+<div id="customInfoModal" class="info-modal">
+  <div class="info-modal-content">
+    <h4 id="modalTitle">Information</h4>
+    <div id="modalBody"></div>
+    <button class="info-close" id="closeInfoModal">OK</button>
   </div>
-
-  <!-- NAV -->
-  <div class="nav-row-small">
-    <span class="nav-small active" id="homeNav">🏠 Home</span>
-    <span class="nav-small" data-target="about">About</span>
-    <span class="nav-small" data-target="contact">Contact</span>
-    <span class="nav-small" data-target="disclaimer">Disclaimer</span>
-  </div>
-
-  <!-- MAIN GRID -->
-  <div id="mainGrid"></div>
-
-  <!-- DETAIL VIEW -->
-  <div id="detailView" style="display:none;">
-    <div class="game-detail-header">
-      <button class="back-btn" id="backBtn">← Back</button>
-      <span class="game-detail-title" id="detailTitle">Download APK • Welcome Bonus</span>
-    </div>
-    <div class="detail-card">
-      <div class="detail-top">
-        <div class="detail-img"><img id="detailImg" src="" alt="" loading="eager"></div>
-        <div class="detail-info">
-          <div class="game-name" id="detailName">Game Name</div>
-          <div class="game-sub">
-            <span class="signup-bonus" id="detailSignup">🔴 Sign Up Bonus ₹45</span>
-            <span class="min-withdraw" id="detailWithdraw">🏦 Min. Withdraw ₹100</span>
-          </div>
-          <div class="game-meta-detail">
-            <span class="rating" id="detailRating">⭐ 4.5</span>
-            <span class="size" id="detailSize">📦 45 MB</span>
-            <span class="votes" id="detailVotes">💛 12.8K</span>
-            <span class="bonus-badge" id="detailBonus">🎁 ₹45</span>
-          </div>
-        </div>
-      </div>
-      <div class="detail-download">
-        <a href="#" class="download-btn" id="detailDownloadBtn" target="_blank">⬇ Download APK</a>
-      </div>
-    </div>
-    
-    <!-- ====== 5 OFFER TAGS ====== -->
-    <div class="tag-section">
-      <div class="tag-title" id="tagSectionTitle">📢 Top Offers</div>
-      <div class="tag-grid" id="tagGridContainer">
-        <div class="tag-box"><div class="tag-head"><span class="ticon">🏆</span> <span id="tag1Title">Game Name</span> APK Download – Get ₹<span id="tag1Bonus">150</span> Instant Bonus!</div><div class="tag-content" id="tag1Content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today! Referral Bonus: ₹<span id="tag1Ref">10</span></div></div>
-        <div class="tag-box"><div class="tag-head"><span class="ticon">💰</span> Unlock ₹<span id="tag2Bonus">500</span> Bonus in <span id="tag2Title">Game Name</span> App!</div><div class="tag-content" id="tag2Content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now! Referral Bonus: ₹<span id="tag2Ref">15</span></div></div>
-        <div class="tag-box"><div class="tag-head"><span class="ticon">🎁</span> <span id="tag3Title">Game Name</span> – Signup for ₹<span id="tag3Bonus">35</span>-₹<span id="tag3Bonus2">150</span> Free Bonus</div><div class="tag-content" id="tag3Content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily! Referral Bonus: ₹<span id="tag3Ref">8</span></div></div>
-        <div class="tag-box"><div class="tag-head"><span class="ticon">🎰</span> Experience <span id="tag4Title">Game Name</span> – ₹<span id="tag4Bonus">50</span> Welcome Bonus on Download</div><div class="tag-content" id="tag4Content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today! Referral Bonus: ₹<span id="tag4Ref">20</span></div></div>
-        <div class="tag-box"><div class="tag-head"><span class="ticon">🇮🇳</span> Dive into <span id="tag5Title">Game Name</span> – India’s Top Online Gaming App</div><div class="tag-content" id="tag5Content">Get ₹<span id="tag5Bonus">51</span> signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now! Referral Bonus: ₹<span id="tag5Ref">12</span></div></div>
-      </div>
-    </div>
-    
-    <!-- ====== TABLE OF CONTENTS WITH 5 HIDDEN TAGS ====== -->
-    <div class="toc-section">
-      <div class="toc-header" id="tocToggle">
-        <div class="toc-left">
-          <span class="toc-icon">📋</span>
-          <span class="toc-title">Table of Contents</span>
-        </div>
-        <div class="toc-right" id="tocArrow">▼</div>
-      </div>
-      <div class="toc-body" id="tocBody">
-        <!-- Tag 1: Overview -->
-        <div class="toc-item">
-          <div class="toc-item-head"><span class="num">1</span> 📖 Overview – <span id="toc1Name">Game Name</span></div>
-          <div class="toc-content" id="toc1Content"><span id="toc1Name2">Game Name</span> is a popular real cash earning app in India where users can play games like rummy, slots, bingo, and spin games to win real money. New users can claim a signup bonus of up to ₹<span id="toc1Bonus">75</span>, making it easy to get started and explore the platform. The app offers a smooth and secure experience with fast UPI deposits and withdrawals.<br><br>The interface of <span id="toc1Name3">Game Name</span> is simple and user-friendly, making it suitable for both beginners and experienced players. You can enjoy daily rewards, referral bonuses, and special events to increase your earnings. The minimum withdrawal starts from ₹<span id="toc1Withdraw">100</span>, and most transactions are processed quickly without delays.<br><br>If you are looking for a trusted gaming app that combines entertainment with real earning opportunities, <span id="toc1Name4">Game Name</span> is a great choice. Download the latest APK version today and start playing to earn real cash rewards from your mobile.</div>
-        </div>
-        <!-- Tag 2: Features & Benefits -->
-        <div class="toc-item">
-          <div class="toc-item-head"><span class="num">2</span> ✨ <span id="toc2Name">Game Name</span> App Features & Benefits</div>
-          <div class="toc-content" id="toc2Content">
-            <ul>
-              <li><strong>Welcome Bonus:</strong> Get up to ₹<span id="toc2Bonus1">75</span> signup bonus for new users</li>
-              <li><strong>Fast UPI Withdrawal:</strong> Withdraw starting from ₹<span id="toc2Withdraw">100</span> directly to your bank account</li>
-              <li><strong>Popular Games:</strong> Play rummy, slots, bingo, spin games and more real cash earning options</li>
-              <li><strong>Safe & Secure Platform:</strong> Smooth gameplay experience with secure transactions</li>
-              <li><strong>Daily Rewards & Offers:</strong> Earn extra bonuses, cashback and referral rewards regularly</li>
-              <li><strong>User-Friendly Interface:</strong> Easy to use app suitable for beginners and experienced players</li>
-            </ul>
-          </div>
-        </div>
-        <!-- Tag 3: How to Download & Install -->
-        <div class="toc-item">
-          <div class="toc-item-head"><span class="num">3</span> 📥 How to Download & Install <span id="toc3Name">Game Name</span></div>
-          <div class="toc-content" id="toc3Content">
-            <ul>
-              <li><strong>1.</strong> Tap the big Download button above</li>
-              <li><strong>2.</strong> Allow installation from unknown sources</li>
-              <li><strong>3.</strong> Open the downloaded APK and tap Install</li>
-              <li><strong>4.</strong> Register with your mobile number</li>
-              <li><strong>5.</strong> Claim your signup bonus instantly – up to ₹<span id="toc3Bonus">75</span>!</li>
-            </ul>
-          </div>
-        </div>
-        <!-- Tag 4: Safety & Security -->
-        <div class="toc-item">
-          <div class="toc-item-head"><span class="num">4</span> 🔒 <span id="toc4Name">Game Name</span> Safety & Security</div>
-          <div class="toc-content" id="toc4Content"><span id="toc4Name2">Game Name</span> is designed to provide a secure and reliable gaming experience. The app uses standard encryption and protected payment systems to help keep user data and transactions safe.<br><br>Deposits and withdrawals are processed through commonly used methods such as UPI and bank transfer, offering a convenient experience for users in India. However, users are advised to play responsibly and review the app’s terms and policies before using it.</div>
-        </div>
-        <!-- Tag 5: Why Choose -->
-        <div class="toc-item">
-          <div class="toc-item-head"><span class="num">5</span> 🏆 Why Choose <span id="toc5Name">Game Name</span> App?</div>
-          <div class="toc-content" id="toc5Content">
-            <ul>
-              <li><strong>Attractive welcome bonus</strong> of up to ₹<span id="toc5Bonus1">75</span> for new users</li>
-              <li><strong>Fast UPI withdrawal</strong> system with quick processing time</li>
-              <li><strong>Wide range of games</strong> including rummy, slots, bingo and spin games</li>
-              <li><strong>Smooth and optimized</strong> performance on most Android devices</li>
-              <li><strong>Regular updates</strong> with new features, offers and improvements</li>
-              <li><strong>Simple and user-friendly</strong> interface for beginners and regular players</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- ====== FAQ SECTION ====== -->
-    <div class="faq-section">
-      <div class="faq-title">❓ Frequently Asked Questions</div>
-      <div class="faq-grid">
-        <div class="faq-box"><div class="faq-q">1. What Is The <span id="faq1Name">Game Name</span> app APK?</div><div class="faq-a" id="faq1Content">The <span id="faq1Name2">Game Name</span> APP APK is an excellent application that offers users a sign-up bonus of ₹<span id="faq1Bonus">700</span> when they join. This game includes a fantastic bonus program, and you can learn more by reading the complete post. Additionally, <span id="faq1Name3">Game Name</span> APK is a popular slots game with a minimum withdrawal amount of ₹100. Referral Bonus: ₹<span id="faq1Ref">25</span></div></div>
-        <div class="faq-box"><div class="faq-q">2. How to Sign Up for <span id="faq2Name">Game Name</span> APK?</div><div class="faq-a" id="faq2Content">To sign up for the <span id="faq2Name2">Game Name</span> APK, follow these steps:<br><strong>•</strong> Click on the Download Button for the <span id="faq2Name3">Game Name</span> APK.<br><strong>•</strong> Select OK to start the download.<br><strong>•</strong> Install the App application on your smartphone.<br><strong>•</strong> Open the new app and click on Play as Guest.<br><strong>•</strong> Click on the Profile Button and bind your mobile number.<br>After completing these steps, you will receive a sign-up bonus of ₹<span id="faq2Bonus">500</span>. Referral Bonus: ₹<span id="faq2Ref">18</span></div></div>
-        <div class="faq-box"><div class="faq-q">3. How Many Games Are Available In The <span id="faq3Name">Game Name</span> App?</div><div class="faq-a" id="faq3Content">The <span id="faq3Name2">Game Name</span> app offers support for 75+ different types of games. You can enjoy a variety of games such as Rummy, Teen Patti, 7 Up Down, Dragon vs Tiger, and many more.</div></div>
-        <div class="faq-box"><div class="faq-q">4. What are some of the best features of the <span id="faq4Name">Game Name</span> app APK?</div><div class="faq-a" id="faq4Content"><strong>•</strong> Enjoy a bonus of ₹<span id="faq4Bonus">51</span> for free in the APK.<br><strong>•</strong> Access to 20 gaming options.<br><strong>•</strong> Earn up to ₹<span id="faq4Bonus2">150</span> for inviting friends.<br><strong>•</strong> Withdrawals can be made starting from a minimum of ₹<span id="faq4Withdraw">500</span>.<br><strong>•</strong> Click on the Profile Button and bind your mobile number.<br><strong>•</strong> The minimum deposit required is ₹<span id="faq4Deposit">100</span>. Referral Bonus: ₹<span id="faq4Ref">22</span></div></div>
-      </div>
-    </div>
-    
-    <!-- ====== REPLACED: GAME TAGS SECTION (instead of old info tags) ====== -->
-    <div class="game-tags-section">
-      <div class="game-tags-title">🏷️ Tags – All Games</div>
-      <div class="game-tags-container" id="gameTagsContainer"></div>
-    </div>
-    
-    <!-- OTHER RELATED GAMES -->
-    <div class="related-section">
-      <div class="related-title">💲 Other Related Games</div>
-      <div class="related-grid" id="relatedGrid"></div>
-    </div>
-  </div>
-
-  <div class="footer-note">All Yono Games Site • Premium SEO • 700+ Tags</div>
 </div>
 
-<!-- OVERLAY -->
-<div class="info-overlay" id="infoOverlay">
-  <div class="info-card">
-    <h2 id="overlayTitle">About</h2>
-    <p id="overlayContent">Content goes here.</p>
-    <button class="close-btn" id="overlayClose">✕ Close</button>
+<!-- ===== HEADER BANNER ===== -->
+<header>
+  <div class="custom-banner">
+    <div class="banner-inner">
+      <div class="banner-top-row">
+        <span class="banner-top-text"> ALLYONOGAMESSITE.COM INFORMS YOU </span>
+        <button class="share-btn" onclick="sharePage()">
+          <span class="share-icon"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span>
+          Share
+        </button>
+      </div>
+      <div class="banner-age-group">
+        <span class="banner-age-badge">18+</span>
+        <span class="banner-age-badge second">ADULTS ONLY</span>
+      </div>
+      <div class="banner-main-heading">India's Top <span class="gold">Rummy Games</span> Download Platform</div>
+      <div class="banner-features">
+        <span class="banner-feature"><span class="icon">✔️</span> 100% Safe & Secure</span>
+        <span class="banner-feature"><span class="icon">⚡</span> Fast & Easy Downloads</span>
+        <span class="banner-feature"><span class="icon">🎁</span> Top Bonuses & Rewards</span>
+      </div>
+      <div class="banner-cta"><strong>Download India's Most Trusted Rummy Apps</strong> & Win Real Cash Prizes. <br>Play More, Win More!</div>
+      <div class="banner-tags">
+        <span class="banner-tag"> REAL CASH GAMES</span>
+        <span class="banner-tag"> FAST PAYOUTS</span>
+        <span class="banner-tag"> DAILY BONUSES</span>
+        <span class="banner-tag">⌛ 24X7 SUPPORT</span>
+      </div>
+      <div class="app-tags-wrapper">
+        <span class="app-tags-label">🎮 ALL APPS</span>
+        <div class="app-tags-scroll" id="appTagsScroll"></div>
+      </div>
+    </div>
   </div>
+</header>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="container" id="mainContainer">
+  <div id="allAppsGrid" class="cards-grid"></div>
+  <div id="downloadPageContainer" class="hidden"></div>
 </div>
 
 <script>
   (function() {
-    // ====== ALL GAMES LIST (Hello Rummy removed) ======
-    const games = [
-      { name: "All Yono Games Site", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/m/jm9n7r", img: "https://i.ibb.co/CssC2WbG/1000022725.jpg" },
-      { name: "567 Slots", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://join567slots0.com/?code=4NYF487URJ6&t=1781505684", img: "https://i.ibb.co/hFytMXY2/1000022725.jpg" },
-      { name: "Saga Slots", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://www.sagaslots5.com/?code=0QHJSERZYMV&t=1781505813", img: "https://i.ibb.co/20dzhBZf/1000022725.jpg" },
-      { name: "Jaiho 91", bonus: "₹50", withdrawal: "₹100", downloadUrl: "https://jaiho91bonus.vip/?code=C42T99ZQHAT&t=1781506067", img: "https://i.ibb.co/zV0C6Xkk/1000022725.jpg" },
-      { name: "Rummy Ludo", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://rummyludoapp37.com/", img: "https://i.ibb.co/Z6Xy7y2x/1000022725.jpg" },
-      { name: "ABC Rummy", bonus: "₹42", withdrawal: "₹100", downloadUrl: "https://d34i569g8ztoql.cloudfront.net/abcrummy_MeApp.apk", img: "https://i.ibb.co/Ldmd1DHH/1000022725.jpg" },
-      { name: "Rummy 91", bonus: "₹38", withdrawal: "₹100", downloadUrl: "https://d16sfv4ssrmnvt.cloudfront.net/rummy91_AGENT.apk", img: "https://i.ibb.co/Fb2j77pp/1000022725.jpg" },
-      { name: "Love Rummy", bonus: "₹36", withdrawal: "₹100", downloadUrl: "https://d34i569g8ztoql.cloudfront.net/loverummy_App.apk", img: "https://i.ibb.co/PZ2dpNJ9/1000022725.jpg" },
-      { name: "Spin Crush", bonus: "₹30", withdrawal: "₹100", downloadUrl: "https://d292swwe9zki3u.cloudfront.net/spincrush_freecash.apk", img: "https://i.ibb.co/S4C26kVS/1000022725.jpg" },
-      { name: "Top Rummy", bonus: "₹48", withdrawal: "₹100", downloadUrl: "https://th7.my/BY1JWS/3gvute0", img: "https://i.ibb.co/bRy3w8dN/1000022725.jpg" },
-      { name: "Rummy 365", bonus: "₹44", withdrawal: "₹100", downloadUrl: "https://join567slots0.com/?code=4NYF487URJ6&t=1781505684", img: "https://i.ibb.co/Hf9bhrFm/1000022725.jpg" },
-      { name: "Teen Patti Gold", bonus: "₹37", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r", img: "https://i.ibb.co/C5XcGXsJ/teen-patti-gold.jpg" },
-      { name: "Teen Patti Master", bonus: "₹20", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/m/jm9n7r", img: "https://i.ibb.co/JjrZjn2n/teen-patti-master.jpg" },
-      { name: "Yono Rummy", bonus: "₹25", withdrawal: "₹100", downloadUrl: "https://yonorummy043.com/?code=VIPYQC5EE9X&t=1781107758", img: "https://i.ibb.co/zTFDGPpX/yono-rummy.jpg" },
-      { name: "Slots Winner", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://slotswinneri.com/?code=PGVC6CBNF53&t=1781107393", img: "https://i.ibb.co/NdbNBtx7/slots-winner.jpg" },
-      { name: "Good Slots", bonus: "₹15", withdrawal: "₹100", downloadUrl: "https://7sharegoodslots.vip?pid=320806209&channel=2010001&t=pdd2&pkg=com.1", img: "https://i.ibb.co/nq9kMKHZ/good-slots.jpg" },
-      { name: "Diwa Slot", bonus: "₹50", withdrawal: "₹100", downloadUrl: "https://sharediwaslot1.vip?pid=483455673&channel=2010002&t=pdd2&pkg=com.diwaslotwhl.app", img: "https://i.ibb.co/BKB6QMbD/diwa-slot.jpg" },
-      { name: "GoGo Rummy", bonus: "₹28", withdrawal: "₹100", downloadUrl: "https://www.gogorummyagent.com/?code=V4UTQA2VYMQ&t=1781196694", img: "https://i.ibb.co/Y7dzDP7z/gogo-rummy.jpg" },
-      { name: "Joy Rummy", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://www.joyrummymax.com/?code=J5KFTAWJ9X5&t=1781198100", img: "https://i.ibb.co/nqD8CD8W/joy-rummy.jpg" },
-      { name: "Spin Gold", bonus: "₹22", withdrawal: "₹100", downloadUrl: "https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828", img: "https://i.ibb.co/G3QnY0vY/spin-gold.jpg" },
-      { name: "Bingo 101", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828", img: "https://i.ibb.co/My9tjNgL/bingo101.jpg" },
-      { name: "Yes Spin", bonus: "₹18", withdrawal: "₹100", downloadUrl: "https://www.yesspineee.com/?code=47TXJTLU5YY&t=1781198907", img: "https://i.ibb.co/m5qzq7W4/yes-spin.jpg" },
-      { name: "Yono Arcade", bonus: "₹32", withdrawal: "₹100", downloadUrl: "https://yonoarcadeapk9.com/?code=96LNEL9FQXZ&t=1781199006", img: "https://i.ibb.co/mCzSG1L7/yono-arcade.jpg" },
-      { name: "SVIP 777", bonus: "₹27", withdrawal: "₹100", downloadUrl: "https://www.svip777.life?pid=297924008&channel=2050001&t=pdd2&pkg=com.svip777.h5", img: "https://i.ibb.co/vfWZMLm/svip777.jpg" },
-      { name: "OK Rummy", bonus: "₹38", withdrawal: "₹100", downloadUrl: "https://www.okrummy22.com/?code=H2GU92WUXXA&t=1781199220", img: "https://i.ibb.co/99fCMbNC/ok-rummy.jpg" },
-      { name: "Hind 777", bonus: "₹42", withdrawal: "₹100", downloadUrl: "https://www.hindi777agent5.com/?code=7LFFR8WPHEG&t=1781199307", img: "https://i.ibb.co/5gf3q0Sh/hind777.jpg" },
-      { name: "Bet 213", bonus: "₹36", withdrawal: "₹100", downloadUrl: "https://www.bet213.rocks/?code=2QTKPV4BYDH&t=1781199576", img: "https://i.ibb.co/YTqq2C4F/bet213.jpg" },
-      { name: "Boss Rummy", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://www.bossrummyy.com/?code=LSHTVUZE1NR&t=1781429504", img: "https://i.ibb.co/fdWgRgxk/1000022725.jpg" },
-      { name: "Yono 777", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/VWz6S3JB/1000022725.jpg" },
-      { name: "Diwa VIP", bonus: "₹60", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/ynsBHKtg/1000022725.jpg" },
-      { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg" },
-      { name: "Yono Games", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209", img: "https://i.ibb.co/LXqV77rd/yono-games.jpg" },
-      { name: "INR Rummy", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106", img: "https://i.ibb.co/Y7ZRkLFp/inr-rummy.jpg" },
-      { name: "Slots Winner Pro", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://slotswinneri.com/?code=PGVC6CBNF53&t=1784299271", img: "https://i.ibb.co/wNYf5LG8/slots-winner.jpg" },
-      { name: "MBM BET", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://www.mbmbet3.com/?code=GD3H3VA6YK5&t=1784297830", img: "https://i.ibb.co/sJcmCxK6/mbm-bet.jpg" }
+    // ===== ALL APP NAMES FOR TAGS =====
+    const allAppNames = [
+      "567 Slots", "Jaiho 91", "Rummy Ludo", "ABC Rummy", "Rummy 91", "Love Rummy", "Bingo 101", "Yono 777",
+      "Saga Slots", "Spin Crush", "Top Rummy", "New Yono Games", "Hello Rummy", "All Yono Apps", "Rummy 365",
+      "Taurus App", "Teen Patti Gold", "Teen Patti Master", "Yono Rummy", "Slots Winner", "Good Slots", "Diwa Slot",
+      "GoGo Rummy", "Joy Rummy", "Spin Gold", "Yes Spin", "Yono Arcade", "SVIP 777", "OK Rummy", "Hind 777",
+      "Rummy Most", "Bet 213", "Teen Patti", "Boss Rummy", "Diwa VIP", "Diwa 777"
     ];
 
-    const seen = new Set();
-    const uniqueGames = games.filter(g => {
-      const key = g.name.trim().toLowerCase();
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-
-    const mainGrid = document.getElementById('mainGrid');
-    const detailView = document.getElementById('detailView');
-    const backBtn = document.getElementById('backBtn');
-    const homeNav = document.getElementById('homeNav');
-
-    const overlay = document.getElementById('infoOverlay');
-    const overlayTitle = document.getElementById('overlayTitle');
-    const overlayContent = document.getElementById('overlayContent');
-    const overlayClose = document.getElementById('overlayClose');
-
-    const contentMap = {
-      about: { title: '📖 About', text: 'All Yono Games Site is a curated platform listing top gaming apps including Teen Patti, Rummy, Slots, and Casino. We provide direct download links and bonus details for each app. Our goal is to help users discover trusted gaming platforms with ₹45+ bonuses and ₹100 withdrawals.' },
-      contact: { title: '📬 Contact', text: 'For any queries, feedback or support, you can reach us via email: support@allyonogamessite.com. We aim to respond within 24 hours. You can also connect with us on Telegram: @allyonogames.' },
-      disclaimer: { title: '⚠️ Disclaimer', text: 'All Yono Games Site does not host or operate any of the games listed. We only provide information and referral links. Users are advised to check the terms and conditions of each app. Gambling may be subject to legal restrictions in your region. Play responsibly.' }
-    };
-
-    document.querySelectorAll('.nav-small[data-target]').forEach(el => {
-      el.addEventListener('click', function() {
-        const key = this.dataset.target;
-        if (contentMap[key]) {
-          overlayTitle.textContent = contentMap[key].title;
-          overlayContent.textContent = contentMap[key].text;
-          overlay.style.display = 'flex';
-        }
-        document.querySelectorAll('.nav-small').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    homeNav.addEventListener('click', function() {
-      detailView.style.display = 'none';
-      mainGrid.style.display = 'flex';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.querySelectorAll('.nav-small').forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
-    });
-
-    overlayClose.addEventListener('click', function() { overlay.style.display = 'none'; });
-    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.style.display = 'none'; });
-
-    function getRandomRating() { return (4 + Math.random() * 0.8).toFixed(1); }
-    function getRandomSize() { return (30 + Math.floor(Math.random() * 40)) + ' MB'; }
-    function getRandomVotes() { 
-      const num = Math.floor(Math.random() * 30) + 5;
-      return num + 'K';
-    }
-
-    let historyStack = [];
-
-    // ====== TOC TOGGLE ======
-    document.getElementById('tocToggle').addEventListener('click', function() {
-      const body = document.getElementById('tocBody');
-      const arrow = document.getElementById('tocArrow');
-      body.classList.toggle('open');
-      arrow.classList.toggle('open');
-    });
-
-    function renderGrid() {
-      mainGrid.innerHTML = '';
-      uniqueGames.forEach(game => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.dataset.name = game.name;
-        card.dataset.bonus = game.bonus;
-        card.dataset.withdrawal = game.withdrawal;
-        card.dataset.downloadUrl = game.downloadUrl;
-        card.dataset.img = game.img;
-        card.dataset.rating = getRandomRating();
-        card.dataset.size = getRandomSize();
-        card.dataset.votes = getRandomVotes();
-
-        const imgDiv = document.createElement('div');
-        imgDiv.className = 'card-img';
-        const img = document.createElement('img');
-        img.src = game.img;
-        img.alt = game.name;
-        img.loading = 'lazy';
-        img.onerror = function() { this.src = 'https://i.ibb.co/LXqV77rd/yono-games.jpg'; };
-        imgDiv.appendChild(img);
-
-        const infoDiv = document.createElement('div');
-        infoDiv.className = 'card-info';
-        const nameDiv = document.createElement('div');
-        nameDiv.className = 'card-name';
-        nameDiv.textContent = game.name;
-        const bonusDiv = document.createElement('div');
-        bonusDiv.className = 'card-bonus';
-        bonusDiv.textContent = '🔴 Sign Up Bonus ' + game.bonus;
-        const withdrawDiv = document.createElement('div');
-        withdrawDiv.className = 'card-withdraw';
-        withdrawDiv.textContent = '🏦 Min. Withdraw ' + game.withdrawal;
-        infoDiv.appendChild(nameDiv);
-        infoDiv.appendChild(bonusDiv);
-        infoDiv.appendChild(withdrawDiv);
-
-        const downloadBtn = document.createElement('span');
-        downloadBtn.className = 'card-download-sm';
-        downloadBtn.textContent = 'Download';
-
-        card.appendChild(imgDiv);
-        card.appendChild(infoDiv);
-        card.appendChild(downloadBtn);
-        mainGrid.appendChild(card);
+    // ===== POPULATE APP TAGS =====
+    const container = document.getElementById('appTagsScroll');
+    if (container) {
+      allAppNames.forEach(name => {
+        const span = document.createElement('span');
+        span.className = 'app-tag-item';
+        span.textContent = name;
+        container.appendChild(span);
       });
     }
-    renderGrid();
 
-    // ====== GENERATE UNIQUE BONUSES ======
-    function getUniqueBonuses(gameName) {
-      const seed = gameName.length * 7 + (gameName.charCodeAt(0) || 10);
-      return {
-        tag1: 20 + (seed * 3) % 880,
-        tag2: 20 + (seed * 7) % 880,
-        tag3: 20 + (seed * 2) % 880,
-        tag3b: 20 + (seed * 4) % 880,
-        tag4: 20 + (seed * 5) % 880,
-        tag5: 20 + (seed * 6) % 880,
-        faq1: 20 + (seed * 11) % 880,
-        faq2: 20 + (seed * 9) % 880,
-        faq4: 20 + (seed * 3) % 880,
-        faq4b: 20 + (seed * 7) % 880,
-        faq4w: 20 + (seed * 8) % 880,
-        faq4d: 20 + (seed * 2) % 880,
-        ref1: 5 + (seed * 2) % 20,
-        ref2: 5 + (seed * 3) % 20,
-        ref3: 5 + (seed * 4) % 20,
-        ref4: 5 + (seed * 5) % 20,
-        ref5: 5 + (seed * 6) % 20,
-        refFaq1: 5 + (seed * 7) % 20,
-        refFaq2: 5 + (seed * 8) % 20,
-        refFaq4: 5 + (seed * 9) % 20,
-        toc1Bonus: 50 + (seed * 3) % 50,
-        toc2Bonus1: 50 + (seed * 4) % 50,
-        toc3Bonus: 50 + (seed * 5) % 50,
-        toc5Bonus1: 50 + (seed * 6) % 50,
-        tocWithdraw: 100 + (seed * 2) % 50
-      };
-    }
-
-    function showDetail(game) {
-      historyStack.push('detail');
-      
-      mainGrid.style.display = 'none';
-      detailView.style.display = 'block';
-      document.getElementById('detailImg').src = game.img;
-      document.getElementById('detailName').textContent = game.name;
-      document.getElementById('detailTitle').textContent = 'Download ' + game.name + ' APK • Welcome ' + game.bonus + ' Bonus';
-      document.getElementById('detailSignup').textContent = '🔴 Sign Up Bonus ' + game.bonus;
-      document.getElementById('detailWithdraw').textContent = '🏦 Min. Withdraw ' + game.withdrawal;
-      document.getElementById('detailBonus').textContent = '🎁 ' + game.bonus;
-      document.getElementById('detailRating').textContent = '⭐ ' + (game.rating || '4.5');
-      document.getElementById('detailSize').textContent = '📦 ' + (game.size || '45 MB');
-      document.getElementById('detailVotes').textContent = '💛 ' + (game.votes || '12.8K');
-      document.getElementById('detailDownloadBtn').href = game.downloadUrl;
-      
-      const gName = game.name;
-      const b = getUniqueBonuses(gName);
-      
-      document.getElementById('tagSectionTitle').textContent = '📢 ' + gName + ' – Top Offers';
-      document.getElementById('tag1Title').textContent = gName;
-      document.getElementById('tag1Bonus').textContent = b.tag1;
-      document.getElementById('tag1Ref').textContent = b.ref1;
-      document.getElementById('tag2Title').textContent = gName;
-      document.getElementById('tag2Bonus').textContent = b.tag2;
-      document.getElementById('tag2Ref').textContent = b.ref2;
-      document.getElementById('tag3Title').textContent = gName;
-      document.getElementById('tag3Bonus').textContent = b.tag3;
-      document.getElementById('tag3Bonus2').textContent = b.tag3b;
-      document.getElementById('tag3Ref').textContent = b.ref3;
-      document.getElementById('tag4Title').textContent = gName;
-      document.getElementById('tag4Bonus').textContent = b.tag4;
-      document.getElementById('tag4Ref').textContent = b.ref4;
-      document.getElementById('tag5Title').textContent = gName;
-      document.getElementById('tag5Bonus').textContent = b.tag5;
-      document.getElementById('tag5Ref').textContent = b.ref5;
-      
-      // TOC Tags
-      document.getElementById('toc1Name').textContent = gName;
-      document.getElementById('toc1Name2').textContent = gName;
-      document.getElementById('toc1Name3').textContent = gName;
-      document.getElementById('toc1Name4').textContent = gName;
-      document.getElementById('toc1Bonus').textContent = b.toc1Bonus;
-      document.getElementById('toc1Withdraw').textContent = b.tocWithdraw;
-      
-      document.getElementById('toc2Name').textContent = gName;
-      document.getElementById('toc2Bonus1').textContent = b.toc2Bonus1;
-      document.getElementById('toc2Withdraw').textContent = b.tocWithdraw;
-      
-      document.getElementById('toc3Name').textContent = gName;
-      document.getElementById('toc3Bonus').textContent = b.toc3Bonus;
-      
-      document.getElementById('toc4Name').textContent = gName;
-      document.getElementById('toc4Name2').textContent = gName;
-      
-      document.getElementById('toc5Name').textContent = gName;
-      document.getElementById('toc5Bonus1').textContent = b.toc5Bonus1;
-      
-      // FAQ
-      document.getElementById('faq1Name').textContent = gName;
-      document.getElementById('faq1Name2').textContent = gName;
-      document.getElementById('faq1Name3').textContent = gName;
-      document.getElementById('faq1Bonus').textContent = b.faq1;
-      document.getElementById('faq1Ref').textContent = b.refFaq1;
-      document.getElementById('faq2Name').textContent = gName;
-      document.getElementById('faq2Name2').textContent = gName;
-      document.getElementById('faq2Name3').textContent = gName;
-      document.getElementById('faq2Bonus').textContent = b.faq2;
-      document.getElementById('faq2Ref').textContent = b.refFaq2;
-      document.getElementById('faq3Name').textContent = gName;
-      document.getElementById('faq3Name2').textContent = gName;
-      document.getElementById('faq4Name').textContent = gName;
-      document.getElementById('faq4Bonus').textContent = b.faq4;
-      document.getElementById('faq4Bonus2').textContent = b.faq4b;
-      document.getElementById('faq4Withdraw').textContent = b.faq4w;
-      document.getElementById('faq4Deposit').textContent = b.faq4d;
-      document.getElementById('faq4Ref').textContent = b.refFaq4;
-      
-      // ====== POPULATE GAME TAGS (instead of old info tags) ======
-      const tagsContainer = document.getElementById('gameTagsContainer');
-      tagsContainer.innerHTML = '';
-      uniqueGames.forEach(g => {
-        const tag = document.createElement('span');
-        tag.className = 'game-tag';
-        tag.textContent = g.name;
-        tag.dataset.name = g.name;
-        tag.dataset.bonus = g.bonus;
-        tag.dataset.withdrawal = g.withdrawal;
-        tag.dataset.downloadUrl = g.downloadUrl;
-        tag.dataset.img = g.img;
-        tag.dataset.rating = g.rating || getRandomRating();
-        tag.dataset.size = g.size || getRandomSize();
-        tag.dataset.votes = g.votes || getRandomVotes();
-        tag.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const gData = {
-            name: this.dataset.name,
-            bonus: this.dataset.bonus,
-            withdrawal: this.dataset.withdrawal,
-            downloadUrl: this.dataset.downloadUrl,
-            img: this.dataset.img,
-            rating: this.dataset.rating,
-            size: this.dataset.size,
-            votes: this.dataset.votes
-          };
-          showDetail(gData);
-        });
-        tagsContainer.appendChild(tag);
-      });
-      
-      // RELATED
-      const relatedGrid = document.getElementById('relatedGrid');
-      relatedGrid.innerHTML = '';
-      const others = uniqueGames.filter(g => g.name !== game.name);
-      others.forEach(g => {
-        const item = document.createElement('div');
-        item.className = 'related-item';
-        item.dataset.name = g.name;
-        item.dataset.bonus = g.bonus;
-        item.dataset.withdrawal = g.withdrawal;
-        item.dataset.downloadUrl = g.downloadUrl;
-        item.dataset.img = g.img;
-        item.dataset.rating = getRandomRating();
-        item.dataset.size = getRandomSize();
-        item.dataset.votes = getRandomVotes();
-        
-        const img = document.createElement('img');
-        img.src = g.img;
-        img.alt = g.name;
-        img.onerror = function() { this.src = 'https://i.ibb.co/LXqV77rd/yono-games.jpg'; };
-        
-        const infoDiv = document.createElement('div');
-        infoDiv.className = 'rinfo';
-        const nameSpan = document.createElement('div');
-        nameSpan.className = 'rname';
-        nameSpan.textContent = g.name;
-        const bonusSpan = document.createElement('div');
-        bonusSpan.className = 'rbonus';
-        bonusSpan.textContent = '🔴 Sign Up Bonus ' + g.bonus;
-        const withdrawSpan = document.createElement('div');
-        withdrawSpan.className = 'rwithdraw';
-        withdrawSpan.textContent = '🏦 Min. Withdraw ' + g.withdrawal;
-        infoDiv.appendChild(nameSpan);
-        infoDiv.appendChild(bonusSpan);
-        infoDiv.appendChild(withdrawSpan);
-        
-        const downloadSpan = document.createElement('span');
-        downloadSpan.className = 'rdownload';
-        downloadSpan.textContent = 'Download';
-        
-        item.appendChild(img);
-        item.appendChild(infoDiv);
-        item.appendChild(downloadSpan);
-        relatedGrid.appendChild(item);
-        
-        item.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const gData = { 
-            name: this.dataset.name, 
-            bonus: this.dataset.bonus, 
-            withdrawal: this.dataset.withdrawal, 
-            downloadUrl: this.dataset.downloadUrl, 
-            img: this.dataset.img,
-            rating: this.dataset.rating,
-            size: this.dataset.size,
-            votes: this.dataset.votes
-          };
-          showDetail(gData);
-        });
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    document.querySelectorAll('#mainGrid .card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        e.preventDefault();
-        const gData = {
-          name: this.dataset.name,
-          bonus: this.dataset.bonus,
-          withdrawal: this.dataset.withdrawal,
-          downloadUrl: this.dataset.downloadUrl,
-          img: this.dataset.img,
-          rating: this.dataset.rating,
-          size: this.dataset.size,
-          votes: this.dataset.votes
-        };
-        showDetail(gData);
-      });
-    });
-
-    document.getElementById('detailTitle').addEventListener('click', function() {
-      const url = document.getElementById('detailDownloadBtn').href;
-      if (url && url !== '#') {
-        window.open(url, '_blank');
-      }
-    });
-
-    function goBack() {
-      if (historyStack.length > 0) {
-        historyStack.pop();
-        detailView.style.display = 'none';
-        mainGrid.style.display = 'flex';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        document.querySelectorAll('.nav-small').forEach(l => l.classList.remove('active'));
-        document.getElementById('homeNav').classList.add('active');
-      } else {
-        detailView.style.display = 'none';
-        mainGrid.style.display = 'flex';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        document.querySelectorAll('.nav-small').forEach(l => l.classList.remove('active'));
-        document.getElementById('homeNav').classList.add('active');
-      }
-    }
-
-    backBtn.addEventListener('click', goBack);
-
-    window.addEventListener('popstate', function(e) {
-      if (detailView.style.display === 'block') {
-        goBack();
-      } else {
-        history.pushState(null, null, location.href);
-      }
-    });
-
-    history.pushState(null, null, location.href);
-
-    document.getElementById('shareBtn').addEventListener('click', function() {
+    // ===== SHARE FUNCTION =====
+    window.sharePage = function() {
       if (navigator.share) {
         navigator.share({
-          title: 'All Yono Games Site',
-          text: 'Download best gaming apps: 567 Slots, Saga Slots, Jaiho 91, Rummy Ludo, ABC Rummy & more! Get ₹45 Bonus & ₹100 Withdrawal.',
-          url: 'https://allyonogamessite.com/'
+          title: 'Yono Games Platform',
+          text: 'Download India\'s Top Rummy Games & Win Real Cash',
+          url: window.location.href
         }).catch(() => {});
       } else {
-        const url = 'https://allyonogamessite.com/';
-        navigator.clipboard.writeText(url).then(() => {
-          alert('Link copied to clipboard! Share it with your friends.');
-        }).catch(() => {
+        const url = window.location.href;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(() => {
+            alert('Link copied to clipboard! 📋 Share it with your friends.');
+          }).catch(() => {
+            prompt('Copy this link to share:', url);
+          });
+        } else {
           prompt('Copy this link to share:', url);
+        }
+      }
+    };
+
+    // ===== 38 APPS DATA =====
+    const appsData = [
+      { name: "Yono Games", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209", img: "https://i.ibb.co/LXqV77rd/yono-games.jpg", category: "Slots" },
+      { name: "INR Rummy", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106", img: "https://i.ibb.co/Y7ZRkLFp/inr-rummy.jpg", category: "Rummy" },
+      { name: "MBM BET", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://www.mbmbet3.com/?code=GD3H3VA6YK5&t=1784297830", img: "https://i.ibb.co/sJcmCxK6/mbm-bet.jpg", category: "Casino" },
+      { name: "567 Slots", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://join567slots0.com/?code=4NYF487URJ6&t=1781505684", img: "https://i.ibb.co/hFytMXY2/1000022725.jpg", category: "Slots" },
+      { name: "Saga Slots", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://www.sagaslots5.com/?code=0QHJSERZYMV&t=1781505813", img: "https://i.ibb.co/20dzhBZf/1000022725.jpg", category: "Slots" },
+      { name: "Jaiho 91", bonus: "₹50", withdrawal: "₹100", downloadUrl: "https://jaiho91bonus.vip/?code=C42T99ZQHAT&t=1781506067", img: "https://i.ibb.co/zV0C6Xkk/1000022725.jpg", category: "Casino" },
+      { name: "Rummy Ludo", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://rummyludoapp37.com/", img: "https://i.ibb.co/Z6Xy7y2x/1000022725.jpg", category: "Rummy" },
+      { name: "ABC Rummy", bonus: "₹42", withdrawal: "₹100", downloadUrl: "https://d34i569g8ztoql.cloudfront.net/abcrummy_MeApp.apk", img: "https://i.ibb.co/Ldmd1DHH/1000022725.jpg", category: "Rummy" },
+      { name: "Rummy 91", bonus: "₹38", withdrawal: "₹100", downloadUrl: "https://d16sfv4ssrmnvt.cloudfront.net/rummy91_AGENT.apk", img: "https://i.ibb.co/Fb2j77pp/1000022725.jpg", category: "Rummy" },
+      { name: "Love Rummy", bonus: "₹36", withdrawal: "₹100", downloadUrl: "https://d34i569g8ztoql.cloudfront.net/loverummy_App.apk", img: "https://i.ibb.co/PZ2dpNJ9/1000022725.jpg", category: "Rummy" },
+      { name: "Spin Crush", bonus: "₹30", withdrawal: "₹100", downloadUrl: "https://d292swwe9zki3u.cloudfront.net/spincrush_freecash.apk", img: "https://i.ibb.co/S4C26kVS/1000022725.jpg", category: "Spin" },
+      { name: "Top Rummy", bonus: "₹48", withdrawal: "₹100", downloadUrl: "https://th7.my/BY1JWS/3gvute0", img: "https://i.ibb.co/bRy3w8dN/1000022725.jpg", category: "Rummy" },
+      { name: "New Yono Games", bonus: "₹33", withdrawal: "₹100", downloadUrl: "https://t.me/yonogameswepsate", img: "https://i.ibb.co/p6BTzfRz/1000022725.jpg", category: "Casino" },
+      { name: "All Yono games s", bonus: "₹31", withdrawal: "₹100", downloadUrl: "https://t.me/yonogameswepsate", img: "https://i.ibb.co/S7MsNPQ5/1000022725.jpg", category: "Casino" },
+      { name: "Hello Rummy", bonus: "₹34", withdrawal: "₹100", downloadUrl: "https://t.me/allyonogamessite", img: "https://i.ibb.co/27DSP5zR/1000022725.jpg", category: "Rummy" },
+      { name: "Rummy 365", bonus: "₹44", withdrawal: "₹100", downloadUrl: "https://join567slots0.com/?code=4NYF487URJ6&t=1781505684", img: "https://i.ibb.co/Hf9bhrFm/1000022725.jpg", category: "Rummy" },
+      { name: "Taurus App", bonus: "₹30", withdrawal: "₹100", downloadUrl: "https://th7.my/BY1JWS/3gvute0", img: "https://i.ibb.co/twzhYzz7/taurus-app.jpg", category: "Earn" },
+      { name: "Teen Patti Gold", bonus: "₹37", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r", img: "https://i.ibb.co/C5XcGXsJ/teen-patti-gold.jpg", category: "Card" },
+      { name: "Teen Patti Master", bonus: "₹20", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/m/jm9n7r", img: "https://i.ibb.co/JjrZjn2n/teen-patti-master.jpg", category: "Card" },
+      { name: "Yono games", bonus: "₹25", withdrawal: "₹100", downloadUrl: "https://yonorummy043.com/?code=VIPYQC5EE9X&t=1781107758", img: "https://i.ibb.co/zTFDGPpX/yono-rummy.jpg", category: "Rummy" },
+      { name: "Slots Winner", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://slotswinneri.com/?code=PGVC6CBNF53&t=1781107393", img: "https://i.ibb.co/NdbNBtx7/slots-winner.jpg", category: "Slots" },
+      { name: "Good Slots", bonus: "₹15", withdrawal: "₹100", downloadUrl: "https://7sharegoodslots.vip?pid=320806209&channel=2010001&t=pdd2&pkg=com.1", img: "https://i.ibb.co/nq9kMKHZ/good-slots.jpg", category: "Slots" },
+      { name: "Diwa Slot", bonus: "₹50", withdrawal: "₹100", downloadUrl: "https://sharediwaslot1.vip?pid=483455673&channel=2010002&t=pdd2&pkg=com.diwaslotwhl.app", img: "https://i.ibb.co/BKB6QMbD/diwa-slot.jpg", category: "Slots" },
+      { name: "GoGo Rummy", bonus: "₹28", withdrawal: "₹100", downloadUrl: "https://www.gogorummyagent.com/?code=V4UTQA2VYMQ&t=1781196694", img: "https://i.ibb.co/Y7dzDP7z/gogo-rummy.jpg", category: "Rummy" },
+      { name: "Joy Rummy", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://www.joyrummymax.com/?code=J5KFTAWJ9X5&t=1781198100", img: "https://i.ibb.co/nqD8CD8W/joy-rummy.jpg", category: "Rummy" },
+      { name: "Spin Gold", bonus: "₹22", withdrawal: "₹100", downloadUrl: "https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828", img: "https://i.ibb.co/G3QnY0vY/spin-gold.jpg", category: "Spin" },
+      { name: "Bingo 101", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828", img: "https://i.ibb.co/My9tjNgL/bingo101.jpg", category: "Bingo" },
+      { name: "Yes Spin", bonus: "₹18", withdrawal: "₹100", downloadUrl: "https://www.yesspineee.com/?code=47TXJTLU5YY&t=1781198907", img: "https://i.ibb.co/m5qzq7W4/yes-spin.jpg", category: "Spin" },
+      { name: "Yono Arcade", bonus: "₹32", withdrawal: "₹100", downloadUrl: "https://yonoarcadeapk9.com/?code=96LNEL9FQXZ&t=1781199006", img: "https://i.ibb.co/mCzSG1L7/yono-arcade.jpg", category: "Arcade" },
+      { name: "SVIP 777", bonus: "₹27", withdrawal: "₹100", downloadUrl: "https://www.svip777.life?pid=297924008&channel=2050001&t=pdd2&pkg=com.svip777.h5", img: "https://i.ibb.co/vfWZMLm/svip777.jpg", category: "Casino" },
+      { name: "OK Rummy", bonus: "₹38", withdrawal: "₹100", downloadUrl: "https://www.okrummy22.com/?code=H2GU92WUXXA&t=1781199220", img: "https://i.ibb.co/99fCMbNC/ok-rummy.jpg", category: "Rummy" },
+      { name: "Hind 777", bonus: "₹42", withdrawal: "₹100", downloadUrl: "https://www.hindi777agent5.com/?code=7LFFR8WPHEG&t=1781199307", img: "https://i.ibb.co/5gf3q0Sh/hind777.jpg", category: "Slots" },
+      { name: "Yono games", bonus: "₹33", withdrawal: "₹100", downloadUrl: "https://th1.my/BY1JWS/3gvute0", img: "https://i.ibb.co/hRrzszPJ/rummy-most.jpg", category: "Rummy" },
+      { name: "Teen Patti Gold Old Version", bonus: "₹24", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r", img: "https://i.ibb.co/TBJrKvzv/teen-patti-gold-old.jpg", category: "Card" },
+      { name: "Bet 213", bonus: "₹36", withdrawal: "₹100", downloadUrl: "https://www.bet213.rocks/?code=2QTKPV4BYDH&t=1781199576", img: "https://i.ibb.co/YTqq2C4F/bet213.jpg", category: "Betting" },
+      { name: "Teen Patt games", bonus: "₹29", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/m/jm9n7r", img: "https://i.ibb.co/7t3jmgqn/teen-patti.jpg", category: "Card" },
+      { name: "Teen Patti Master games", bonus: "₹31", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r", img: "https://i.ibb.co/LdzWXZYM/all-teen-patti-master.jpg", category: "Card" },
+      { name: "Boss Rummy", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://www.bossrummyy.com/?code=LSHTVUZE1NR&t=1781429504", img: "https://i.ibb.co/fdWgRgxk/1000022725.jpg", category: "Rummy" },
+      { name: "Yono 777", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/VWz6S3JB/1000022725.jpg", category: "Slots" },
+      { name: "Diwa VIP", bonus: "₹60", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/ynsBHKtg/1000022725.jpg", category: "VIP" },
+      { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
+    ];
+
+    // ===== HELPER FUNCTIONS =====
+    function getCardStats(appName, bonusAmount) {
+      let hash = 0;
+      for (let i = 0; i < appName.length; i++) {
+        hash = ((hash << 5) - hash) + appName.charCodeAt(i);
+        hash |= 0;
+      }
+      const ratings = ["4.2", "4.5", "4.7", "4.3", "4.8", "4.6", "4.4", "4.9"];
+      const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
+      const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
+      const idx = Math.abs(hash) % ratings.length;
+      const bonusNumeric = bonusAmount.replace('₹', '');
+      return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNumeric };
+    }
+
+    function getAppStats(appName) {
+      let hash = 0;
+      for (let i = 0; i < appName.length; i++) {
+        hash = ((hash << 5) - hash) + appName.charCodeAt(i);
+        hash |= 0;
+      }
+      const ratings = ["4.2", "4.5", "4.7", "4.3", "4.8", "4.6", "4.4", "4.9"];
+      const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
+      const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
+      const idx = Math.abs(hash) % ratings.length;
+      return { rating: ratings[idx], size: sizes[idx], votes: votes[idx] };
+    }
+
+    function getDescription(appName, category, bonusAmount) {
+      if (category === "Rummy") return `Join the best rummy experience on ${appName}. Compete with real players, win cash prizes, and enjoy daily tournaments. ${bonusAmount} welcome bonus + ₹100 min withdrawal.`;
+      if (category === "Slots") return `Spin & win with ${appName}! Huge jackpots, free spins, and ${bonusAmount} joining bonus. Play premium slot machines and withdraw your winnings instantly.`;
+      if (category === "Spin") return `Exciting spin games on ${appName}. Get ${bonusAmount} free cash, daily rewards, and fast UPI withdrawals.`;
+      return `Download ${appName} APK and get ${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI. Fast secure platform with 24/7 support.`;
+    }
+
+    function getFAQ(appName, bonusAmount) {
+      return `
+        <div class="faq-item">
+          <div class="faq-question">Q.1 What is the ${appName} APK?</div>
+          <div class="faq-answer">The ${appName} APK is an excellent application that offers users a sign-up bonus of ${bonusAmount} when they join. This game includes a fantastic bonus program. Additionally, ${appName} is a popular real-money gaming app with a minimum withdrawal amount of ₹100 and instant UPI payouts.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q.2 How do I sign up for the ${appName} APK?</div>
+          <div class="faq-answer">To sign up, click on the DOWNLOAD button, install the APK, open the app, register with your mobile number & verify OTP. After completing these steps, you will receive a sign-up bonus of ${bonusAmount}.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q.3 How many games are available in the ${appName} app?</div>
+          <div class="faq-answer">The ${appName} app offers support for 20+ different types of games including Rummy, Teen Patti, Slots, Dragon vs Tiger, Andar Bahar, and many more.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q.4 What are some of the best features of the ${appName} APK?</div>
+          <div class="faq-answer">Features include: ${bonusAmount} free signup bonus, 20+ gaming options, earn up to ₹150 for inviting friends, instant UPI withdrawals, 24/7 customer support, and daily login rewards.</div>
+        </div>
+      `;
+    }
+
+    function getInfoTags(appName, bonusAmount) {
+      return `
+        <div class="info-grid">
+          <div class="info-card"><div class="info-title"> New User – Install, Sign Up  Claim </div><div class="info-value">${bonusAmount} Welcome Bonus</div></div>
+          <div class="info-card"><div class="info-title">📲 INSTALL INFO Safe Secure Download</div><div class="info-value">APK Size: ~10-15 MB</div></div>
+          <div class="info-card"><div class="info-title"> New User Signup SAFETY & SECURE Trusted APK Platform</div><div class="info-value"> Mobile Number & OTP Verification</div></div>
+          <div class="info-card"><div class="info-title"> WITHDRAWAL TIME</div><div class="info-value">Instant to 24 Hours</div></div>
+          <div class="info-card"><div class="info-title"> DAILY LOGIN REWARD</div><div class="info-value">Up to ₹50 Daily</div></div>
+          <div class="info-card"><div class="info-title"> FIRST DEPOSIT BONUS – LIMITED TIME </div><div class="info-value">🏦 MIN WITHDRAWAL ₹100 (UPI/Bank)</div></div>
+        </div>
+      `;
+    }
+
+    // ===== STATE =====
+    let currentSelectedIndex = null;
+
+    // ===== RENDER MAIN GRID =====
+    function renderMainGrid() {
+      const gridContainer = document.getElementById('allAppsGrid');
+      if (!gridContainer) return;
+      let html = '';
+      appsData.forEach((app, idx) => {
+        const stats = getCardStats(app.name, app.bonus);
+        html += `
+          <div class="card" data-app-index="${idx}">
+            <div class="card-app-name">${app.name}</div>
+            <div class="card-img">
+              <img src="${app.img}" alt="${app.name}" loading="lazy" decoding="async" width="80" height="80" onerror="this.src='https://via.placeholder.com/80?text=App'">
+            </div>
+            <div class="card-stats">
+              <div class="card-stat"><div class="card-stat-value">${stats.rating}</div><div class="card-stat-label">Rating</div></div>
+              <div class="card-stat"><div class="card-stat-value">${stats.size}</div><div class="card-stat-label">Size</div></div>
+              <div class="card-stat"><div class="card-stat-value">${stats.votes}</div><div class="card-stat-label">Votes</div></div>
+              <div class="card-stat"><div class="card-stat-value">${stats.bonus}</div><div class="card-stat-label">Bonus</div></div>
+            </div>
+            <div class="withdrawal-note">🏦 Min Withdrawal: ${app.withdrawal}</div>
+            <button class="download-btn" data-download-index="${idx}">📲 DOWNLOAD</button>
+          </div>
+        `;
+      });
+      gridContainer.innerHTML = html;
+
+      document.querySelectorAll('#allAppsGrid .download-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = btn.getAttribute('data-download-index');
+          if (idx !== null) navigateToDownloadPage(parseInt(idx));
+          e.stopPropagation();
         });
+      });
+    }
+
+    // ===== NAVIGATION =====
+    function navigateToDownloadPage(selectedIndex) {
+      currentSelectedIndex = selectedIndex;
+      history.pushState({ page: 'download', index: selectedIndex }, '', '#download');
+      showDownloadPage(selectedIndex);
+    }
+
+    function showDownloadPage(selectedIndex) {
+      const selectedApp = appsData[selectedIndex];
+      if (!selectedApp) return;
+      const stats = getAppStats(selectedApp.name);
+      const description = getDescription(selectedApp.name, selectedApp.category, selectedApp.bonus);
+      const faqHtml = getFAQ(selectedApp.name, selectedApp.bonus);
+      const infoTagsHtml = getInfoTags(selectedApp.name, selectedApp.bonus);
+
+      const gridDiv = document.getElementById('allAppsGrid');
+      const downloadContainer = document.getElementById('downloadPageContainer');
+      gridDiv.classList.add('hidden');
+      downloadContainer.classList.remove('hidden');
+
+      const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
+      let otherAppsHtml = '';
+      otherApps.forEach((app) => {
+        const originalIndex = appsData.findIndex(a => a.name === app.name);
+        otherAppsHtml += `
+          <div class="other-card">
+            <div class="card-img" style="width: 60px; height: 60px; margin-bottom: 8px;">
+              <img src="${app.img}" alt="${app.name}" loading="lazy" decoding="async" width="60" height="60" onerror="this.src='https://via.placeholder.com/60?text=App'">
+            </div>
+            <div class="app-name">${app.name}</div>
+            <div class="bonus">🎁 ${app.bonus}</div>
+            <div class="withdrawal-note" style="font-size:0.7rem;"> ${app.withdrawal}</div>
+            <button class="small-download" data-other-index="${originalIndex}">📲 DOWNLOAD</button>
+          </div>
+        `;
+      });
+
+      const downloadPageHtml = `
+        <div class="download-page" id="activeDownloadPage">
+          <div class="download-header">
+            <h2>📥 ${selectedApp.name} APK</h2>
+            <p>🎁 Signup Bonus: ${selectedApp.bonus} |  🏦 Min Withdrawal: ${selectedApp.withdrawal}</p>
+          </div>
+          <div class="app-highlight" id="topDownloadSection">
+            <div class="app-name" style="font-size: 1.8rem; font-weight:800; margin-bottom: 12px;">${selectedApp.name}</div>
+            <div class="card-img" style="width: 90px; height: 90px; margin-bottom: 12px;">
+              <img src="${selectedApp.img}" alt="${selectedApp.name}" loading="lazy" decoding="async" width="90" height="90" onerror="this.src='https://via.placeholder.com/90?text=App'">
+            </div>
+            <div class="stats-row">
+              <div class="stat-item"><div class="stat-value">${stats.rating}</div><div class="stat-label">Rating</div></div>
+              <div class="stat-item"><div class="stat-value">${stats.size}</div><div class="stat-label">Size</div></div>
+              <div class="stat-item"><div class="stat-value">${stats.votes}</div><div class="stat-label">Votes</div></div>
+              <div class="stat-item"><div class="stat-value">${selectedApp.bonus.replace('₹', '')}</div><div class="stat-label">Bonus</div></div>
+            </div>
+            <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">📲 DOWNLOAD ${selectedApp.name}</a>
+            <div class="app-description">
+              ${description}<br><br>
+              <strong>🎯 Extra Benefits:</strong> Daily login rewards, referral cashback, and fast UPI withdrawals. 24/7 customer support.
+            </div>
+            ${infoTagsHtml}
+            <div class="howto-steps">
+              <h4>📱 How To Download ${selectedApp.name}?</h4>
+              <ol>
+                <li>Click on the <strong>DOWNLOAD</strong> button below.</li>
+                <li>Allow installation from "Unknown Sources" in your Android settings if prompted.</li>
+                <li>Open the APK file and install the app.</li>
+                <li>Register with mobile number & verify OTP.</li>
+                <li>Claim your ${selectedApp.bonus} signup bonus and start playing!</li>
+              </ol>
+            </div>
+            <div class="faq-section">
+              ${faqHtml}
+            </div>
+          </div>
+          <div class="other-apps-title">Other Yono Apps</div>
+          <div class="other-apps-grid" id="otherAppsGrid">
+            ${otherAppsHtml}
+          </div>
+          <div class="footer-note" style="margin-top: 28px;">
+            All apps: ₹100 min withdrawal | Trusted platform | 18+
+          </div>
+        </div>
+      `;
+
+      downloadContainer.innerHTML = downloadPageHtml;
+
+      document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const otherIdx = btn.getAttribute('data-other-index');
+          if (otherIdx !== null) navigateToDownloadPage(parseInt(otherIdx));
+          e.stopPropagation();
+        });
+      });
+
+      setTimeout(() => {
+        const topSection = document.getElementById('topDownloadSection');
+        if (topSection) topSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function goToMainGrid() {
+      const gridDiv = document.getElementById('allAppsGrid');
+      const downloadContainer = document.getElementById('downloadPageContainer');
+      if (gridDiv && downloadContainer) {
+        gridDiv.classList.remove('hidden');
+        downloadContainer.classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      currentSelectedIndex = null;
+    }
+
+    // ===== POPSTATE & HISTORY =====
+    window.addEventListener('popstate', (event) => {
+      if (customModal.style.display === 'flex') {
+        closeModalAndResetHistory();
+        return;
+      }
+      if (event.state && event.state.page === 'download') {
+        showDownloadPage(event.state.index);
+      } else {
+        goToMainGrid();
       }
     });
 
+    history.replaceState({ page: 'main' }, '', window.location.pathname);
+
+    function resetToMainGrid() {
+      dropdown.classList.remove('show');
+      if (customModal.style.display === 'flex') {
+        closeModalAndResetHistory();
+      }
+      history.replaceState({ page: 'main' }, '', window.location.pathname);
+      goToMainGrid();
+    }
+
+    // ===== MODAL =====
+    const customModal = document.getElementById('customInfoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const closeInfoModal = document.getElementById('closeInfoModal');
+
+    function showInfoModal(title, contentHtml) {
+      modalTitle.innerText = title;
+      modalBody.innerHTML = contentHtml;
+      customModal.style.display = 'flex';
+      history.pushState({ modal: true }, '');
+    }
+
+    function closeModalAndResetHistory() {
+      customModal.style.display = 'none';
+      history.replaceState({ page: 'main' }, '', window.location.pathname);
+    }
+
+    closeInfoModal.addEventListener('click', () => {
+      closeModalAndResetHistory();
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === customModal) {
+        closeModalAndResetHistory();
+      }
+    });
+
+    // ===== MENU =====
+    const menuBtn = document.getElementById('menuBtn');
+    const dropdown = document.getElementById('dropdownMenu');
+    const menuHome = document.getElementById('menuHome');
+    const menuContact = document.getElementById('menuContact');
+    const menuDisclaimer = document.getElementById('menuDisclaimer');
+    const menuAbout = document.getElementById('menuAbout');
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
+    menuHome.addEventListener('click', () => {
+      dropdown.classList.remove('show');
+      resetToMainGrid();
+    });
+
+    // ===== CONTACT US =====
+    menuContact.addEventListener('click', () => {
+      dropdown.classList.remove('show');
+      showInfoModal('📞 Contact Us - AllYonoGamesSite.com', `
+        <p><strong>All Yono Games Site</strong> - Yono Games All Yono games Apps site does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games. Because the Listed Games/Apps are not ours. We do not own those games.</p>
+        <p style="margin-top: 20px;"><strong style="color: #d50000;">📢 Advertisement/Business Queries</strong><br> If you are a game maker company, operator, or administrator, and you want to promote your application through our website, you can contact us through the contact details given below and discuss promotion and cooperation.</p>
+        <table class="contact-table">
+          <tr><th>Title</th><th>Link</th></tr>
+          <tr><td><strong>Email</strong></td><td><a href="mailto:support@AllYonoGamesSite.com" class="contact-email">support@AllYonoGamesSite.com</a></td></tr>
+          <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/AllYonoGamesSite" target="_blank" class="contact-telegram">@AllYonoGamesSite</a></td></tr>
+        </table>
+        <p style="margin-top: 16px; background: linear-gradient(135deg, #ff4081, #ff8c00); padding: 10px; border-radius: 12px; color: white; font-weight: 600; text-align: center;"> ⚡ You can directly contact us through Email as given in the Table above, and can deal with us. </p>
+      `);
+    });
+
+    // ===== DISCLAIMER =====
+    menuDisclaimer.addEventListener('click', () => {
+      dropdown.classList.remove('show');
+      showInfoModal(' Disclaimer - AllYonoGamesSite', `
+        <div style="background: linear-gradient(135deg, #fff5e6, #ffe6cc); padding: 12px; border-radius: 16px; margin-bottom: 16px; text-align: center;">
+          <h3 style="color: #b45900; font-weight: 800; font-size: 1.4rem;">Welcome to AllYonoGamesSite</h3>
+        </div>
+        <p style="font-weight: 700; color: #1e562a;">This disclaimer applies to all users of the AllYonoGamesSite website and the wide array of applications ("Apps") available on it. Our platform includes diverse apps such as Poker, Rummy, Ludo, fantasy sports, investment apps, and trading apps. By accessing AllYonoGamesSite, you acknowledge and agree to the terms outlined in this disclaimer.</p>
+        <div class="disclaimer-section">
+          <h4> Understanding the Scope of Our Platform</h4>
+          <p>AllYonoGamesSite serves as a digital distribution platform for various third-party applications. Our role is limited to providing access to these apps. We do not develop, modify, or have any control over the content and functionality of these apps.</p>
+        </div>
+        <div class="disclaimer-section" style="border-left-color: #d50000;">
+          <h4> User Responsibility and Financial Risk</h4>
+          <p><strong>Risk of Financial Activities</strong><br> The Apps, particularly those involving financial transactions like betting games or investment platforms, may carry inherent risks including the potential for significant financial loss. You are solely responsible for any financial outcomes resulting from using these Apps.</p>
+          <p><strong>Informed Decision-Making</strong><br> We strongly encourage you to thoroughly research and understand each App, especially those involving financial risks, before using them. This includes seeking advice from financial professionals if needed.</p>
+          <p><strong>No Endorsement of Financial Strategies</strong><br> Our platform does not endorse any specific financial strategies, nor do we guarantee their success. Decisions made based on any App's content are solely your responsibility.</p>
+        </div>
+        <div class="disclaimer-section" style="border-left-color: #0088cc;">
+          <h4> Legal Age and Compliance</h4>
+          <p><strong>Age Restrictions</strong><br> Some Apps, particularly those involving gambling or financial investments, are designed for use by individuals above a certain age (usually 18 or 21 years). You must comply with these age restrictions.</p>
+          <p><strong>Compliance with Local Laws</strong><br> It is your responsibility to ensure that your use of any App complies with local laws and regulations. This includes understanding legal constraints related to gambling, investments, and other financial activities.</p>
+        </div>
+        <div class="disclaimer-section" style="border-left-color: #2ecc71;">
+          <h4> Critical Review of App-Specific Terms</h4>
+          <p><strong>User Due Diligence</strong><br> Before signing up, registering, or engaging with any App on our platform, it is crucial that you thoroughly review and understand that App's specific Terms and Conditions, disclaimers, and privacy policies.</p>
+          <p><strong>No Responsibility for Discrepancies</strong><br> We are not responsible for any discrepancies or misunderstandings resulting from the App's terms, conditions, or policies.</p>
+        </div>
+        <div class="disclaimer-box" style="background: #ffebee; border-color: #d50000;">
+          <p><strong>⚠️ No Liability for Losses</strong><br> AllYonoGamesSite shall not be liable for any direct, indirect, incidental, consequential, or punitive damages, including financial losses, resulting from the use or inability to use any App listed on our website. Your engagement with these Apps is entirely at your own risk and discretion.</p>
+        </div>
+        <div class="disclaimer-section" style="border-left-color: #9c27b0;">
+          <h4> Awareness of Addiction Risks</h4>
+          <p><strong>Risk of Addiction:</strong> Certain apps, especially games and those involving gambling or trading, can be addictive. We encourage responsible use of these apps and awareness of the potential for addictive behavior.</p>
+          <p><strong>Seeking Help:</strong> If you or someone you know is struggling with addiction related to these apps, we advise seeking professional help.</p>
+        </div>
+        <div class="disclaimer-section" style="border-left-color: #ff8c00;">
+          <h4>📢 Additional Disclaimers</h4>
+          <p><strong>Variability in App Functionality</strong><br> The functionality and content of the Apps may change over time, and we do not guarantee their consistency or availability.</p>
+          <p><strong>Non-Endorsement of App Content</strong><br> Display of an App on our platform does not constitute an endorsement of its content or functionality.</p>
+          <p><strong>No Financial or Legal Advice</strong><br> AllYonoGamesSite does not provide financial, legal, or investment advice. Any information obtained from our platform should not be treated as professional advice.</p>
+        </div>
+        <div class="disclaimer-box" style="background: #e8f5e9; border-color: #2ecc71;">
+          <p><strong> Changes and Amendments</strong><br> We reserve the right to modify this disclaimer at any time. Such changes will be effective immediately upon posting on our website. It is your responsibility to regularly review this disclaimer.</p>
+        </div>
+        <hr style="margin: 20px 0; border: 2px dashed #ffcf8a;">
+        <div style="background: #fef4e6; padding: 10px; border-radius: 12px; margin: 12px 0;">
+          <h4 style="color: #b45900;"> Disclaimer for Rummy Apps on AllYonoGamesSite</h4>
+          <p><strong>General Notice:</strong> This is a brief and partial disclaimer. For full details, refer to the specific Rummy app's own disclaimer. Rummy games are intended for users aged 18+ and involve elements of skill and chance. Play at your own risk and ensure compliance with local gambling laws. Adding money to these games is done at the user's own risk.</p>
+        </div>
+        <div style="background: #fef4e6; padding: 10px; border-radius: 12px; margin: 12px 0;">
+          <h4 style="color: #b45900;"> Disclaimer for Ludo Apps on AllYonoGamesSite</h4>
+          <p><strong>General Notice:</strong> This disclaimer is concise and may not cover all aspects. Review the full disclaimer in the specific Ludo app. Ludo apps are for entertainment and suitable for users 18+. Play responsibly and at your own risk. Any financial transactions within these apps are the responsibility of the user.</p>
+        </div>
+        <div style="background: #fef4e6; padding: 10px; border-radius: 12px; margin: 12px 0;">
+          <h4 style="color: #b45900;">📈 Disclaimer for Investment Apps on AllYonoGamesSite</h4>
+          <p><strong>General Notice:</strong> This disclaimer is partial. For complete information, review the specific investment app's disclaimer. Investment apps are for users aged 18+ and involve financial risks, including potential loss of capital. Decisions should be made based on personal financial situations. Any investments are made at the user's own risk.</p>
+        </div>
+        <div style="background: #fef4e6; padding: 10px; border-radius: 12px; margin: 12px 0;">
+          <h4 style="color: #b45900;"> Disclaimer for Fantasy Sports Apps on AllYonoGamesSite</h4>
+          <p><strong>General Notice:</strong> This is a summarized disclaimer. Refer to the full disclaimer in each Fantasy Sports app for comprehensive details. These apps are intended for users aged 18+ and involve an element of financial risk. There is no guarantee of winning, and losses incurred are the user's responsibility. Play and engage in financial transactions at your own risk.</p>
+        </div>
+        <div style="background: #fef4e6; padding: 10px; border-radius: 12px; margin: 12px 0;">
+          <h4 style="color: #b45900;"> Disclaimer for Other Earning Apps on AllYonoGamesSite</h4>
+          <p><strong>General Notice:</strong> This is an abbreviated disclaimer. Consult the full disclaimer in each earning app for more details. These apps are suitable for users aged 18+ and may offer potential income opportunities with no guaranteed earnings. Any financial decisions or transactions within these apps are entirely at the user's risk.</p>
+        </div>
+        <div style="background: #fff3e0; padding: 12px; border-radius: 12px; margin: 12px 0; border: 2px solid #ff8c00;">
+          <h4 style="color: #b45900;"> General Disclaimer for Third-Party Apps on AllYonoGamesSite</h4>
+          <p><strong>Notice of Non-Affiliation and Disclaimer:</strong> AllYonoGamesSite does not operate, control, or manage any of the applications (Apps) listed on our platform, including Rummy, Ludo, Fantasy Sports, Investment, and Trading apps. These apps are developed, owned, and operated by independent third parties.</p>
+        </div>
+        <div style="margin-top: 20px; text-align: center; background: linear-gradient(90deg, #ff4081, #ff8c00); padding: 8px; border-radius: 30px; color: white; font-weight: 700;"> ⚡ AllYonoGamesSite – Your Trusted App Discovery Platform ⚡ </div>
+      `);
+    });
+
+    // ===== ABOUT US =====
+    menuAbout.addEventListener('click', () => {
+      dropdown.classList.remove('show');
+      showInfoModal(' About - AllYonoGamesSite.com', `
+        <p><strong>Welcome to our platform, about-all-yono-Games site</strong> – a comprehensive hub created dedicated to enhancing digital experiences for everyone. At the heart of our mission lies the commitment to empower users with access to a wide range of applications, mirroring the global accessibility of platforms like the renowned app marketplaces, but with a unique focus on Indian users about-all-yono-Games Store.</p>
+        <p>Our journey began with a simple yet powerful vision: to revolutionize the way people discover and download apps. We recognize the evolving needs of the digital age and strive to meet them by offering an extensive selection of applications. From utility and productivity apps to entertainment and lifestyle options, our platform is a one-stop destination for all your app needs.</p>
+        <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated. Our platform is designed to be user-friendly, ensuring a seamless experience for everyone, from tech-savvy individuals to those just starting their digital journey.</p>
+        <p>Our focus on Indian applications sets us apart, reflecting our dedication to cater to the unique needs and preferences of our audience. We believe in the power of local solutions for local challenges, and our platform is a testament to this belief.</p>
+        <p>Join us in our endeavor to bring the best of digital innovations to your fingertips. Explore, download, and stay ahead in the ever-evolving world of apps with us about-all-yono-Games site.</p>
+        <hr style="margin: 20px 0; border: 1px dashed #ffcf8a;">
+        <p><strong>🎯 Our Mission</strong><br> To provide the best gaming and app experience for Indian users with secure downloads and reliable service.</p>
+        <p><strong>🔒 Secure Downloads</strong><br> All apps are verified and safe only.</p>
+        <div style="margin-top: 20px; text-align: center; border-top: 2px solid #ffcf8a; padding-top: 20px;">
+          <div class="ai-robot-container" style="display:flex; justify-content:center; align-items:center; margin:20px 0 10px;">
+            <div class="ai-robot" style="font-size:4rem; display:inline-block; animation:spinRobot 3s linear infinite; filter:drop-shadow(0 0 12px rgba(0,200,255,0.6)); background:radial-gradient(circle,#e0f7fa,#b2ebf2); border-radius:50%; padding:16px; width:100px; height:100px; display:flex; justify-content:center; align-items:center; box-shadow:0 0 30px rgba(0,150,255,0.3);">🤖</div>
+          </div>
+          <style>
+            @keyframes spinRobot {
+              0% { transform: rotate(0deg) scale(1); }
+              50% { transform: rotate(180deg) scale(1.1); }
+              100% { transform: rotate(360deg) scale(1); }
+            }
+          </style>
+          <div class="ai-label" style="text-align:center; font-weight:700; color:#0a2e1d; font-size:0.9rem; letter-spacing:1px; margin-top:6px; background:linear-gradient(90deg,#ff4081,#ff8c00); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> ________________ </div>
+          <p style="font-size: 0.8rem; color: #555; margin-top: 4px;">Our intelligent AI is always spinning to help you</p>
+        </div>
+      `);
+    });
+
+    // ===== INIT =====
+    function init() {
+      renderMainGrid();
+      const homeLink = document.getElementById('homeNavLink');
+      if (homeLink) homeLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        resetToMainGrid();
+      });
+    }
+    init();
   })();
 </script>
+
 </body>
 </html>
