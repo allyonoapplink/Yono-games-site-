@@ -43,52 +43,63 @@
             padding-bottom: 30px;
         }
 
-        /* ====== TOP NAV ====== */
+        /* ====== TOP NAV - Updated ====== */
         .top-nav {
             background: #ffffff;
-            padding: 6px 10px;
+            padding: 8px 12px;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 4px 8px;
+            gap: 6px 12px;
             border-bottom: 2px solid #e2e8f0;
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .nav-logo {
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
             flex-shrink: 0;
         }
-        .nav-logo img {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+        .nav-logo-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
             object-fit: cover;
             border: 2px solid #22c55e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
-        .nav-logo .site-title {
-            font-weight: 800;
-            font-size: 0.7rem;
-            color: #22c55e;
-            letter-spacing: 0.3px;
+        .nav-logo-img:hover {
+            transform: scale(1.02);
+        }
+        .site-title {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #1e562a;
+            letter-spacing: 0.5px;
             white-space: nowrap;
+            background: linear-gradient(145deg, #1e562a, #2c4c3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .nav-links {
+        .nav-center {
             display: flex;
             align-items: center;
+            gap: 6px 12px;
             flex-wrap: wrap;
-            gap: 2px 6px;
+            flex: 1;
+            justify-content: center;
         }
-        .top-nav a {
+        .nav-center a {
             color: #0a0a0a;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.55rem;
-            padding: 3px 8px;
+            font-size: 0.6rem;
+            padding: 4px 12px;
             border-radius: 40px;
             cursor: pointer;
             background: transparent;
@@ -97,14 +108,38 @@
             letter-spacing: 0.2px;
             border: 1px solid transparent;
         }
-        .top-nav a:hover {
+        .nav-center a:hover {
             background: #f1f5f9;
             border-color: #d0d9e8;
         }
-        .top-nav a.active {
+        .nav-center a.active {
             background: #eef2ff;
             color: #1e293b;
             border-color: #b3c8e6;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .gmail-text {
+            font-weight: 800;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.5px;
+            padding: 2px 6px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .gmail-text:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
         }
         .telegram-nav-btn {
             display: inline-flex;
@@ -112,24 +147,23 @@
             gap: 4px;
             background: transparent;
             border: 1px solid #e2e8f0;
-            padding: 2px 8px 2px 4px;
+            padding: 4px 10px 4px 6px;
             border-radius: 40px;
             color: #0a0a0a;
             font-weight: 600;
-            font-size: 0.5rem;
+            font-size: 0.55rem;
             text-decoration: none;
             transition: 0.2s;
             cursor: pointer;
             white-space: nowrap;
-            margin-left: auto;
         }
         .telegram-nav-btn:hover {
             background: #eef2ff;
             border-color: #b3c8e6;
         }
         .telegram-nav-btn img {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
@@ -775,6 +809,34 @@
             display: none !important;
         }
 
+        @media (max-width: 600px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+            }
+            .nav-left, .nav-right {
+                justify-content: center;
+            }
+            .nav-center {
+                justify-content: center;
+                gap: 4px 6px;
+            }
+            .nav-center a {
+                font-size: 0.5rem;
+                padding: 3px 8px;
+            }
+            .site-title {
+                font-size: 0.9rem;
+            }
+            .nav-logo-img {
+                width: 44px;
+                height: 44px;
+            }
+            .gmail-text {
+                font-size: 0.75rem;
+            }
+        }
         @media (min-width: 480px) {
             .card {
                 max-width: 380px;
@@ -803,22 +865,25 @@
 </head>
 <body>
 
-    <!-- ===== TOP NAV ===== -->
+    <!-- ===== TOP NAV - Updated with new logo and Gmail ===== -->
     <nav class="top-nav">
-        <div class="nav-logo">
-            <img src="https://i.ibb.co/1Y43Cq5N/logo-icon.jpg" alt="Yono Games Site Logo" loading="eager">
+        <div class="nav-left">
+            <img src="https://i.ibb.co/bgzkx2wT" alt="Yono Games Logo" class="nav-logo-img" loading="eager">
             <span class="site-title">YONO GAMES SITE</span>
         </div>
-        <div class="nav-links">
+        <div class="nav-center">
             <a href="#" class="active" id="homeNavLink">HOME</a>
             <a href="#" id="navAbout">About</a>
             <a href="#" id="navContact">Contact</a>
             <a href="#" id="navDisclaimer">Disclaimer</a>
         </div>
-        <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
-            <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
-            Telegram
-        </a>
+        <div class="nav-right">
+            <span class="gmail-text">Gmail</span>
+            <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
+                <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
+                Telegram
+            </a>
+        </div>
     </nav>
 
     <!-- ===== CUSTOM INFO MODAL ===== -->
@@ -1370,12 +1435,12 @@
 
             homeNavLink.addEventListener('click', (e) => { e.preventDefault();
                 resetToMainGrid();
-                document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.nav-center a').forEach(el => el.classList.remove('active'));
                 homeNavLink.classList.add('active'); });
 
             navAbout.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.nav-center a').forEach(el => el.classList.remove('active'));
                 navAbout.classList.add('active');
                 showInfoModal('📖 About - Yono Games Site', `
                     <p><strong>Welcome to Yono Games Site</strong> – a comprehensive hub dedicated to enhancing digital experiences for everyone. Our mission is to empower users with access to a wide range of applications with a unique focus on Indian users.</p>
@@ -1390,7 +1455,7 @@
 
             navContact.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.nav-center a').forEach(el => el.classList.remove('active'));
                 navContact.classList.add('active');
                 showInfoModal('📞 Contact Us - Yono Games Site', `
                     <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games.</p>
@@ -1406,7 +1471,7 @@
 
             navDisclaimer.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.nav-center a').forEach(el => el.classList.remove('active'));
                 navDisclaimer.classList.add('active');
                 showInfoModal('⚠️ Disclaimer - Yono Games Site', `
                     <div style="background:linear-gradient(135deg,#fff5e6,#ffe6cc);padding:10px;border-radius:14px;margin-bottom:12px;text-align:center;"><h3 style="color:#b45900;font-weight:800;font-size:1.2rem;">Welcome to Yono Games Site</h3></div>
