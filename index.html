@@ -137,7 +137,24 @@
     .card-stat { text-align: center; min-width: 55px; }
     .card-stat-value { font-size: 0.95rem; font-weight: 800; color: #1e562a; }
     .card-stat-label { font-size: 0.55rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.3px; }
-    .withdrawal-note { font-size: 0.7rem; font-weight: 700; color: #146b3a; background: #e0f2e9; display: inline-block; padding: 4px 14px; border-radius: 40px; margin-top: 6px; }
+    
+    /* ====== SIGN UP BONUS (RED) & WITHDRAWAL ====== */
+    .signup-bonus { 
+      color: #dc2626; 
+      font-weight: 800; 
+      font-size: 0.9rem; 
+      margin-top: 4px; 
+    }
+    .withdrawal-note { 
+      font-size: 0.7rem; 
+      font-weight: 700; 
+      color: #146b3a; 
+      background: #e0f2e9; 
+      display: inline-block; 
+      padding: 4px 14px; 
+      border-radius: 40px; 
+      margin-top: 4px; 
+    }
     
     /* ====== DOWNLOAD BUTTONS - BLACK ====== */
     .download-btn { 
@@ -325,7 +342,7 @@
 
 <script>
   (function() {
-    // ===== 41 APPS DATA (Added YONO GAMES SITE at the end) =====
+    // ===== 41 APPS DATA =====
     const appsData = [
       { name: "Yono Games", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209", img: "https://i.ibb.co/LXqV77rd/yono-games.jpg", category: "Slots" },
       { name: "INR Rummy", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106", img: "https://i.ibb.co/Y7ZRkLFp/inr-rummy.jpg", category: "Rummy" },
@@ -368,11 +385,10 @@
       { name: "Yono 777", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/VWz6S3JB/1000022725.jpg", category: "Slots" },
       { name: "Diwa VIP", bonus: "₹60", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/ynsBHKtg/1000022725.jpg", category: "VIP" },
       { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" },
-      // ===== NEW APP: YONO GAMES SITE (41st) =====
       { name: "YONO GAMES SITE", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r", img: "https://i.ibb.co/1Y43Cq5N/logo-icon.jpg", category: "Platform" }
     ];
 
-    // ===== HELPER FUNCTIONS =====
+    // ===== HELPER FUNCTIONS WITH VARIABLE BONUS 20-500 =====
     function getCardStats(appName, bonusAmount) {
       let hash = 0;
       for (let i = 0; i < appName.length; i++) {
@@ -383,8 +399,9 @@
       const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
       const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
       const idx = Math.abs(hash) % ratings.length;
-      const bonusNumeric = bonusAmount.replace('₹', '');
-      return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNumeric };
+      // Generate bonus between 20 and 500
+      const bonusNum = 20 + (Math.abs(hash) % 481);
+      return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNum };
     }
 
     function getAppStats(appName) {
@@ -432,7 +449,7 @@
     function getInfoTags(appName, bonusAmount) {
       return `
         <div class="info-grid">
-          <div class="info-card"><div class="info-title"> New User – Install, Sign Up  Claim </div><div class="info-value">${bonusAmount} Welcome Bonus</div></div>
+          <div class="info-card"><div class="info-title"> New User – Install, Sign Up  Claim </div><div class="info-value">₹${bonusAmount} Welcome Bonus</div></div>
           <div class="info-card"><div class="info-title">📲 INSTALL INFO Safe Secure Download</div><div class="info-value">APK Size: ~10-15 MB</div></div>
           <div class="info-card"><div class="info-title"> New User Signup SAFETY & SECURE Trusted APK Platform</div><div class="info-value"> Mobile Number & OTP Verification</div></div>
           <div class="info-card"><div class="info-title"> WITHDRAWAL TIME</div><div class="info-value">Instant to 24 Hours</div></div>
@@ -452,6 +469,8 @@
       let html = '';
       appsData.forEach((app, idx) => {
         const stats = getCardStats(app.name, app.bonus);
+        // Use the generated bonus amount (between 20-500) instead of fixed app.bonus for display
+        const displayBonus = stats.bonus;
         html += `
           <div class="card" data-app-index="${idx}">
             <div class="card-app-name">${app.name}</div>
@@ -462,8 +481,10 @@
               <div class="card-stat"><div class="card-stat-value">${stats.rating}</div><div class="card-stat-label">Rating</div></div>
               <div class="card-stat"><div class="card-stat-value">${stats.size}</div><div class="card-stat-label">Size</div></div>
               <div class="card-stat"><div class="card-stat-value">${stats.votes}</div><div class="card-stat-label">Votes</div></div>
-              <div class="card-stat"><div class="card-stat-value">${stats.bonus}</div><div class="card-stat-label">Bonus</div></div>
+              <div class="card-stat"><div class="card-stat-value">${displayBonus}</div><div class="card-stat-label">Bonus</div></div>
             </div>
+            <!-- Sign Up Bonus in RED -->
+            <div class="signup-bonus">🔴 Sign Up Bonus: ₹${displayBonus}</div>
             <div class="withdrawal-note">🏦 Min Withdrawal: ${app.withdrawal}</div>
             <button class="download-btn" data-download-index="${idx}">📲 DOWNLOAD</button>
           </div>
@@ -491,9 +512,16 @@
       const selectedApp = appsData[selectedIndex];
       if (!selectedApp) return;
       const stats = getAppStats(selectedApp.name);
-      const description = getDescription(selectedApp.name, selectedApp.category, selectedApp.bonus);
-      const faqHtml = getFAQ(selectedApp.name, selectedApp.bonus);
-      const infoTagsHtml = getInfoTags(selectedApp.name, selectedApp.bonus);
+      // Also generate bonus for detail page (use same logic)
+      let hash = 0;
+      for (let i = 0; i < selectedApp.name.length; i++) {
+        hash = ((hash << 5) - hash) + selectedApp.name.charCodeAt(i);
+        hash |= 0;
+      }
+      const bonusNum = 20 + (Math.abs(hash) % 481);
+      const description = getDescription(selectedApp.name, selectedApp.category, bonusNum);
+      const faqHtml = getFAQ(selectedApp.name, bonusNum);
+      const infoTagsHtml = getInfoTags(selectedApp.name, bonusNum);
 
       const gridDiv = document.getElementById('allAppsGrid');
       const downloadContainer = document.getElementById('downloadPageContainer');
@@ -510,7 +538,7 @@
               <img src="${app.img}" alt="${app.name}" loading="lazy" decoding="async" width="60" height="60" onerror="this.src='https://via.placeholder.com/60?text=App'">
             </div>
             <div class="app-name">${app.name}</div>
-            <div class="bonus">🎁 ${app.bonus}</div>
+            <div class="bonus">🎁 ₹${bonusNum}</div>
             <div class="withdrawal-note" style="font-size:0.7rem;"> ${app.withdrawal}</div>
             <button class="small-download" data-other-index="${originalIndex}">📲 DOWNLOAD</button>
           </div>
@@ -521,7 +549,7 @@
         <div class="download-page" id="activeDownloadPage">
           <div class="download-header">
             <h2>📥 ${selectedApp.name} APK</h2>
-            <p>🎁 Signup Bonus: ${selectedApp.bonus} |  🏦 Min Withdrawal: ${selectedApp.withdrawal}</p>
+            <p>🎁 Signup Bonus: ₹${bonusNum} |  🏦 Min Withdrawal: ${selectedApp.withdrawal}</p>
           </div>
           <div class="app-highlight" id="topDownloadSection">
             <div class="app-name" style="font-size: 1.8rem; font-weight:800; margin-bottom: 12px;">${selectedApp.name}</div>
@@ -532,7 +560,7 @@
               <div class="stat-item"><div class="stat-value">${stats.rating}</div><div class="stat-label">Rating</div></div>
               <div class="stat-item"><div class="stat-value">${stats.size}</div><div class="stat-label">Size</div></div>
               <div class="stat-item"><div class="stat-value">${stats.votes}</div><div class="stat-label">Votes</div></div>
-              <div class="stat-item"><div class="stat-value">${selectedApp.bonus.replace('₹', '')}</div><div class="stat-label">Bonus</div></div>
+              <div class="stat-item"><div class="stat-value">${bonusNum}</div><div class="stat-label">Bonus</div></div>
             </div>
             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">📲 DOWNLOAD ${selectedApp.name}</a>
             <div class="app-description">
@@ -547,7 +575,7 @@
                 <li>Allow installation from "Unknown Sources" in your Android settings if prompted.</li>
                 <li>Open the APK file and install the app.</li>
                 <li>Register with mobile number & verify OTP.</li>
-                <li>Claim your ${selectedApp.bonus} signup bonus and start playing!</li>
+                <li>Claim your ₹${bonusNum} signup bonus and start playing!</li>
               </ol>
             </div>
             <div class="faq-section">
