@@ -48,10 +48,43 @@
       top: 0; 
       z-index: 100; 
     }
-    .nav-logo { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .nav-logo { display: flex; align-items: center; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
     .nav-logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 2px solid #22c55e; }
     .nav-logo .site-title { font-weight: 800; font-size: 0.7rem; color: #22c55e; letter-spacing: 0.3px; white-space: nowrap; }
     
+    /* New Open Gmail Link Styles */
+    .open-gmail-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: 8px;
+      padding: 2px 10px 2px 8px;
+      border-radius: 40px;
+      border: 1px solid #e2e8f0;
+      background: transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .open-gmail-link:hover {
+      background: #f1f5f9;
+      border-color: #d0d9e8;
+    }
+    .open-text {
+      color: #22c55e;
+      font-weight: 700;
+      font-size: 0.65rem;
+    }
+    .gmail-gradient-text {
+      background: linear-gradient(135deg, #1e40af, #1e3a8a, #dc2626, #f59e0b, #22c55e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      font-size: 0.65rem;
+    }
+
     .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 6px; }
     .top-nav a { 
       color: #0a0a0a; 
@@ -314,9 +347,23 @@
     @media (min-width: 480px) {
       .card { max-width: 380px; }
       .nav-logo .site-title { font-size: 0.85rem; }
+      .open-text, .gmail-gradient-text { font-size: 0.8rem; }
       .top-nav a { font-size: 0.65rem; padding: 4px 12px; }
       .telegram-nav-btn { font-size: 0.6rem; padding: 3px 10px 3px 6px; }
       .telegram-nav-btn img { width: 24px; height: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .open-gmail-link {
+        margin-left: 4px;
+        padding: 2px 6px;
+      }
+      .open-text, .gmail-gradient-text {
+        font-size: 0.55rem;
+      }
+      .nav-logo .site-title {
+        font-size: 0.6rem;
+      }
     }
   </style>
 </head>
@@ -327,6 +374,10 @@
   <div class="nav-logo">
     <img src="https://i.ibb.co/1Y43Cq5N/logo-icon.jpg" alt="Yono Games Site Logo" loading="eager">
     <span class="site-title">YONO GAMES SITE</span>
+    <a href="https://mail.google.com/" target="_blank" rel="noopener noreferrer" class="open-gmail-link">
+      <span class="open-text">Open</span>
+      <span class="gmail-gradient-text">Gmail</span>
+    </a>
   </div>
   <div class="nav-links">
     <a href="#" class="active" id="homeNavLink">HOME</a>
