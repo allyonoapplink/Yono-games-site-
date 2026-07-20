@@ -64,9 +64,9 @@
             flex-shrink: 0;
         }
         .nav-logo-img {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             object-fit: cover;
             border: 2px solid #22c55e;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -77,7 +77,7 @@
         }
         .site-title {
             font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #1e562a;
             letter-spacing: 0.5px;
             white-space: nowrap;
@@ -120,26 +120,39 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             flex-shrink: 0;
         }
-        .gmail-text {
-            font-weight: 800;
-            font-size: 0.9rem;
+        .gmail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            border: 1px solid #e2e8f0;
+            padding: 4px 10px 4px 6px;
+            border-radius: 40px;
+            background: transparent;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .gmail-link:hover {
+            background: #eef2ff;
+            border-color: #b3c8e6;
+        }
+        .gmail-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            object-fit: cover;
+            display: block;
+        }
+        .gmail-text-gradient {
             background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 0.5px;
-            padding: 2px 6px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: all 0.2s;
-        }
-        .gmail-text:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            font-weight: 800;
+            font-size: 0.75rem;
         }
         .telegram-nav-btn {
             display: inline-flex;
@@ -827,14 +840,14 @@
                 padding: 3px 8px;
             }
             .site-title {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             .nav-logo-img {
-                width: 44px;
-                height: 44px;
+                width: 40px;
+                height: 40px;
             }
-            .gmail-text {
-                font-size: 0.75rem;
+            .gmail-text-gradient {
+                font-size: 0.65rem;
             }
         }
         @media (min-width: 480px) {
@@ -865,10 +878,10 @@
 </head>
 <body>
 
-    <!-- ===== TOP NAV - Updated with new logo and Gmail ===== -->
+    <!-- ===== TOP NAV - Updated with new logo and Gmail icon ===== -->
     <nav class="top-nav">
         <div class="nav-left">
-            <img src="https://i.ibb.co/bgzkx2wT" alt="Yono Games Logo" class="nav-logo-img" loading="eager">
+            <img src="https://i.ibb.co/wrp64y9d" alt="Yono Games Logo" class="nav-logo-img" loading="eager">
             <span class="site-title">YONO GAMES SITE</span>
         </div>
         <div class="nav-center">
@@ -878,7 +891,10 @@
             <a href="#" id="navDisclaimer">Disclaimer</a>
         </div>
         <div class="nav-right">
-            <span class="gmail-text">Gmail</span>
+            <a href="mailto:support@YonoGamesSite.com" class="gmail-link">
+                <img src="https://i.ibb.co/0v3305v" alt="Gmail" class="gmail-icon">
+                <span class="gmail-text-gradient">Gmail</span>
+            </a>
             <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
                 <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
                 Telegram
