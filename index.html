@@ -244,7 +244,7 @@
             border: 1px solid #a5f3fc;
         }
 
-        /* ====== DOWNLOAD BUTTONS - GREEN & CYAN HD (Main Grid) ====== */
+        /* ====== HOME PAGE DOWNLOAD BUTTONS - BLACK HD ====== */
         .download-btn {
             display: block;
             width: 100%;
@@ -257,28 +257,17 @@
             font-weight: 800;
             font-size: 0.75rem;
             transition: 0.25s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.20);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
             cursor: pointer;
             border: none;
             letter-spacing: 0.3px;
+            background: linear-gradient(145deg, #1e1e1e, #000000);
+            border: 1px solid #333333;
         }
         .download-btn:hover {
             transform: scale(0.97);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.30);
-        }
-        /* Green HD */
-        .download-btn.green-hd {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-        }
-        .download-btn.green-hd:hover {
-            background: linear-gradient(135deg, #2dd4bf, #16a34a);
-        }
-        /* Cyan HD */
-        .download-btn.cyan-hd {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-        }
-        .download-btn.cyan-hd:hover {
-            background: linear-gradient(135deg, #22d3ee, #0891b2);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(145deg, #2a2a2a, #0a0a0a);
         }
 
         /* ====== DOWNLOAD PAGE - MOBILE ====== */
@@ -385,7 +374,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* ====== FINAL DOWNLOAD BUTTON - GREEN & CYAN HD ====== */
+        /* ====== FINAL DOWNLOAD BUTTON - GREEN & CYAN HD (Detail Page) ====== */
         .final-download-btn {
             display: block;
             width: 100%;
@@ -624,7 +613,7 @@
             margin-top: 1px;
         }
 
-        /* ====== SMALL DOWNLOAD - BLACK HD (Only for Other Apps) ====== */
+        /* ====== SMALL DOWNLOAD - BLACK HD (Other Apps) ====== */
         .small-download {
             display: block;
             width: 100%;
@@ -935,7 +924,7 @@
                     img: "https://i.ibb.co/1Y43Cq5N/logo-icon.jpg", category: "Platform" }
             ];
 
-            // ===== HELPER: get color class (alternating green/cyan) =====
+            // ===== HELPER: get color class for detail page (alternating green/cyan) =====
             function getColorClass(index) {
                 return (index % 2 === 0) ? 'green-hd' : 'cyan-hd';
             }
@@ -1138,7 +1127,7 @@
                 appsData.forEach((app, idx) => {
                     const stats = getCardStats(app.name, app.bonus);
                     const displayBonus = stats.bonus;
-                    const colorClass = getColorClass(idx);
+                    // No color class – all download buttons on home page are black
                     html += `
                         <div class="card" data-app-index="${idx}">
                             <div class="card-app-name">${app.name}</div>
@@ -1151,7 +1140,7 @@
                             </div>
                             <div class="signup-bonus">🔴 Sign Up Bonus: ₹${displayBonus}</div>
                             <div class="withdrawal-note">🏦 Min Withdrawal: ${app.withdrawal}</div>
-                            <button class="download-btn ${colorClass}" data-download-index="${idx}">📲 DOWNLOAD</button>
+                            <button class="download-btn" data-download-index="${idx}">📲 DOWNLOAD</button>
                         </div>
                     `;
                 });
@@ -1191,7 +1180,7 @@
 
                 const { offerTags, extraTags, refBonus } = generateTags(selectedApp.name, bonusNum);
 
-                // Color for the final download button (based on selected index)
+                // Color for the final download button (detail page) – alternating green/cyan
                 const finalColorClass = getColorClass(selectedIndex);
 
                 const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
@@ -1204,7 +1193,6 @@
                         h |= 0;
                     }
                     const relBonus = 20 + (Math.abs(h) % 481);
-                    // BLACK HD for all "Other Yono Apps" download buttons
                     otherAppsHtml += `
                         <div class="other-card">
                             <div style="width:48px;height:48px;margin:0 auto 4px;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
