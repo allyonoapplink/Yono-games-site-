@@ -34,26 +34,31 @@
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif; }
     body { background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%); min-height: 100vh; padding-bottom: 30px; }
     
-    /* ====== TOP NAV - White Background ====== */
+    /* ====== TOP NAV - White Background with Logo ====== */
     .top-nav { 
       background: #ffffff; 
-      padding: 10px 16px; 
+      padding: 8px 16px; 
       display: flex; 
       justify-content: flex-start; 
       align-items: center; 
       flex-wrap: wrap; 
-      gap: 6px 20px;
+      gap: 6px 16px;
       border-bottom: 2px solid #e2e8f0; 
       position: sticky; 
       top: 0; 
       z-index: 100; 
     }
+    .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-logo img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; border: 2px solid #22c55e; }
+    .nav-logo .site-title { font-weight: 800; font-size: 1.1rem; color: #22c55e; letter-spacing: 0.5px; white-space: nowrap; }
+    
+    .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; }
     .top-nav a { 
       color: #0a0a0a; 
       text-decoration: none; 
       font-weight: 700; 
       font-size: 0.85rem; 
-      padding: 6px 16px; 
+      padding: 6px 14px; 
       border-radius: 40px; 
       cursor: pointer; 
       background: transparent; 
@@ -103,11 +108,21 @@
       display: block;
     }
     
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      .top-nav { padding: 8px 12px; gap: 4px 10px; }
+      .nav-logo img { width: 34px; height: 34px; }
+      .nav-logo .site-title { font-size: 0.85rem; }
       .top-nav a { font-size: 0.7rem; padding: 4px 10px; }
-      .top-nav { gap: 4px 10px; padding: 8px 10px; }
       .telegram-nav-btn { font-size: 0.6rem; padding: 3px 8px 3px 6px; }
       .telegram-nav-btn img { width: 22px; height: 22px; }
+      .nav-links { gap: 2px 8px; }
+    }
+    @media (max-width: 480px) {
+      .top-nav { flex-direction: row; flex-wrap: wrap; }
+      .nav-logo .site-title { font-size: 0.7rem; }
+      .top-nav a { font-size: 0.6rem; padding: 3px 8px; }
+      .telegram-nav-btn { font-size: 0.5rem; padding: 2px 6px 2px 4px; }
+      .telegram-nav-btn img { width: 18px; height: 18px; }
     }
     
     /* ====== MAIN CONTAINER & GRID ====== */
@@ -123,8 +138,31 @@
     .card-stat-value { font-size: 0.95rem; font-weight: 800; color: #1e562a; }
     .card-stat-label { font-size: 0.55rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.3px; }
     .withdrawal-note { font-size: 0.7rem; font-weight: 700; color: #146b3a; background: #e0f2e9; display: inline-block; padding: 4px 14px; border-radius: 40px; margin-top: 6px; }
-    .download-btn { display: block; width: 100%; text-align: center; margin-top: 16px; padding: 12px 0; background: linear-gradient(135deg, #00b894, #00cec9); color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.9rem; transition: 0.25s ease; box-shadow: 0 6px 18px rgba(0,206,201,0.35); cursor: pointer; border: none; letter-spacing: 0.3px; }
-    .download-btn:hover { background: linear-gradient(135deg, #00a381, #00b8b4); transform: scale(0.97); box-shadow: 0 8px 24px rgba(0,206,201,0.45); }
+    
+    /* ====== DOWNLOAD BUTTONS - BLACK ====== */
+    .download-btn { 
+      display: block; 
+      width: 100%; 
+      text-align: center; 
+      margin-top: 16px; 
+      padding: 12px 0; 
+      background: #0a0a0a; 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 60px; 
+      font-weight: 800; 
+      font-size: 0.9rem; 
+      transition: 0.25s ease; 
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25); 
+      cursor: pointer; 
+      border: none; 
+      letter-spacing: 0.3px; 
+    }
+    .download-btn:hover { 
+      background: #1a1a1a; 
+      transform: scale(0.97); 
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35); 
+    }
     
     /* ====== DOWNLOAD PAGE ====== */
     .hidden { display: none !important; }
@@ -137,8 +175,32 @@
     .stat-item { text-align: center; min-width: 70px; }
     .stat-value { font-size: 1.3rem; font-weight: 800; color: #1e562a; }
     .stat-label { font-size: 0.7rem; font-weight: 600; color: #6c7a5a; letter-spacing: 0.5px; }
-    .final-download-btn { background: linear-gradient(135deg, #00b894, #00cec9); padding: 14px 20px; font-size: 1rem; font-weight: 800; border-radius: 60px; display: block; width: 100%; margin: 20px 0 16px 0; box-shadow: 0 8px 22px rgba(0,206,201,0.35); text-decoration: none; color: white; transition: 0.25s ease; letter-spacing: 0.5px; cursor: pointer; text-align: center; border: none; }
-    .final-download-btn:hover { transform: scale(0.97); background: linear-gradient(135deg, #00a381, #00b8b4); box-shadow: 0 8px 26px rgba(0,206,201,0.45); }
+    
+    /* ====== FINAL DOWNLOAD BUTTON - BLACK ====== */
+    .final-download-btn { 
+      background: #0a0a0a; 
+      padding: 14px 20px; 
+      font-size: 1rem; 
+      font-weight: 800; 
+      border-radius: 60px; 
+      display: block; 
+      width: 100%; 
+      margin: 20px 0 16px 0; 
+      box-shadow: 0 8px 22px rgba(0,0,0,0.30); 
+      text-decoration: none; 
+      color: white; 
+      transition: 0.25s ease; 
+      letter-spacing: 0.5px; 
+      cursor: pointer; 
+      text-align: center; 
+      border: none; 
+    }
+    .final-download-btn:hover { 
+      transform: scale(0.97); 
+      background: #1a1a1a; 
+      box-shadow: 0 8px 26px rgba(0,0,0,0.40); 
+    }
+    
     .app-description { background: white; padding: 18px 20px; border-radius: 32px; text-align: left; margin: 20px 0; font-size: 0.9rem; line-height: 1.45; color: #2d3e2b; box-shadow: 0 2px 12px rgba(0,0,0,0.03); }
     .howto-steps { background: #f0f9f0; border-radius: 32px; padding: 18px 22px; margin: 20px 0; text-align: left; }
     .howto-steps h4 { font-size: 1.1rem; margin-bottom: 12px; color: #1e562a; }
@@ -157,8 +219,31 @@
     .other-card { background: #fefcf5; border-radius: 32px; padding: 16px 12px; width: 240px; transition: 0.2s; border: 1px solid #a8d5ba; text-align: center; }
     .other-card .app-name { font-size: 1rem; margin: 8px 0 6px; font-weight: 800; }
     .other-card .bonus { font-size: 0.75rem; padding: 4px 12px; background: #fef1cf; border-radius: 60px; display: inline-block; }
-    .small-download { background: linear-gradient(135deg, #6c5ce7, #fd79a8); font-size: 0.8rem; padding: 8px 0; margin-top: 12px; text-decoration: none; color: white; display: block; width: 100%; text-align: center; border-radius: 60px; font-weight: 700; cursor: pointer; border: none; transition: 0.25s ease; box-shadow: 0 4px 14px rgba(108,92,231,0.30); }
-    .small-download:hover { background: linear-gradient(135deg, #5a4bd1, #e85d8e); transform: scale(0.97); box-shadow: 0 6px 18px rgba(108,92,231,0.40); }
+    
+    /* ====== SMALL DOWNLOAD - BLACK ====== */
+    .small-download { 
+      background: #0a0a0a; 
+      font-size: 0.8rem; 
+      padding: 8px 0; 
+      margin-top: 12px; 
+      text-decoration: none; 
+      color: white; 
+      display: block; 
+      width: 100%; 
+      text-align: center; 
+      border-radius: 60px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      border: none; 
+      transition: 0.25s ease; 
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25); 
+    }
+    .small-download:hover { 
+      background: #1a1a1a; 
+      transform: scale(0.97); 
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35); 
+    }
+    
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 60px; padding: 12px; font-weight: 500; font-size: 0.75rem; margin-top: 20px; }
     
     /* ====== MODAL ====== */
@@ -200,12 +285,23 @@
 </head>
 <body>
 
-<!-- ===== TOP NAV - White Background ===== -->
+<!-- ===== TOP NAV - White Background with Logo ===== -->
 <nav class="top-nav">
-  <a href="#" class="active" id="homeNavLink">🏠 HOME</a>
-  <a href="#" id="navAbout">About</a>
-  <a href="#" id="navContact">Contact</a>
-  <a href="#" id="navDisclaimer">Disclaimer</a>
+  <!-- Logo + Site Name -->
+  <div class="nav-logo">
+    <img src="https://i.ibb.co/1Y43Cq5N/logo-icon.jpg" alt="Yono Games Site Logo" loading="eager">
+    <span class="site-title">YONO GAMES SITE</span>
+  </div>
+  
+  <!-- Nav Links -->
+  <div class="nav-links">
+    <a href="#" class="active" id="homeNavLink">HOME</a>
+    <a href="#" id="navAbout">About</a>
+    <a href="#" id="navContact">Contact</a>
+    <a href="#" id="navDisclaimer">Disclaimer</a>
+  </div>
+  
+  <!-- Telegram Button -->
   <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
     <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
     Telegram
@@ -229,7 +325,7 @@
 
 <script>
   (function() {
-    // ===== 38 APPS DATA =====
+    // ===== 41 APPS DATA (Added YONO GAMES SITE at the end) =====
     const appsData = [
       { name: "Yono Games", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209", img: "https://i.ibb.co/LXqV77rd/yono-games.jpg", category: "Slots" },
       { name: "INR Rummy", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106", img: "https://i.ibb.co/Y7ZRkLFp/inr-rummy.jpg", category: "Rummy" },
@@ -271,7 +367,9 @@
       { name: "Boss Rummy", bonus: "₹40", withdrawal: "₹100", downloadUrl: "https://www.bossrummyy.com/?code=LSHTVUZE1NR&t=1781429504", img: "https://i.ibb.co/fdWgRgxk/1000022725.jpg", category: "Rummy" },
       { name: "Yono 777", bonus: "₹35", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/VWz6S3JB/1000022725.jpg", category: "Slots" },
       { name: "Diwa VIP", bonus: "₹60", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388", img: "https://i.ibb.co/ynsBHKtg/1000022725.jpg", category: "VIP" },
-      { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
+      { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" },
+      // ===== NEW APP: YONO GAMES SITE (41st) =====
+      { name: "YONO GAMES SITE", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r", img: "https://i.ibb.co/1Y43Cq5N/logo-icon.jpg", category: "Platform" }
     ];
 
     // ===== HELPER FUNCTIONS =====
@@ -306,6 +404,7 @@
       if (category === "Rummy") return `Join the best rummy experience on ${appName}. Compete with real players, win cash prizes, and enjoy daily tournaments. ${bonusAmount} welcome bonus + ₹100 min withdrawal.`;
       if (category === "Slots") return `Spin & win with ${appName}! Huge jackpots, free spins, and ${bonusAmount} joining bonus. Play premium slot machines and withdraw your winnings instantly.`;
       if (category === "Spin") return `Exciting spin games on ${appName}. Get ${bonusAmount} free cash, daily rewards, and fast UPI withdrawals.`;
+      if (category === "Platform") return `YONO GAMES SITE is the ultimate gaming platform bringing you the best selection of rummy, slots, casino, and card games. Get ${bonusAmount} welcome bonus, ₹100 minimum withdrawal, and access to 40+ premium gaming apps. Download now and start winning real cash!`;
       return `Download ${appName} APK and get ${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI. Fast secure platform with 24/7 support.`;
     }
 
