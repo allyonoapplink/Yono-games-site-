@@ -304,12 +304,16 @@
         .download-header .app-name-tag {
             font-weight: 800;
             font-size: 0.85rem;
-            color: #22c55e;
+            color: #1e562a;
             display: inline-block;
             background: #ecfdf5;
-            padding: 3px 14px;
+            padding: 6px 14px;
             border-radius: 40px;
             border: 1px solid #86efac;
+            width: 100%;
+            max-width: 100%;
+            word-wrap: break-word;
+            line-height: 1.4;
         }
         .download-header .bonus-tag {
             font-weight: 700;
@@ -675,7 +679,6 @@
             overflow-y: auto;
             position: relative;
         }
-        /* Modal header with close button on right */
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -790,7 +793,6 @@
             margin: 8px 0;
             border: 1px solid #ffcf8a;
         }
-        /* Remove OK button - we don't need it anymore */
         .info-close {
             display: none !important;
         }
@@ -813,6 +815,10 @@
             .telegram-nav-btn img {
                 width: 24px;
                 height: 24px;
+            }
+            .download-header .app-name-tag {
+                font-size: 0.95rem;
+                padding: 8px 18px;
             }
         }
     </style>
@@ -944,6 +950,84 @@
                     img: "https://i.ibb.co/1Y43Cq5N/logo-icon.jpg", category: "Platform" }
             ];
 
+            // ===== CUSTOM TAGLINE MAPPING =====
+            const taglineMap = {
+                "Yono Games": "Yono Games App APK Download Latest Version – Play All Games & Get Rewards",
+                "Jaiho 91": "Jaiho 91 App APK Download Latest Version – Win Bonus & Jackpot",
+                "Rummy Ludo": "Rummy Ludo App APK Download Latest Version – Play Online & Win Rewards",
+                "Top Rummy": "Top Rummy APK Download Latest update Version – Play & Get Bonus Rewards",
+                "Hind 777": "Hindi 777 App APK Download Latest new update Version – Play & Win Bonus Rewards",
+                "Boss Rummy": "Boss Rummy App APK Latest Version – Play & Win Bonus Rewards",
+                "Love Rummy": "Love Rummy App APK Download Latest Version welcome bonus"
+            };
+
+            // ===== GENERATE TAGLINE =====
+            function getAppTagline(appName, category) {
+                // Check if in custom mapping
+                if (taglineMap[appName]) {
+                    return taglineMap[appName];
+                }
+
+                // Generate based on category
+                const baseName = appName;
+                switch (category) {
+                    case "Rummy":
+                        return `${baseName} APK Download – Play Rummy & Win Real Cash Rewards`;
+                    case "Slots":
+                        return `${baseName} APK Download – Spin & Win Jackpot Prizes`;
+                    case "Casino":
+                        return `${baseName} APK Download – Play Casino Games & Win Big`;
+                    case "Card":
+                        return `${baseName} APK Download – Play Teen Patti & Win Bonuses`;
+                    case "Spin":
+                        return `${baseName} APK Download – Spin & Win Real Cash Rewards`;
+                    case "Bingo":
+                        return `${baseName} APK Download – Play Bingo & Win Exciting Prizes`;
+                    case "Arcade":
+                        return `${baseName} APK Download – Play Arcade Games & Earn Rewards`;
+                    case "Betting":
+                        return `${baseName} APK Download – Bet & Win Real Cash`;
+                    case "VIP":
+                        return `${baseName} APK Download – Exclusive VIP Rewards & Bonuses`;
+                    case "Platform":
+                        return `${baseName} APK Download – All Games & Rewards`;
+                    case "Earn":
+                        return `${baseName} APK Download – Earn Real Cash Rewards`;
+                    default:
+                        return `${baseName} APK Download Latest Version – Play & Get Rewards`;
+                }
+            }
+
+            // ===== GENERATE CATEGORY BENEFITS =====
+            function getCategoryBenefits(category, appName) {
+                switch (category) {
+                    case "Rummy":
+                        return `Daily rummy tournaments, ₹100 min withdrawal, 24/7 support, and instant UPI payouts. Play ${appName} and win real cash every day!`;
+                    case "Slots":
+                        return `Huge jackpots, free spins, daily bonuses, and fast UPI withdrawals. Spin & win with ${appName} today!`;
+                    case "Casino":
+                        return `Live casino games, exciting bonuses, quick deposits, and instant withdrawals. Play ${appName} for the ultimate casino experience!`;
+                    case "Card":
+                        return `Play Teen Patti, Andar Bahar & more. Daily bonuses, referral rewards, and ₹100 min withdrawal. Join ${appName} now!`;
+                    case "Spin":
+                        return `Exciting spin games, free cash bonuses, daily rewards, and fast UPI withdrawals. Start spinning with ${appName}!`;
+                    case "Bingo":
+                        return `Play Bingo, win real cash, daily bonuses, and instant UPI withdrawals. Join ${appName} for fun & rewards!`;
+                    case "Arcade":
+                        return `Play arcade games, earn rewards, daily bonuses, and fast withdrawals. ${appName} brings you the best arcade experience!`;
+                    case "Betting":
+                        return `Place bets, win real cash, daily bonuses, and quick UPI withdrawals. ${appName} is your trusted betting platform!`;
+                    case "VIP":
+                        return `Exclusive VIP rewards, higher bonuses, priority support, and instant withdrawals. Experience premium gaming with ${appName}!`;
+                    case "Platform":
+                        return `All games in one place, huge bonuses, daily rewards, and fast UPI withdrawals. ${appName} is your ultimate gaming destination!`;
+                    case "Earn":
+                        return `Earn real cash, daily bonuses, referral rewards, and quick UPI withdrawals. Start earning with ${appName} today!`;
+                    default:
+                        return `Daily login rewards, referral cashback, fast UPI withdrawals, and 24/7 customer support. Play ${appName} and win big!`;
+                }
+            }
+
             // ===== HELPER: get color class for detail page (alternating green/cyan) =====
             function getColorClass(index) {
                 return (index % 2 === 0) ? 'green-hd' : 'cyan-hd';
@@ -978,11 +1062,19 @@
             }
 
             function getDescription(appName, category, bonusAmount) {
-                if (category === "Rummy") return `Join the best rummy experience on ${appName}. Compete with real players, win cash prizes, and enjoy daily tournaments. ₹${bonusAmount} welcome bonus + ₹100 min withdrawal.`;
-                if (category === "Slots") return `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusAmount} joining bonus. Play premium slot machines and withdraw your winnings instantly.`;
-                if (category === "Spin") return `Exciting spin games on ${appName}. Get ₹${bonusAmount} free cash, daily rewards, and fast UPI withdrawals.`;
-                if (category === "Platform") return `YONO GAMES SITE is the ultimate gaming platform bringing you the best selection of rummy, slots, casino, and card games. Get ₹${bonusAmount} welcome bonus, ₹100 minimum withdrawal, and access to 40+ premium gaming apps.`;
-                return `Download ${appName} APK and get ₹${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI.`;
+                const catBenefits = getCategoryBenefits(category, appName);
+                if (category === "Rummy") return `Join the best rummy experience on ${appName}. Compete with real players, win cash prizes, and enjoy daily tournaments. ₹${bonusAmount} welcome bonus + ₹100 min withdrawal. ${catBenefits}`;
+                if (category === "Slots") return `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusAmount} joining bonus. Play premium slot machines and withdraw your winnings instantly. ${catBenefits}`;
+                if (category === "Spin") return `Exciting spin games on ${appName}. Get ₹${bonusAmount} free cash, daily rewards, and fast UPI withdrawals. ${catBenefits}`;
+                if (category === "Platform") return `YONO GAMES SITE is the ultimate gaming platform bringing you the best selection of rummy, slots, casino, and card games. Get ₹${bonusAmount} welcome bonus, ₹100 minimum withdrawal, and access to 40+ premium gaming apps. ${catBenefits}`;
+                if (category === "Card") return `Play exciting card games on ${appName}. Get ₹${bonusAmount} signup bonus, daily rewards, and fast UPI withdrawals. ${catBenefits}`;
+                if (category === "Casino") return `Experience the thrill of casino games on ${appName}. ₹${bonusAmount} welcome bonus, live games, and instant withdrawals. ${catBenefits}`;
+                if (category === "Bingo") return `Play Bingo and win real cash on ${appName}. ₹${bonusAmount} signup bonus, daily rewards, and fast UPI withdrawals. ${catBenefits}`;
+                if (category === "Arcade") return `Play exciting arcade games on ${appName}. ₹${bonusAmount} welcome bonus, daily rewards, and fast UPI withdrawals. ${catBenefits}`;
+                if (category === "Betting") return `Place bets and win real cash on ${appName}. ₹${bonusAmount} signup bonus, daily rewards, and fast UPI withdrawals. ${catBenefits}`;
+                if (category === "VIP") return `Experience premium gaming with ${appName}. ₹${bonusAmount} VIP welcome bonus, exclusive rewards, and instant withdrawals. ${catBenefits}`;
+                if (category === "Earn") return `Earn real cash by playing games on ${appName}. ₹${bonusAmount} signup bonus, daily rewards, and fast UPI withdrawals. ${catBenefits}`;
+                return `Download ${appName} APK and get ₹${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI. ${catBenefits}`;
             }
 
             // ===== GENERATE TAGS WITH UNIQUE BONUS FOR EACH TAG =====
@@ -1136,9 +1228,7 @@
                 history.replaceState({ page: 'main' }, '', window.location.pathname);
             }
 
-            // Close button on modal (X)
             closeInfoModal.addEventListener('click', closeModalAndResetHistory);
-            // Click outside modal to close
             window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
 
             // ===== RENDER MAIN GRID =====
@@ -1194,6 +1284,9 @@
                 const bonusNum = 20 + (Math.abs(hash) % 481);
                 const description = getDescription(selectedApp.name, selectedApp.category, bonusNum);
 
+                // Get custom tagline
+                const tagline = getAppTagline(selectedApp.name, selectedApp.category);
+
                 const gridDiv = document.getElementById('allAppsGrid');
                 const downloadContainer = document.getElementById('downloadPageContainer');
                 gridDiv.classList.add('hidden');
@@ -1226,11 +1319,15 @@
                     `;
                 });
 
+                // ===== BUILD DOWNLOAD PAGE WITH CUSTOM TAGLINE =====
                 const downloadPageHtml = `
                     <div class="download-page" id="activeDownloadPage">
+                        <!-- HEADER with custom tagline -->
                         <div class="download-header">
                             <div class="tag-row">
-                                <span class="app-name-tag">📥 ${selectedApp.name} APK</span>
+                                <span class="app-name-tag">📥 ${tagline}</span>
+                            </div>
+                            <div class="tag-row" style="margin-top:8px;">
                                 <span class="bonus-tag">🎁 Signup Bonus: ₹${bonusNum}</span>
                                 <span class="withdraw-tag">🏦 Min Withdrawal: ${selectedApp.withdrawal}</span>
                             </div>
@@ -1248,7 +1345,7 @@
                                 <div class="stat-item"><div class="stat-value">${bonusNum}</div><div class="stat-label">Bonus</div></div>
                             </div>
                             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn ${finalColorClass}">📲 DOWNLOAD ${selectedApp.name}</a>
-                            <div class="app-description">${description}<br><br><strong>🎯 Extra Benefits:</strong> Daily login rewards, referral cashback, and fast UPI withdrawals. 24/7 customer support.</div>
+                            <div class="app-description">${description}</div>
 
                             <div class="ref-badge">🎁 Referral Bonus: ₹${refBonus}</div>
 
@@ -1329,7 +1426,6 @@
                 e.preventDefault();
                 document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
                 navAbout.classList.add('active');
-                // Updated About modal: removed AI robot icon + animation
                 showInfoModal('📖 About - Yono Games Site', `
                     <p><strong>Welcome to Yono Games Site</strong> – a comprehensive hub dedicated to enhancing digital experiences for everyone. Our mission is to empower users with access to a wide range of applications with a unique focus on Indian users.</p>
                     <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated.</p>
@@ -1345,7 +1441,6 @@
                 e.preventDefault();
                 document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
                 navContact.classList.add('active');
-                // Updated Contact modal: Telegram URL changed to https://t.me/yonogamestite
                 showInfoModal('📞 Contact Us - Yono Games Site', `
                     <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games.</p>
                     <p style="margin-top:14px;"><strong style="color:#d50000;">📢 Advertisement/Business Queries</strong><br>If you are a game maker company, operator, or administrator, and you want to promote your application, contact us through the details below.</p>
