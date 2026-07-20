@@ -151,8 +151,53 @@
     .hidden { display: none !important; }
     .download-page { background: white; border-radius: 28px; padding: 18px 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); margin-bottom: 20px; border: 1px solid #ffe1b3; animation: fadeSlideUp 0.4s ease; }
     @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .download-header { text-align: center; border-bottom: 2px dashed #ffcf8a; padding-bottom: 14px; margin-bottom: 18px; }
-    .download-header h2 { font-size: 1.3rem; font-weight: 800; background: linear-gradient(125deg, #1e562a, #2c4c3b); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 4px; }
+    
+    /* ====== DOWNLOAD HEADER WITH 3 COLOR TAGS ====== */
+    .download-header { 
+      text-align: center; 
+      border-bottom: 2px dashed #ffcf8a; 
+      padding-bottom: 14px; 
+      margin-bottom: 18px; 
+    }
+    .download-header .app-name-tag { 
+      font-weight: 800; 
+      font-size: 0.85rem; 
+      color: #22c55e; 
+      display: inline-block;
+      background: #ecfdf5;
+      padding: 3px 14px;
+      border-radius: 40px;
+      border: 1px solid #86efac;
+    }
+    .download-header .bonus-tag { 
+      font-weight: 700; 
+      font-size: 0.7rem; 
+      color: #dc2626; 
+      display: inline-block;
+      background: #fee2e2;
+      padding: 3px 12px;
+      border-radius: 40px;
+      border: 1px solid #fca5a5;
+    }
+    .download-header .withdraw-tag { 
+      font-weight: 700; 
+      font-size: 0.7rem; 
+      color: #2563eb; 
+      display: inline-block;
+      background: #dbeafe;
+      padding: 3px 12px;
+      border-radius: 40px;
+      border: 1px solid #93c5fd;
+    }
+    .download-header .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px 10px;
+      margin-top: 4px;
+    }
+    
     .app-highlight { background: #fff7e8; padding: 18px 14px; border-radius: 28px; margin: 12px 0; text-align: center; }
     .stats-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; background: #fef4e6; padding: 10px 12px; border-radius: 40px; margin: 14px auto; max-width: 100%; }
     .stat-item { text-align: center; min-width: 54px; }
@@ -396,24 +441,19 @@
 
     // ===== GENERATE TAGS WITH UNIQUE BONUS FOR EACH TAG =====
     function generateTags(appName, bonusNum) {
-      // Generate unique seed for the app
       let seed = 0;
       for (let i = 0; i < appName.length; i++) {
         seed = ((seed << 5) - seed) + appName.charCodeAt(i);
         seed |= 0;
       }
       
-      // Generate 5 unique bonus numbers for each offer tag (20-500 range)
       const b1 = 20 + (Math.abs(seed * 1) % 481);
       const b2 = 20 + (Math.abs(seed * 2) % 481);
       const b3 = 20 + (Math.abs(seed * 3) % 481);
       const b4 = 20 + (Math.abs(seed * 4) % 481);
       const b5 = 20 + (Math.abs(seed * 5) % 481);
-      
-      // Single referral bonus for this app
       const refBonus = 5 + (Math.abs(seed * 6) % 20);
 
-      // Build 5 offer tags with unique bonuses - each tag separated with a divider
       const offerTags = `
         <div class="tag-box">
           <div class="tag-title">🏆 ${appName} APK Download – Get <span class="tag-bonus">₹${b1}</span> Instant Bonus!</div>
@@ -441,7 +481,6 @@
         </div>
       `;
 
-      // Extra tags (FAQ, Overview, etc.)
       const b7 = 20 + (Math.abs(seed * 8) % 481);
       const b8 = 20 + (Math.abs(seed * 9) % 481);
       const b9 = 20 + (Math.abs(seed * 10) % 481);
@@ -455,7 +494,6 @@
       const b17 = 20 + (Math.abs(seed * 18) % 481);
 
       const extraTags = `
-        <!-- FAQ Section -->
         <div class="extra-tag-box">
           <div class="tag-title">❓ Frequently Asked Questions</div>
           <div class="tag-content">
@@ -478,13 +516,11 @@
           </div>
         </div>
 
-        <!-- Overview -->
         <div class="extra-tag-box">
           <div class="tag-title">📖 Overview – ${appName}</div>
           <div class="tag-content">${appName} is a popular real cash earning app in India where users can play games like rummy, slots, bingo, and spin games to win real money. New users can claim a signup bonus of up to ₹${b13}, making it easy to get started and explore the platform. The app offers a smooth and secure experience with fast UPI deposits and withdrawals.<br><br>The interface of ${appName} is simple and user-friendly, making it suitable for both beginners and experienced players. You can enjoy daily rewards, referral bonuses, and special events to increase your earnings. The minimum withdrawal starts from ₹${b14}, and most transactions are processed quickly without delays.<br><br>If you are looking for a trusted gaming app that combines entertainment with real earning opportunities, ${appName} is a great choice. Download the latest APK version today and start playing to earn real cash rewards from your mobile.</div>
         </div>
 
-        <!-- Features & Benefits -->
         <div class="extra-tag-box">
           <div class="tag-title">✨ ${appName} App Features & Benefits</div>
           <div class="tag-content">
@@ -499,7 +535,6 @@
           </div>
         </div>
 
-        <!-- How to Download & Install -->
         <div class="extra-tag-box">
           <div class="tag-title">📥 How to Download & Install ${appName}</div>
           <div class="tag-content">
@@ -513,13 +548,11 @@
           </div>
         </div>
 
-        <!-- Safety & Security -->
         <div class="extra-tag-box">
           <div class="tag-title">🔒 ${appName} Safety & Security</div>
           <div class="tag-content">${appName} is designed to provide a secure and reliable gaming experience. The app uses standard encryption and protected payment systems to help keep user data and transactions safe.<br><br>Deposits and withdrawals are processed through commonly used methods such as UPI and bank transfer, offering a convenient experience for users in India. However, users are advised to play responsibly and review the app’s terms and policies before using it.</div>
         </div>
 
-        <!-- Why Choose -->
         <div class="extra-tag-box">
           <div class="tag-title">🏆 Why Choose ${appName} App?</div>
           <div class="tag-content">
@@ -618,10 +651,8 @@
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
-      // Generate the tags with unique bonuses per tag
       const { offerTags, extraTags, refBonus } = generateTags(selectedApp.name, bonusNum);
 
-      // Other apps grid
       const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
       let otherAppsHtml = '';
       otherApps.forEach((app) => {
@@ -645,13 +676,18 @@
         `;
       });
 
-      // Build the final HTML
+      // ===== BUILD DOWNLOAD PAGE WITH 3 COLOR TAGS =====
       const downloadPageHtml = `
         <div class="download-page" id="activeDownloadPage">
+          <!-- HEADER with 3 color tags -->
           <div class="download-header">
-            <h2>📥 ${selectedApp.name} APK</h2>
-            <p>🎁 Signup Bonus: ₹${bonusNum} | 🏦 Min Withdrawal: ${selectedApp.withdrawal}</p>
+            <div class="tag-row">
+              <span class="app-name-tag">📥 ${selectedApp.name} APK</span>
+              <span class="bonus-tag">🎁 Signup Bonus: ₹${bonusNum}</span>
+              <span class="withdraw-tag">🏦 Min Withdrawal: ${selectedApp.withdrawal}</span>
+            </div>
           </div>
+          
           <div class="app-highlight" id="topDownloadSection">
             <div style="font-size:1.4rem;font-weight:800;margin-bottom:8px;">${selectedApp.name}</div>
             <div style="width:72px;height:72px;margin:0 auto 10px;border-radius:18px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
@@ -666,19 +702,15 @@
             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">📲 DOWNLOAD ${selectedApp.name}</a>
             <div class="app-description">${description}<br><br><strong>🎯 Extra Benefits:</strong> Daily login rewards, referral cashback, and fast UPI withdrawals. 24/7 customer support.</div>
             
-            <!-- Single referral bonus badge -->
             <div class="ref-badge">🎁 Referral Bonus: ₹${refBonus}</div>
 
-            <!-- 5 Offer Tags with unique bonuses -->
             <div class="tag-section">
               <div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">📌 ${selectedApp.name} – Top Offers</div>
               <div class="tag-grid">${offerTags}</div>
             </div>
 
-            <!-- View Tags Button -->
             <button class="view-tags-btn" id="viewTagsBtn">View Tags</button>
 
-            <!-- Extra Tags (hidden initially) -->
             <div class="extra-tags" id="extraTagsContainer">
               ${extraTags}
             </div>
@@ -691,7 +723,6 @@
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
-      // Toggle extra tags
       document.getElementById('viewTagsBtn').addEventListener('click', function() {
         const container = document.getElementById('extraTagsContainer');
         container.classList.toggle('open');
