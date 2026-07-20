@@ -161,18 +161,17 @@
     .final-download-btn { background: #0a0a0a; padding: 12px 16px; font-size: 0.85rem; font-weight: 800; border-radius: 60px; display: block; width: 100%; margin: 14px 0 12px 0; box-shadow: 0 6px 18px rgba(0,0,0,0.25); text-decoration: none; color: white; transition: 0.25s ease; letter-spacing: 0.4px; cursor: pointer; text-align: center; border: none; }
     .final-download-btn:hover { transform: scale(0.97); background: #1a1a1a; }
     .app-description { background: white; padding: 14px 16px; border-radius: 24px; text-align: left; margin: 14px 0; font-size: 0.8rem; line-height: 1.5; color: #2d3e2b; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    .howto-steps { background: #f0f9f0; border-radius: 24px; padding: 14px 16px; margin: 14px 0; text-align: left; }
-    .howto-steps h4 { font-size: 0.95rem; margin-bottom: 10px; color: #1e562a; }
-    .howto-steps ol { padding-left: 18px; margin-top: 6px; }
-    .howto-steps li { margin: 8px 0; font-size: 0.75rem; line-height: 1.4; }
-    .faq-section { background: #fef4e6; border-radius: 24px; padding: 16px 16px; margin: 14px 0; text-align: left; }
-    .faq-item { margin-bottom: 14px; }
-    .faq-question { font-weight: 800; color: #b45900; margin-bottom: 4px; font-size: 0.85rem; }
-    .faq-answer { font-size: 0.75rem; line-height: 1.5; color: #2d3e2b; padding-left: 10px; }
-    .info-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 12px 0; }
-    .info-card { background: #fefcf5; border-radius: 16px; padding: 10px 12px; min-width: 100px; flex: 1; border: 1px solid #ffe1b3; text-align: center; }
-    .info-card .info-title { font-size: 0.55rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.2px; margin-bottom: 3px; }
-    .info-card .info-value { font-size: 0.7rem; font-weight: 800; color: #1e562a; }
+    
+    /* ====== 4 NEW TAG BOXES ====== */
+    .tag-section { margin: 14px 0; }
+    .tag-grid { display: flex; flex-direction: column; gap: 10px; }
+    .tag-box { background: #f8fafc; border-radius: 16px; padding: 14px 16px; border-left: 4px solid #22c55e; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .tag-box .tag-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; margin-bottom: 4px; }
+    .tag-box .tag-content { font-size: 0.75rem; color: #334155; line-height: 1.6; }
+    .tag-box .tag-content strong { color: #0b1e33; }
+    .tag-box .tag-bonus { color: #dc2626; font-weight: 700; }
+    
+    /* ====== OTHER APPS ====== */
     .other-apps-title { font-size: 1.1rem; font-weight: 800; margin: 24px 0 12px; color: #1e293b; border-left: 4px solid #2ecc71; padding-left: 12px; }
     .other-apps-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 10px; background: #ecf9f0; padding: 12px 10px; border-radius: 28px; }
     .other-card { background: #fefcf5; border-radius: 24px; padding: 12px 10px; width: 160px; transition: 0.2s; border: 1px solid #a8d5ba; text-align: center; }
@@ -334,26 +333,44 @@
       return `Download ${appName} APK and get ₹${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI.`;
     }
 
-    function getFAQ(appName, bonusAmount) {
-      return `
-        <div class="faq-item"><div class="faq-question">Q.1 What is the ${appName} APK?</div><div class="faq-answer">The ${appName} APK is an excellent application that offers users a sign-up bonus of ₹${bonusAmount} when they join. This game includes a fantastic bonus program. Additionally, ${appName} is a popular real-money gaming app with a minimum withdrawal amount of ₹100 and instant UPI payouts.</div></div>
-        <div class="faq-item"><div class="faq-question">Q.2 How do I sign up for the ${appName} APK?</div><div class="faq-answer">To sign up, click on the DOWNLOAD button, install the APK, open the app, register with your mobile number & verify OTP. After completing these steps, you will receive a sign-up bonus of ₹${bonusAmount}.</div></div>
-        <div class="faq-item"><div class="faq-question">Q.3 How many games are available in the ${appName} app?</div><div class="faq-answer">The ${appName} app offers support for 20+ different types of games including Rummy, Teen Patti, Slots, Dragon vs Tiger, Andar Bahar, and many more.</div></div>
-        <div class="faq-item"><div class="faq-question">Q.4 What are some of the best features of the ${appName} APK?</div><div class="faq-answer">Features include: ₹${bonusAmount} free signup bonus, 20+ gaming options, earn up to ₹150 for inviting friends, instant UPI withdrawals, 24/7 customer support, and daily login rewards.</div></div>
-      `;
-    }
+    // ===== GENERATE 4 TAG BOXES WITH UNIQUE GAME NAMES AND BONUSES =====
+    function generateTagBoxes(selectedApp, bonusAmount) {
+      // Pick 4 different games from the list (excluding selected)
+      const others = appsData.filter(app => app.name !== selectedApp.name);
+      // Shuffle and pick first 4
+      const shuffled = others.sort(() => Math.random() - 0.5);
+      const picked = shuffled.slice(0, 4);
+      
+      // For each picked game, generate a unique bonus (20-500) based on its name
+      const tagData = picked.map(app => {
+        let h = 0;
+        for (let i = 0; i < app.name.length; i++) {
+          h = ((h << 5) - h) + app.name.charCodeAt(i);
+          h |= 0;
+        }
+        const bonus = 20 + (Math.abs(h) % 481);
+        return { name: app.name, bonus: bonus, downloadUrl: app.downloadUrl };
+      });
 
-    function getInfoTags(appName, bonusAmount) {
-      return `
-        <div class="info-grid">
-          <div class="info-card"><div class="info-title"> New User – Install, Sign Up  Claim </div><div class="info-value">₹${bonusAmount} Welcome Bonus</div></div>
-          <div class="info-card"><div class="info-title">📲 INSTALL INFO</div><div class="info-value">APK Size: ~10-15 MB</div></div>
-          <div class="info-card"><div class="info-title"> New User Signup</div><div class="info-value"> Mobile & OTP</div></div>
-          <div class="info-card"><div class="info-title"> WITHDRAWAL TIME</div><div class="info-value">Instant to 24 Hours</div></div>
-          <div class="info-card"><div class="info-title"> DAILY LOGIN REWARD</div><div class="info-value">Up to ₹50 Daily</div></div>
-          <div class="info-card"><div class="info-title"> MIN WITHDRAWAL</div><div class="info-value">₹100 (UPI/Bank)</div></div>
-        </div>
-      `;
+      // Also add selected app as a tag (with its bonus)
+      // But we already have 4, we can include selected as well? The instruction says "4 bag se" so exactly 4 boxes.
+      // We'll use the 4 picked.
+
+      let html = `<div class="tag-section"><div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">📌 Other Gaming Apps</div><div class="tag-grid">`;
+      tagData.forEach(tag => {
+        html += `
+          <div class="tag-box">
+            <div class="tag-title">🎮 ${tag.name}</div>
+            <div class="tag-content">
+              <strong>Sign Up Bonus:</strong> <span class="tag-bonus">₹${tag.bonus}</span><br>
+              Play exciting games, earn real cash, and withdraw via UPI. Minimum withdrawal ₹100.<br>
+              <a href="${tag.downloadUrl}" target="_blank" style="display:inline-block; margin-top:6px; background:#0a0a0a; color:white; padding:4px 14px; border-radius:40px; font-size:0.65rem; font-weight:700; text-decoration:none;">Download ${tag.name}</a>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div></div>`;
+      return html;
     }
 
     // ===== STATE =====
@@ -430,19 +447,20 @@
       }
       const bonusNum = 20 + (Math.abs(hash) % 481);
       const description = getDescription(selectedApp.name, selectedApp.category, bonusNum);
-      const faqHtml = getFAQ(selectedApp.name, bonusNum);
-      const infoTagsHtml = getInfoTags(selectedApp.name, bonusNum);
 
       const gridDiv = document.getElementById('allAppsGrid');
       const downloadContainer = document.getElementById('downloadPageContainer');
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
+      // Generate 4 tag boxes
+      const tagHtml = generateTagBoxes(selectedApp, bonusNum);
+
+      // Other apps (for the bottom grid) - but we already have tags, we can keep other apps as well
       const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
       let otherAppsHtml = '';
       otherApps.forEach((app) => {
         const originalIndex = appsData.findIndex(a => a.name === app.name);
-        // Generate bonus for this related app
         let h = 0;
         for (let i = 0; i < app.name.length; i++) {
           h = ((h << 5) - h) + app.name.charCodeAt(i);
@@ -481,12 +499,10 @@
             </div>
             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">📲 DOWNLOAD ${selectedApp.name}</a>
             <div class="app-description">${description}<br><br><strong>🎯 Extra Benefits:</strong> Daily login rewards, referral cashback, and fast UPI withdrawals. 24/7 customer support.</div>
-            ${infoTagsHtml}
-            <div class="howto-steps">
-              <h4>📱 How To Download ${selectedApp.name}?</h4>
-              <ol><li>Click on the <strong>DOWNLOAD</strong> button below.</li><li>Allow installation from "Unknown Sources" if prompted.</li><li>Open the APK file and install the app.</li><li>Register with mobile number & verify OTP.</li><li>Claim your ₹${bonusNum} signup bonus and start playing!</li></ol>
-            </div>
-            <div class="faq-section">${faqHtml}</div>
+            
+            <!-- New 4 Tag Boxes -->
+            ${tagHtml}
+            
           </div>
           <div class="other-apps-title">Other Yono Apps</div>
           <div class="other-apps-grid" id="otherAppsGrid">${otherAppsHtml}</div>
@@ -502,6 +518,7 @@
           e.stopPropagation();
         });
       });
+      // Also handle tag box downloads (they are direct links, already handled)
       setTimeout(() => {
         const topSection = document.getElementById('topDownloadSection');
         if (topSection) topSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
