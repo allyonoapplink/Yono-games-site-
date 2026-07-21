@@ -61,44 +61,49 @@
     .top-nav a:hover .icon-contact { box-shadow: 0 0 12px rgba(59,130,246,0.8); }
     .top-nav a:hover .icon-disclaimer { box-shadow: 0 0 12px rgba(239,68,68,0.8); }
     
+    /* ===== TELEGRAM BUTTON - ROUND WITH COLOR ===== */
     .telegram-nav-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 4px;
-      background: transparent;
-      border: 1px solid #e2e8f0;
-      padding: 2px 8px 2px 4px;
+      background: linear-gradient(135deg, #0088cc, #00acee);
+      border: none;
+      padding: 2px 10px 2px 8px;
       border-radius: 40px;
-      color: #0a0a0a;
-      font-weight: 600;
+      color: #ffffff;
+      font-weight: 700;
       font-size: 0.5rem;
       text-decoration: none;
-      transition: 0.2s;
+      transition: 0.3s;
       cursor: pointer;
       white-space: nowrap;
       margin-left: auto;
+      box-shadow: 0 2px 10px rgba(0,136,204,0.3);
+      letter-spacing: 0.3px;
     }
-    .telegram-nav-btn:hover { background: #eef2ff; border-color: #b3c8e6; }
-    /* --- Telegram image animation --- */
+    .telegram-nav-btn:hover {
+      background: linear-gradient(135deg, #006699, #0099cc);
+      box-shadow: 0 4px 16px rgba(0,136,204,0.4);
+      transform: scale(1.03);
+    }
     .telegram-nav-btn img {
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      animation: telegramPulse 2s ease-in-out infinite;
-      transition: transform 0.2s;
+      animation: telegramPulse 2.5s ease-in-out infinite;
     }
     .telegram-nav-btn img:hover {
       animation-play-state: paused;
-      transform: scale(1.15);
+      transform: scale(1.1);
     }
     @keyframes telegramPulse {
-      0% { transform: scale(1) rotate(0deg); }
-      25% { transform: scale(1.08) rotate(-2deg); }
-      50% { transform: scale(1.12) rotate(0deg); }
-      75% { transform: scale(1.08) rotate(2deg); }
-      100% { transform: scale(1) rotate(0deg); }
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.06) rotate(-2deg); }
+      50% { transform: scale(1.1) rotate(0deg); }
+      75% { transform: scale(1.06) rotate(2deg); }
     }
     
     .app-tags-wrapper {
@@ -106,9 +111,10 @@
       background: #f8fafc;
       border-bottom: 1px solid #e2e8f0;
     }
+    /* ===== APP TAGS SCROLL - LEFT TO RIGHT ===== */
     .app-tags-scroll {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       overflow-x: auto;
       padding: 4px 0 8px 0;
       scrollbar-width: thin;
@@ -116,6 +122,14 @@
       -webkit-overflow-scrolling: touch;
       flex-wrap: nowrap;
       scroll-behavior: smooth;
+      animation: scrollTags 30s linear infinite;
+    }
+    .app-tags-scroll:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scrollTags {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .app-tags-scroll::-webkit-scrollbar { height: 3px; }
     .app-tags-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
@@ -125,7 +139,7 @@
       background: linear-gradient(135deg, #0a2e1d, #1a6e3a);
       border: 1px solid #ffcf8a;
       color: #e8f5e9;
-      padding: 4px 14px;
+      padding: 4px 16px;
       border-radius: 40px;
       font-size: 0.6rem;
       font-weight: 700;
@@ -133,7 +147,8 @@
       letter-spacing: 0.3px;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-radius: 40px;
     }
     .app-tag-item:hover {
       background: linear-gradient(135deg, #ffcf8a, #f5a623);
@@ -449,6 +464,7 @@
     .modal-close-btn:hover { transform: scale(1.1); background: #1a1a1a; }
     .modal-close-btn:active { transform: scale(0.92); }
     
+    /* ===== PREMIUM TOGGLES ===== */
     .premium-toggle-about, .premium-toggle-contact, .premium-toggle-disclaimer {
       border-radius: 12px;
       padding: 10px 14px;
@@ -552,34 +568,12 @@
       border-top: 2px dashed #8b5cf6;
     }
     
-    /* ===== Home page domain name at bottom ===== */
-    .home-domain-badge {
-      text-align: center;
-      padding: 14px 10px;
-      margin: 10px auto 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #0a2e1d;
-      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
-      border: 1px solid #86efac;
-      border-radius: 60px;
-      display: inline-block;
-      width: auto;
-      padding: 8px 28px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 10px rgba(34,197,94,0.06);
-    }
-    .home-domain-wrapper {
-      text-align: center;
-      margin-top: 8px;
-    }
-    
     @media (min-width: 480px) {
       .app-card { max-width: 320px; }
       .nav-logo .site-title { font-size: 0.85rem; }
       .top-nav a { font-size: 0.65rem; padding: 4px 12px; }
-      .telegram-nav-btn { font-size: 0.6rem; padding: 3px 10px 3px 6px; }
-      .telegram-nav-btn img { width: 24px; height: 24px; }
+      .telegram-nav-btn { font-size: 0.6rem; padding: 3px 12px 3px 10px; }
+      .telegram-nav-btn img { width: 20px; height: 20px; }
     }
     @media (min-width: 768px) {
       .app-card { max-width: 280px; }
@@ -606,7 +600,7 @@
   </a>
 </nav>
 
-<!-- ===== APP TAGS SCROLL ===== -->
+<!-- ===== APP TAGS SCROLL (LEFT TO RIGHT ANIMATION) ===== -->
 <div class="app-tags-wrapper">
   <div class="app-tags-scroll" id="appTagsScroll"></div>
 </div>
@@ -724,10 +718,6 @@
 <!-- ===== MAIN CONTAINER ===== -->
 <div class="container" id="mainContainer">
   <div id="allAppsGrid" class="cards-grid"></div>
-  <!-- Domain name after all apps -->
-  <div class="home-domain-wrapper">
-    <span class="home-domain-badge">🌐 yono games site.com</span>
-  </div>
   <div id="downloadPageContainer" class="hidden"></div>
 </div>
 
@@ -824,12 +814,14 @@
     function populateAppTags() {
       const container = document.getElementById('appTagsScroll');
       if (!container) return;
-      appsData.forEach(app => {
+      // Double the items for seamless scrolling
+      const allNames = [...appsData.map(a => a.name), ...appsData.map(a => a.name)];
+      allNames.forEach(name => {
         const span = document.createElement('span');
         span.className = 'app-tag-item';
-        span.textContent = app.name;
+        span.textContent = name;
         span.addEventListener('click', function() {
-          const idx = appsData.findIndex(a => a.name === app.name);
+          const idx = appsData.findIndex(a => a.name === name);
           if (idx !== -1) navigateToDownloadPage(idx);
         });
         container.appendChild(span);
@@ -1238,6 +1230,7 @@
 
     homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
 
+    // ===== ABOUT - Show All Tags =====
     navAbout.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1280,6 +1273,7 @@
       `);
     });
 
+    // ===== CONTACT - Show All Tags =====
     navContact.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1321,6 +1315,7 @@
       `);
     });
 
+    // ===== DISCLAIMER - Show All Tags =====
     navDisclaimer.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1413,11 +1408,20 @@
 </script>
 
 <!-- ===== FOOTER WITH DOMAIN NAME ===== -->
-<footer style="background:#0a2e1d;color:#b9ddcb;text-align:center;padding:20px;margin-top:30px;font-size:0.7rem;">
-  <marquee behavior="scroll" direction="left" scrollamount="6">
+<footer style="background:#0a2e1d;color:#b9ddcb;text-align:center;padding:20px;margin-top:30px;font-size:0.7rem;border-top:2px solid #ffcf8a;">
+  <marquee behavior="scroll" direction="left" scrollamount="6" style="margin-bottom:10px;">
     567 Slots | Jaiho 91 | Rummy Ludo | ABC Rummy | Rummy 91 | Love Rummy | Bingo 101 | Yono 777 | Saga Slots | Spin Crush | Top Rummy | New Yono Games | Hello Rummy | All Yono Games | Rummy 365 | Taurus App | Teen Patti Gold | Teen Patti Master | Yono Rummy | Slots Winner | Good Slots | Diwa Slot | GoGo Rummy | Joy Rummy | Spin Gold | Yes Spin | Yono Arcade | SVIP 777 | OK Rummy | Hind 777 | Rummy Most | Bet 213 | Teen Patti | Boss Rummy | Diwa VIP | Diwa 777
   </marquee>
-  © 2026/2030 <strong>yono games site.com</strong> — Play responsibly. 18+ only. | Official APK Downloads
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin-bottom:8px;">
+    <a href="#" style="color:#ffcf8a;text-decoration:none;font-weight:700;font-size:0.6rem;">About</a>
+    <span style="color:#6c7a5a;">|</span>
+    <a href="#" style="color:#ffcf8a;text-decoration:none;font-weight:700;font-size:0.6rem;">Contact</a>
+    <span style="color:#6c7a5a;">|</span>
+    <a href="#" style="color:#ffcf8a;text-decoration:none;font-weight:700;font-size:0.6rem;">Disclaimer</a>
+  </div>
+  <div style="font-size:0.6rem;">
+    © 2026/2030 <strong style="color:#ffcf8a;">yono games site.com</strong> — Play responsibly. 18+ only. | Official APK Downloads
+  </div>
 </footer>
 
 </body>
