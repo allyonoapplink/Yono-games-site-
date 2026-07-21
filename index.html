@@ -163,38 +163,79 @@
     .app-card .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
     .app-card .card-benefits strong { color: #0a2e1d; }
     
-    /* ===== PREMIUM WARNING ===== */
-    .app-card .premium-warning {
+    /* ===== LED WARNING TOGGLE - Premium Green/Cyan ===== */
+    .warning-led-toggle {
       margin-top: 12px;
+      padding: 6px 12px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #0a2e1d, #0d5c2e);
+      border: 2px solid #22c55e;
+      box-shadow: 0 0 15px rgba(34,197,94,0.3), inset 0 0 15px rgba(34,197,94,0.05);
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      user-select: none;
+    }
+    .warning-led-toggle:hover {
+      box-shadow: 0 0 25px rgba(34,197,94,0.5), 0 0 50px rgba(6,182,212,0.2);
+      transform: scale(1.02);
+      border-color: #06b6d4;
+    }
+    .warning-led-toggle .led-icon {
+      font-size: 1rem;
+      display: inline-block;
+      animation: ledPulse 1.8s ease-in-out infinite;
+    }
+    .warning-led-toggle .led-text {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #e8f5e9;
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 8px rgba(34,197,94,0.3);
+    }
+    .warning-led-toggle .led-arrow {
+      font-size: 0.6rem;
+      color: #86efac;
+      transition: transform 0.3s ease;
+    }
+    .warning-led-toggle.open .led-arrow {
+      transform: rotate(180deg);
+    }
+    
+    @keyframes ledPulse {
+      0%, 100% { text-shadow: 0 0 5px #22c55e, 0 0 10px #22c55e; }
+      50% { text-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4, 0 0 45px #22c55e; }
+    }
+    
+    .warning-content {
+      display: none;
+      margin-top: 8px;
       padding: 8px 12px;
       border-radius: 12px;
       background: linear-gradient(135deg, #fef2f2, #fff5f5);
       border: 2px solid #dc2626;
       border-left: 6px solid #dc2626;
       box-shadow: 0 2px 8px rgba(220,38,38,0.08);
-      transition: 0.3s;
       text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .app-card .premium-warning:hover {
-      box-shadow: 0 4px 14px rgba(220,38,38,0.15);
-    }
-    .app-card .premium-warning .warning-icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      color: #dc2626;
-    }
-    .app-card .premium-warning .warning-text {
       font-size: 0.6rem;
       color: #333;
       line-height: 1.4;
       font-weight: 500;
     }
-    .app-card .premium-warning .warning-text strong {
-      color: #dc2626;
-      font-weight: 700;
+    .warning-content.open {
+      display: block;
+      animation: fadeSlideDown 0.3s ease;
+    }
+    .warning-content strong { color: #dc2626; font-weight: 700; }
+    .warning-content .warning-icon { color: #dc2626; margin-right: 4px; }
+    
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
     /* ===== COLOR VARIATIONS ===== */
@@ -293,39 +334,49 @@
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
     
     /* ===== DETAIL PAGE WARNING ===== */
-    .detail-warning {
+    .detail-warning-led {
       margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #0a2e1d, #0d5c2e);
+      border: 2px solid #22c55e;
+      box-shadow: 0 0 20px rgba(34,197,94,0.25), inset 0 0 20px rgba(34,197,94,0.03);
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      user-select: none;
+    }
+    .detail-warning-led:hover {
+      box-shadow: 0 0 30px rgba(34,197,94,0.4), 0 0 60px rgba(6,182,212,0.15);
+      transform: scale(1.01);
+      border-color: #06b6d4;
+    }
+    .detail-warning-led .led-icon { font-size: 1.2rem; animation: ledPulse 1.8s ease-in-out infinite; }
+    .detail-warning-led .led-text { font-size: 0.75rem; font-weight: 700; color: #e8f5e9; letter-spacing: 0.3px; text-shadow: 0 0 8px rgba(34,197,94,0.3); }
+    .detail-warning-led .led-arrow { font-size: 0.7rem; color: #86efac; transition: transform 0.3s ease; }
+    .detail-warning-led.open .led-arrow { transform: rotate(180deg); }
+    
+    .detail-warning-content {
+      display: none;
+      margin-top: 10px;
       padding: 10px 14px;
       border-radius: 14px;
       background: linear-gradient(135deg, #fef2f2, #fff5f5);
       border: 2px solid #dc2626;
       border-left: 6px solid #dc2626;
       box-shadow: 0 2px 10px rgba(220,38,38,0.08);
-      transition: 0.3s;
       text-align: left;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .detail-warning:hover {
-      box-shadow: 0 4px 16px rgba(220,38,38,0.15);
-    }
-    .detail-warning .warning-icon {
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      color: #dc2626;
-      margin-top: 1px;
-    }
-    .detail-warning .warning-text {
       font-size: 0.7rem;
       color: #333;
       line-height: 1.5;
       font-weight: 500;
     }
-    .detail-warning .warning-text strong {
-      color: #dc2626;
-      font-weight: 700;
-    }
+    .detail-warning-content.open { display: block; animation: fadeSlideDown 0.3s ease; }
+    .detail-warning-content strong { color: #dc2626; font-weight: 700; }
     
     /* ===== MODAL ===== */
     .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
@@ -674,7 +725,7 @@
       { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
     ];
 
-    // ===== UNIQUE SPIN & WIN DESCRIPTION PER APP =====
+    // ===== UNIQUE SPIN & WIN DESCRIPTION PER APP (200-300 range) =====
     function getSpinWinDescription(appName, bonusNum, category) {
       const catMap = {
         'Slots': 'slot machines',
@@ -690,17 +741,17 @@
       const gameType = catMap[category] || 'games';
       
       const descs = [
-        `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`,
+        `Join ${appName} today and get ₹${bonusNum} bonus! Play exciting ${gameType}, unlock jackpots, and earn real cash daily.`,
         `Play ${appName} and grab ₹${bonusNum} welcome bonus! Enjoy thrilling ${gameType}, daily rewards, and fast UPI withdrawals.`,
         `${appName} gives you ₹${bonusNum} free cash on signup! Experience the best ${gameType}, win real money, and withdraw instantly.`,
-        `Join ${appName} today and get ₹${bonusNum} bonus! Play exciting ${gameType}, unlock jackpots, and earn real cash daily.`,
-        `${appName} – ₹${bonusNum} joining bonus! Spin, play & win with premium ${gameType}. Fast payouts and 24/7 support.`
+        `${appName} – ₹${bonusNum} joining bonus! Spin, play & win with premium ${gameType}. Fast payouts and 24/7 support.`,
+        `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`
       ];
       const idx = Math.abs(bonusNum) % descs.length;
       return descs[idx];
     }
 
-    // ===== UNIQUE EXTRA BENEFITS PER APP =====
+    // ===== UNIQUE EXTRA BENEFITS PER APP (150-200 range) =====
     function getExtraBenefits(appName, bonusNum, category) {
       const benefits = [
         `Daily login rewards, referral cashback, fast UPI withdrawals, 24/7 customer support, and exclusive ${appName} tournaments.`,
@@ -711,6 +762,16 @@
       ];
       const idx = Math.abs(bonusNum * 3) % benefits.length;
       return benefits[idx];
+    }
+
+    // ===== UNIQUE WARNING VALUE (100-150 range) =====
+    function getWarningValue(appName) {
+      let h = 0;
+      for (let i = 0; i < appName.length; i++) {
+        h = ((h << 5) - h) + appName.charCodeAt(i);
+        h |= 0;
+      }
+      return 100 + (Math.abs(h) % 51);
     }
 
     // ===== POPULATE APP TAGS =====
@@ -742,7 +803,7 @@
       const idx = Math.abs(hash) % ratings.length;
       const bIdx = Math.abs(hash * 2) % sizes.length;
       const vIdx = Math.abs(hash * 3) % votes.length;
-      const bonusNum = 200 + (Math.abs(hash) % 201);
+      const bonusNum = 200 + (Math.abs(hash) % 101); // 200-300 range
       return { rating: ratings[idx], size: sizes[bIdx], votes: votes[vIdx], bonus: bonusNum };
     }
 
@@ -773,11 +834,11 @@
       };
       const gameType = catMap[category] || 'games';
       const descs = [
-        `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`,
+        `Join ${appName} today and get ₹${bonusNum} bonus! Play exciting ${gameType}, unlock jackpots, and earn real cash daily.`,
         `Play ${appName} and grab ₹${bonusNum} welcome bonus! Enjoy thrilling ${gameType}, daily rewards, and fast UPI withdrawals.`,
         `${appName} gives you ₹${bonusNum} free cash on signup! Experience the best ${gameType}, win real money, and withdraw instantly.`,
-        `Join ${appName} today and get ₹${bonusNum} bonus! Play exciting ${gameType}, unlock jackpots, and earn real cash daily.`,
-        `${appName} – ₹${bonusNum} joining bonus! Spin, play & win with premium ${gameType}. Fast payouts and 24/7 support.`
+        `${appName} – ₹${bonusNum} joining bonus! Spin, play & win with premium ${gameType}. Fast payouts and 24/7 support.`,
+        `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`
       ];
       const idx = Math.abs(bonusNum) % descs.length;
       return descs[idx];
@@ -818,7 +879,7 @@
       }
       const bonusArray = [];
       for (let i = 1; i <= 17; i++) {
-        bonusArray.push(200 + (Math.abs(seed * i) % 201));
+        bonusArray.push(200 + (Math.abs(seed * i) % 101));
       }
 
       const placeholders = clone.querySelectorAll('.app-name-placeholder');
@@ -862,7 +923,7 @@
     modalCloseBtn.addEventListener('click', closeModalAndResetHistory);
     window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
 
-    // ===== RENDER MAIN GRID (ALL APPS in same style) =====
+    // ===== RENDER MAIN GRID (ALL APPS with LED Warning) =====
     function renderMainGrid() {
       const gridContainer = document.getElementById('allAppsGrid');
       if (!gridContainer) return;
@@ -874,6 +935,7 @@
         const colors = getColorClasses(idx);
         const spinDesc = getSpinWinDescription(app.name, displayBonus, app.category);
         const extraBenefits = getExtraBenefits(app.name, displayBonus, app.category);
+        const warningVal = getWarningValue(app.name);
         
         html += `
           <div class="app-card" data-app-index="${idx}">
@@ -893,16 +955,34 @@
             <div class="card-spin-desc">${spinDesc}</div>
             <div class="card-benefits"><strong>Extra Benefits:</strong> ${extraBenefits}</div>
             
-            <!-- ===== PREMIUM WARNING ===== -->
-            <div class="premium-warning">
+            <!-- ===== LED WARNING TOGGLE ===== -->
+            <div class="warning-led-toggle" data-toggle-idx="${idx}">
+              <span class="led-icon">⚠️</span>
+              <span class="led-text">Play responsibly. This website is for users 18+ only.</span>
+              <span class="led-arrow">▼</span>
+            </div>
+            <div class="warning-content" id="warning-content-${idx}">
               <span class="warning-icon">⚠️</span>
-              <span class="warning-text"><strong>Play responsibly.</strong> This website is for users <strong>18+</strong> only.</span>
+              <strong>Play responsibly.</strong> This website is intended strictly for users who are <strong>18 years of age or older</strong>. Value: <strong>₹${warningVal}</strong>
             </div>
           </div>
         `;
       });
 
       gridContainer.innerHTML = html;
+
+      // ===== LED WARNING TOGGLE EVENT LISTENERS =====
+      document.querySelectorAll('.warning-led-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const idx = this.getAttribute('data-toggle-idx');
+          const content = document.getElementById(`warning-content-${idx}`);
+          if (content) {
+            content.classList.toggle('open');
+            this.classList.toggle('open');
+          }
+        });
+      });
 
       // Attach event listeners to all download buttons
       document.querySelectorAll('#allAppsGrid .download-btn').forEach(btn => {
@@ -930,9 +1010,10 @@
         hash = ((hash << 5) - hash) + selectedApp.name.charCodeAt(i);
         hash |= 0;
       }
-      const bonusNum = 200 + (Math.abs(hash) % 201);
+      const bonusNum = 200 + (Math.abs(hash) % 101);
       const description = getDescription(selectedApp.name, selectedApp.category, bonusNum);
       const extraBenefits = getBenefitsText(selectedApp.name, bonusNum, selectedApp.category);
+      const warningVal = getWarningValue(selectedApp.name);
 
       const gridDiv = document.getElementById('allAppsGrid');
       const downloadContainer = document.getElementById('downloadPageContainer');
@@ -949,7 +1030,7 @@
           h = ((h << 5) - h) + app.name.charCodeAt(i);
           h |= 0;
         }
-        const relBonus = 200 + (Math.abs(h) % 201);
+        const relBonus = 200 + (Math.abs(h) % 101);
         const origIdx = appsData.findIndex(a => a.name === app.name);
         fiveOptionsHtml += `
           <span class="opt-item" data-opt-index="${origIdx}">
@@ -968,7 +1049,7 @@
           h = ((h << 5) - h) + app.name.charCodeAt(i);
           h |= 0;
         }
-        const relBonus = 200 + (Math.abs(h) % 201);
+        const relBonus = 200 + (Math.abs(h) % 101);
         otherAppsHtml += `
           <div class="other-card">
             <div style="width:48px;height:48px;margin:0 auto 4px;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
@@ -1014,7 +1095,6 @@
                 <span class="opt-item" style="background:#22c55e;color:white;border-color:#22c55e;font-weight:700;">+ 5 More</span>
               </div>
               
-              <!-- NEW COLLAPSIBLE TAGS -->
               <details class="premium-toggle-tags">
                 <summary>
                   <span class="toggle-icon">▶</span>
@@ -1029,10 +1109,15 @@
               </details>
             </div>
 
-            <!-- ===== DETAIL PAGE WARNING ===== -->
-            <div class="detail-warning">
+            <!-- ===== DETAIL PAGE LED WARNING ===== -->
+            <div class="detail-warning-led" id="detailWarningToggle">
+              <span class="led-icon">⚠️</span>
+              <span class="led-text">Play responsibly. This website is for users 18+ only.</span>
+              <span class="led-arrow">▼</span>
+            </div>
+            <div class="detail-warning-content" id="detailWarningContent">
               <span class="warning-icon">⚠️</span>
-              <span class="warning-text"><strong>Play responsibly.</strong> This website is intended strictly for users who are <strong>18 years of age or older</strong>.</span>
+              <strong>Play responsibly.</strong> This website is intended strictly for users who are <strong>18 years of age or older</strong>. Value: <strong>₹${warningVal}</strong>
             </div>
 
           </div>
@@ -1042,6 +1127,16 @@
         </div>
       `;
       downloadContainer.innerHTML = downloadPageHtml;
+
+      // ===== DETAIL PAGE LED WARNING TOGGLE =====
+      const detailToggle = document.getElementById('detailWarningToggle');
+      const detailContent = document.getElementById('detailWarningContent');
+      if (detailToggle && detailContent) {
+        detailToggle.addEventListener('click', function() {
+          detailContent.classList.toggle('open');
+          this.classList.toggle('open');
+        });
+      }
 
       // 5+ options click
       document.querySelectorAll('#fiveOptions .opt-item').forEach(el => {
@@ -1097,7 +1192,6 @@
 
     homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
 
-    // ===== ABOUT =====
     navAbout.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1140,7 +1234,6 @@
       `);
     });
 
-    // ===== CONTACT =====
     navContact.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1182,7 +1275,6 @@
       `);
     });
 
-    // ===== DISCLAIMER =====
     navDisclaimer.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
