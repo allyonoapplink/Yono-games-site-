@@ -251,13 +251,72 @@
     .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
     
+    /* ===== MODAL ===== */
     .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
-    .info-modal-content { background: white; max-width: 400px; width: 92%; border-radius: 28px; padding: 20px 16px; text-align: left; animation: fadeInUp 0.3s ease; box-shadow: 0 30px 40px rgba(0,0,0,0.3); border: 1px solid #ffcf8a; max-height: 80vh; overflow-y: auto; }
-    .info-modal-content h4 { font-size: 1.2rem; margin-bottom: 12px; color: #1e562a; border-left: 4px solid #ff8c00; padding-left: 12px; }
+    .info-modal-content { 
+      background: white; 
+      max-width: 400px; 
+      width: 92%; 
+      border-radius: 28px; 
+      padding: 20px 16px; 
+      text-align: left; 
+      animation: fadeInUp 0.3s ease; 
+      box-shadow: 0 30px 40px rgba(0,0,0,0.3); 
+      border: 1px solid #ffcf8a; 
+      max-height: 80vh; 
+      overflow-y: auto; 
+      position: relative;
+    }
+    .info-modal-content h4 { 
+      font-size: 1.2rem; 
+      margin-bottom: 12px; 
+      color: #1e562a; 
+      border-left: 4px solid #ff8c00; 
+      padding-left: 12px; 
+      padding-right: 30px;
+    }
     .info-modal-content p { font-size: 0.8rem; line-height: 1.5; margin: 10px 0; color: #2d3e2b; }
     .info-modal-content ul { margin-left: 16px; margin-top: 6px; }
     .info-modal-content li { margin: 4px 0; font-size: 0.75rem; }
-    .info-close { background: linear-gradient(135deg, #2ecc71, #e91e63); border: none; padding: 10px 16px; border-radius: 60px; font-size: 0.8rem; font-weight: 700; color: white; cursor: pointer; margin-top: 12px; width: 100%; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(46,204,113,0.25); }
+    
+    /* ===== CLOSE BUTTON (BLACK ❌) ===== */
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: #000000;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .modal-close-btn:hover { transform: scale(1.1); background: #1a1a1a; }
+    .modal-close-btn:active { transform: scale(0.92); }
+    
+    .info-close { 
+      background: linear-gradient(135deg, #2ecc71, #e91e63); 
+      border: none; 
+      padding: 10px 16px; 
+      border-radius: 60px; 
+      font-size: 0.8rem; 
+      font-weight: 700; 
+      color: white; 
+      cursor: pointer; 
+      margin-top: 12px; 
+      width: 100%; 
+      transition: 0.25s ease; 
+      box-shadow: 0 4px 12px rgba(46,204,113,0.25); 
+    }
     .info-close:hover { transform: scale(0.97); background: linear-gradient(135deg, #27ae60, #c2185b); }
     
     /* ===== PREMIUM TOGGLES ===== */
@@ -362,6 +421,7 @@
 <!-- ===== MODAL ===== -->
 <div id="customInfoModal" class="info-modal">
   <div class="info-modal-content">
+    <button class="modal-close-btn" id="modalCloseBtn">✕</button>
     <h4 id="modalTitle">Information</h4>
     <div id="modalBody"></div>
     <button class="info-close" id="closeInfoModal">OK</button>
@@ -674,20 +734,24 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalBody = document.getElementById('modalBody');
     const closeInfoModal = document.getElementById('closeInfoModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
 
     function showInfoModal(title, contentHtml) {
       modalTitle.innerText = title;
       modalBody.innerHTML = contentHtml;
       customModal.style.display = 'flex';
       history.pushState({ modal: true }, '');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModalAndResetHistory() {
       customModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
       history.replaceState({ page: 'main' }, '', window.location.pathname);
     }
 
     closeInfoModal.addEventListener('click', closeModalAndResetHistory);
+    modalCloseBtn.addEventListener('click', closeModalAndResetHistory);
     window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
 
     // ===== RENDER MAIN GRID =====
@@ -916,7 +980,7 @@
 
     homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
 
-    // ===== ABOUT (Purple Toggle) =====
+    // ===== ABOUT - Removed "31 May 2025", added "Update Version" =====
     navAbout.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -932,7 +996,7 @@
         <p><strong>Explore confidently. Download safely. Stay updated with Yono Games.</strong></p>
         <p style="margin-top:12px;">Welcome to <strong>Yono All Games</strong>, your ultimate one-stop solution for a fun and diverse gaming experience. Whether you are a strategy enthusiast, skill-based card game lover, or a casual gamer, our website has something for everyone. Download Yono All Games APK with a few taps and have access to top-rated gaming apps for unlimited fun. Our app offers a hassle-free and secure experience, with all your favorite online games in one place. Enjoy new releases, special features, and secure downloads at your fingertips. Join <strong>Yono All Games</strong> and explore a gaming universe at your fingertips!</p>
         
-        <!-- PURPLE TOGGLE -->
+        <!-- PURPLE TOGGLE - Removed "31 May 2025", added "Update Version" -->
         <div class="premium-toggle-about">
           <details>
             <summary>
@@ -941,10 +1005,11 @@
               <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
             </summary>
             <div class="details-content">
-              <p><strong>Welcome to our platform, Yono Games Site</strong> – a comprehensive hub created on <strong>31 May 2025</strong>, dedicated to enhancing digital experiences for everyone. At the heart of our mission lies the commitment to empower users with access to a wide range of applications, mirroring the global accessibility of platforms like the renowned app marketplaces, but with a unique focus on Indian users.</p>
+              <p><strong>Welcome to our platform, Yono Games Site</strong> – a comprehensive hub created to enhance digital experiences for everyone. At the heart of our mission lies the commitment to empower users with access to a wide range of applications, mirroring the global accessibility of platforms like the renowned app marketplaces, but with a unique focus on Indian users.</p>
               <p>Our journey began with a simple yet powerful vision: to revolutionize the way people discover and download apps. We recognize the evolving needs of the digital age and strive to meet them by offering an extensive selection of applications. From utility and productivity apps to entertainment and lifestyle options, our platform is a one-stop destination for all your app needs.</p>
               <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated. Our platform is designed to be user-friendly, ensuring a seamless experience for everyone, from tech-savvy individuals to those just starting their digital journey.</p>
               <p>Our focus on Indian applications sets us apart, reflecting our dedication to cater to the unique needs and preferences of our audience. We believe in the power of local solutions for local challenges, and our platform is a testament to this belief.</p>
+              <p><strong>Update Version:</strong> We continuously update our platform to bring you the latest and most reliable Yono Games app information.</p>
               <p>Join us in our endeavor to bring the best of digital innovations to your fingertips. Explore, download, and stay ahead in the ever-evolving world of apps with us <strong>Yono Games Site</strong>.</p>
               <div style="margin-top:12px;background:#f5f0ff;padding:10px;border-radius:12px;border-left:4px solid #8b5cf6;">
                 <p style="font-size:0.7rem;color:#333;line-height:1.5;">⚠️ <strong style="color:#8b5cf6;">Disclaimer:</strong> Playing Yono Games may lead to addictive behavior. Please play responsibly and use your discretion. This website is intended strictly for users who are <strong>18 years of age or older</strong>.</p>
@@ -1002,7 +1067,7 @@
       `);
     });
 
-    // ===== DISCLAIMER (Red Toggle with all points in one line) =====
+    // ===== DISCLAIMER (Red Toggle) =====
     navDisclaimer.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1013,7 +1078,7 @@
           <p style="font-size:0.7rem;color:#555;">By using our website, you confirm that you have read and agreed to this disclaimer. If you do not agree, please discontinue use of our website.</p>
         </div>
 
-        <!-- RED TOGGLE - All points in one line -->
+        <!-- RED TOGGLE -->
         <div class="premium-toggle-disclaimer">
           <details>
             <summary>
