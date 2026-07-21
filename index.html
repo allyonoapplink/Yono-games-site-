@@ -144,7 +144,7 @@
     .final-download-btn:hover { transform: scale(0.97); background: #1a1a1a; }
     .app-description { background: white; padding: 14px 16px; border-radius: 24px; text-align: left; margin: 14px 0; font-size: 0.8rem; line-height: 1.5; color: #2d3e2b; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     
-    /* ====== TAG SECTION ====== */
+    /* ====== TAG SECTION (hidden initially, shown by + button) ====== */
     .tag-section { margin: 14px 0; }
     .tag-grid { display: flex; flex-direction: column; gap: 12px; }
     .tag-box { background: #f8fafc; border-radius: 16px; padding: 14px 16px; border-left: 4px solid #22c55e; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 1px solid #e9edf4; border-right: 1px solid #e9edf4; border-bottom: 1px solid #e9edf4; }
@@ -153,35 +153,39 @@
     .tag-box .tag-bonus { color: #dc2626; font-weight: 700; font-size: 0.85rem; }
     .tag-divider { height: 1px; background: linear-gradient(to right, transparent, #d0d9e8, transparent); margin: 0 10px; }
     
-    /* Color variants for tag titles (no emojis) */
-    .tag-title-premium { color: #f59e0b; } /* gold */
-    .tag-title-bonus { color: #dc2626; } /* red */
-    .tag-title-games { color: #2563eb; } /* blue */
-    .tag-title-cash { color: #16a34a; } /* green */
-    .tag-title-vip { color: #8b5cf6; } /* purple */
-    .tag-title-download { color: #06b6d4; } /* cyan */
+    /* Color variants for tag titles */
+    .tag-title-premium { color: #f59e0b; }
+    .tag-title-bonus { color: #dc2626; }
+    .tag-title-games { color: #2563eb; }
+    .tag-title-cash { color: #16a34a; }
+    .tag-title-vip { color: #8b5cf6; }
+    .tag-title-download { color: #06b6d4; }
     
-    .view-tags-btn {
+    /* ----- + BUTTON (black) ----- */
+    .toggle-tags-btn {
       display: inline-block;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
+      background: #000000;
       color: white;
       border: none;
-      padding: 5px 20px;
+      padding: 4px 18px;
       border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.7rem;
+      font-weight: 800;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: 0.2s;
-      box-shadow: 0 2px 10px rgba(34,197,94,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       letter-spacing: 0.3px;
-      margin: 8px 0;
+      margin: 6px 0 10px;
       text-align: center;
+      line-height: 1.6;
     }
-    .view-tags-btn:active { transform: scale(0.95); }
-    .view-tags-btn:hover { background: linear-gradient(135deg, #16a34a, #15803d); }
+    .toggle-tags-btn:hover { background: #1a1a1a; transform: scale(0.96); }
+    .toggle-tags-btn:active { transform: scale(0.92); }
     
-    .extra-tags { display: none; margin-top: 10px; }
-    .extra-tags.open { display: block; }
+    .tags-wrapper { display: none; margin-top: 6px; }
+    .tags-wrapper.open { display: block; }
+    
+    .extra-tags { margin-top: 10px; }
     .extra-tag-box { background: #f1f5f9; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid #8b5cf6; }
     .extra-tag-box .tag-title { font-weight: 700; font-size: 0.85rem; color: #0b1e33; margin-bottom: 4px; }
     .extra-tag-box .tag-content { font-size: 0.75rem; color: #334155; line-height: 1.6; }
@@ -337,6 +341,7 @@
     <div class="tag-content">Get ₹<span class="bonus-placeholder6">0</span> signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
   </div>
 
+  <!-- Extra tags (FAQ, Overview, Features, etc.) -->
   <div class="extra-tag-box">
     <div class="tag-title">Frequently Asked Questions</div>
     <div class="tag-content">
@@ -622,9 +627,10 @@
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
+      // Generate tags HTML
       const tagsHTML = createTagsHTML(selectedApp.name, bonusNum);
 
-      // ===== 5+ OPTIONS (5 different apps) =====
+      // 5+ options
       const fiveApps = appsData.filter((_, idx) => idx !== selectedIndex).slice(0, 5);
       let fiveOptionsHtml = '';
       fiveApps.forEach((app) => {
@@ -699,14 +705,15 @@
                 <span class="opt-item" style="background:#22c55e;color:white;border-color:#22c55e;font-weight:700;">+ 5 More</span>
               </div>
               
-              <div class="tag-grid" id="tagGridContainer">
-                ${tagsHTML}
+              <!-- + BUTTON to toggle all tags -->
+              <button class="toggle-tags-btn" id="toggleTagsBtn">+</button>
+              
+              <div class="tags-wrapper" id="tagsWrapper">
+                <div class="tag-grid" id="tagGridContainer">
+                  ${tagsHTML}
+                </div>
               </div>
             </div>
-
-            <button class="view-tags-btn" id="viewTagsBtn">View All Tags</button>
-
-            <div class="extra-tags" id="extraTagsContainer"></div>
 
           </div>
           <div class="other-apps-title">Other Yono Apps</div>
@@ -716,22 +723,23 @@
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
-      // ===== VIEW TAGS BUTTON =====
-      document.getElementById('viewTagsBtn').addEventListener('click', function() {
-        const container = document.getElementById('tagGridContainer');
-        const extraContainer = document.getElementById('extraTagsContainer');
-        if (container.style.display === 'none') {
-          container.style.display = 'block';
-          extraContainer.classList.add('open');
-          this.textContent = 'Hide Tags';
+      // ===== TOGGLE TAGS WITH + BUTTON =====
+      const toggleBtn = document.getElementById('toggleTagsBtn');
+      const tagsWrapper = document.getElementById('tagsWrapper');
+      let isOpen = false;
+
+      toggleBtn.addEventListener('click', function() {
+        isOpen = !isOpen;
+        if (isOpen) {
+          tagsWrapper.classList.add('open');
+          this.textContent = '−'; // change to minus sign
         } else {
-          container.style.display = 'none';
-          extraContainer.classList.remove('open');
-          this.textContent = 'View All Tags';
+          tagsWrapper.classList.remove('open');
+          this.textContent = '+';
         }
       });
 
-      // ===== 5+ OPTIONS CLICK =====
+      // 5+ options click
       document.querySelectorAll('#fiveOptions .opt-item').forEach(el => {
         el.addEventListener('click', function() {
           const idx = this.getAttribute('data-opt-index');
@@ -739,9 +747,7 @@
         });
       });
 
-      const container = document.getElementById('tagGridContainer');
-      container.style.display = 'block';
-
+      // Other apps download buttons
       document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const otherIdx = btn.getAttribute('data-other-index');
@@ -749,6 +755,7 @@
           e.stopPropagation();
         });
       });
+
       setTimeout(() => {
         const topSection = document.getElementById('topDownloadSection');
         if (topSection) topSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
