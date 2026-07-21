@@ -1,5 +1,3 @@
-oooooo
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,13 +121,31 @@ oooooo
     .download-btn { display: block; width: 100%; text-align: center; margin-top: 12px; padding: 10px 0; background: #0a0a0a; color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.75rem; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.20); cursor: pointer; border: none; letter-spacing: 0.3px; }
     .download-btn:hover { background: #1a1a1a; transform: scale(0.97); box-shadow: 0 6px 16px rgba(0,0,0,0.30); }
     
-    .card-spin-desc { font-size: 0.7rem; color: #2d3e2b; line-height: 1.5; margin: 6px 0 4px; text-align: left; padding: 0 2px; }
+    /* Card description & benefits */
+    .card-spin-desc {
+      font-size: 0.7rem;
+      color: #2d3e2b;
+      line-height: 1.5;
+      margin: 6px 0 4px;
+      text-align: left;
+      padding: 0 2px;
+    }
     .card-spin-desc strong { color: #1e562a; }
-    .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
+    .card-benefits {
+      font-size: 0.65rem;
+      color: #1e562a;
+      line-height: 1.5;
+      margin: 4px 0 6px;
+      text-align: left;
+      padding: 6px 10px;
+      background: #f0f9f0;
+      border-radius: 12px;
+      border-left: 3px solid #22c55e;
+    }
     .card-benefits strong { color: #0a2e1d; }
     
     .download-page { background: white; border-radius: 28px; padding: 18px 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); margin-bottom: 20px; border: 1px solid #ffe1b3; animation: fadeSlideUp 0.4s ease; }
-    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     
     .download-header { text-align: center; border-bottom: 2px dashed #ffcf8a; padding-bottom: 14px; margin-bottom: 18px; }
     .download-header .tag-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 10px; margin-top: 4px; }
@@ -192,7 +208,6 @@ oooooo
     .extra-tag-box .tag-content ul li { padding: 2px 0; font-size: 0.75rem; color: #334155; }
     .extra-tag-box .tag-content ul li::before { content: "• "; color: #8b5cf6; font-weight: 700; }
     
-    /* ===== 5 MORE EXPANDED VIEW ===== */
     .five-options {
       display: flex;
       flex-wrap: wrap;
@@ -221,138 +236,18 @@ oooooo
     .five-options .opt-item .opt-bonus { color: #dc2626; font-weight: 700; }
     .five-options .opt-item .opt-app { font-weight: 700; color: #1e562a; }
     
-    /* ===== EXPANDED ALL APPS GRID ===== */
-    .all-apps-expanded {
-      display: none;
-      margin-top: 12px;
-      background: #f8fafc;
-      border-radius: 20px;
-      padding: 14px 12px;
-      border: 1px solid #e2e8f0;
-    }
-    .all-apps-expanded.open { display: block; }
-    .all-apps-expanded .exp-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .all-apps-expanded .exp-item {
-      background: white;
-      border-radius: 16px;
-      padding: 10px 8px;
-      text-align: center;
-      border: 1px solid #eef2f8;
-      transition: 0.2s;
-      cursor: pointer;
-    }
-    .all-apps-expanded .exp-item:hover {
-      border-color: #ffcf8a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-    .all-apps-expanded .exp-item .exp-img {
-      width: 40px;
-      height: 40px;
-      margin: 0 auto 6px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff5e6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #e2e8f0;
-    }
-    .all-apps-expanded .exp-item .exp-img img { width: 100%; height: 100%; object-fit: cover; }
-    .all-apps-expanded .exp-item .exp-name { font-size: 0.6rem; font-weight: 700; color: #1e562a; }
-    .all-apps-expanded .exp-item .exp-bonus { font-size: 0.5rem; color: #dc2626; font-weight: 700; }
-    .all-apps-expanded .exp-item .exp-withdraw { font-size: 0.45rem; color: #06b6d4; font-weight: 600; }
-    .all-apps-expanded .exp-item .exp-download-btn {
-      display: block;
-      width: 100%;
-      margin-top: 4px;
-      padding: 3px 0;
-      background: #0a0a0a;
-      color: white;
-      border: none;
-      border-radius: 40px;
-      font-size: 0.5rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .all-apps-expanded .exp-item .exp-download-btn:hover { background: #1a1a1a; transform: scale(0.97); }
-    
-    .exp-toggle-btn {
-      display: inline-block;
-      background: #000000;
-      color: white;
-      border: none;
-      padding: 5px 20px;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      letter-spacing: 0.3px;
-      margin: 6px 0 10px;
-    }
-    .exp-toggle-btn:hover { background: #1a1a1a; transform: scale(0.96); }
-    
     .faq-item { margin-bottom: 12px; }
     .faq-item .faq-q { font-weight: 700; color: #b45900; font-size: 0.8rem; margin-bottom: 2px; }
     .faq-item .faq-a { font-size: 0.75rem; color: #334155; padding-left: 10px; }
     
     .other-apps-title { font-size: 1.1rem; font-weight: 800; margin: 24px 0 12px; color: #1e293b; border-left: 4px solid #2ecc71; padding-left: 12px; }
-    .other-apps-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 10px;
-      background: #ecf9f0;
-      padding: 12px 10px;
-      border-radius: 28px;
-      max-height: 600px;
-      overflow-y: auto;
-    }
-    .other-apps-grid::-webkit-scrollbar { width: 3px; }
-    .other-apps-grid::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
-    .other-apps-grid::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 4px; }
-    
-    .other-card {
-      background: #fefcf5;
-      border-radius: 24px;
-      padding: 12px 10px;
-      width: 160px;
-      transition: 0.2s;
-      border: 1px solid #a8d5ba;
-      text-align: center;
-      cursor: pointer;
-    }
-    .other-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); border-color: #ffcf8a; }
+    .other-apps-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 10px; background: #ecf9f0; padding: 12px 10px; border-radius: 28px; }
+    .other-card { background: #fefcf5; border-radius: 24px; padding: 12px 10px; width: 160px; transition: 0.2s; border: 1px solid #a8d5ba; text-align: center; }
     .other-card .app-name { font-size: 0.8rem; margin: 6px 0 4px; font-weight: 800; color: #1e562a; }
     .other-card .withdraw-green { font-size: 0.55rem; font-weight: 700; color: #16a34a; display: block; margin-top: 2px; }
     .other-card .signup-bonus-small { font-size: 0.55rem; font-weight: 700; color: #dc2626; display: block; margin-top: 1px; }
-    .other-card .small-download {
-      background: #0a0a0a;
-      font-size: 0.65rem;
-      padding: 6px 0;
-      margin-top: 8px;
-      text-decoration: none;
-      color: white;
-      display: block;
-      width: 100%;
-      text-align: center;
-      border-radius: 60px;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: 0.25s ease;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.20);
-    }
-    .other-card .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
-    
+    .small-download { background: #0a0a0a; font-size: 0.65rem; padding: 6px 0; margin-top: 8px; text-decoration: none; color: white; display: block; width: 100%; text-align: center; border-radius: 60px; font-weight: 700; cursor: pointer; border: none; transition: 0.25s ease; box-shadow: 0 3px 10px rgba(0,0,0,0.20); }
+    .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
     
     .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
@@ -385,11 +280,6 @@ oooooo
       .top-nav a { font-size: 0.65rem; padding: 4px 12px; }
       .telegram-nav-btn { font-size: 0.6rem; padding: 3px 10px 3px 6px; }
       .telegram-nav-btn img { width: 24px; height: 24px; }
-      .all-apps-expanded .exp-grid { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    @media (max-width: 380px) {
-      .all-apps-expanded .exp-grid { grid-template-columns: 1fr 1fr; }
-      .other-card { width: 140px; }
     }
   </style>
 </head>
@@ -577,11 +467,18 @@ oooooo
     // ===== UNIQUE SPIN & WIN DESCRIPTION PER APP =====
     function getSpinWinDescription(appName, bonusNum, category) {
       const catMap = {
-        'Slots': 'slot machines', 'Rummy': 'rummy tables', 'Casino': 'casino games',
-        'Spin': 'spin wheels', 'Card': 'card games', 'Bingo': 'bingo halls',
-        'Arcade': 'arcade games', 'Betting': 'betting tables', 'VIP': 'VIP rooms'
+        'Slots': 'slot machines',
+        'Rummy': 'rummy tables',
+        'Casino': 'casino games',
+        'Spin': 'spin wheels',
+        'Card': 'card games',
+        'Bingo': 'bingo halls',
+        'Arcade': 'arcade games',
+        'Betting': 'betting tables',
+        'VIP': 'VIP rooms'
       };
       const gameType = catMap[category] || 'games';
+      
       const descs = [
         `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`,
         `Play ${appName} and grab ₹${bonusNum} welcome bonus! Enjoy thrilling ${gameType}, daily rewards, and fast UPI withdrawals.`,
@@ -593,6 +490,7 @@ oooooo
       return descs[idx];
     }
 
+    // ===== UNIQUE EXTRA BENEFITS PER APP =====
     function getExtraBenefits(appName, bonusNum, category) {
       const benefits = [
         `Daily login rewards, referral cashback, fast UPI withdrawals, 24/7 customer support, and exclusive ${appName} tournaments.`,
@@ -632,6 +530,7 @@ oooooo
       const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
       const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
       const idx = Math.abs(hash) % ratings.length;
+      // Bonus between 200-400
       const bonusNum = 200 + (Math.abs(hash) % 201);
       return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNum };
     }
@@ -651,9 +550,15 @@ oooooo
 
     function getDescription(appName, category, bonusNum) {
       const catMap = {
-        'Slots': 'slot machines', 'Rummy': 'rummy tables', 'Casino': 'casino games',
-        'Spin': 'spin wheels', 'Card': 'card games', 'Bingo': 'bingo halls',
-        'Arcade': 'arcade games', 'Betting': 'betting tables', 'VIP': 'VIP rooms'
+        'Slots': 'slot machines',
+        'Rummy': 'rummy tables',
+        'Casino': 'casino games',
+        'Spin': 'spin wheels',
+        'Card': 'card games',
+        'Bingo': 'bingo halls',
+        'Arcade': 'arcade games',
+        'Betting': 'betting tables',
+        'VIP': 'VIP rooms'
       };
       const gameType = catMap[category] || 'games';
       const descs = [
@@ -775,15 +680,11 @@ oooooo
       });
     }
 
-    // ===== NAVIGATION WITH SCROLL TO TOP =====
+    // ===== NAVIGATION =====
     function navigateToDownloadPage(selectedIndex) {
       currentSelectedIndex = selectedIndex;
       history.pushState({ page: 'download', index: selectedIndex }, '', '#download');
       showDownloadPage(selectedIndex);
-      // Scroll to top after page renders
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
     }
 
     function showDownloadPage(selectedIndex) {
@@ -806,7 +707,6 @@ oooooo
 
       const tagsHTML = createTagsHTML(selectedApp.name, bonusNum);
 
-      // 5 apps shown initially
       const fiveApps = appsData.filter((_, idx) => idx !== selectedIndex).slice(0, 5);
       let fiveOptionsHtml = '';
       fiveApps.forEach((app) => {
@@ -825,28 +725,6 @@ oooooo
         `;
       });
 
-      // All apps for expanded view (exclude current)
-      const allOtherApps = appsData.filter((_, idx) => idx !== selectedIndex);
-      let allAppsExpandedHtml = '';
-      allOtherApps.forEach((app) => {
-        let h = 0;
-        for (let i = 0; i < app.name.length; i++) {
-          h = ((h << 5) - h) + app.name.charCodeAt(i);
-          h |= 0;
-        }
-        const relBonus = 200 + (Math.abs(h) % 201);
-        const origIdx = appsData.findIndex(a => a.name === app.name);
-        allAppsExpandedHtml += `
-          <div class="exp-item" data-exp-index="${origIdx}">
-            <div class="exp-img"><img src="${app.img}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/40?text=App'"></div>
-            <div class="exp-name">${app.name}</div>
-            <div class="exp-bonus">Sign Up: ₹${relBonus}</div>
-            <div class="exp-withdraw">Min Withdraw: ${app.withdrawal}</div>
-            <button class="exp-download-btn" data-exp-index="${origIdx}">DOWNLOAD</button>
-          </div>
-        `;
-      });
-
       const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
       let otherAppsHtml = '';
       otherApps.forEach((app) => {
@@ -858,7 +736,7 @@ oooooo
         }
         const relBonus = 200 + (Math.abs(h) % 201);
         otherAppsHtml += `
-          <div class="other-card" data-other-card-index="${originalIndex}">
+          <div class="other-card">
             <div style="width:48px;height:48px;margin:0 auto 4px;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
               <img src="${app.img}" alt="${app.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://via.placeholder.com/48?text=App'">
             </div>
@@ -897,17 +775,9 @@ oooooo
             <div class="tag-section">
               <div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">${selectedApp.name} – Top Offers</div>
               
-              <!-- 5+ OPTIONS -->
               <div class="five-options" id="fiveOptions">
                 ${fiveOptionsHtml}
-                <button class="exp-toggle-btn" id="expToggleBtn">+ 5 More</button>
-              </div>
-              
-              <!-- EXPANDED ALL APPS GRID -->
-              <div class="all-apps-expanded" id="allAppsExpanded">
-                <div class="exp-grid" id="expGridContainer">
-                  ${allAppsExpandedHtml}
-                </div>
+                <span class="opt-item" style="background:#22c55e;color:white;border-color:#22c55e;font-weight:700;">+ 5 More</span>
               </div>
               
               <button class="toggle-tags-btn" id="toggleTagsBtn">+</button>
@@ -927,7 +797,7 @@ oooooo
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
-      // ===== TOGGLE TAGS WITH + BUTTON =====
+      // Toggle tags
       const toggleBtn = document.getElementById('toggleTagsBtn');
       const tagsWrapper = document.getElementById('tagsWrapper');
       let isOpen = false;
@@ -942,22 +812,7 @@ oooooo
         }
       });
 
-      // ===== EXPAND ALL APPS WITH + 5 MORE =====
-      const expToggleBtn = document.getElementById('expToggleBtn');
-      const allAppsExpanded = document.getElementById('allAppsExpanded');
-      let expOpen = false;
-      expToggleBtn.addEventListener('click', function() {
-        expOpen = !expOpen;
-        if (expOpen) {
-          allAppsExpanded.classList.add('open');
-          this.textContent = '− 5 Less';
-        } else {
-          allAppsExpanded.classList.remove('open');
-          this.textContent = '+ 5 More';
-        }
-      });
-
-      // ===== 5+ OPTIONS CLICK =====
+      // 5+ options click
       document.querySelectorAll('#fiveOptions .opt-item').forEach(el => {
         el.addEventListener('click', function() {
           const idx = this.getAttribute('data-opt-index');
@@ -965,35 +820,14 @@ oooooo
         });
       });
 
-      // ===== EXPANDED GRID ITEMS CLICK =====
-      document.querySelectorAll('#expGridContainer .exp-item, #expGridContainer .exp-download-btn').forEach(el => {
-        el.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const idx = this.getAttribute('data-exp-index');
-          if (idx !== null) navigateToDownloadPage(parseInt(idx));
-        });
-      });
-
-      // ===== OTHER APPS CARD CLICK (entire card) =====
-      document.querySelectorAll('#otherAppsGrid .other-card').forEach(card => {
-        card.addEventListener('click', function(e) {
-          // Don't trigger if click is on the button (button has its own handler)
-          if (e.target.classList.contains('small-download')) return;
-          const idx = this.getAttribute('data-other-card-index');
-          if (idx !== null) navigateToDownloadPage(parseInt(idx));
-        });
-      });
-
-      // ===== OTHER APPS DOWNLOAD BUTTON =====
       document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const otherIdx = this.getAttribute('data-other-index');
+        btn.addEventListener('click', (e) => {
+          const otherIdx = btn.getAttribute('data-other-index');
           if (otherIdx !== null) navigateToDownloadPage(parseInt(otherIdx));
+          e.stopPropagation();
         });
       });
 
-      // Scroll to top after render
       setTimeout(() => {
         const topSection = document.getElementById('topDownloadSection');
         if (topSection) topSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
