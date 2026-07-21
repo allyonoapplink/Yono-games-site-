@@ -260,7 +260,7 @@
     .info-close { background: linear-gradient(135deg, #2ecc71, #e91e63); border: none; padding: 10px 16px; border-radius: 60px; font-size: 0.8rem; font-weight: 700; color: white; cursor: pointer; margin-top: 12px; width: 100%; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(46,204,113,0.25); }
     .info-close:hover { transform: scale(0.97); background: linear-gradient(135deg, #27ae60, #c2185b); }
     
-    /* ===== PREMIUM GREEN COLLAPSIBLE TAG FOR ABOUT ===== */
+    /* ===== PREMIUM GREEN COLLAPSIBLE TAG FOR ABOUT & CONTACT ===== */
     .premium-about-toggle {
       border: 2px solid #22c55e;
       border-radius: 12px;
@@ -908,7 +908,7 @@
 
     homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
 
-    // ===== ABOUT - Updated with Premium Collapsible Green Tag =====
+    // ===== ABOUT =====
     navAbout.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -924,7 +924,6 @@
         <p><strong>Explore confidently. Download safely. Stay updated with Yono Games.</strong></p>
         <p style="margin-top:12px;">Welcome to <strong>Yono All Games</strong>, your ultimate one-stop solution for a fun and diverse gaming experience. Whether you are a strategy enthusiast, skill-based card game lover, or a casual gamer, our website has something for everyone. Download Yono All Games APK with a few taps and have access to top-rated gaming apps for unlimited fun. Our app offers a hassle-free and secure experience, with all your favorite online games in one place. Enjoy new releases, special features, and secure downloads at your fingertips. Join <strong>Yono All Games</strong> and explore a gaming universe at your fingertips!</p>
         
-        <!-- ===== PREMIUM GREEN COLLAPSIBLE TAG ===== -->
         <div class="premium-about-toggle">
           <details>
             <summary>
@@ -952,21 +951,46 @@
       `);
     });
 
-    // ===== CONTACT =====
+    // ===== CONTACT - Updated with Premium Collapsible Tag =====
     navContact.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
       navContact.classList.add('active');
-      showInfoModal('Contact Us - Yono Top Games', `
-        <p><strong>Yono Top Games</strong> – Get in touch with us through the following channels.</p>
-        <p style="margin-top:8px;">If you have any questions, feedback, or business inquiries, please reach out to us:</p>
+      showInfoModal('Contact Us - Yono Games Site', `
+        <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games. Because the Listed Games/Apps are not ours. We do not own those games.</p>
+        
+        <p style="margin-top:14px;"><strong style="color:#d50000;">📢 Advertisement/Business Queries</strong><br>If you are a game maker company, operator, or administrator, and you want to promote your application through our website, you can contact us through the contact details given below and discuss promotion and cooperation.</p>
+        
         <table class="contact-table">
-          <tr><th>Method</th><th>Details</th></tr>
+          <tr><th>Title</th><th>Link</th></tr>
+          <tr><td><strong>Email</strong></td><td><a href="mailto:yonogamesite@gmail.com" class="contact-email" style="color:#d50000;font-weight:700;text-decoration:none;">yonogamesite@gmail.com</a></td></tr>
           <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/yonogamestite" target="_blank" class="contact-telegram" style="color:#0088cc;font-weight:700;text-decoration:none;">@yonogamestite</a></td></tr>
-          <tr><td><strong>Gmail</strong></td><td><a href="mailto:yonogamesite@gmail.com" class="contact-email" style="color:#d50000;font-weight:700;text-decoration:none;">yonogamesite@gmail.com</a></td></tr>
         </table>
-        <p style="margin-top:12px;background:#e8f5e9;padding:8px 12px;border-radius:12px;text-align:center;border:1px solid #a5d6a7;">⚡ We respond within 24 hours</p>
-        <p style="margin-top:8px;font-size:0.75rem;color:#555;">For business inquiries, app promotion, or cooperation, feel free to contact us via Telegram or Email.</p>
+        
+        <!-- ===== PREMIUM GREEN COLLAPSIBLE TAG (About Tags Model) ===== -->
+        <div class="premium-about-toggle">
+          <details>
+            <summary>
+              <span class="toggle-icon">▶</span> 
+              <span style="font-weight:800; color:#16a34a; font-size:0.95rem;">📌 About Tags Model - Disclaimer</span>
+              <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
+            </summary>
+            <div class="details-content">
+              <p><strong>Yono Games Site</strong> – Your Trusted Source for Yono Games Information.</p>
+              <p>We are an independent platform dedicated to providing accurate and up-to-date information about Yono Games apps, their features, bonuses, and download links. Our goal is to help users discover genuine Yono Games apps without confusion or risk.</p>
+              <p><strong>About This Platform</strong><br>• <strong>Founded:</strong> 31 May 2025<br>• <strong>Purpose:</strong> To simplify the discovery of authentic Yono Games apps<br>• <strong>Focus:</strong> Indian users seeking reliable gaming app information<br>• <strong>Commitment:</strong> Transparency, accuracy, and user safety</p>
+              <p><strong>Our Promise</strong><br>We do not host or distribute any APK files directly. All download links redirect to official or verified sources. We do not collect any user data. Your privacy and safety are our priority.</p>
+              <div style="margin-top:12px;background:#f0fdf4;padding:10px;border-radius:12px;border-left:4px solid #22c55e;">
+                <p style="font-size:0.7rem;color:#1e562a;font-weight:600;">✅ Verified & Trusted Platform</p>
+                <p style="font-size:0.7rem;color:#333;line-height:1.5;">We are committed to providing only verified and genuine Yono Games app information.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+        
+        <div style="margin-top:12px;background:#e8f5e9;padding:8px 12px;border-radius:10px;text-align:center;border:1px solid #a5d6a7;">
+          <p style="font-size:0.7rem;color:#1e562a;">⚡ We respond within 24 hours</p>
+        </div>
       `);
     });
 
