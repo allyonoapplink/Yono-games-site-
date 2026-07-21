@@ -61,7 +61,6 @@
     .top-nav a:hover .icon-contact { box-shadow: 0 0 12px rgba(59,130,246,0.8); }
     .top-nav a:hover .icon-disclaimer { box-shadow: 0 0 12px rgba(239,68,68,0.8); }
     
-    /* ===== TELEGRAM BUTTON - ROUND WITH COLOR ===== */
     .telegram-nav-btn {
       display: inline-flex;
       align-items: center;
@@ -111,7 +110,6 @@
       background: #f8fafc;
       border-bottom: 1px solid #e2e8f0;
     }
-    /* ===== APP TAGS SCROLL - LEFT TO RIGHT ===== */
     .app-tags-scroll {
       display: flex;
       gap: 8px;
@@ -160,7 +158,6 @@
     .container { max-width: 100%; margin: 12px auto; padding: 0 8px; }
     .cards-grid { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 8px 0 16px; }
     
-    /* ===== CARD - YONO GAMES STYLE (All Apps) ===== */
     .app-card {
       background: white;
       border-radius: 24px;
@@ -198,7 +195,6 @@
     .app-card .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
     .app-card .card-benefits strong { color: #0a2e1d; }
     
-    /* ===== LED WARNING TOGGLE - Premium Green/Cyan ===== */
     .warning-led-toggle {
       margin-top: 12px;
       padding: 6px 12px;
@@ -273,7 +269,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* ===== COLOR VARIATIONS ===== */
     .rating-green { color: #22c55e; }
     .rating-pink { color: #ec4899; }
     .size-cyan { color: #06b6d4; }
@@ -283,7 +278,6 @@
     .bonus-green { color: #22c55e; }
     .bonus-red { color: #dc2626; }
     
-    /* ===== DETAIL PAGE ===== */
     .hidden { display: none !important; }
     .download-page {
       background: white;
@@ -368,7 +362,6 @@
     .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
     
-    /* ===== DETAIL PAGE WARNING ===== */
     .detail-warning-led {
       margin-top: 14px;
       padding: 8px 14px;
@@ -413,7 +406,6 @@
     .detail-warning-content.open { display: block; animation: fadeSlideDown 0.3s ease; }
     .detail-warning-content strong { color: #dc2626; font-weight: 700; }
     
-    /* ===== MODAL ===== */
     .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
     .info-modal-content { 
       background: white; 
@@ -464,7 +456,6 @@
     .modal-close-btn:hover { transform: scale(1.1); background: #1a1a1a; }
     .modal-close-btn:active { transform: scale(0.92); }
     
-    /* ===== PREMIUM TOGGLES ===== */
     .premium-toggle-about, .premium-toggle-contact, .premium-toggle-disclaimer {
       border-radius: 12px;
       padding: 10px 14px;
@@ -600,12 +591,12 @@
   </a>
 </nav>
 
-<!-- ===== APP TAGS SCROLL (LEFT TO RIGHT ANIMATION) ===== -->
+<!-- ===== APP TAGS SCROLL ===== -->
 <div class="app-tags-wrapper">
   <div class="app-tags-scroll" id="appTagsScroll"></div>
 </div>
 
-<!-- ===== MODAL (NO OK BUTTON) ===== -->
+<!-- ===== MODAL ===== -->
 <div id="customInfoModal" class="info-modal">
   <div class="info-modal-content">
     <button class="modal-close-btn" id="modalCloseBtn">✕</button>
@@ -616,103 +607,7 @@
 
 <!-- ===== TAG TEMPLATE ===== -->
 <div class="tag-template" id="tagTemplate">
-  <div class="tag-box">
-    <div class="tag-title tag-title-premium"><span class="app-name-placeholder">AppName</span> APK Download – Get <span class="tag-bonus">₹<span class="bonus-placeholder">0</span></span> Instant Bonus!</div>
-    <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-bonus">Unlock <span class="tag-bonus">₹<span class="bonus-placeholder2">0</span></span> Bonus in <span class="app-name-placeholder">AppName</span> App!</div>
-    <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-games"><span class="app-name-placeholder">AppName</span> – Signup for <span class="tag-bonus">₹<span class="bonus-placeholder3">0</span></span>-₹<span class="bonus-placeholder4">0</span> Free Bonus</div>
-    <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-cash">Experience <span class="app-name-placeholder">AppName</span> – <span class="tag-bonus">₹<span class="bonus-placeholder5">0</span></span> Welcome Bonus on Download</div>
-    <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-vip">Dive into <span class="app-name-placeholder">AppName</span> – India's Top Online Gaming App</div>
-    <div class="tag-content">Get ₹<span class="bonus-placeholder6">0</span> signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
-  </div>
-
-  <div class="extra-tag-box">
-    <div class="tag-title">Frequently Asked Questions</div>
-    <div class="tag-content">
-      <div class="faq-item">
-        <div class="faq-q">1. What Is The <span class="app-name-placeholder">AppName</span> app APK?</div>
-        <div class="faq-a">The <span class="app-name-placeholder">AppName</span> APP APK is an excellent application that offers users a sign-up bonus of ₹<span class="bonus-placeholder7">0</span> when they join. This game includes a fantastic bonus program, and you can learn more by reading the complete post. Additionally, <span class="app-name-placeholder">AppName</span> APK is a popular slots game with a minimum withdrawal amount of ₹100.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">2. How to Sign Up for <span class="app-name-placeholder">AppName</span> APK?</div>
-        <div class="faq-a">To sign up for the <span class="app-name-placeholder">AppName</span> APK, follow these steps:<br>• Click on the Download Button for the <span class="app-name-placeholder">AppName</span> APK.<br>• Select OK to start the download.<br>• Install the App application on your smartphone.<br>• Open the new app and click on Play as Guest.<br>• Click on the Profile Button and bind your mobile number.<br>After completing these steps, you will receive a sign-up bonus of ₹<span class="bonus-placeholder8">0</span>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">3. How Many Games Are Available In The <span class="app-name-placeholder">AppName</span> App?</div>
-        <div class="faq-a">The <span class="app-name-placeholder">AppName</span> app offers support for 75+ different types of games. You can enjoy a variety of games such as Rummy, Teen Patti, 7 Up Down, Dragon vs Tiger, and many more.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">4. What are some of the best features of the <span class="app-name-placeholder">AppName</span> app APK?</div>
-        <div class="faq-a">• Enjoy a bonus of ₹<span class="bonus-placeholder9">0</span> for free in the APK.<br>• Access to 20 gaming options.<br>• Earn up to ₹<span class="bonus-placeholder10">0</span> for inviting friends.<br>• Withdrawals can be made starting from a minimum of ₹<span class="bonus-placeholder11">0</span>.<br>• Click on the Profile Button and bind your mobile number.<br>• The minimum deposit required is ₹<span class="bonus-placeholder12">0</span>.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="extra-tag-box">
-    <div class="tag-title">Overview – <span class="app-name-placeholder">AppName</span></div>
-    <div class="tag-content"><span class="app-name-placeholder">AppName</span> is a popular real cash earning app in India where users can play games like rummy, slots, bingo, and spin games to win real money. New users can claim a signup bonus of up to ₹<span class="bonus-placeholder13">0</span>, making it easy to get started and explore the platform. The app offers a smooth and secure experience with fast UPI deposits and withdrawals.<br><br>The interface of <span class="app-name-placeholder">AppName</span> is simple and user-friendly, making it suitable for both beginners and experienced players. You can enjoy daily rewards, referral bonuses, and special events to increase your earnings. The minimum withdrawal starts from ₹<span class="bonus-placeholder14">0</span>, and most transactions are processed quickly without delays.<br><br>If you are looking for a trusted gaming app that combines entertainment with real earning opportunities, <span class="app-name-placeholder">AppName</span> is a great choice. Download the latest APK version today and start playing to earn real cash rewards from your mobile.</div>
-  </div>
-
-  <div class="extra-tag-box">
-    <div class="tag-title"><span class="app-name-placeholder">AppName</span> App Features & Benefits</div>
-    <div class="tag-content">
-      <ul>
-        <li><strong>Welcome Bonus:</strong> Get up to ₹<span class="bonus-placeholder15">0</span> signup bonus for new users</li>
-        <li><strong>Fast UPI Withdrawal:</strong> Withdraw starting from ₹<span class="bonus-placeholder14">0</span> directly to your bank account</li>
-        <li><strong>Popular Games:</strong> Play rummy, slots, bingo, spin games and more real cash earning options</li>
-        <li><strong>Safe & Secure Platform:</strong> Smooth gameplay experience with secure transactions</li>
-        <li><strong>Daily Rewards & Offers:</strong> Earn extra bonuses, cashback and referral rewards regularly</li>
-        <li><strong>User-Friendly Interface:</strong> Easy to use app suitable for beginners and experienced players</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="extra-tag-box">
-    <div class="tag-title">How to Download & Install <span class="app-name-placeholder">AppName</span></div>
-    <div class="tag-content">
-      <ul>
-        <li><strong>1.</strong> Tap the big Download button above</li>
-        <li><strong>2.</strong> Allow installation from unknown sources</li>
-        <li><strong>3.</strong> Open the downloaded APK and tap Install</li>
-        <li><strong>4.</strong> Register with your mobile number</li>
-        <li><strong>5.</strong> Claim your signup bonus instantly – up to ₹<span class="bonus-placeholder16">0</span>!</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="extra-tag-box">
-    <div class="tag-title"><span class="app-name-placeholder">AppName</span> Safety & Security</div>
-    <div class="tag-content"><span class="app-name-placeholder">AppName</span> is designed to provide a secure and reliable gaming experience. The app uses standard encryption and protected payment systems to help keep user data and transactions safe.<br><br>Deposits and withdrawals are processed through commonly used methods such as UPI and bank transfer, offering a convenient experience for users in India. However, users are advised to play responsibly and review the app's terms and policies before using it.</div>
-  </div>
-
-  <div class="extra-tag-box">
-    <div class="tag-title">Why Choose <span class="app-name-placeholder">AppName</span> App?</div>
-    <div class="tag-content">
-      <ul>
-        <li><strong>Attractive welcome bonus</strong> of up to ₹<span class="bonus-placeholder17">0</span> for new users</li>
-        <li><strong>Fast UPI withdrawal</strong> system with quick processing time</li>
-        <li><strong>Wide range of games</strong> including rummy, slots, bingo and spin games</li>
-        <li><strong>Smooth and optimized</strong> performance on most Android devices</li>
-        <li><strong>Regular updates</strong> with new features, offers and improvements</li>
-        <li><strong>Simple and user-friendly</strong> interface for beginners and regular players</li>
-      </ul>
-    </div>
-  </div>
+  <!-- This template is now generated per app using JavaScript -->
 </div>
 
 <!-- ===== MAIN CONTAINER ===== -->
@@ -761,7 +656,7 @@
       { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
     ];
 
-    // ===== UNIQUE SPIN & WIN DESCRIPTION PER APP (200-300 range) =====
+    // ===== UNIQUE SPIN & WIN DESCRIPTION PER APP =====
     function getSpinWinDescription(appName, bonusNum, category) {
       const catMap = {
         'Slots': 'slot machines',
@@ -787,7 +682,7 @@
       return descs[idx];
     }
 
-    // ===== UNIQUE EXTRA BENEFITS PER APP (150-200 range) =====
+    // ===== UNIQUE EXTRA BENEFITS PER APP =====
     function getExtraBenefits(appName, bonusNum, category) {
       const benefits = [
         `Daily login rewards, referral cashback, fast UPI withdrawals, 24/7 customer support, and exclusive ${appName} tournaments.`,
@@ -800,7 +695,7 @@
       return benefits[idx];
     }
 
-    // ===== UNIQUE WARNING VALUE (100-150 range) =====
+    // ===== UNIQUE WARNING VALUE =====
     function getWarningValue(appName) {
       let h = 0;
       for (let i = 0; i < appName.length; i++) {
@@ -814,7 +709,6 @@
     function populateAppTags() {
       const container = document.getElementById('appTagsScroll');
       if (!container) return;
-      // Double the items for seamless scrolling
       const allNames = [...appsData.map(a => a.name), ...appsData.map(a => a.name)];
       allNames.forEach(name => {
         const span = document.createElement('span');
@@ -841,7 +735,7 @@
       const idx = Math.abs(hash) % ratings.length;
       const bIdx = Math.abs(hash * 2) % sizes.length;
       const vIdx = Math.abs(hash * 3) % votes.length;
-      const bonusNum = 200 + (Math.abs(hash) % 101); // 200-300 range
+      const bonusNum = 200 + (Math.abs(hash) % 101);
       return { rating: ratings[idx], size: sizes[bIdx], votes: votes[vIdx], bonus: bonusNum };
     }
 
@@ -903,38 +797,150 @@
       return { ratingClass, sizeClass, votesClass, bonusClass };
     }
 
-    // ===== CLONE TAG TEMPLATE =====
-    function createTagsHTML(appName, bonusNum) {
-      const template = document.getElementById('tagTemplate');
-      const clone = template.cloneNode(true);
-      clone.classList.remove('tag-template');
-      clone.style.display = 'block';
-
+    // ===== GENERATE UNIQUE TAGS FOR EACH APP =====
+    function generateAppTags(appName, bonusNum) {
+      // Generate unique bonus variations using hash
       let seed = 0;
       for (let i = 0; i < appName.length; i++) {
         seed = ((seed << 5) - seed) + appName.charCodeAt(i);
         seed |= 0;
       }
-      const bonusArray = [];
-      for (let i = 1; i <= 17; i++) {
-        bonusArray.push(200 + (Math.abs(seed * i) % 101));
-      }
+      const b1 = 150 + (Math.abs(seed) % 101);
+      const b2 = 180 + (Math.abs(seed * 2) % 101);
+      const b3 = 200 + (Math.abs(seed * 3) % 101);
+      const b4 = 220 + (Math.abs(seed * 4) % 101);
+      const b5 = 160 + (Math.abs(seed * 5) % 101);
+      const b6 = 190 + (Math.abs(seed * 6) % 101);
+      const b7 = 210 + (Math.abs(seed * 7) % 101);
+      const b8 = 230 + (Math.abs(seed * 8) % 101);
+      const b9 = 170 + (Math.abs(seed * 9) % 101);
+      const b10 = 240 + (Math.abs(seed * 10) % 101);
+      const b11 = 250 + (Math.abs(seed * 11) % 101);
+      const b12 = 260 + (Math.abs(seed * 12) % 101);
+      const b13 = 175 + (Math.abs(seed * 13) % 101);
+      const b14 = 185 + (Math.abs(seed * 14) % 101);
+      const b15 = 195 + (Math.abs(seed * 15) % 101);
+      const b16 = 205 + (Math.abs(seed * 16) % 101);
+      const b17 = 215 + (Math.abs(seed * 17) % 101);
 
-      const placeholders = clone.querySelectorAll('.app-name-placeholder');
-      placeholders.forEach(el => el.textContent = appName);
-
-      const bonusPlaceholders = clone.querySelectorAll('.bonus-placeholder');
-      bonusPlaceholders.forEach((el, index) => {
-        if (index < bonusArray.length) el.textContent = bonusArray[index];
-      });
-
-      const bPlaceholders = clone.querySelectorAll('.bonus-placeholder2, .bonus-placeholder3, .bonus-placeholder4, .bonus-placeholder5, .bonus-placeholder6, .bonus-placeholder7, .bonus-placeholder8, .bonus-placeholder9, .bonus-placeholder10, .bonus-placeholder11, .bonus-placeholder12, .bonus-placeholder13, .bonus-placeholder14, .bonus-placeholder15, .bonus-placeholder16, .bonus-placeholder17');
-      bPlaceholders.forEach((el, index) => {
-        const idx = parseInt(el.className.replace('bonus-placeholder', ''));
-        if (idx >= 1 && idx <= 17) el.textContent = bonusArray[idx - 1];
-      });
-
-      return clone.innerHTML;
+      return `
+        <div class="tag-box">
+          <div class="tag-title tag-title-premium">${appName} APK Download – Get <span class="tag-bonus">₹${b1}</span> Instant Bonus!</div>
+          <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title tag-title-bonus">Unlock <span class="tag-bonus">₹${b2}</span> Bonus in ${appName} App!</div>
+          <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title tag-title-games">${appName} – Signup for <span class="tag-bonus">₹${b3}</span>-₹${b4} Free Bonus</div>
+          <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title tag-title-cash">Experience ${appName} – <span class="tag-bonus">₹${b5}</span> Welcome Bonus on Download</div>
+          <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title tag-title-vip">Dive into ${appName} – India's Top Online Gaming App</div>
+          <div class="tag-content">Get ₹${b6} signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title tag-title-download">${appName} – Download Now & Get ₹${b7} Free!</div>
+          <div class="tag-content">Experience the best of online gaming with ${appName}. Play rummy, slots, and more. Secure UPI withdrawals from ₹100. Install now and start winning!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title" style="color:#ec4899;">${appName} – ₹${b8} Bonus + 100% Welcome Offer</div>
+          <div class="tag-content">New users get ₹${b8} free bonus plus a 100% match on first deposit. Play live casino, rummy, and slots. Withdraw winnings directly to your bank account!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title" style="color:#f97316;">${appName} – ₹${b9} Free Cash on Signup</div>
+          <div class="tag-content">Create your account and receive ₹${b9} free cash instantly. Play 50+ games, earn daily rewards, and refer friends to earn more. Start your winning journey today!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title" style="color:#8b5cf6;">${appName} VIP – Get ₹${b10} Premium Bonus</div>
+          <div class="tag-content">Join the VIP club of ${appName} and unlock exclusive bonuses up to ₹${b10}. Enjoy higher withdrawal limits, priority support, and premium game access!</div>
+        </div>
+        <div class="tag-divider"></div>
+        <div class="tag-box">
+          <div class="tag-title" style="color:#06b6d4;">${appName} – ₹${b11} Daily Bonus & Rewards</div>
+          <div class="tag-content">Login every day to claim your ₹${b11} daily bonus. Participate in tournaments, spin the wheel, and win real cash. Download now and never miss a reward!</div>
+        </div>
+        <div class="extra-tag-box">
+          <div class="tag-title">Frequently Asked Questions – ${appName}</div>
+          <div class="tag-content">
+            <div class="faq-item">
+              <div class="faq-q">1. What Is The ${appName} app APK?</div>
+              <div class="faq-a">The ${appName} APP APK is an excellent application that offers users a sign-up bonus of ₹${b12} when they join. This game includes a fantastic bonus program, and you can learn more by reading the complete post. Additionally, ${appName} APK is a popular slots game with a minimum withdrawal amount of ₹100.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">2. How to Sign Up for ${appName} APK?</div>
+              <div class="faq-a">To sign up for the ${appName} APK, follow these steps:<br>• Click on the Download Button for the ${appName} APK.<br>• Select OK to start the download.<br>• Install the App application on your smartphone.<br>• Open the new app and click on Play as Guest.<br>• Click on the Profile Button and bind your mobile number.<br>After completing these steps, you will receive a sign-up bonus of ₹${b13}.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">3. How Many Games Are Available In The ${appName} App?</div>
+              <div class="faq-a">The ${appName} app offers support for 75+ different types of games. You can enjoy a variety of games such as Rummy, Teen Patti, 7 Up Down, Dragon vs Tiger, and many more.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">4. What are some of the best features of the ${appName} app APK?</div>
+              <div class="faq-a">• Enjoy a bonus of ₹${b14} for free in the APK.<br>• Access to 20 gaming options.<br>• Earn up to ₹${b15} for inviting friends.<br>• Withdrawals can be made starting from a minimum of ₹100.<br>• Click on the Profile Button and bind your mobile number.<br>• The minimum deposit required is ₹100.</div>
+            </div>
+          </div>
+        </div>
+        <div class="extra-tag-box">
+          <div class="tag-title">Overview – ${appName}</div>
+          <div class="tag-content">${appName} is a popular real cash earning app in India where users can play games like rummy, slots, bingo, and spin games to win real money. New users can claim a signup bonus of up to ₹${b16}, making it easy to get started and explore the platform. The app offers a smooth and secure experience with fast UPI deposits and withdrawals.<br><br>The interface of ${appName} is simple and user-friendly, making it suitable for both beginners and experienced players. You can enjoy daily rewards, referral bonuses, and special events to increase your earnings. The minimum withdrawal starts from ₹100, and most transactions are processed quickly without delays.<br><br>If you are looking for a trusted gaming app that combines entertainment with real earning opportunities, ${appName} is a great choice. Download the latest APK version today and start playing to earn real cash rewards from your mobile.</div>
+        </div>
+        <div class="extra-tag-box">
+          <div class="tag-title">${appName} App Features & Benefits</div>
+          <div class="tag-content">
+            <ul>
+              <li><strong>Welcome Bonus:</strong> Get up to ₹${b17} signup bonus for new users</li>
+              <li><strong>Fast UPI Withdrawal:</strong> Withdraw starting from ₹100 directly to your bank account</li>
+              <li><strong>Popular Games:</strong> Play rummy, slots, bingo, spin games and more real cash earning options</li>
+              <li><strong>Safe & Secure Platform:</strong> Smooth gameplay experience with secure transactions</li>
+              <li><strong>Daily Rewards & Offers:</strong> Earn extra bonuses, cashback and referral rewards regularly</li>
+              <li><strong>User-Friendly Interface:</strong> Easy to use app suitable for beginners and experienced players</li>
+            </ul>
+          </div>
+        </div>
+        <div class="extra-tag-box">
+          <div class="tag-title">How to Download & Install ${appName}</div>
+          <div class="tag-content">
+            <ul>
+              <li><strong>1.</strong> Tap the big Download button above</li>
+              <li><strong>2.</strong> Allow installation from unknown sources</li>
+              <li><strong>3.</strong> Open the downloaded APK and tap Install</li>
+              <li><strong>4.</strong> Register with your mobile number</li>
+              <li><strong>5.</strong> Claim your signup bonus instantly – up to ₹${b1}!</li>
+            </ul>
+          </div>
+        </div>
+        <div class="extra-tag-box">
+          <div class="tag-title">${appName} Safety & Security</div>
+          <div class="tag-content">${appName} is designed to provide a secure and reliable gaming experience. The app uses standard encryption and protected payment systems to help keep user data and transactions safe.<br><br>Deposits and withdrawals are processed through commonly used methods such as UPI and bank transfer, offering a convenient experience for users in India. However, users are advised to play responsibly and review the app's terms and policies before using it.</div>
+        </div>
+        <div class="extra-tag-box">
+          <div class="tag-title">Why Choose ${appName} App?</div>
+          <div class="tag-content">
+            <ul>
+              <li><strong>Attractive welcome bonus</strong> of up to ₹${b2} for new users</li>
+              <li><strong>Fast UPI withdrawal</strong> system with quick processing time</li>
+              <li><strong>Wide range of games</strong> including rummy, slots, bingo and spin games</li>
+              <li><strong>Smooth and optimized</strong> performance on most Android devices</li>
+              <li><strong>Regular updates</strong> with new features, offers and improvements</li>
+              <li><strong>Simple and user-friendly</strong> interface for beginners and regular players</li>
+            </ul>
+          </div>
+        </div>
+      `;
     }
 
     // ===== STATE =====
@@ -961,7 +967,7 @@
     modalCloseBtn.addEventListener('click', closeModalAndResetHistory);
     window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
 
-    // ===== RENDER MAIN GRID (ALL APPS with LED Warning) =====
+    // ===== RENDER MAIN GRID =====
     function renderMainGrid() {
       const gridContainer = document.getElementById('allAppsGrid');
       if (!gridContainer) return;
@@ -993,7 +999,6 @@
             <div class="card-spin-desc">${spinDesc}</div>
             <div class="card-benefits"><strong>Extra Benefits:</strong> ${extraBenefits}</div>
             
-            <!-- ===== LED WARNING TOGGLE ===== -->
             <div class="warning-led-toggle" data-toggle-idx="${idx}">
               <span class="led-icon">⚠️</span>
               <span class="led-text">Play responsibly. This website is for users 18+ only.</span>
@@ -1009,7 +1014,6 @@
 
       gridContainer.innerHTML = html;
 
-      // ===== LED WARNING TOGGLE EVENT LISTENERS =====
       document.querySelectorAll('.warning-led-toggle').forEach(toggle => {
         toggle.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -1022,7 +1026,6 @@
         });
       });
 
-      // Attach event listeners to all download buttons
       document.querySelectorAll('#allAppsGrid .download-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
           const idx = parseInt(this.getAttribute('data-download-index'));
@@ -1058,7 +1061,7 @@
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
-      const tagsHTML = createTagsHTML(selectedApp.name, bonusNum);
+      const tagsHTML = generateAppTags(selectedApp.name, bonusNum);
 
       const fiveApps = appsData.filter((_, idx) => idx !== selectedIndex).slice(0, 5);
       let fiveOptionsHtml = '';
@@ -1136,7 +1139,7 @@
               <details class="premium-toggle-tags">
                 <summary>
                   <span class="toggle-icon">▶</span>
-                  <span style="font-weight:800; color:#8b5cf6; font-size:0.95rem;">📌 View All Tags</span>
+                  <span style="font-weight:800; color:#8b5cf6; font-size:0.95rem;">📌 View All Tags – ${selectedApp.name}</span>
                   <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
                 </summary>
                 <div class="details-content">
@@ -1147,7 +1150,6 @@
               </details>
             </div>
 
-            <!-- ===== DETAIL PAGE LED WARNING ===== -->
             <div class="detail-warning-led" id="detailWarningToggle">
               <span class="led-icon">⚠️</span>
               <span class="led-text">Play responsibly. This website is for users 18+ only.</span>
@@ -1166,7 +1168,6 @@
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
-      // ===== DETAIL PAGE LED WARNING TOGGLE =====
       const detailToggle = document.getElementById('detailWarningToggle');
       const detailContent = document.getElementById('detailWarningContent');
       if (detailToggle && detailContent) {
@@ -1176,7 +1177,6 @@
         });
       }
 
-      // 5+ options click
       document.querySelectorAll('#fiveOptions .opt-item').forEach(el => {
         el.addEventListener('click', function() {
           const idx = this.getAttribute('data-opt-index');
@@ -1230,92 +1230,35 @@
 
     homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
 
-    // ===== ABOUT - Show All Tags =====
     navAbout.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
       navAbout.classList.add('active');
       showInfoModal('About - Yono Games Site', `
         <p><strong>Welcome to Yono Games Site</strong>, a trusted platform created to help users discover <strong>genuine Yono Games apps</strong> safely and confidently. Our website was built with one clear purpose—to eliminate confusion, fake apps, and misleading downloads that users often face while searching for Yono Games online.</p>
-        <p>Over time, we noticed a growing problem. Many users searching for Yono Games were landing on spam websites, unofficial APKs, and misleading links that either didn’t work or put their devices and data at risk. Finding authentic Yono Games apps with secure download links was not easy, especially for new users. That’s where <strong>we stepped in</strong>.</p>
         <p><strong>Our Mission</strong><br>Our mission is simple: to provide only verified, genuine, and officially released Yono Games apps in one place.</p>
-        <p>We carefully list Yono Games apps that are publicly announced and actively available, ensuring users get access to the right versions without confusion. Every app page is created with clarity, transparency, and user trust in mind.</p>
-        <p><strong>What Makes Us Different</strong><br>✅ <strong>Genuine Yono Games Apps Only</strong> – We focus on authenticity. Our platform highlights real Yono Games releases and avoids misleading or fake listings.<br>✅ <strong>Secure & Safe Download Links</strong> – We ensure users are redirected to safe sources so they can download Yono Games apps with confidence.<br>✅ <strong>Regular Updates</strong> – Yono Games frequently releases new apps and updates. We keep our listings fresh so users don’t miss the latest launches.<br>✅ <strong>User-First Approach</strong> – Our content is written in simple language, making it easy for both new and experienced users to understand app details, features, and updates.</p>
-        <p><strong>Built for the Yono Games Community</strong><br>This platform is more than just a listing website. It’s a growing resource for users who want reliable information about Yono Games, new app launches, and popular variants—all in one place. We aim to save users time, reduce risk, and improve their overall experience.</p>
-        <p><strong>Our Commitment</strong><br>We are committed to transparency, accuracy, and continuous improvement. As Yono Games evolves, so do we. Our goal is to remain a dependable destination for users who want to explore Yono Games without worrying about spam, fake apps, or unreliable sources.</p>
+        <p><strong>What Makes Us Different</strong><br>✅ <strong>Genuine Yono Games Apps Only</strong> – We focus on authenticity.<br>✅ <strong>Secure & Safe Download Links</strong> – We ensure users are redirected to safe sources.<br>✅ <strong>Regular Updates</strong> – Yono Games frequently releases new apps and updates.<br>✅ <strong>User-First Approach</strong> – Our content is written in simple language.</p>
+        <p><strong>Built for the Yono Games Community</strong><br>This platform is more than just a listing website. It's a growing resource for users who want reliable information about Yono Games, new app launches, and popular variants—all in one place.</p>
+        <p><strong>Our Commitment</strong><br>We are committed to transparency, accuracy, and continuous improvement.</p>
         <p><strong>Explore confidently. Download safely. Stay updated with Yono Games.</strong></p>
-        <p style="margin-top:12px;">Welcome to <strong>Yono All Games</strong>, your ultimate one-stop solution for a fun and diverse gaming experience. Whether you are a strategy enthusiast, skill-based card game lover, or a casual gamer, our website has something for everyone. Download Yono All Games APK with a few taps and have access to top-rated gaming apps for unlimited fun. Our app offers a hassle-free and secure experience, with all your favorite online games in one place. Enjoy new releases, special features, and secure downloads at your fingertips. Join <strong>Yono All Games</strong> and explore a gaming universe at your fingertips!</p>
-        
-        <div class="premium-toggle-about">
-          <details>
-            <summary>
-              <span class="toggle-icon">▶</span> 
-              <span style="font-weight:800; color:#8b5cf6; font-size:0.95rem;">📌 About - Yono Games Store</span>
-              <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
-            </summary>
-            <div class="details-content">
-              <p><strong>Welcome to our platform, Yono Games Site</strong> – a comprehensive hub created to enhance digital experiences for everyone. At the heart of our mission lies the commitment to empower users with access to a wide range of applications, mirroring the global accessibility of platforms like the renowned app marketplaces, but with a unique focus on Indian users.</p>
-              <p>Our journey began with a simple yet powerful vision: to revolutionize the way people discover and download apps. We recognize the evolving needs of the digital age and strive to meet them by offering an extensive selection of applications. From utility and productivity apps to entertainment and lifestyle options, our platform is a one-stop destination for all your app needs.</p>
-              <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated. Our platform is designed to be user-friendly, ensuring a seamless experience for everyone, from tech-savvy individuals to those just starting their digital journey.</p>
-              <p>Our focus on Indian applications sets us apart, reflecting our dedication to cater to the unique needs and preferences of our audience. We believe in the power of local solutions for local challenges, and our platform is a testament to this belief.</p>
-              <p><strong>Update Version:</strong> We continuously update our platform to bring you the latest and most reliable Yono Games app information.</p>
-              <p>Join us in our endeavor to bring the best of digital innovations to your fingertips. Explore, download, and stay ahead in the ever-evolving world of apps with us <strong>Yono Games Site</strong>.</p>
-              <div style="margin-top:12px;background:#f5f0ff;padding:10px;border-radius:12px;border-left:4px solid #8b5cf6;">
-                <p style="font-size:0.7rem;color:#333;line-height:1.5;">⚠️ <strong style="color:#8b5cf6;">Disclaimer:</strong> Playing Yono Games may lead to addictive behavior. Please play responsibly and use your discretion. This website is intended strictly for users who are <strong>18 years of age or older</strong>.</p>
-              </div>
-            </div>
-          </details>
-        </div>
-
-        <div style="margin-top:12px;background:#e8f5e9;padding:8px 12px;border-radius:10px;text-align:center;border:1px solid #a5d6a7;">
-          <p style="font-size:0.7rem;color:#1e562a;">✅ All apps are verified and safe only.</p>
-        </div>
       `);
     });
 
-    // ===== CONTACT - Show All Tags =====
     navContact.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
       navContact.classList.add('active');
       showInfoModal('Contact Us - Yono Games Site', `
-        <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games. Because the Listed Games/Apps are not ours. We do not own those games.</p>
-        
-        <p style="margin-top:14px;"><strong style="color:#d50000;">📢 Advertisement/Business Queries</strong><br>If you are a game maker company, operator, or administrator, and you want to promote your application through our website, you can contact us through the contact details given below and discuss promotion and cooperation.</p>
-        
+        <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games. If you encounter any problems, please contact the support option within those games.</p>
+        <p style="margin-top:14px;"><strong style="color:#d50000;">📢 Advertisement/Business Queries</strong><br>If you are a game maker company, operator, or administrator, and you want to promote your application through our website, you can contact us through the contact details given below.</p>
         <table class="contact-table">
           <tr><th>Title</th><th>Link</th></tr>
-          <tr><td><strong>Email</strong></td><td><a href="mailto:yonogamesite@gmail.com" class="contact-email" style="color:#d50000;font-weight:700;text-decoration:none;">yonogamesite@gmail.com</a></td></tr>
-          <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/yonogamestite" target="_blank" class="contact-telegram" style="color:#0088cc;font-weight:700;text-decoration:none;">@yonogamestite</a></td></tr>
+          <tr><td><strong>Email</strong></td><td><a href="mailto:yonogamesite@gmail.com" class="contact-email">yonogamesite@gmail.com</a></td></tr>
+          <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/yonogamestite" target="_blank" class="contact-telegram">@yonogamestite</a></td></tr>
         </table>
-        
-        <div class="premium-toggle-contact">
-          <details>
-            <summary>
-              <span class="toggle-icon">▶</span> 
-              <span style="font-weight:800; color:#3b82f6; font-size:0.95rem;">📌 About Tags Model - Disclaimer</span>
-              <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
-            </summary>
-            <div class="details-content">
-              <p><strong>Yono Games Site</strong> – Your Trusted Source for Yono Games Information.</p>
-              <p>We are an independent platform dedicated to providing accurate and up-to-date information about Yono Games apps, their features, bonuses, and download links. Our goal is to help users discover genuine Yono Games apps without confusion or risk.</p>
-              <p><strong>About This Platform</strong><br>• <strong>Purpose:</strong> To simplify the discovery of authentic Yono Games apps<br>• <strong>Focus:</strong> Indian users seeking reliable gaming app information<br>• <strong>Commitment:</strong> Transparency, accuracy, and user safety</p>
-              <p><strong>Our Promise</strong><br>We do not host or distribute any APK files directly. All download links redirect to official or verified sources. We do not collect any user data. Your privacy and safety are our priority.</p>
-              <div style="margin-top:12px;background:#f0f5ff;padding:10px;border-radius:12px;border-left:4px solid #3b82f6;">
-                <p style="font-size:0.7rem;color:#1e3a5f;font-weight:600;">✅ Verified & Trusted Platform</p>
-                <p style="font-size:0.7rem;color:#333;line-height:1.5;">We are committed to providing only verified and genuine Yono Games app information.</p>
-              </div>
-            </div>
-          </details>
-        </div>
-        
-        <div style="margin-top:12px;background:#e8f5e9;padding:8px 12px;border-radius:10px;text-align:center;border:1px solid #a5d6a7;">
-          <p style="font-size:0.7rem;color:#1e562a;">⚡ We respond within 24 hours</p>
-        </div>
       `);
     });
 
-    // ===== DISCLAIMER - Show All Tags =====
     navDisclaimer.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1323,77 +1266,28 @@
       showInfoModal('Disclaimer - Yono Games Site', `
         <div style="background:linear-gradient(135deg,#fff5e6,#ffe6cc);padding:10px;border-radius:14px;margin-bottom:12px;text-align:center;">
           <h3 style="color:#b45900;font-weight:800;font-size:1.1rem;">Yono Games Site - Disclaimer</h3>
-          <p style="font-size:0.7rem;color:#555;">By using our website, you confirm that you have read and agreed to this disclaimer. If you do not agree, please discontinue use of our website.</p>
+          <p style="font-size:0.7rem;color:#555;">By using our website, you confirm that you have read and agreed to this disclaimer.</p>
         </div>
-
-        <div class="premium-toggle-disclaimer">
-          <details>
-            <summary>
-              <span class="toggle-icon">▶</span> 
-              <span style="font-weight:800; color:#ef4444; font-size:0.95rem;">📌 All Disclaimer Points</span>
-              <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
-            </summary>
-            <div class="details-content">
-              <div style="display:flex; flex-direction:column; gap:4px; font-size:0.75rem; color:#333;">
-                <p><strong style="color:#ef4444;">1. No Ownership:</strong> We are not developers/owners of Yono Games.</p>
-                <p><strong style="color:#ef4444;">2. Play Responsibly:</strong> Gaming can be addictive. Play with control.</p>
-                <p><strong style="color:#ef4444;">3. Financial Risk:</strong> Financial transactions may lead to monetary loss.</p>
-                <p><strong style="color:#ef4444;">4. 18+ Age Restriction:</strong> Strictly for users 18 years and above.</p>
-                <p><strong style="color:#ef4444;">5. No Liability:</strong> We are not liable for any losses or damages.</p>
-                <p><strong style="color:#ef4444;">6. Third-Party Links:</strong> External links are not under our control.</p>
-                <p><strong style="color:#ef4444;">7. Changes:</strong> Disclaimer may be updated anytime.</p>
-                <p><strong style="color:#ef4444;">8. Contact Us:</strong> Reach us via Telegram or Email.</p>
-              </div>
-              <div style="margin-top:10px;background:#fff5f5;padding:8px 12px;border-radius:10px;border-left:4px solid #ef4444;">
-                <p style="font-size:0.7rem;color:#333;">🔞 <strong style="color:#ef4444;">Strictly for users aged 18+</strong></p>
-              </div>
-            </div>
-          </details>
-        </div>
-
         <div class="disclaimer-section" style="border-left-color:#8b5cf6;">
           <h4>1. No Ownership or Association with Yono Games</h4>
-          <p>We are not the developers, owners, or operators of Yono Games. Our website serves as a promoter/affiliate, providing information about Yono Games. We have no control over the game, its developers, or any related policies. All trademarks, copyrights, and intellectual property related to Yono Games belong to their respective owners.</p>
+          <p>We are not the developers, owners, or operators of Yono Games. Our website serves as a promoter/affiliate, providing information about Yono Games.</p>
         </div>
-
         <div class="disclaimer-section" style="border-left-color:#22c55e;">
           <h4>2. Play Responsibly</h4>
-          <p>Gaming can be addictive. Users are advised to play responsibly and maintain control over their gaming activities. We encourage users to take breaks and avoid excessive gameplay that may negatively impact their well-being.</p>
+          <p>Gaming can be addictive. Users are advised to play responsibly and maintain control over their gaming activities.</p>
         </div>
-
         <div class="disclaimer-section" style="border-left-color:#ef4444;">
           <h4>3. Financial Risk Warning</h4>
-          <p>Playing games may involve financial transactions that can lead to monetary loss. We are not responsible for any financial decisions made by users while playing Yono Games. Users acknowledge that they play at their own risk and should exercise caution when making in-game purchases or engaging in any financial transactions related to the game.</p>
+          <p>Playing games may involve financial transactions that can lead to monetary loss. We are not responsible for any financial decisions made by users.</p>
         </div>
-
         <div class="disclaimer-section" style="border-left-color:#f59e0b;">
           <h4>4. 18+ Age Restriction</h4>
-          <p>Our website and the games we promote are strictly intended for users aged 18 and above. If you are under 18, please refrain from using our website and playing the games we feature.</p>
+          <p>Our website and the games we promote are strictly intended for users aged 18 and above.</p>
         </div>
-
         <div class="disclaimer-section" style="border-left-color:#3b82f6;">
           <h4>5. No Liability</h4>
-          <p>We do not accept liability for any losses, damages, or consequences resulting from playing Yono Games. Since we do not own, operate, or control these games, users may not hold us liable for any financial losses, technical issues, or other risks associated with gameplay.</p>
+          <p>We do not accept liability for any losses, damages, or consequences resulting from playing Yono Games.</p>
         </div>
-
-        <div class="disclaimer-section" style="border-left-color:#06b6d4;">
-          <h4>6. Third-Party Links & External Content</h4>
-          <p>Our website may contain links to third-party websites, including the official Yono Games platform. We do not control these external websites and are not responsible for their content, policies, or security practices. Users should review third-party terms and conditions before engaging with them.</p>
-        </div>
-
-        <div class="disclaimer-section" style="border-left-color:#8b5cf6;">
-          <h4>7. Changes to This Disclaimer</h4>
-          <p>We reserve the right to update or modify this disclaimer at any time. Any changes will be posted on this page with an updated date. Continued use of our website implies acceptance of any revisions.</p>
-        </div>
-
-        <div class="disclaimer-section" style="border-left-color:#22c55e;">
-          <h4>8. Contact Us</h4>
-          <p>If you have any questions regarding this disclaimer, please contact us at:</p>
-          <p><strong>Yono Top Games</strong><br>
-          <strong>Telegram:</strong> <a href="https://t.me/yonogamestite" target="_blank" style="color:#0088cc;font-weight:700;text-decoration:none;">@yonogamestite</a><br>
-          <strong>Gmail:</strong> <a href="mailto:yonogamesite@gmail.com" style="color:#d50000;font-weight:700;text-decoration:none;">yonogamesite@gmail.com</a></p>
-        </div>
-
         <div style="margin-top:14px;background:#fff3e0;padding:10px 12px;border-radius:12px;border:2px solid #ff8c00;">
           <p style="font-size:0.75rem;color:#d32f2f;font-weight:600;">⚠️ Disclaimer:</p>
           <p style="font-size:0.7rem;color:#333;line-height:1.5;">yono games site may lead to addictive behavior. Please play responsibly and use your discretion. This website is intended strictly for users who are <strong>18 years of age or older</strong>.</p>
@@ -1407,17 +1301,15 @@
   })();
 </script>
 
-<!-- ===== FOOTER WITH BLACK ROUNDED MARQUEE ===== -->
+<!-- ===== FOOTER ===== -->
 <footer style="background:#0a2e1d;color:#b9ddcb;text-align:center;padding:20px;margin-top:30px;font-size:0.7rem;border-top:2px solid #ffcf8a;">
   
-  <!-- ===== BLACK ROUNDED MARQUEE CONTAINER ===== -->
   <div style="background:#000000;border-radius:60px;padding:12px 16px;margin-bottom:16px;overflow:hidden;border:2px solid #ffcf8a;box-shadow:0 0 30px rgba(255,207,138,0.05);">
     <marquee behavior="scroll" direction="left" scrollamount="4" style="color:#ffffff;font-weight:700;font-size:0.75rem;letter-spacing:0.5px;">
       567 Slots &nbsp;✦&nbsp; Jaiho 91 &nbsp;✦&nbsp; Rummy Ludo &nbsp;✦&nbsp; ABC Rummy &nbsp;✦&nbsp; Rummy 91 &nbsp;✦&nbsp; Love Rummy &nbsp;✦&nbsp; Bingo 101 &nbsp;✦&nbsp; Yono 777 &nbsp;✦&nbsp; Saga Slots &nbsp;✦&nbsp; Spin Crush &nbsp;✦&nbsp; Top Rummy &nbsp;✦&nbsp; New Yono Games &nbsp;✦&nbsp; Hello Rummy &nbsp;✦&nbsp; All Yono Games &nbsp;✦&nbsp; Rummy 365 &nbsp;✦&nbsp; Taurus App &nbsp;✦&nbsp; Teen Patti Gold &nbsp;✦&nbsp; Teen Patti Master &nbsp;✦&nbsp; Yono Rummy &nbsp;✦&nbsp; Slots Winner &nbsp;✦&nbsp; Good Slots &nbsp;✦&nbsp; Diwa Slot &nbsp;✦&nbsp; GoGo Rummy &nbsp;✦&nbsp; Joy Rummy &nbsp;✦&nbsp; Spin Gold &nbsp;✦&nbsp; Yes Spin &nbsp;✦&nbsp; Yono Arcade &nbsp;✦&nbsp; SVIP 777 &nbsp;✦&nbsp; OK Rummy &nbsp;✦&nbsp; Hind 777 &nbsp;✦&nbsp; Rummy Most &nbsp;✦&nbsp; Bet 213 &nbsp;✦&nbsp; Teen Patti &nbsp;✦&nbsp; Boss Rummy &nbsp;✦&nbsp; Diwa VIP &nbsp;✦&nbsp; Diwa 777
     </marquee>
   </div>
   
-  <!-- ===== ABOUT | CONTACT | DISCLAIMER LINKS ===== -->
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin-bottom:8px;">
     <a href="#" style="color:#ffcf8a;text-decoration:none;font-weight:700;font-size:0.6rem;">About</a>
     <span style="color:#6c7a5a;">|</span>
@@ -1426,7 +1318,6 @@
     <a href="#" style="color:#ffcf8a;text-decoration:none;font-weight:700;font-size:0.6rem;">Disclaimer</a>
   </div>
   
-  <!-- ===== COPYRIGHT ===== -->
   <div style="font-size:0.6rem;color:#b9ddcb;">
     © 2026/2030 <strong style="color:#ffcf8a;">yono games site.com</strong> — Play responsibly. 18+ only. | Official APK Downloads
   </div>
