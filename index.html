@@ -163,6 +163,40 @@
     .app-card .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
     .app-card .card-benefits strong { color: #0a2e1d; }
     
+    /* ===== PREMIUM WARNING ===== */
+    .app-card .premium-warning {
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fef2f2, #fff5f5);
+      border: 2px solid #dc2626;
+      border-left: 6px solid #dc2626;
+      box-shadow: 0 2px 8px rgba(220,38,38,0.08);
+      transition: 0.3s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .app-card .premium-warning:hover {
+      box-shadow: 0 4px 14px rgba(220,38,38,0.15);
+    }
+    .app-card .premium-warning .warning-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      color: #dc2626;
+    }
+    .app-card .premium-warning .warning-text {
+      font-size: 0.6rem;
+      color: #333;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    .app-card .premium-warning .warning-text strong {
+      color: #dc2626;
+      font-weight: 700;
+    }
+    
     /* ===== COLOR VARIATIONS ===== */
     .rating-green { color: #22c55e; }
     .rating-pink { color: #ec4899; }
@@ -257,6 +291,41 @@
     .small-download { background: #0a0a0a; font-size: 0.65rem; padding: 6px 0; margin-top: 8px; text-decoration: none; color: white; display: block; width: 100%; text-align: center; border-radius: 60px; font-weight: 700; cursor: pointer; border: none; transition: 0.25s ease; box-shadow: 0 3px 10px rgba(0,0,0,0.20); }
     .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
+    
+    /* ===== DETAIL PAGE WARNING ===== */
+    .detail-warning {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fef2f2, #fff5f5);
+      border: 2px solid #dc2626;
+      border-left: 6px solid #dc2626;
+      box-shadow: 0 2px 10px rgba(220,38,38,0.08);
+      transition: 0.3s;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .detail-warning:hover {
+      box-shadow: 0 4px 16px rgba(220,38,38,0.15);
+    }
+    .detail-warning .warning-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      color: #dc2626;
+      margin-top: 1px;
+    }
+    .detail-warning .warning-text {
+      font-size: 0.7rem;
+      color: #333;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    .detail-warning .warning-text strong {
+      color: #dc2626;
+      font-weight: 700;
+    }
     
     /* ===== MODAL ===== */
     .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
@@ -823,6 +892,12 @@
             <button class="download-btn" data-download-index="${idx}">DOWNLOAD ${app.name}</button>
             <div class="card-spin-desc">${spinDesc}</div>
             <div class="card-benefits"><strong>Extra Benefits:</strong> ${extraBenefits}</div>
+            
+            <!-- ===== PREMIUM WARNING ===== -->
+            <div class="premium-warning">
+              <span class="warning-icon">⚠️</span>
+              <span class="warning-text"><strong>Play responsibly.</strong> This website is for users <strong>18+</strong> only.</span>
+            </div>
           </div>
         `;
       });
@@ -952,6 +1027,12 @@
                   </div>
                 </div>
               </details>
+            </div>
+
+            <!-- ===== DETAIL PAGE WARNING ===== -->
+            <div class="detail-warning">
+              <span class="warning-icon">⚠️</span>
+              <span class="warning-text"><strong>Play responsibly.</strong> This website is intended strictly for users who are <strong>18 years of age or older</strong>.</span>
             </div>
 
           </div>
