@@ -82,7 +82,7 @@
     .telegram-nav-btn:hover { background: #eef2ff; border-color: #b3c8e6; }
     .telegram-nav-btn img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: block; }
     
-    /* ===== APP TAGS SCROLL (Home page top) ===== */
+    /* ===== APP TAGS SCROLL ===== */
     .app-tags-wrapper {
       padding: 8px 12px;
       background: #f8fafc;
@@ -127,19 +127,19 @@
     /* ===== MAIN CONTAINER ===== */
     .container { max-width: 100%; margin: 12px auto; padding: 0 8px; }
     
-    /* ===== HOME PAGE - ALL APPS GRID ===== */
+    /* ===== HOME PAGE ===== */
     .home-title {
       font-size: 1.1rem;
       font-weight: 800;
       color: #1e293b;
-      margin: 8px 0 14px 8px;
+      margin: 8px 0 6px 8px;
       border-left: 4px solid #22c55e;
       padding-left: 12px;
     }
     .home-subtitle {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #6c7a5a;
-      margin: -6px 0 14px 10px;
+      margin: 0 0 12px 10px;
       font-weight: 500;
     }
     .cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 30px; }
@@ -194,34 +194,42 @@
     }
     .download-btn:hover { background: #1a1a1a; transform: scale(0.97); }
     
-    /* ===== OTHER YONO APPS SECTION (Home Page) ===== */
+    /* ===== OTHER YONO APPS - HORIZONTAL SCROLL (Mobile Premium) ===== */
     .other-apps-section {
-      margin-top: 20px;
-      padding: 16px 12px;
+      margin-top: 16px;
+      padding: 14px 10px 16px 10px;
       background: #f8fafc;
-      border-radius: 24px;
+      border-radius: 20px;
       border: 1px solid #e2e8f0;
     }
     .other-apps-title { 
-      font-size: 1rem; 
+      font-size: 0.95rem; 
       font-weight: 800; 
-      margin-bottom: 12px; 
+      margin-bottom: 10px; 
       color: #1e293b; 
       border-left: 4px solid #2ecc71; 
-      padding-left: 12px; 
+      padding-left: 10px; 
     }
-    .other-apps-grid { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 10px; 
-      justify-content: center; 
+    .other-apps-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 10px 2px;
+      scrollbar-width: thin;
+      scrollbar-color: #22c55e transparent;
+      -webkit-overflow-scrolling: touch;
+      flex-wrap: nowrap;
+      scroll-behavior: smooth;
     }
+    .other-apps-scroll::-webkit-scrollbar { height: 3px; }
+    .other-apps-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
+    .other-apps-scroll::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 4px; }
+    
     .other-card { 
+      flex: 0 0 130px;
       background: white; 
       border-radius: 16px; 
       padding: 10px 8px 12px; 
-      width: 100%; 
-      max-width: 150px; 
       transition: 0.2s; 
       border: 1px solid #d4e6d4; 
       text-align: center; 
@@ -232,12 +240,12 @@
       display: flex; align-items: center; justify-content: center; background: #fff5e6; 
     }
     .other-card .app-icon-sm img { width: 100%; height: 100%; object-fit: cover; }
-    .other-card .app-name { font-size: 0.7rem; margin: 4px 0 2px; font-weight: 800; color: #1e562a; }
+    .other-card .app-name { font-size: 0.7rem; margin: 3px 0 2px; font-weight: 800; color: #1e562a; }
     .other-card .withdraw-green { font-size: 0.45rem; font-weight: 700; color: #16a34a; display: block; margin-top: 1px; }
     .other-card .signup-bonus-small { font-size: 0.45rem; font-weight: 700; color: #dc2626; display: block; margin-top: 1px; }
     .small-download { 
       background: #0a0a0a; 
-      font-size: 0.55rem; 
+      font-size: 0.5rem; 
       padding: 4px 0; 
       margin-top: 4px; 
       text-decoration: none; 
@@ -312,15 +320,16 @@
     .five-options .opt-item .opt-app { font-weight: 700; color: #1e562a; }
     .five-options .opt-item .opt-arrow { color: #8b5cf6; font-weight: 700; margin-left: 2px; }
     
+    /* ===== TOGGLE TAGS BUTTON - Only ▶ ===== */
     .toggle-tags-btn {
       display: inline-block;
       background: #000000;
       color: white;
       border: none;
-      padding: 3px 16px;
+      padding: 3px 14px;
       border-radius: 40px;
       font-weight: 700;
-      font-size: 0.65rem;
+      font-size: 0.8rem;
       cursor: pointer;
       transition: 0.2s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -348,6 +357,42 @@
     .tag-title-cash { color: #16a34a; }
     .tag-title-vip { color: #8b5cf6; }
     .tag-title-download { color: #06b6d4; }
+    
+    /* ===== NEW: About - Yono Games Store Tag ===== */
+    .about-store-toggle {
+      border: 2px solid #8b5cf6;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 12px 0 8px 0;
+      background: #f5f0ff;
+      transition: 0.3s;
+    }
+    .about-store-toggle:hover {
+      box-shadow: 0 4px 16px rgba(139,92,246,0.20);
+    }
+    .about-store-toggle summary {
+      font-weight: 700;
+      color: #0a2e1d;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      padding: 2px 0;
+    }
+    .about-store-toggle summary::-webkit-details-marker { display: none; }
+    .about-store-toggle summary .toggle-icon {
+      display: inline-block;
+      transition: transform 0.25s ease;
+      color: #8b5cf6;
+      font-size: 0.8rem;
+    }
+    .about-store-toggle[open] summary .toggle-icon { transform: rotate(90deg); }
+    .about-store-toggle .details-content {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 2px dashed #8b5cf6;
+    }
     
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 8px; font-weight: 500; font-size: 0.55rem; margin-top: 12px; }
     
@@ -475,7 +520,7 @@
     
     .tag-template { display: none; }
     
-    /* ===== BACK TO HOME BUTTON ===== */
+    /* ===== BACK HOME BUTTON ===== */
     .back-home-btn {
       display: inline-block;
       padding: 4px 14px;
@@ -503,16 +548,17 @@
       .top-nav a { font-size: 0.45rem; padding: 2px 5px; }
       .telegram-nav-btn { font-size: 0.4rem; padding: 2px 6px 2px 4px; }
       .telegram-nav-btn img { width: 14px; height: 14px; }
-      .other-card { max-width: 130px; padding: 8px 6px 10px; }
+      .other-card { flex: 0 0 115px; padding: 8px 6px 10px; }
       .other-card .app-icon-sm { width: 36px; height: 36px; }
       .nav-logo .site-title { font-size: 0.5rem; }
       .nav-logo img { width: 24px; height: 24px; }
       .app-tag-item { font-size: 0.45rem; padding: 2px 8px; }
       .home-title { font-size: 0.9rem; }
+      .home-subtitle { font-size: 0.6rem; }
     }
     @media (min-width: 481px) and (max-width: 768px) {
       .card { max-width: 165px; }
-      .other-card { max-width: 140px; }
+      .other-card { flex: 0 0 130px; }
     }
   </style>
 </head>
@@ -605,10 +651,10 @@
     <div class="home-subtitle">▼ Tap DOWNLOAD on any app to see details</div>
     <div id="allAppsGrid" class="cards-grid"></div>
     
-    <!-- ===== OTHER YONO APPS SECTION (Home Page) ===== -->
+    <!-- ===== OTHER YONO APPS - HORIZONTAL SCROLL ===== -->
     <div class="other-apps-section" id="homeOtherApps">
       <div class="other-apps-title">📱 Other Yono Apps</div>
-      <div class="other-apps-grid" id="homeOtherAppsGrid"></div>
+      <div class="other-apps-scroll" id="homeOtherAppsGrid"></div>
     </div>
   </div>
   
@@ -821,7 +867,7 @@
         });
       });
 
-      // Other Yono Apps section
+      // Other Yono Apps - Horizontal Scroll
       const otherGrid = document.getElementById('homeOtherAppsGrid');
       if (otherGrid) {
         let otherHtml = '';
@@ -902,7 +948,7 @@
 
       const tagsHTML = createTagsHTML(selectedApp.name, bonusNum);
 
-      // ===== OTHER APPS =====
+      // ===== OTHER APPS - Horizontal Scroll =====
       const otherApps = appsData.filter((_, idx) => idx !== selectedIndex);
       let otherAppsHtml = '';
       otherApps.forEach((app) => {
@@ -925,6 +971,26 @@
           </div>
         `;
       });
+
+      // ===== About - Yono Games Store Tag =====
+      const aboutStoreHTML = `
+        <div class="about-store-toggle">
+          <details>
+            <summary>
+              <span class="toggle-icon">▶</span>
+              <span style="font-weight:800; color:#8b5cf6; font-size:0.85rem;">📌 About - Yono Games Store</span>
+              <span style="font-size:0.6rem; color:#6b7280;">(Click to expand)</span>
+            </summary>
+            <div class="details-content">
+              <p><strong>Yono Games Site</strong> – Your trusted source for Yono Games information. We provide verified, genuine, and officially released Yono Games apps in one place.</p>
+              <p><strong>Update Version:</strong> We continuously update our platform with the latest app information.</p>
+              <div style="margin-top:8px;background:#f5f0ff;padding:8px 10px;border-radius:10px;border-left:4px solid #8b5cf6;">
+                <p style="font-size:0.65rem;color:#333;">⚠️ <strong style="color:#8b5cf6;">Play responsibly.</strong> This website is for users <strong>18 years or older</strong>.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      `;
 
       const downloadPageHtml = `
         <div class="download-page" id="activeDownloadPage">
@@ -959,13 +1025,16 @@
               <strong>Extra Benefits:</strong> ${extraBenefits}
             </div>
             
-            <div style="margin:12px 0 6px;">
+            <!-- ===== About - Yono Games Store Tag ===== -->
+            ${aboutStoreHTML}
+            
+            <div style="margin:10px 0 4px;">
               <div style="font-weight:700; font-size:0.85rem; margin-bottom:4px; color:#0b1e33; text-align:left;">${selectedApp.name} – Top Offers</div>
               <div class="five-options" id="fiveOptions">
                 ${fiveOptionsHtml}
                 <span class="opt-item" style="background:#22c55e;color:white;border-color:#22c55e;font-weight:700;cursor:default;">▶</span>
               </div>
-              <button class="toggle-tags-btn" id="toggleTagsBtn">📌 View All Tags</button>
+              <button class="toggle-tags-btn" id="toggleTagsBtn">▶</button>
               <div class="tags-wrapper" id="tagsWrapper">
                 <div class="tag-grid" id="tagGridContainer">${tagsHTML}</div>
               </div>
@@ -973,7 +1042,7 @@
           </div>
           
           <div class="other-apps-title">Other Yono Apps</div>
-          <div class="other-apps-grid" id="otherAppsGrid">${otherAppsHtml}</div>
+          <div class="other-apps-scroll" id="otherAppsGrid">${otherAppsHtml}</div>
           <div class="footer-note" style="margin-top:12px;">All apps: ₹100 min withdrawal | Trusted platform | 18+</div>
         </div>
       `;
@@ -984,7 +1053,7 @@
         goToMainGrid();
       });
 
-      // ===== VIEW TAGS TOGGLE =====
+      // ===== TOGGLE TAGS - Now just ▶ arrow =====
       const toggleBtn = document.getElementById('toggleTagsBtn');
       const tagsWrapper = document.getElementById('tagsWrapper');
       let isOpen = false;
@@ -992,10 +1061,10 @@
         isOpen = !isOpen;
         if (isOpen) {
           tagsWrapper.classList.add('open');
-          this.textContent = '📌 Hide Tags';
+          this.textContent = '−';
         } else {
           tagsWrapper.classList.remove('open');
-          this.textContent = '📌 View All Tags';
+          this.textContent = '▶';
         }
       });
 
@@ -1130,7 +1199,7 @@
             </div>
           </details>
         </div>
-        <div class="disclaimer-section"><h4>1. No Ownership or Association</h4><p>We are not the developers, owners, or operators of Yono Games. All trademarks belong to their respective owners.</p></div>
+        <div class="disclaimer-section"><h4>1. No Ownership or Association</h4><p>We are not the developers, owners, or operators of Yono Games.</p></div>
         <div class="disclaimer-section" style="border-left-color:#22c55e;"><h4>2. Play Responsibly</h4><p>Gaming can be addictive. Play responsibly.</p></div>
         <div class="disclaimer-section" style="border-left-color:#ef4444;"><h4>3. Financial Risk Warning</h4><p>Playing games may involve financial transactions leading to monetary loss.</p></div>
         <div class="disclaimer-section" style="border-left-color:#f59e0b;"><h4>4. 18+ Age Restriction</h4><p>Strictly intended for users aged 18 and above.</p></div>
