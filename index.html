@@ -8,7 +8,6 @@
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif; }
     body { background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%); min-height: 100vh; padding-bottom: 30px; }
     
-    /* ===== TOP NAV ===== */
     .top-nav { 
       background: #ffffff; 
       padding: 6px 10px; 
@@ -62,7 +61,6 @@
     .top-nav a:hover .icon-contact { box-shadow: 0 0 12px rgba(59,130,246,0.8); }
     .top-nav a:hover .icon-disclaimer { box-shadow: 0 0 12px rgba(239,68,68,0.8); }
     
-    /* ===== TELEGRAM - MOVING ANIMATION ===== */
     .telegram-nav-btn {
       display: inline-flex;
       align-items: center;
@@ -79,68 +77,28 @@
       cursor: pointer;
       white-space: nowrap;
       margin-left: auto;
-      overflow: hidden;
-      position: relative;
-      animation: telegramMove 1.8s ease-in-out infinite alternate;
     }
-    @keyframes telegramMove {
-      0% { transform: translateX(0px) scale(1); border-color: #e2e8f0; }
-      25% { transform: translateX(3px) scale(1.02); border-color: #0088cc; }
-      75% { transform: translateX(-3px) scale(1.02); border-color: #00b4ff; }
-      100% { transform: translateX(0px) scale(1); border-color: #e2e8f0; }
-    }
-    .telegram-nav-btn:hover { 
-      background: #eef2ff; 
-      border-color: #0088cc;
-      animation-play-state: paused;
-      box-shadow: 0 0 20px rgba(0,136,204,0.15);
-    }
-    .telegram-nav-btn img { 
-      width: 20px; 
-      height: 20px; 
-      border-radius: 50%; 
-      object-fit: cover; 
-      display: block;
-      border: 2px solid #0088cc;
-      animation: telegramImgPulse 2s ease-in-out infinite alternate;
-    }
-    @keyframes telegramImgPulse {
-      0% { box-shadow: 0 0 4px rgba(0,136,204,0.3); }
-      100% { box-shadow: 0 0 16px rgba(0,136,204,0.6); }
-    }
-    .telegram-nav-btn .telegram-text {
-      display: inline-block;
-      background: linear-gradient(90deg, #0088cc, #00b4ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 700;
-      font-size: 0.5rem;
-      letter-spacing: 0.5px;
-      animation: textShimmer 1.8s ease-in-out infinite alternate;
-    }
-    @keyframes textShimmer {
-      0% { opacity: 0.7; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.04); }
-    }
-    .telegram-nav-btn .telegram-icon-round {
-      display: inline-block;
-      width: 22px;
-      height: 22px;
+    .telegram-nav-btn:hover { background: #eef2ff; border-color: #b3c8e6; }
+    /* --- Telegram image animation --- */
+    .telegram-nav-btn img {
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #0088cc, #00b4ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      color: white;
-      font-weight: 800;
-      box-shadow: 0 0 12px rgba(0,136,204,0.3);
-      animation: iconGlow 1.8s ease-in-out infinite alternate;
-      flex-shrink: 0;
+      object-fit: cover;
+      display: block;
+      animation: telegramPulse 2s ease-in-out infinite;
+      transition: transform 0.2s;
     }
-    @keyframes iconGlow {
-      0% { box-shadow: 0 0 8px rgba(0,136,204,0.2); }
-      100% { box-shadow: 0 0 20px rgba(0,136,204,0.5); }
+    .telegram-nav-btn img:hover {
+      animation-play-state: paused;
+      transform: scale(1.15);
+    }
+    @keyframes telegramPulse {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.08) rotate(-2deg); }
+      50% { transform: scale(1.12) rotate(0deg); }
+      75% { transform: scale(1.08) rotate(2deg); }
+      100% { transform: scale(1) rotate(0deg); }
     }
     
     .app-tags-wrapper {
@@ -225,145 +183,79 @@
     .app-card .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
     .app-card .card-benefits strong { color: #0a2e1d; }
     
-    /* ===== PREMIUM WARNING ICON - Small & Colored ===== */
-    .warning-led-toggle .led-icon {
-      font-size: 0.75rem;
-      display: inline-block;
-      color: #f59e0b;
-      text-shadow: 0 0 6px rgba(245,158,11,0.3);
-      animation: ledPulse 1.8s ease-in-out infinite alternate;
-      line-height: 1;
-    }
-    @keyframes ledPulse {
-      0% { text-shadow: 0 0 4px rgba(245,158,11,0.2), 0 0 8px rgba(245,158,11,0.1); transform: scale(0.95); }
-      100% { text-shadow: 0 0 12px rgba(245,158,11,0.6), 0 0 24px rgba(245,158,11,0.3); transform: scale(1.05); }
-    }
-    
+    /* ===== LED WARNING TOGGLE - Premium Green/Cyan ===== */
     .warning-led-toggle {
       margin-top: 12px;
-      padding: 4px 10px;
+      padding: 6px 12px;
       border-radius: 40px;
       background: linear-gradient(135deg, #0a2e1d, #0d5c2e);
       border: 2px solid #22c55e;
-      box-shadow: 0 0 15px rgba(34,197,94,0.25), inset 0 0 15px rgba(34,197,94,0.03);
+      box-shadow: 0 0 15px rgba(34,197,94,0.3), inset 0 0 15px rgba(34,197,94,0.05);
       cursor: pointer;
       transition: 0.3s;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       user-select: none;
     }
     .warning-led-toggle:hover {
-      box-shadow: 0 0 25px rgba(34,197,94,0.4), 0 0 50px rgba(6,182,212,0.15);
+      box-shadow: 0 0 25px rgba(34,197,94,0.5), 0 0 50px rgba(6,182,212,0.2);
       transform: scale(1.02);
       border-color: #06b6d4;
     }
+    .warning-led-toggle .led-icon {
+      font-size: 1rem;
+      display: inline-block;
+      animation: ledPulse 1.8s ease-in-out infinite;
+    }
     .warning-led-toggle .led-text {
-      font-size: 0.55rem;
+      font-size: 0.65rem;
       font-weight: 700;
       color: #e8f5e9;
-      letter-spacing: 0.2px;
-      text-shadow: 0 0 8px rgba(34,197,94,0.2);
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 8px rgba(34,197,94,0.3);
     }
     .warning-led-toggle .led-arrow {
-      font-size: 0.5rem;
+      font-size: 0.6rem;
       color: #86efac;
       transition: transform 0.3s ease;
     }
-    .warning-led-toggle.open .led-arrow { transform: rotate(180deg); }
+    .warning-led-toggle.open .led-arrow {
+      transform: rotate(180deg);
+    }
+    
+    @keyframes ledPulse {
+      0%, 100% { text-shadow: 0 0 5px #22c55e, 0 0 10px #22c55e; }
+      50% { text-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4, 0 0 45px #22c55e; }
+    }
     
     .warning-content {
       display: none;
-      margin-top: 6px;
-      padding: 6px 10px;
-      border-radius: 10px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #fef2f2, #fff5f5);
       border: 2px solid #dc2626;
-      border-left: 4px solid #dc2626;
-      box-shadow: 0 2px 6px rgba(220,38,38,0.06);
+      border-left: 6px solid #dc2626;
+      box-shadow: 0 2px 8px rgba(220,38,38,0.08);
       text-align: left;
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       color: #333;
       line-height: 1.4;
       font-weight: 500;
     }
-    .warning-content.open { display: block; animation: fadeSlideDown 0.3s ease; }
+    .warning-content.open {
+      display: block;
+      animation: fadeSlideDown 0.3s ease;
+    }
     .warning-content strong { color: #dc2626; font-weight: 700; }
-    .warning-content .warning-icon { color: #f59e0b; font-size: 0.7rem; margin-right: 4px; }
+    .warning-content .warning-icon { color: #dc2626; margin-right: 4px; }
     
     @keyframes fadeSlideDown {
-      from { opacity: 0; transform: translateY(-6px); }
+      from { opacity: 0; transform: translateY(-8px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* ===== CUSTOM DOMAIN SECTION ===== */
-    .custom-domain-section {
-      width: 100%;
-      max-width: 1200px;
-      margin: 30px auto 10px;
-      padding: 20px 16px;
-      background: linear-gradient(135deg, #0a2e1d, #1a6e3a);
-      border-radius: 24px;
-      border: 2px solid #ffcf8a;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-    .custom-domain-section .domain-title {
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: #ffcf8a;
-      letter-spacing: 3px;
-      text-shadow: 0 0 20px rgba(255,207,138,0.2);
-    }
-    .custom-domain-section .domain-title .gold {
-      color: #f5a623;
-      text-shadow: 0 0 30px rgba(245,166,35,0.3);
-    }
-    .custom-domain-section .domain-sub {
-      font-size: 0.7rem;
-      color: #86efac;
-      margin-top: 4px;
-      letter-spacing: 1px;
-      opacity: 0.8;
-    }
-    .custom-domain-section .domain-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 12px;
-    }
-    .custom-domain-section .domain-tag {
-      background: rgba(255,207,138,0.12);
-      border: 1px solid rgba(255,207,138,0.2);
-      color: #e8f5e9;
-      padding: 4px 14px;
-      border-radius: 40px;
-      font-size: 0.55rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      transition: 0.3s;
-    }
-    .custom-domain-section .domain-tag:hover {
-      background: rgba(255,207,138,0.2);
-      border-color: #ffcf8a;
-      transform: scale(1.05);
-    }
-    .custom-domain-section .domain-divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ffcf8a, transparent);
-      margin: 14px 0 10px;
-      opacity: 0.3;
-    }
-    .custom-domain-section .domain-footer-text {
-      font-size: 0.6rem;
-      color: #a8d5ba;
-      letter-spacing: 0.5px;
-    }
-    .custom-domain-section .domain-footer-text strong {
-      color: #ffcf8a;
     }
     
     /* ===== COLOR VARIATIONS ===== */
@@ -461,45 +353,46 @@
     .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
     
+    /* ===== DETAIL PAGE WARNING ===== */
     .detail-warning-led {
       margin-top: 14px;
-      padding: 6px 12px;
+      padding: 8px 14px;
       border-radius: 40px;
       background: linear-gradient(135deg, #0a2e1d, #0d5c2e);
       border: 2px solid #22c55e;
-      box-shadow: 0 0 20px rgba(34,197,94,0.2), inset 0 0 20px rgba(34,197,94,0.02);
+      box-shadow: 0 0 20px rgba(34,197,94,0.25), inset 0 0 20px rgba(34,197,94,0.03);
       cursor: pointer;
       transition: 0.3s;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       user-select: none;
     }
     .detail-warning-led:hover {
-      box-shadow: 0 0 30px rgba(34,197,94,0.35), 0 0 60px rgba(6,182,212,0.12);
+      box-shadow: 0 0 30px rgba(34,197,94,0.4), 0 0 60px rgba(6,182,212,0.15);
       transform: scale(1.01);
       border-color: #06b6d4;
     }
-    .detail-warning-led .led-icon { font-size: 0.85rem; color: #f59e0b; animation: ledPulse 1.8s ease-in-out infinite alternate; }
-    .detail-warning-led .led-text { font-size: 0.65rem; font-weight: 700; color: #e8f5e9; letter-spacing: 0.3px; text-shadow: 0 0 8px rgba(34,197,94,0.2); }
-    .detail-warning-led .led-arrow { font-size: 0.6rem; color: #86efac; transition: transform 0.3s ease; }
+    .detail-warning-led .led-icon { font-size: 1.2rem; animation: ledPulse 1.8s ease-in-out infinite; }
+    .detail-warning-led .led-text { font-size: 0.75rem; font-weight: 700; color: #e8f5e9; letter-spacing: 0.3px; text-shadow: 0 0 8px rgba(34,197,94,0.3); }
+    .detail-warning-led .led-arrow { font-size: 0.7rem; color: #86efac; transition: transform 0.3s ease; }
     .detail-warning-led.open .led-arrow { transform: rotate(180deg); }
     
     .detail-warning-content {
       display: none;
-      margin-top: 8px;
-      padding: 8px 12px;
-      border-radius: 12px;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
       background: linear-gradient(135deg, #fef2f2, #fff5f5);
       border: 2px solid #dc2626;
-      border-left: 4px solid #dc2626;
-      box-shadow: 0 2px 8px rgba(220,38,38,0.06);
+      border-left: 6px solid #dc2626;
+      box-shadow: 0 2px 10px rgba(220,38,38,0.08);
       text-align: left;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       color: #333;
-      line-height: 1.4;
+      line-height: 1.5;
       font-weight: 500;
     }
     .detail-warning-content.open { display: block; animation: fadeSlideDown 0.3s ease; }
@@ -619,6 +512,7 @@
     .disclaimer-box { background: #fff7e8; padding: 8px 12px; border-radius: 10px; margin: 8px 0; border: 1px solid #ffcf8a; }
     
     .tag-template { display: none; }
+    
     .premium-toggle-tags {
       border: 2px solid #8b5cf6;
       border-radius: 12px;
@@ -628,7 +522,9 @@
       box-shadow: 0 2px 8px rgba(139,92,246,0.12);
       transition: 0.3s;
     }
-    .premium-toggle-tags:hover { box-shadow: 0 4px 16px rgba(139,92,246,0.20); }
+    .premium-toggle-tags:hover {
+      box-shadow: 0 4px 16px rgba(139,92,246,0.20);
+    }
     .premium-toggle-tags summary {
       font-weight: 700;
       cursor: pointer;
@@ -638,18 +534,44 @@
       list-style: none;
       padding: 4px 0;
     }
-    .premium-toggle-tags summary::-webkit-details-marker { display: none; }
+    .premium-toggle-tags summary::-webkit-details-marker {
+      display: none;
+    }
     .premium-toggle-tags summary .toggle-icon {
       display: inline-block;
       transition: transform 0.25s ease;
       font-size: 0.8rem;
       color: #8b5cf6;
     }
-    .premium-toggle-tags[open] summary .toggle-icon { transform: rotate(90deg); }
+    .premium-toggle-tags[open] summary .toggle-icon {
+      transform: rotate(90deg);
+    }
     .premium-toggle-tags .details-content {
       margin-top: 14px;
       padding-top: 14px;
       border-top: 2px dashed #8b5cf6;
+    }
+    
+    /* ===== Home page domain name at bottom ===== */
+    .home-domain-badge {
+      text-align: center;
+      padding: 14px 10px;
+      margin: 10px auto 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0a2e1d;
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+      border: 1px solid #86efac;
+      border-radius: 60px;
+      display: inline-block;
+      width: auto;
+      padding: 8px 28px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 10px rgba(34,197,94,0.06);
+    }
+    .home-domain-wrapper {
+      text-align: center;
+      margin-top: 8px;
     }
     
     @media (min-width: 480px) {
@@ -658,7 +580,6 @@
       .top-nav a { font-size: 0.65rem; padding: 4px 12px; }
       .telegram-nav-btn { font-size: 0.6rem; padding: 3px 10px 3px 6px; }
       .telegram-nav-btn img { width: 24px; height: 24px; }
-      .custom-domain-section .domain-title { font-size: 2.2rem; }
     }
     @media (min-width: 768px) {
       .app-card { max-width: 280px; }
@@ -679,10 +600,9 @@
     <a href="#" id="navContact"><span class="icon-contact"></span> Contact</a>
     <a href="#" id="navDisclaimer"><span class="icon-disclaimer"></span> Disclaimer</a>
   </div>
-  <!-- ===== TELEGRAM - MOVING ANIMATION ===== -->
   <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
-    <span class="telegram-icon-round">📨</span>
-    <span class="telegram-text">Telegram</span>
+    <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
+    Telegram
   </a>
 </nav>
 
@@ -691,7 +611,7 @@
   <div class="app-tags-scroll" id="appTagsScroll"></div>
 </div>
 
-<!-- ===== MODAL ===== -->
+<!-- ===== MODAL (NO OK BUTTON) ===== -->
 <div id="customInfoModal" class="info-modal">
   <div class="info-modal-content">
     <button class="modal-close-btn" id="modalCloseBtn">✕</button>
@@ -804,30 +724,11 @@
 <!-- ===== MAIN CONTAINER ===== -->
 <div class="container" id="mainContainer">
   <div id="allAppsGrid" class="cards-grid"></div>
-  
-  <!-- ===== CUSTOM DOMAIN SECTION (after all apps) ===== -->
-  <div class="custom-domain-section" id="customDomainSection">
-    <div class="domain-title">🏆 <span class="gold">YONO GAMES SITE</span> 🏆</div>
-    <div class="domain-sub">✦ Your Trusted Source for Genuine Yono Games ✦</div>
-    <div class="domain-divider"></div>
-    <div class="domain-tags">
-      <span class="domain-tag">#YonoGames</span>
-      <span class="domain-tag">#RealCashGames</span>
-      <span class="domain-tag">#Rummy</span>
-      <span class="domain-tag">#Slots</span>
-      <span class="domain-tag">#TeenPatti</span>
-      <span class="domain-tag">#Casino</span>
-      <span class="domain-tag">#Bingo</span>
-      <span class="domain-tag">#UPIWithdrawal</span>
-      <span class="domain-tag">#TrustedPlatform</span>
-      <span class="domain-tag">#18Plus</span>
-    </div>
-    <div class="domain-divider"></div>
-    <div class="domain-footer-text">
-      <strong>YONO GAMES SITE</strong> — Discover, Download & Play the Best Real Money Gaming Apps in India. <br>
-      All apps verified & secure. Play responsibly. 18+ only.
-    </div>
+  <!-- Domain name after all apps -->
+  <div class="home-domain-wrapper">
+    <span class="home-domain-badge">🌐 yono games site.com</span>
   </div>
+  <div id="downloadPageContainer" class="hidden"></div>
 </div>
 
 <script>
@@ -909,6 +810,7 @@
       return benefits[idx];
     }
 
+    // ===== UNIQUE WARNING VALUE (100-150 range) =====
     function getWarningValue(appName) {
       let h = 0;
       for (let i = 0; i < appName.length; i++) {
@@ -918,6 +820,7 @@
       return 100 + (Math.abs(h) % 51);
     }
 
+    // ===== POPULATE APP TAGS =====
     function populateAppTags() {
       const container = document.getElementById('appTagsScroll');
       if (!container) return;
@@ -933,6 +836,7 @@
       });
     }
 
+    // ===== HELPERS =====
     function getCardStats(appName, bonusAmount) {
       let hash = 0;
       for (let i = 0; i < appName.length; i++) {
@@ -945,7 +849,7 @@
       const idx = Math.abs(hash) % ratings.length;
       const bIdx = Math.abs(hash * 2) % sizes.length;
       const vIdx = Math.abs(hash * 3) % votes.length;
-      const bonusNum = 200 + (Math.abs(hash) % 101);
+      const bonusNum = 200 + (Math.abs(hash) % 101); // 200-300 range
       return { rating: ratings[idx], size: sizes[bIdx], votes: votes[vIdx], bonus: bonusNum };
     }
 
@@ -998,6 +902,7 @@
       return benefits[idx];
     }
 
+    // ===== GET COLOR CLASSES BASED ON INDEX =====
     function getColorClasses(idx) {
       const ratingClass = (idx % 2 === 0) ? 'rating-green' : 'rating-pink';
       const sizeClass = (idx % 2 === 0) ? 'size-cyan' : 'size-yellow';
@@ -1006,6 +911,7 @@
       return { ratingClass, sizeClass, votesClass, bonusClass };
     }
 
+    // ===== CLONE TAG TEMPLATE =====
     function createTagsHTML(appName, bonusNum) {
       const template = document.getElementById('tagTemplate');
       const clone = template.cloneNode(true);
@@ -1039,6 +945,7 @@
       return clone.innerHTML;
     }
 
+    // ===== STATE =====
     let currentSelectedIndex = null;
     const customModal = document.getElementById('customInfoModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -1062,6 +969,7 @@
     modalCloseBtn.addEventListener('click', closeModalAndResetHistory);
     window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
 
+    // ===== RENDER MAIN GRID (ALL APPS with LED Warning) =====
     function renderMainGrid() {
       const gridContainer = document.getElementById('allAppsGrid');
       if (!gridContainer) return;
@@ -1093,9 +1001,10 @@
             <div class="card-spin-desc">${spinDesc}</div>
             <div class="card-benefits"><strong>Extra Benefits:</strong> ${extraBenefits}</div>
             
+            <!-- ===== LED WARNING TOGGLE ===== -->
             <div class="warning-led-toggle" data-toggle-idx="${idx}">
               <span class="led-icon">⚠️</span>
-              <span class="led-text">Play responsibly. 18+ only.</span>
+              <span class="led-text">Play responsibly. This website is for users 18+ only.</span>
               <span class="led-arrow">▼</span>
             </div>
             <div class="warning-content" id="warning-content-${idx}">
@@ -1108,7 +1017,7 @@
 
       gridContainer.innerHTML = html;
 
-      // LED Warning Toggle
+      // ===== LED WARNING TOGGLE EVENT LISTENERS =====
       document.querySelectorAll('.warning-led-toggle').forEach(toggle => {
         toggle.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -1121,6 +1030,7 @@
         });
       });
 
+      // Attach event listeners to all download buttons
       document.querySelectorAll('#allAppsGrid .download-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
           const idx = parseInt(this.getAttribute('data-download-index'));
@@ -1130,6 +1040,7 @@
       });
     }
 
+    // ===== NAVIGATION =====
     function navigateToDownloadPage(selectedIndex) {
       currentSelectedIndex = selectedIndex;
       history.pushState({ page: 'download', index: selectedIndex }, '', '#download');
@@ -1244,9 +1155,10 @@
               </details>
             </div>
 
+            <!-- ===== DETAIL PAGE LED WARNING ===== -->
             <div class="detail-warning-led" id="detailWarningToggle">
               <span class="led-icon">⚠️</span>
-              <span class="led-text">Play responsibly. 18+ only.</span>
+              <span class="led-text">Play responsibly. This website is for users 18+ only.</span>
               <span class="led-arrow">▼</span>
             </div>
             <div class="detail-warning-content" id="detailWarningContent">
@@ -1262,6 +1174,7 @@
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
+      // ===== DETAIL PAGE LED WARNING TOGGLE =====
       const detailToggle = document.getElementById('detailWarningToggle');
       const detailContent = document.getElementById('detailWarningContent');
       if (detailToggle && detailContent) {
@@ -1271,6 +1184,7 @@
         });
       }
 
+      // 5+ options click
       document.querySelectorAll('#fiveOptions .opt-item').forEach(el => {
         el.addEventListener('click', function() {
           const idx = this.getAttribute('data-opt-index');
@@ -1316,6 +1230,7 @@
       goToMainGrid();
     }
 
+    // ===== NAV CLICKS =====
     const homeNavLink = document.getElementById('homeNavLink');
     const navAbout = document.getElementById('navAbout');
     const navContact = document.getElementById('navContact');
@@ -1491,9 +1406,19 @@
       `);
     });
 
+    // ===== INIT =====
     populateAppTags();
     renderMainGrid();
   })();
 </script>
+
+<!-- ===== FOOTER WITH DOMAIN NAME ===== -->
+<footer style="background:#0a2e1d;color:#b9ddcb;text-align:center;padding:20px;margin-top:30px;font-size:0.7rem;">
+  <marquee behavior="scroll" direction="left" scrollamount="6">
+    567 Slots | Jaiho 91 | Rummy Ludo | ABC Rummy | Rummy 91 | Love Rummy | Bingo 101 | Yono 777 | Saga Slots | Spin Crush | Top Rummy | New Yono Games | Hello Rummy | All Yono Games | Rummy 365 | Taurus App | Teen Patti Gold | Teen Patti Master | Yono Rummy | Slots Winner | Good Slots | Diwa Slot | GoGo Rummy | Joy Rummy | Spin Gold | Yes Spin | Yono Arcade | SVIP 777 | OK Rummy | Hind 777 | Rummy Most | Bet 213 | Teen Patti | Boss Rummy | Diwa VIP | Diwa 777
+  </marquee>
+  © 2026/2030 <strong>yono games site.com</strong> — Play responsibly. 18+ only. | Official APK Downloads
+</footer>
+
 </body>
 </html>
