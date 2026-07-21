@@ -139,9 +139,9 @@
     
     .card-app-name { font-size: 0.95rem; font-weight: 800; background: linear-gradient(125deg, #1e562a, #2c4c3b); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 6px; }
     
-    /* ===== TAG TITLE - NEW FORMAT ===== */
+    /* ===== TAG TITLE ===== */
     .card-tag-title {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
       color: #0b1e33;
       background: #f0f9f0;
@@ -170,7 +170,9 @@
     .card-info-row .ci-value.bonus-c { color: #dc2626; }
     .card-info-row .ci-value.withdraw-c { color: #06b6d4; }
     
-    /* ===== HIGHLIGHTS / SPECIFICATIONS ===== */
+    .card-desc { font-size: 0.65rem; color: #2d3e2b; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 4px 8px; }
+    
+    /* ===== SPECS ===== */
     .specs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -206,71 +208,19 @@
     }
     .download-btn-main:hover { background: #1a1a1a; transform: scale(0.97); }
     
-    /* ===== DETAIL PAGE ===== */
-    .hidden { display: none !important; }
-    .download-page {
-      background: white;
-      border-radius: 20px;
-      padding: 14px 12px 18px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.10);
-      margin-bottom: 14px;
-      border: 1px solid #ffe1b3;
-      animation: fadeSlideUp 0.35s ease;
-    }
-    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-    
-    .detail-header { text-align: center; border-bottom: 2px dashed #ffcf8a; padding-bottom: 10px; margin-bottom: 12px; }
-    .detail-header .tag-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3px 6px; }
-    .detail-header .app-name-tag { font-weight: 800; font-size: 0.75rem; color: #22c55e; background: #ecfdf5; padding: 2px 10px; border-radius: 40px; border: 1px solid #86efac; }
-    .detail-header .bonus-tag { font-weight: 700; font-size: 0.6rem; color: #dc2626; background: #fee2e2; padding: 2px 8px; border-radius: 40px; border: 1px solid #fca5a5; }
-    .detail-header .withdraw-tag { font-weight: 700; font-size: 0.6rem; color: #2563eb; background: #dbeafe; padding: 2px 8px; border-radius: 40px; border: 1px solid #93c5fd; }
-    
-    .detail-body { text-align: center; }
-    .detail-body .app-icon-lg { width: 72px; height: 72px; margin: 0 auto 8px; border-radius: 18px; overflow: hidden; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; background: #fff5e6; }
-    .detail-body .app-icon-lg img { width: 100%; height: 100%; object-fit: cover; }
-    .detail-body .app-name-lg { font-size: 1.1rem; font-weight: 800; background: linear-gradient(125deg, #1e562a, #2c4c3b); background-clip: text; -webkit-background-clip: text; color: transparent; }
-    
-    .detail-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; background: #fef4e6; padding: 6px 8px; border-radius: 40px; margin: 8px 0; }
-    .detail-stats .ds-item { text-align: center; }
-    .detail-stats .ds-value { font-size: 0.85rem; font-weight: 800; color: #1e562a; }
-    .detail-stats .ds-label { font-size: 0.45rem; font-weight: 600; color: #6c7a5a; letter-spacing: 0.2px; }
-    
-    .detail-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 6px 0; }
-    .detail-info-item { background: #f8fafc; border-radius: 10px; padding: 5px 6px; text-align: center; border: 1px solid #e9edf4; }
-    .detail-info-item .di-label { font-size: 0.45rem; font-weight: 700; color: #6c7a5a; text-transform: uppercase; letter-spacing: 0.2px; }
-    .detail-info-item .di-value { font-size: 0.65rem; font-weight: 800; color: #1e562a; margin-top: 1px; }
-    
-    /* ===== DETAIL - TAG TITLE ===== */
-    .detail-tag-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #0b1e33;
-      background: #f0f9f0;
-      padding: 4px 12px;
-      border-radius: 30px;
-      border: 1px solid #d4e6d4;
-      display: inline-block;
-      margin: 6px 0 8px;
-      line-height: 1.4;
-    }
-    .detail-tag-title .highlight { color: #dc2626; font-weight: 800; }
-    
-    .detail-body .app-desc { font-size: 0.7rem; color: #2d3e2b; line-height: 1.5; margin: 6px 0; text-align: left; padding: 6px 10px; background: #f8faf8; border-radius: 10px; }
-    .detail-body .final-download-btn { background: #0a0a0a; padding: 10px 0; font-size: 0.75rem; font-weight: 800; border-radius: 60px; display: block; width: 100%; margin: 10px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.15); text-decoration: none; color: white; transition: 0.2s; cursor: pointer; text-align: center; border: none; }
-    .detail-body .final-download-btn:hover { transform: scale(0.97); background: #1a1a1a; }
-    
-    /* ===== PREMIUM RED TOGGLE ===== */
-    .premium-toggle-red {
+    /* ===== PREMIUM RED TOGGLE ON CARD ===== */
+    .card-toggle-red {
       border: 2px solid #dc2626;
       border-radius: 10px;
-      padding: 6px 10px;
-      margin: 10px 0 6px;
+      padding: 4px 8px;
+      margin: 8px 0 4px;
       background: #fef2f2;
-      box-shadow: 0 2px 6px rgba(220,38,38,0.08);
+      box-shadow: 0 2px 6px rgba(220,38,38,0.06);
       transition: 0.3s;
+      text-align: left;
     }
-    .premium-toggle-red:hover { box-shadow: 0 4px 12px rgba(220,38,38,0.15); }
-    .premium-toggle-red summary {
+    .card-toggle-red:hover { box-shadow: 0 4px 12px rgba(220,38,38,0.12); }
+    .card-toggle-red summary {
       font-weight: 700;
       cursor: pointer;
       display: flex;
@@ -279,28 +229,31 @@
       list-style: none;
       padding: 2px 0;
       color: #dc2626;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
     }
-    .premium-toggle-red summary::-webkit-details-marker { display: none; }
-    .premium-toggle-red summary .toggle-icon {
+    .card-toggle-red summary::-webkit-details-marker { display: none; }
+    .card-toggle-red summary .toggle-icon {
       display: inline-block;
       transition: transform 0.25s ease;
       color: #dc2626;
-      font-size: 0.6rem;
+      font-size: 0.5rem;
     }
-    .premium-toggle-red[open] summary .toggle-icon { transform: rotate(90deg); }
-    .premium-toggle-red .details-content {
-      margin-top: 8px;
-      padding-top: 8px;
+    .card-toggle-red[open] summary .toggle-icon { transform: rotate(90deg); }
+    .card-toggle-red .details-content {
+      margin-top: 6px;
+      padding-top: 6px;
       border-top: 2px dashed #dc2626;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       color: #334155;
       line-height: 1.5;
       text-align: left;
     }
-    .premium-toggle-red .details-content strong { color: #0b1e33; }
-    .premium-toggle-red .details-content .highlight-red { color: #dc2626; font-weight: 700; }
+    .card-toggle-red .details-content strong { color: #0b1e33; }
+    .card-toggle-red .details-content .highlight-red { color: #dc2626; font-weight: 700; }
+    .card-toggle-red .details-content ul { padding-left: 14px; margin: 4px 0; }
+    .card-toggle-red .details-content ul li { list-style: disc; }
     
+    /* ===== OTHER APPS ===== */
     .other-apps-title { font-size: 0.85rem; font-weight: 800; margin: 14px 0 8px; color: #1e293b; border-left: 4px solid #2ecc71; padding-left: 8px; }
     .other-apps-grid {
       display: flex;
@@ -484,7 +437,7 @@
 
 <script>
   (function() {
-    // ===== 34 APPS =====
+    // ===== 34 APPS with UNIQUE values =====
     const appsData = [
       { name: "Yono Games", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209", img: "https://i.ibb.co/LXqV77rd/yono-games.jpg", category: "Slots" },
       { name: "INR Rummy", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106", img: "https://i.ibb.co/Y7ZRkLFp/inr-rummy.jpg", category: "Rummy" },
@@ -522,31 +475,31 @@
       { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
     ];
 
-    // ===== GENERATE STATS =====
+    // ===== UNIQUE STATS PER APP =====
     function getStats(appName) {
       let h = 0;
       for (let i = 0; i < appName.length; i++) { h = ((h << 5) - h) + appName.charCodeAt(i); h |= 0; }
-      const ratings = ["4.2","4.5","4.7","4.3","4.8","4.6","4.4","4.9"];
-      const sizes = ["48 MB","59 MB","42 MB","67 MB","38 MB","55 MB","72 MB","33 MB"];
-      const votes = ["122K","222K","95K","310K","178K","89K","405K","150K"];
+      const ratings = ["4.2","4.5","4.7","4.3","4.8","4.6","4.4","4.9","4.1","4.0"];
+      const sizes = ["48 MB","52 MB","58 MB","62 MB","65 MB","68 MB","72 MB","75 MB","78 MB","55 MB","60 MB","70 MB"];
+      const votes = ["122K","222K","95K","310K","178K","89K","405K","150K","250K","180K","320K"];
+      const downloads = ["1.2M","2.5M","3.1M","4.8M","5.2M","6.7M","8.1M","9.5M","10.3M","7.2M","3.8M"];
       const idx = Math.abs(h) % ratings.length;
+      const bIdx = Math.abs(h * 2) % sizes.length;
+      const vIdx = Math.abs(h * 3) % votes.length;
+      const dIdx = Math.abs(h * 4) % downloads.length;
       const bonusNum = 200 + (Math.abs(h) % 201);
-      const downloads = ["1.2M","2.5M","3.1M","4.8M","5.2M","6.7M","8.1M","9.5M","10.3M"];
-      const dIdx = Math.abs(h * 2) % downloads.length;
-      const ratingStars = (4.2 + (Math.abs(h * 3) % 8) * 0.1).toFixed(1);
-      const fileSize = ["48 MB","52 MB","58 MB","62 MB","65 MB","68 MB","72 MB","75 MB","78 MB"];
-      const fsIdx = Math.abs(h * 4) % fileSize.length;
+      const ratingStar = (4.0 + (Math.abs(h * 3) % 10) * 0.1).toFixed(1);
       return { 
         rating: ratings[idx], 
-        size: fileSize[fsIdx], 
-        votes: votes[idx], 
+        size: sizes[bIdx], 
+        votes: votes[vIdx], 
         bonus: bonusNum,
         downloads: downloads[dIdx],
-        ratingStars: ratingStars
+        ratingStars: ratingStar
       };
     }
 
-    // ===== GET TAG TITLE PER APP =====
+    // ===== UNIQUE TAG TITLE PER APP =====
     function getTagTitle(app, bonus) {
       const titles = {
         "Yono Games": `Yono Games App APK Download Latest new Version – Play All Games & Get Rewards`,
@@ -587,10 +540,16 @@
       return titles[app.name] || `${app.name} App APK Download Latest Version – Play & Get Rewards`;
     }
 
-    // ===== DESCRIPTIONS =====
+    // ===== UNIQUE DESCRIPTION PER APP =====
     function getDescription(app, bonus) {
       const cat = app.category || 'games';
-      return `Join ${app.name} today and get ₹${bonus} bonus! Play exciting ${cat.toLowerCase()}, unlock jackpots, and earn real cash daily. Fast payouts and 24/7 support.`;
+      const descs = [
+        `Join ${app.name} today and get ₹${bonus} bonus! Play exciting ${cat.toLowerCase()}, unlock jackpots, and earn real cash daily. Fast payouts and 24/7 support.`,
+        `Play ${app.name} and grab ₹${bonus} welcome bonus! Enjoy thrilling ${cat.toLowerCase()}, daily rewards, and fast UPI withdrawals.`,
+        `${app.name} gives you ₹${bonus} free cash on signup! Experience the best ${cat.toLowerCase()}, win real money, and withdraw instantly.`
+      ];
+      const h = Math.abs(bonus) % descs.length;
+      return descs[h];
     }
 
     // ===== POPULATE APP TAGS =====
@@ -631,23 +590,18 @@
           <div class="card" data-idx="${idx}">
             <div class="card-img"><img src="${app.img}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/60?text=App'"></div>
             <div class="card-app-name">${app.name}</div>
-            
-            <!-- TAG TITLE -->
             <div class="card-tag-title">${tagTitle}</div>
-            
             <div class="card-stats">
               <div class="card-stat"><div class="cs-value rating-c">${rating}</div><div class="cs-label">Rating</div></div>
               <div class="card-stat"><div class="cs-value size-c">${fileSize}</div><div class="cs-label">Size</div></div>
               <div class="card-stat"><div class="cs-value votes-c">${votes}</div><div class="cs-label">Votes</div></div>
               <div class="card-stat"><div class="cs-value bonus-c">${bonusVal}</div><div class="cs-label">Bonus</div></div>
             </div>
-            
             <div class="card-info-row">
-              <div class="ci-item"><div class="ci-label">🔗 Sign Up Bonus</div><div class="ci-value bonus-c">₹${bonusVal}</div></div>
-              <div class="ci-item"><div class="ci-label">🔗 Min Withdrawal</div><div class="ci-value withdraw-c">₹${app.withdrawal}</div></div>
+              <div class="ci-item"><div class="ci-label">🎁 Sign Up Bonus</div><div class="ci-value bonus-c">₹${bonusVal}</div></div>
+              <div class="ci-item"><div class="ci-label">🏦 Min Withdrawal</div><div class="ci-value withdraw-c">₹${app.withdrawal}</div></div>
             </div>
-            
-            <!-- HIGHLIGHTS / SPECIFICATIONS -->
+            <div class="card-desc">${desc}</div>
             <div class="specs-grid">
               <div class="spec-item"><span class="spec-label">Game Name</span><span class="spec-value">${app.name}</span></div>
               <div class="spec-item"><span class="spec-label">Game Format</span><span class="spec-value">APK</span></div>
@@ -655,6 +609,40 @@
               <div class="spec-item"><span class="spec-label">Total Downloads</span><span class="spec-value">${downloadVal}</span></div>
               <div class="spec-item"><span class="spec-label">Ratings</span><span class="spec-value rating-s">${ratingStar} ⭐</span></div>
               <div class="spec-item"><span class="spec-label">Welcome Bonus</span><span class="spec-value bonus-s">₹${bonusVal}</span></div>
+            </div>
+            
+            <!-- ===== CARD TOGGLE - RED ===== -->
+            <div class="card-toggle-red">
+              <details>
+                <summary>
+                  <span class="toggle-icon">▶</span>
+                  <span style="font-weight:800; font-size:0.55rem; color:#dc2626;">📌 About - Yono Games Store</span>
+                  <span style="font-size:0.45rem;color:#6b7280;">(Click to expand)</span>
+                </summary>
+                <div class="details-content">
+                  <p><strong style="color:#dc2626;">YONO GAMES SITE</strong> – Your trusted source for genuine Yono Games apps.</p>
+                  <p><strong>What is Yono Games App?</strong><br>Yono Games App is a gaming platform developed and managed by Uono Play. It offers access to multiple popular gaming apps including rummy, spin-based games, card games, and other skill-based titles.</p>
+                  <p><strong>Yono Games Login</strong><br>To log in, open the app, enter your registered mobile number, and verify via OTP. The latest Yono Games login system is faster, safer, and more reliable than previous versions.</p>
+                  <p><strong>Yono Games App Features</strong></p>
+                  <ul>
+                    <li>Fast and smooth gameplay</li>
+                    <li>Easy APK installation</li>
+                    <li>Optimized for both low-end and high-end devices</li>
+                    <li>Regular updates with new versions</li>
+                    <li>Simple registration and login process</li>
+                  </ul>
+                  <p><strong>Is Yono Games APK Safe to Download?</strong><br>Yes, when installed from a trusted and verified source. Always avoid random or unknown websites.</p>
+                  <p><strong>Important Tips</strong></p>
+                  <ul>
+                    <li>Ensure stable internet during login or registration</li>
+                    <li>Use the latest version for best performance</li>
+                    <li>Make sure OTP messages are not blocked</li>
+                  </ul>
+                  <div style="margin-top:6px;background:#fef2f2;padding:4px 8px;border-radius:6px;border-left:3px solid #dc2626;font-size:0.5rem;">
+                    ⚠️ <strong style="color:#dc2626;">Play responsibly.</strong> This website is for users 18+ only.
+                  </div>
+                </div>
+              </details>
             </div>
             
             <button class="download-btn-main" data-idx="${idx}">📲 DOWNLOAD ${app.name}</button>
@@ -722,24 +710,18 @@
           <div class="detail-body">
             <div class="app-icon-lg"><img src="${app.img}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/72?text=App'"></div>
             <div class="app-name-lg">${app.name}</div>
-            
             <div class="detail-tag-title">${tagTitle}</div>
-            
             <div class="detail-stats">
               <div class="ds-item"><div class="ds-value" style="color:#22c55e;">${rating}</div><div class="ds-label">Rating</div></div>
               <div class="ds-item"><div class="ds-value" style="color:#3b82f6;">${fileSize}</div><div class="ds-label">Size</div></div>
               <div class="ds-item"><div class="ds-value" style="color:#06b6d4;">${votes}</div><div class="ds-label">Votes</div></div>
               <div class="ds-item"><div class="ds-value" style="color:#dc2626;">${bonus}</div><div class="ds-label">Bonus</div></div>
             </div>
-            
             <div class="detail-info-grid">
               <div class="detail-info-item"><div class="di-label">🎁 Sign Up Bonus</div><div class="di-value" style="color:#dc2626;">₹${bonus}</div></div>
               <div class="detail-info-item"><div class="di-label">🏦 Min Withdrawal</div><div class="di-value" style="color:#06b6d4;">₹${app.withdrawal}</div></div>
             </div>
-            
             <div class="app-desc">${desc}</div>
-            
-            <!-- HIGHLIGHTS / SPECIFICATIONS -->
             <div class="specs-grid" style="margin:8px 0;">
               <div class="spec-item"><span class="spec-label">Game Name</span><span class="spec-value">${app.name}</span></div>
               <div class="spec-item"><span class="spec-label">Game Format</span><span class="spec-value">APK</span></div>
@@ -748,10 +730,9 @@
               <div class="spec-item"><span class="spec-label">Ratings</span><span class="spec-value rating-s">${ratingStar} ⭐</span></div>
               <div class="spec-item"><span class="spec-label">Welcome Bonus</span><span class="spec-value bonus-s">₹${bonus}</span></div>
             </div>
-            
             <button class="final-download-btn" id="finalDownloadBtn">📲 DOWNLOAD ${app.name}</button>
 
-            <!-- ===== PREMIUM RED TOGGLE ===== -->
+            <!-- PREMIUM RED TOGGLE -->
             <div class="premium-toggle-red">
               <details>
                 <summary>
@@ -760,31 +741,24 @@
                   <span style="font-size:0.5rem;color:#6b7280;">(Click to expand)</span>
                 </summary>
                 <div class="details-content">
-                  <p><strong style="color:#dc2626;">YONO GAMES SITE</strong> – Your trusted source for genuine Yono Games apps. We provide verified, secure download links for all Yono Games releases.</p>
-                  <p><strong>Update Version:</strong> We continuously update our platform with the latest app versions and bonus offers.</p>
-                  
-                  <p style="margin-top:6px;"><strong>Yono Games App Features</strong></p>
-                  <ul style="padding-left:14px;margin:4px 0;">
+                  <p><strong style="color:#dc2626;">YONO GAMES SITE</strong> – Your trusted source for genuine Yono Games apps.</p>
+                  <p><strong>What is Yono Games App?</strong><br>Yono Games App is a gaming platform developed and managed by Uono Play. It offers access to multiple popular gaming apps including rummy, spin-based games, card games, and other skill-based titles.</p>
+                  <p><strong>Yono Games Login</strong><br>To log in, open the app, enter your registered mobile number, and verify via OTP. The latest Yono Games login system is faster, safer, and more reliable than previous versions.</p>
+                  <p><strong>Yono Games App Features</strong></p>
+                  <ul>
                     <li>Fast and smooth gameplay</li>
                     <li>Easy APK installation</li>
                     <li>Optimized for both low-end and high-end devices</li>
                     <li>Regular updates with new versions</li>
                     <li>Simple registration and login process</li>
                   </ul>
-                  
-                  <p style="margin-top:6px;"><strong>Yono Games &amp; Yono Games</strong></p>
-                  <p>Many players search for Yono Games Yono Games or all Yono games Yono Games. Yono Games is commonly listed among Yono-style skill gaming apps and is preferred by users who enjoy competitive and reward-based gameplay.</p>
-                  
-                  <p style="margin-top:6px;"><strong>Is Yono Games APK Safe to Download?</strong></p>
-                  <p>Yes, the Yono Games APK is safe to download when installed from a trusted and verified source. Always avoid random or unknown websites to protect your device from fake or modified APK files.</p>
-                  
-                  <p style="margin-top:6px;"><strong>Important Tips for Yono Games Users</strong></p>
-                  <ul style="padding-left:14px;margin:4px 0;">
+                  <p><strong>Is Yono Games APK Safe to Download?</strong><br>Yes, when installed from a trusted and verified source. Always avoid random or unknown websites.</p>
+                  <p><strong>Important Tips</strong></p>
+                  <ul>
                     <li>Ensure stable internet during login or registration</li>
-                    <li>Use the latest Yono Games version for best performance</li>
-                    <li>Make sure OTP messages are not blocked on your device</li>
+                    <li>Use the latest version for best performance</li>
+                    <li>Make sure OTP messages are not blocked</li>
                   </ul>
-                  
                   <div style="margin-top:8px;background:#fef2f2;padding:6px 8px;border-radius:8px;border-left:4px solid #dc2626;font-size:0.55rem;">
                     ⚠️ <strong style="color:#dc2626;">Play responsibly.</strong> This website is for users 18+ only.
                   </div>
