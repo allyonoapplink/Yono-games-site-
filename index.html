@@ -260,22 +260,22 @@
     .info-close { background: linear-gradient(135deg, #2ecc71, #e91e63); border: none; padding: 10px 16px; border-radius: 60px; font-size: 0.8rem; font-weight: 700; color: white; cursor: pointer; margin-top: 12px; width: 100%; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(46,204,113,0.25); }
     .info-close:hover { transform: scale(0.97); background: linear-gradient(135deg, #27ae60, #c2185b); }
     
-    /* ===== PREMIUM GREEN COLLAPSIBLE TAG FOR ABOUT & CONTACT ===== */
-    .premium-about-toggle {
-      border: 2px solid #22c55e;
+    /* ===== PREMIUM TOGGLES ===== */
+    .premium-toggle-about, .premium-toggle-contact, .premium-toggle-disclaimer {
       border-radius: 12px;
       padding: 10px 14px;
       margin: 16px 0 12px 0;
-      background: #f0fdf4;
-      box-shadow: 0 2px 8px rgba(34,197,94,0.12);
       transition: 0.3s;
     }
-    .premium-about-toggle:hover {
-      box-shadow: 0 4px 16px rgba(34,197,94,0.20);
-    }
-    .premium-about-toggle summary {
+    .premium-toggle-about { border: 2px solid #8b5cf6; background: #f5f0ff; box-shadow: 0 2px 8px rgba(139,92,246,0.12); }
+    .premium-toggle-about:hover { box-shadow: 0 4px 16px rgba(139,92,246,0.20); }
+    .premium-toggle-contact { border: 2px solid #3b82f6; background: #f0f5ff; box-shadow: 0 2px 8px rgba(59,130,246,0.12); }
+    .premium-toggle-contact:hover { box-shadow: 0 4px 16px rgba(59,130,246,0.20); }
+    .premium-toggle-disclaimer { border: 2px solid #ef4444; background: #fff5f5; box-shadow: 0 2px 8px rgba(239,68,68,0.12); }
+    .premium-toggle-disclaimer:hover { box-shadow: 0 4px 16px rgba(239,68,68,0.20); }
+    
+    .premium-toggle-about summary, .premium-toggle-contact summary, .premium-toggle-disclaimer summary {
       font-weight: 700;
-      color: #0a2e1d;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -283,23 +283,31 @@
       list-style: none;
       padding: 4px 0;
     }
-    .premium-about-toggle summary::-webkit-details-marker {
-      display: none;
-    }
-    .premium-about-toggle summary .toggle-icon {
+    .premium-toggle-about summary::-webkit-details-marker,
+    .premium-toggle-contact summary::-webkit-details-marker,
+    .premium-toggle-disclaimer summary::-webkit-details-marker { display: none; }
+    
+    .premium-toggle-about summary .toggle-icon,
+    .premium-toggle-contact summary .toggle-icon,
+    .premium-toggle-disclaimer summary .toggle-icon {
       display: inline-block;
       transition: transform 0.25s ease;
-      color: #16a34a;
       font-size: 0.8rem;
     }
-    .premium-about-toggle[open] summary .toggle-icon {
-      transform: rotate(90deg);
-    }
-    .premium-about-toggle .details-content {
+    .premium-toggle-about[open] summary .toggle-icon { transform: rotate(90deg); color: #8b5cf6; }
+    .premium-toggle-contact[open] summary .toggle-icon { transform: rotate(90deg); color: #3b82f6; }
+    .premium-toggle-disclaimer[open] summary .toggle-icon { transform: rotate(90deg); color: #ef4444; }
+    
+    .premium-toggle-about .details-content,
+    .premium-toggle-contact .details-content,
+    .premium-toggle-disclaimer .details-content {
       margin-top: 14px;
       padding-top: 14px;
-      border-top: 2px dashed #86efac;
+      border-top: 2px dashed;
     }
+    .premium-toggle-about .details-content { border-color: #8b5cf6; }
+    .premium-toggle-contact .details-content { border-color: #3b82f6; }
+    .premium-toggle-disclaimer .details-content { border-color: #ef4444; }
     
     .contact-table { width: 100%; border-collapse: collapse; margin: 12px 0; background: linear-gradient(145deg, #fff9f0, #ffe6cc); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
     .contact-table th, .contact-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #ffcf8a; font-size: 0.8rem; }
@@ -908,7 +916,7 @@
 
     homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
 
-    // ===== ABOUT =====
+    // ===== ABOUT (Purple Toggle) =====
     navAbout.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -924,11 +932,12 @@
         <p><strong>Explore confidently. Download safely. Stay updated with Yono Games.</strong></p>
         <p style="margin-top:12px;">Welcome to <strong>Yono All Games</strong>, your ultimate one-stop solution for a fun and diverse gaming experience. Whether you are a strategy enthusiast, skill-based card game lover, or a casual gamer, our website has something for everyone. Download Yono All Games APK with a few taps and have access to top-rated gaming apps for unlimited fun. Our app offers a hassle-free and secure experience, with all your favorite online games in one place. Enjoy new releases, special features, and secure downloads at your fingertips. Join <strong>Yono All Games</strong> and explore a gaming universe at your fingertips!</p>
         
-        <div class="premium-about-toggle">
+        <!-- PURPLE TOGGLE -->
+        <div class="premium-toggle-about">
           <details>
             <summary>
               <span class="toggle-icon">▶</span> 
-              <span style="font-weight:800; color:#16a34a; font-size:0.95rem;">📌 About - Yono Games Store</span>
+              <span style="font-weight:800; color:#8b5cf6; font-size:0.95rem;">📌 About - Yono Games Store</span>
               <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
             </summary>
             <div class="details-content">
@@ -937,9 +946,8 @@
               <p>We are not just about providing access to apps; we are about fostering a community where knowledge about the latest digital tools is shared and celebrated. Our platform is designed to be user-friendly, ensuring a seamless experience for everyone, from tech-savvy individuals to those just starting their digital journey.</p>
               <p>Our focus on Indian applications sets us apart, reflecting our dedication to cater to the unique needs and preferences of our audience. We believe in the power of local solutions for local challenges, and our platform is a testament to this belief.</p>
               <p>Join us in our endeavor to bring the best of digital innovations to your fingertips. Explore, download, and stay ahead in the ever-evolving world of apps with us <strong>Yono Games Site</strong>.</p>
-              <div style="margin-top:12px;background:#fff3e0;padding:10px;border-radius:12px;border-left:4px solid #ff8c00;">
-                <p style="font-size:0.7rem;color:#d32f2f;font-weight:600;">⚠️ Disclaimer:</p>
-                <p style="font-size:0.7rem;color:#333;line-height:1.5;">Playing Yono Games may lead to addictive behavior. Please play responsibly and use your discretion. This website is intended strictly for users who are <strong>18 years of age or older</strong>.</p>
+              <div style="margin-top:12px;background:#f5f0ff;padding:10px;border-radius:12px;border-left:4px solid #8b5cf6;">
+                <p style="font-size:0.7rem;color:#333;line-height:1.5;">⚠️ <strong style="color:#8b5cf6;">Disclaimer:</strong> Playing Yono Games may lead to addictive behavior. Please play responsibly and use your discretion. This website is intended strictly for users who are <strong>18 years of age or older</strong>.</p>
               </div>
             </div>
           </details>
@@ -951,7 +959,7 @@
       `);
     });
 
-    // ===== CONTACT - Updated with Premium Collapsible Tag =====
+    // ===== CONTACT (Blue Toggle) =====
     navContact.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -967,21 +975,21 @@
           <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/yonogamestite" target="_blank" class="contact-telegram" style="color:#0088cc;font-weight:700;text-decoration:none;">@yonogamestite</a></td></tr>
         </table>
         
-        <!-- ===== PREMIUM GREEN COLLAPSIBLE TAG (About Tags Model) ===== -->
-        <div class="premium-about-toggle">
+        <!-- BLUE TOGGLE -->
+        <div class="premium-toggle-contact">
           <details>
             <summary>
               <span class="toggle-icon">▶</span> 
-              <span style="font-weight:800; color:#16a34a; font-size:0.95rem;">📌 About Tags Model - Disclaimer</span>
+              <span style="font-weight:800; color:#3b82f6; font-size:0.95rem;">📌 About Tags Model - Disclaimer</span>
               <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
             </summary>
             <div class="details-content">
               <p><strong>Yono Games Site</strong> – Your Trusted Source for Yono Games Information.</p>
               <p>We are an independent platform dedicated to providing accurate and up-to-date information about Yono Games apps, their features, bonuses, and download links. Our goal is to help users discover genuine Yono Games apps without confusion or risk.</p>
-              <p><strong>About This Platform</strong><br>• <strong>Founded:</strong> 31 May 2025<br>• <strong>Purpose:</strong> To simplify the discovery of authentic Yono Games apps<br>• <strong>Focus:</strong> Indian users seeking reliable gaming app information<br>• <strong>Commitment:</strong> Transparency, accuracy, and user safety</p>
+              <p><strong>About This Platform</strong><br>• <strong>Purpose:</strong> To simplify the discovery of authentic Yono Games apps<br>• <strong>Focus:</strong> Indian users seeking reliable gaming app information<br>• <strong>Commitment:</strong> Transparency, accuracy, and user safety</p>
               <p><strong>Our Promise</strong><br>We do not host or distribute any APK files directly. All download links redirect to official or verified sources. We do not collect any user data. Your privacy and safety are our priority.</p>
-              <div style="margin-top:12px;background:#f0fdf4;padding:10px;border-radius:12px;border-left:4px solid #22c55e;">
-                <p style="font-size:0.7rem;color:#1e562a;font-weight:600;">✅ Verified & Trusted Platform</p>
+              <div style="margin-top:12px;background:#f0f5ff;padding:10px;border-radius:12px;border-left:4px solid #3b82f6;">
+                <p style="font-size:0.7rem;color:#1e3a5f;font-weight:600;">✅ Verified & Trusted Platform</p>
                 <p style="font-size:0.7rem;color:#333;line-height:1.5;">We are committed to providing only verified and genuine Yono Games app information.</p>
               </div>
             </div>
@@ -994,7 +1002,7 @@
       `);
     });
 
-    // ===== DISCLAIMER =====
+    // ===== DISCLAIMER (Red Toggle with all points in one line) =====
     navDisclaimer.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
@@ -1003,6 +1011,32 @@
         <div style="background:linear-gradient(135deg,#fff5e6,#ffe6cc);padding:10px;border-radius:14px;margin-bottom:12px;text-align:center;">
           <h3 style="color:#b45900;font-weight:800;font-size:1.1rem;">Yono Games Site - Disclaimer</h3>
           <p style="font-size:0.7rem;color:#555;">By using our website, you confirm that you have read and agreed to this disclaimer. If you do not agree, please discontinue use of our website.</p>
+        </div>
+
+        <!-- RED TOGGLE - All points in one line -->
+        <div class="premium-toggle-disclaimer">
+          <details>
+            <summary>
+              <span class="toggle-icon">▶</span> 
+              <span style="font-weight:800; color:#ef4444; font-size:0.95rem;">📌 All Disclaimer Points</span>
+              <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
+            </summary>
+            <div class="details-content">
+              <div style="display:flex; flex-direction:column; gap:4px; font-size:0.75rem; color:#333;">
+                <p><strong style="color:#ef4444;">1. No Ownership:</strong> We are not developers/owners of Yono Games.</p>
+                <p><strong style="color:#ef4444;">2. Play Responsibly:</strong> Gaming can be addictive. Play with control.</p>
+                <p><strong style="color:#ef4444;">3. Financial Risk:</strong> Financial transactions may lead to monetary loss.</p>
+                <p><strong style="color:#ef4444;">4. 18+ Age Restriction:</strong> Strictly for users 18 years and above.</p>
+                <p><strong style="color:#ef4444;">5. No Liability:</strong> We are not liable for any losses or damages.</p>
+                <p><strong style="color:#ef4444;">6. Third-Party Links:</strong> External links are not under our control.</p>
+                <p><strong style="color:#ef4444;">7. Changes:</strong> Disclaimer may be updated anytime.</p>
+                <p><strong style="color:#ef4444;">8. Contact Us:</strong> Reach us via Telegram or Email.</p>
+              </div>
+              <div style="margin-top:10px;background:#fff5f5;padding:8px 12px;border-radius:10px;border-left:4px solid #ef4444;">
+                <p style="font-size:0.7rem;color:#333;">🔞 <strong style="color:#ef4444;">Strictly for users aged 18+</strong></p>
+              </div>
+            </div>
+          </details>
         </div>
 
         <div class="disclaimer-section" style="border-left-color:#8b5cf6;">
