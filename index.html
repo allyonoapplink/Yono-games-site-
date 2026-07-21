@@ -5,199 +5,505 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Yono Games – Download APK | ₹313 Bonus</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif; }
-    body { background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%); min-height: 100vh; padding-bottom: 30px; }
-    
-    /* TOP NAV */
-    .top-nav { 
-      background: #ffffff; 
-      padding: 6px 10px; 
-      display: flex; 
-      justify-content: flex-start; 
-      align-items: center; 
-      flex-wrap: wrap; 
-      gap: 4px 8px;
-      border-bottom: 2px solid #e2e8f0; 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
     }
-    .nav-logo { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 2px solid #22c55e; }
-    .nav-logo .site-title { font-weight: 800; font-size: 0.7rem; color: #22c55e; letter-spacing: 0.3px; white-space: nowrap; }
-    
-    .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 6px; }
-    .top-nav a { 
-      color: #0a0a0a; 
-      text-decoration: none; 
-      font-weight: 700; 
-      font-size: 0.55rem; 
-      padding: 3px 8px; 
-      border-radius: 40px; 
-      cursor: pointer; 
-      background: transparent; 
-      white-space: nowrap; 
-      transition: 0.2s; 
+
+    body {
+      background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      padding-top: 10px;
+    }
+
+    /* ===== TOP NAV ===== */
+    .top-nav {
+      background: #ffffff;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px 8px;
+      border-bottom: 2px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      width: 100%;
+      max-width: 420px;
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #22c55e;
+    }
+    .nav-logo .site-title {
+      font-weight: 800;
+      font-size: 0.65rem;
+      color: #22c55e;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2px 4px;
+    }
+    .top-nav a {
+      color: #0a0a0a;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.5rem;
+      padding: 3px 8px;
+      border-radius: 40px;
+      cursor: pointer;
+      background: transparent;
+      white-space: nowrap;
+      transition: 0.2s;
       letter-spacing: 0.2px;
       border: 1px solid transparent;
       display: inline-flex;
       align-items: center;
       gap: 3px;
     }
-    .top-nav a:hover { background: #f1f5f9; border-color: #d0d9e8; }
-    .top-nav a.active { background: #eef2ff; color: #1e293b; border-color: #b3c8e6; }
-    
-    .icon-about, .icon-contact, .icon-disclaimer {
+    .top-nav a:hover {
+      background: #f1f5f9;
+      border-color: #d0d9e8;
+    }
+    .top-nav a.active {
+      background: #eef2ff;
+      color: #1e293b;
+      border-color: #b3c8e6;
+    }
+
+    .icon-about,
+    .icon-contact,
+    .icon-disclaimer {
       display: inline-block;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       flex-shrink: 0;
       transition: 0.2s;
     }
-    .icon-about { background: #8b5cf6; box-shadow: 0 0 6px rgba(139,92,246,0.5); }
-    .icon-contact { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.5); }
-    .icon-disclaimer { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
-    .top-nav a:hover .icon-about { box-shadow: 0 0 12px rgba(139,92,246,0.8); }
-    .top-nav a:hover .icon-contact { box-shadow: 0 0 12px rgba(59,130,246,0.8); }
-    .top-nav a:hover .icon-disclaimer { box-shadow: 0 0 12px rgba(239,68,68,0.8); }
-    
-    .nav-spacer { flex: 1; }
-    
+    .icon-about {
+      background: #8b5cf6;
+      box-shadow: 0 0 6px rgba(139, 92, 246, 0.5);
+    }
+    .icon-contact {
+      background: #3b82f6;
+      box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+    }
+    .icon-disclaimer {
+      background: #ef4444;
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+    }
+
     .telegram-nav-btn {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       background: transparent;
       border: 1px solid #e2e8f0;
-      padding: 2px 8px 2px 4px;
+      padding: 2px 6px 2px 4px;
       border-radius: 40px;
       color: #0a0a0a;
       font-weight: 600;
-      font-size: 0.5rem;
+      font-size: 0.45rem;
       text-decoration: none;
       transition: 0.2s;
       cursor: pointer;
       white-space: nowrap;
-      margin-left: auto;
     }
-    .telegram-nav-btn:hover { background: #eef2ff; border-color: #b3c8e6; }
-    .telegram-nav-btn img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: block; }
-    
-    /* APP TAGS SCROLL (top) */
-    .app-tags-wrapper {
-      padding: 8px 12px;
-      background: #f8fafc;
-      border-bottom: 1px solid #e2e8f0;
+    .telegram-nav-btn:hover {
+      background: #eef2ff;
+      border-color: #b3c8e6;
     }
-    .app-tags-scroll {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding: 4px 0 8px 0;
-      scrollbar-width: thin;
-      scrollbar-color: #22c55e transparent;
-      -webkit-overflow-scrolling: touch;
-      flex-wrap: nowrap;
-      scroll-behavior: smooth;
+    .telegram-nav-btn img {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
     }
-    .app-tags-scroll::-webkit-scrollbar { height: 3px; }
-    .app-tags-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 4px; }
-    .app-tags-scroll::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 4px; }
-    .app-tag-item {
-      flex: 0 0 auto;
-      background: linear-gradient(135deg, #0a2e1d, #1a6e3a);
-      border: 1px solid #ffcf8a;
-      color: #e8f5e9;
-      padding: 4px 14px;
-      border-radius: 40px;
-      font-size: 0.6rem;
-      font-weight: 700;
-      white-space: nowrap;
-      letter-spacing: 0.3px;
-      cursor: pointer;
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ===== HOME PAGE CARD ===== */
+    .home-card {
+      background: white;
+      border-radius: 28px;
+      padding: 24px 20px 26px;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+      border: 1px solid #eef2f8;
+      text-align: center;
       transition: 0.3s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-    .app-tag-item:hover {
-      background: linear-gradient(135deg, #ffcf8a, #f5a623);
-      color: #0a2e1d;
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(255,207,138,0.3);
+    .home-card:hover {
+      transform: translateY(-3px);
+      border-color: #ffcf8a;
     }
-    
-    .container { max-width: 100%; margin: 12px auto; padding: 0 8px; }
-    .cards-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
-    .card { background: white; border-radius: 24px; padding: 14px 12px 16px; width: 100%; max-width: 400px; margin: 0 auto; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #eef2f8; text-align: center; }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-color: #ffcf8a; }
-    .card-app-name { font-size: 1.1rem; font-weight: 800; background: linear-gradient(125deg, #1e562a, #2c4c3b); background-clip: text; -webkit-background-clip: text; color: transparent; margin-bottom: 8px; letter-spacing: -0.2px; }
-    .card-img { width: 64px; height: 64px; margin: 0 auto 10px; background: linear-gradient(145deg, #fff5e6, #ffe6cc); border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; }
-    
-    /* Stats with colors */
-    .card-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; background: #fef4e6; padding: 8px 8px; border-radius: 40px; margin: 8px 0 6px; }
-    .card-stat { text-align: center; min-width: 44px; }
-    .card-stat-value { font-size: 0.8rem; font-weight: 800; }
-    .card-stat-value.rating-color { color: #22c55e; }
-    .card-stat-value.size-color { color: #3b82f6; }
-    .card-stat-value.votes-color { color: #06b6d4; }
-    .card-stat-value.bonus-color { color: #dc2626; }
-    .card-stat-label { font-size: 0.45rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.2px; }
-    .signup-bonus { color: #dc2626; font-weight: 800; font-size: 0.75rem; margin-top: 4px; }
-    .withdrawal-note { font-size: 0.55rem; font-weight: 700; color: #06b6d4; background: #ecfdf5; display: inline-block; padding: 2px 12px; border-radius: 40px; margin-top: 3px; border: 1px solid #a5f3fc; }
-    .download-btn { display: block; width: 100%; text-align: center; margin-top: 12px; padding: 10px 0; background: #0a0a0a; color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.75rem; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.20); cursor: pointer; border: none; letter-spacing: 0.3px; }
-    .download-btn:hover { background: #1a1a1a; transform: scale(0.97); box-shadow: 0 6px 16px rgba(0,0,0,0.30); }
-    
-    /* Card description & benefits */
-    .card-spin-desc { font-size: 0.7rem; color: #2d3e2b; line-height: 1.5; margin: 6px 0 4px; text-align: left; padding: 0 2px; }
-    .card-spin-desc strong { color: #1e562a; }
-    .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
-    .card-benefits strong { color: #0a2e1d; }
-    
-    /* DOWNLOAD PAGE */
-    .download-page { background: white; border-radius: 28px; padding: 18px 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); margin-bottom: 20px; border: 1px solid #ffe1b3; animation: fadeSlideUp 0.4s ease; }
-    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    
-    .download-header { text-align: center; border-bottom: 2px dashed #ffcf8a; padding-bottom: 14px; margin-bottom: 18px; }
-    .download-header .tag-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 10px; margin-top: 4px; }
-    .download-header .app-name-tag { font-weight: 800; font-size: 0.85rem; color: #22c55e; display: inline-block; background: #ecfdf5; padding: 3px 14px; border-radius: 40px; border: 1px solid #86efac; }
-    .download-header .bonus-tag { font-weight: 700; font-size: 0.7rem; color: #dc2626; display: inline-block; background: #fee2e2; padding: 3px 12px; border-radius: 40px; border: 1px solid #fca5a5; }
-    .download-header .withdraw-tag { font-weight: 700; font-size: 0.7rem; color: #2563eb; display: inline-block; background: #dbeafe; padding: 3px 12px; border-radius: 40px; border: 1px solid #93c5fd; }
-    
-    .app-highlight { background: #fff7e8; padding: 18px 14px; border-radius: 28px; margin: 12px 0; text-align: center; }
-    .stats-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; background: #fef4e6; padding: 10px 12px; border-radius: 40px; margin: 14px auto; max-width: 100%; }
-    .stat-item { text-align: center; min-width: 54px; }
-    .stat-value { font-size: 1rem; font-weight: 800; }
-    .stat-value.rating-color { color: #22c55e; }
-    .stat-value.size-color { color: #3b82f6; }
-    .stat-value.votes-color { color: #06b6d4; }
-    .stat-value.bonus-color { color: #dc2626; }
-    .stat-label { font-size: 0.55rem; font-weight: 600; color: #6c7a5a; letter-spacing: 0.3px; }
-    .final-download-btn { background: #0a0a0a; padding: 12px 16px; font-size: 0.85rem; font-weight: 800; border-radius: 60px; display: block; width: 100%; margin: 14px 0 12px 0; box-shadow: 0 6px 18px rgba(0,0,0,0.25); text-decoration: none; color: white; transition: 0.25s ease; letter-spacing: 0.4px; cursor: pointer; text-align: center; border: none; }
-    .final-download-btn:hover { transform: scale(0.97); background: #1a1a1a; }
-    .app-description { background: white; padding: 14px 16px; border-radius: 24px; text-align: left; margin: 14px 0; font-size: 0.8rem; line-height: 1.5; color: #2d3e2b; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    
-    /* TAGS */
-    .tag-section { margin: 14px 0; }
-    .tag-grid { display: flex; flex-direction: column; gap: 12px; }
-    .tag-box { background: #f8fafc; border-radius: 16px; padding: 14px 16px; border-left: 4px solid #22c55e; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 1px solid #e9edf4; border-right: 1px solid #e9edf4; border-bottom: 1px solid #e9edf4; }
-    .tag-box .tag-title { font-weight: 700; font-size: 0.9rem; color: #0b1e33; margin-bottom: 4px; }
-    .tag-box .tag-content { font-size: 0.75rem; color: #334155; line-height: 1.6; }
-    .tag-box .tag-bonus { color: #dc2626; font-weight: 700; font-size: 0.85rem; }
-    .tag-divider { height: 1px; background: linear-gradient(to right, transparent, #d0d9e8, transparent); margin: 0 10px; }
-    
+
+    .home-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 12px;
+      background: linear-gradient(145deg, #fff5e6, #ffe6cc);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+    .home-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .home-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, #1e562a, #2c4c3b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 2px;
+    }
+    .home-sub {
+      font-size: 0.7rem;
+      color: #6c7a5a;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .home-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 14px;
+      background: #fef4e6;
+      padding: 10px 12px;
+      border-radius: 40px;
+      margin: 10px 0 12px;
+    }
+    .home-stat {
+      text-align: center;
+      min-width: 48px;
+    }
+    .home-stat-value {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #1e562a;
+    }
+    .home-stat-label {
+      font-size: 0.45rem;
+      font-weight: 700;
+      color: #6c7a5a;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .home-info-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      background: #f0f9f0;
+      padding: 10px 12px;
+      border-radius: 40px;
+      margin: 10px 0 14px;
+      border: 1px solid #d4e6d4;
+    }
+    .home-info-item .label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: #6c7a5a;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .home-info-item .value {
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+    .home-info-item .value.green {
+      color: #27ae60;
+    }
+    .home-info-item .value.red {
+      color: #d50000;
+    }
+
+    .home-download-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 0;
+      background: linear-gradient(135deg, #ff4081, #27ae60);
+      color: white;
+      text-decoration: none;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: 0.25s ease;
+      box-shadow: 0 6px 20px rgba(255, 64, 129, 0.3);
+      cursor: pointer;
+      border: none;
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+    }
+    .home-download-btn:hover {
+      transform: scale(0.97);
+      background: linear-gradient(135deg, #e91e63, #1e8449);
+      box-shadow: 0 8px 26px rgba(233, 30, 99, 0.35);
+    }
+
+    .home-footer {
+      text-align: center;
+      font-size: 0.55rem;
+      color: #6c7a5a;
+      margin-top: 14px;
+      padding: 8px;
+      background: #ecf9f0;
+      border-radius: 30px;
+    }
+    .home-footer a {
+      color: #1e562a;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ===== DOWNLOAD PAGE ===== */
+    .download-page {
+      background: white;
+      border-radius: 28px;
+      padding: 18px 14px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      margin-bottom: 20px;
+      border: 1px solid #ffe1b3;
+      animation: fadeSlideUp 0.4s ease;
+    }
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .download-header {
+      text-align: center;
+      border-bottom: 2px dashed #ffcf8a;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .download-header .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px 10px;
+      margin-top: 4px;
+    }
+    .download-header .app-name-tag {
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: #22c55e;
+      display: inline-block;
+      background: #ecfdf5;
+      padding: 3px 14px;
+      border-radius: 40px;
+      border: 1px solid #86efac;
+    }
+    .download-header .bonus-tag {
+      font-weight: 700;
+      font-size: 0.65rem;
+      color: #dc2626;
+      display: inline-block;
+      background: #fee2e2;
+      padding: 3px 12px;
+      border-radius: 40px;
+      border: 1px solid #fca5a5;
+    }
+    .download-header .withdraw-tag {
+      font-weight: 700;
+      font-size: 0.65rem;
+      color: #2563eb;
+      display: inline-block;
+      background: #dbeafe;
+      padding: 3px 12px;
+      border-radius: 40px;
+      border: 1px solid #93c5fd;
+    }
+
+    .app-highlight {
+      background: #fff7e8;
+      padding: 18px 14px;
+      border-radius: 28px;
+      margin: 12px 0;
+      text-align: center;
+    }
+
+    .app-icon-lg {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 10px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff5e6;
+    }
+    .app-icon-lg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .app-name-lg {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, #1e562a, #2c4c3b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .stats-row-detail {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      background: #fef4e6;
+      padding: 10px 12px;
+      border-radius: 40px;
+      margin: 14px auto;
+      max-width: 100%;
+    }
+    .stat-item-detail {
+      text-align: center;
+      min-width: 50px;
+    }
+    .stat-value-detail {
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+    .stat-value-detail.green {
+      color: #22c55e;
+    }
+    .stat-value-detail.blue {
+      color: #3b82f6;
+    }
+    .stat-value-detail.cyan {
+      color: #06b6d4;
+    }
+    .stat-value-detail.red {
+      color: #dc2626;
+    }
+    .stat-label-detail {
+      font-size: 0.5rem;
+      font-weight: 600;
+      color: #6c7a5a;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .final-download-btn {
+      background: #0a0a0a;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border-radius: 60px;
+      display: block;
+      width: 100%;
+      margin: 14px 0 12px 0;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      text-decoration: none;
+      color: white;
+      transition: 0.25s ease;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      text-align: center;
+      border: none;
+    }
+    .final-download-btn:hover {
+      transform: scale(0.97);
+      background: #1a1a1a;
+    }
+
+    .app-description-box {
+      background: white;
+      padding: 14px 16px;
+      border-radius: 24px;
+      text-align: left;
+      margin: 14px 0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #2d3e2b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .app-description-box strong {
+      color: #1e562a;
+    }
+
+    .tag-section {
+      margin: 14px 0;
+    }
+    .tag-section-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: #0b1e33;
+    }
+
     .five-options {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       justify-content: center;
       margin: 10px 0 6px;
     }
     .five-options .opt-item {
       background: #f1f5f9;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 40px;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 600;
       color: #0b1e33;
       border: 1px solid #d0d9e8;
@@ -211,21 +517,33 @@
       border-color: #0a2e1d;
       transform: scale(1.05);
     }
-    .five-options .opt-item .opt-bonus { color: #dc2626; font-weight: 700; }
-    .five-options .opt-item .opt-app { font-weight: 700; color: #1e562a; }
-    
-    /* Collapsible tags */
+    .five-options .opt-item .opt-bonus {
+      color: #dc2626;
+      font-weight: 700;
+    }
+    .five-options .opt-item .opt-app {
+      font-weight: 700;
+      color: #1e562a;
+    }
+    .five-options .opt-more {
+      background: #22c55e;
+      color: white;
+      border-color: #22c55e;
+      font-weight: 700;
+    }
+
+    /* ===== PREMIUM TOGGLE ===== */
     .premium-toggle-tags {
       border: 2px solid #8b5cf6;
       border-radius: 12px;
       padding: 10px 14px;
       margin: 12px 0 8px 0;
       background: #f5f0ff;
-      box-shadow: 0 2px 8px rgba(139,92,246,0.12);
+      box-shadow: 0 2px 8px rgba(139, 92, 246, 0.12);
       transition: 0.3s;
     }
     .premium-toggle-tags:hover {
-      box-shadow: 0 4px 16px rgba(139,92,246,0.20);
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.20);
     }
     .premium-toggle-tags summary {
       font-weight: 700;
@@ -253,39 +571,189 @@
       padding-top: 14px;
       border-top: 2px dashed #8b5cf6;
     }
-    
-    /* Other Apps section (removed) */
-    .other-apps-title { display: none; }
-    .other-apps-grid { display: none; }
-    
-    /* MODAL */
-    .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
-    .info-modal-content { 
-      background: white; 
-      max-width: 400px; 
-      width: 92%; 
-      border-radius: 28px; 
-      padding: 20px 16px; 
-      text-align: left; 
-      animation: fadeInUp 0.3s ease; 
-      box-shadow: 0 30px 40px rgba(0,0,0,0.3); 
-      border: 1px solid #ffcf8a; 
-      max-height: 80vh; 
-      overflow-y: auto; 
+
+    .tag-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .tag-box {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 14px 16px;
+      border-left: 4px solid #22c55e;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border-top: 1px solid #e9edf4;
+      border-right: 1px solid #e9edf4;
+      border-bottom: 1px solid #e9edf4;
+    }
+    .tag-box .tag-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #0b1e33;
+      margin-bottom: 4px;
+    }
+    .tag-box .tag-content {
+      font-size: 0.72rem;
+      color: #334155;
+      line-height: 1.6;
+    }
+    .tag-box .tag-bonus {
+      color: #dc2626;
+      font-weight: 700;
+    }
+    .tag-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d0d9e8, transparent);
+      margin: 0 10px;
+    }
+
+    /* ===== OTHER APPS ===== */
+    .other-apps-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 24px 0 12px;
+      color: #1e293b;
+      border-left: 4px solid #2ecc71;
+      padding-left: 12px;
+    }
+    .other-apps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+      background: #ecf9f0;
+      padding: 12px 10px;
+      border-radius: 28px;
+    }
+    .other-card {
+      background: #fefcf5;
+      border-radius: 24px;
+      padding: 10px 8px;
+      width: 150px;
+      transition: 0.2s;
+      border: 1px solid #a8d5ba;
+      text-align: center;
+    }
+    .other-card .app-name {
+      font-size: 0.75rem;
+      margin: 4px 0 3px;
+      font-weight: 800;
+      color: #1e562a;
+    }
+    .other-card .withdraw-green {
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: #16a34a;
+      display: block;
+      margin-top: 2px;
+    }
+    .other-card .signup-bonus-small {
+      font-size: 0.5rem;
+      font-weight: 700;
+      color: #dc2626;
+      display: block;
+      margin-top: 1px;
+    }
+    .other-card .other-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 4px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff5e6;
+    }
+    .other-card .other-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .small-download {
+      background: #0a0a0a;
+      font-size: 0.6rem;
+      padding: 5px 0;
+      margin-top: 6px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-radius: 60px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: 0.25s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.20);
+    }
+    .small-download:hover {
+      background: #1a1a1a;
+      transform: scale(0.97);
+    }
+
+    .footer-note {
+      text-align: center;
+      background: #ecf9f0;
+      border-radius: 40px;
+      padding: 10px;
+      font-weight: 500;
+      font-size: 0.55rem;
+      margin-top: 14px;
+    }
+
+    /* ===== MODAL ===== */
+    .info-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 300;
+      justify-content: center;
+      align-items: center;
+    }
+    .info-modal-content {
+      background: white;
+      max-width: 400px;
+      width: 92%;
+      border-radius: 28px;
+      padding: 20px 16px;
+      text-align: left;
+      animation: fadeInUp 0.3s ease;
+      box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid #ffcf8a;
+      max-height: 80vh;
+      overflow-y: auto;
       position: relative;
     }
-    .info-modal-content h4 { 
-      font-size: 1.2rem; 
-      margin-bottom: 12px; 
-      color: #1e562a; 
-      border-left: 4px solid #ff8c00; 
-      padding-left: 12px; 
+    .info-modal-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #1e562a;
+      border-left: 4px solid #ff8c00;
+      padding-left: 12px;
       padding-right: 30px;
     }
-    .info-modal-content p { font-size: 0.8rem; line-height: 1.5; margin: 10px 0; color: #2d3e2b; }
-    .info-modal-content ul { margin-left: 16px; margin-top: 6px; }
-    .info-modal-content li { margin: 4px 0; font-size: 0.75rem; }
-    
+    .info-modal-content p {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      margin: 8px 0;
+      color: #2d3e2b;
+    }
+    .info-modal-content ul {
+      margin-left: 16px;
+      margin-top: 6px;
+    }
+    .info-modal-content li {
+      margin: 4px 0;
+      font-size: 0.72rem;
+    }
     .modal-close-btn {
       position: absolute;
       top: 12px;
@@ -293,10 +761,10 @@
       background: #000000;
       color: white;
       border: none;
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 700;
       cursor: pointer;
       transition: 0.2s;
@@ -304,387 +772,546 @@
       align-items: center;
       justify-content: center;
       line-height: 1;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
-    .modal-close-btn:hover { transform: scale(1.1); background: #1a1a1a; }
-    .modal-close-btn:active { transform: scale(0.92); }
-    
-    .contact-table { width: 100%; border-collapse: collapse; margin: 12px 0; background: linear-gradient(145deg, #fff9f0, #ffe6cc); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
-    .contact-table th, .contact-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #ffcf8a; font-size: 0.8rem; }
-    .contact-table th { background: #0a2e1d; color: white; font-weight: 700; letter-spacing: 0.3px; }
-    .contact-table td { background: white; }
-    .contact-table tr:last-child td { border-bottom: none; }
-    .contact-email { color: #d50000; font-weight: 700; text-decoration: none; }
-    .contact-email:hover { text-decoration: underline; }
-    .contact-telegram { color: #0088cc; font-weight: 700; text-decoration: none; }
-    .contact-telegram:hover { text-decoration: underline; }
-    
-    .disclaimer-section { margin: 12px 0; padding: 10px 12px; border-radius: 12px; background: #f8f9fa; border-left: 4px solid #ff8c00; }
-    .disclaimer-section h4 { color: #b45900; font-size: 0.95rem; margin-bottom: 4px; }
-    .disclaimer-box { background: #fff7e8; padding: 8px 12px; border-radius: 10px; margin: 8px 0; border: 1px solid #ffcf8a; }
-    
-    .tag-template { display: none; }
-    .hidden { display: none !important; }
-    
-    @media (min-width: 480px) {
-      .card { max-width: 380px; }
-      .nav-logo .site-title { font-size: 0.85rem; }
-      .top-nav a { font-size: 0.65rem; padding: 4px 12px; }
-      .telegram-nav-btn { font-size: 0.6rem; padding: 3px 10px 3px 6px; }
-      .telegram-nav-btn img { width: 24px; height: 24px; }
+    .modal-close-btn:hover {
+      transform: scale(1.1);
+      background: #1a1a1a;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 8px;
+        padding-top: 4px;
+      }
+      .top-nav {
+        padding: 6px 10px;
+        border-radius: 12px;
+      }
+      .nav-logo .site-title {
+        font-size: 0.55rem;
+      }
+      .top-nav a {
+        font-size: 0.45rem;
+        padding: 2px 6px;
+      }
+      .telegram-nav-btn {
+        font-size: 0.4rem;
+        padding: 1px 5px 1px 3px;
+      }
+      .telegram-nav-btn img {
+        width: 15px;
+        height: 15px;
+      }
+      .home-card {
+        padding: 18px 14px 20px;
+        border-radius: 20px;
+      }
+      .home-title {
+        font-size: 1.3rem;
+      }
+      .home-icon {
+        width: 64px;
+        height: 64px;
+      }
+      .home-stats {
+        gap: 4px 10px;
+        padding: 8px 10px;
+      }
+      .home-stat-value {
+        font-size: 0.75rem;
+      }
+      .home-info-row {
+        gap: 4px 14px;
+        padding: 8px 10px;
+      }
+      .home-info-item .value {
+        font-size: 0.8rem;
+      }
+      .home-download-btn {
+        font-size: 0.85rem;
+        padding: 12px 0;
+      }
+      .download-page {
+        padding: 14px 10px;
+        border-radius: 20px;
+      }
+      .app-icon-lg {
+        width: 60px;
+        height: 60px;
+      }
+      .app-name-lg {
+        font-size: 1.1rem;
+      }
+      .stats-row-detail {
+        gap: 8px;
+        padding: 8px 10px;
+      }
+      .stat-value-detail {
+        font-size: 0.8rem;
+      }
+      .final-download-btn {
+        font-size: 0.75rem;
+        padding: 10px 12px;
+      }
+      .app-description-box {
+        font-size: 0.7rem;
+        padding: 10px 12px;
+      }
+      .other-card {
+        width: 130px;
+        padding: 8px 6px;
+      }
+      .other-card .app-name {
+        font-size: 0.65rem;
+      }
+      .five-options .opt-item {
+        font-size: 0.5rem;
+        padding: 3px 8px;
+      }
+      .tag-box {
+        padding: 10px 12px;
+      }
+      .tag-box .tag-title {
+        font-size: 0.75rem;
+      }
+      .tag-box .tag-content {
+        font-size: 0.65rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .top-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+      }
+      .nav-links {
+        justify-content: center;
+        width: 100%;
+      }
+      .other-card {
+        width: 110px;
+      }
+      .other-card .app-name {
+        font-size: 0.6rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== TOP NAV ===== -->
-<nav class="top-nav">
-  <div class="nav-logo">
-    <img src="https://i.ibb.co/1Y43Cq5N/logo-icon.jpg" alt="Yono Games Site Logo" loading="eager" fetchpriority="high">
-    <span class="site-title">YONO GAMES SITE</span>
-  </div>
-  <div class="nav-links">
-    <a href="#" class="active" id="homeNavLink">HOME</a>
-    <a href="#" id="navAbout"><span class="icon-about"></span> About</a>
-    <a href="#" id="navContact"><span class="icon-contact"></span> Contact</a>
-    <a href="#" id="navDisclaimer"><span class="icon-disclaimer"></span> Disclaimer</a>
-  </div>
-  <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
-    <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
-    Telegram
-  </a>
-</nav>
+  <!-- ===== TOP NAV ===== -->
+  <nav class="top-nav" id="mainNav">
+    <div class="nav-logo">
+      <img src="https://i.ibb.co/1Y43Cq5N/logo-icon.jpg" alt="Yono Games Site Logo" loading="eager">
+      <span class="site-title">YONO GAMES SITE</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="active" id="homeNavLink">HOME</a>
+      <a href="#" id="navAbout"><span class="icon-about"></span> About</a>
+      <a href="#" id="navContact"><span class="icon-contact"></span> Contact</a>
+      <a href="#" id="navDisclaimer"><span class="icon-disclaimer"></span> Disclaimer</a>
+    </div>
+    <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
+      <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram">
+      Telegram
+    </a>
+  </nav>
 
-<!-- ===== APP TAGS SCROLL ===== -->
-<div class="app-tags-wrapper">
-  <div class="app-tags-scroll" id="appTagsScroll">
-    <!-- Will be populated by JS with only Yono Games -->
+  <!-- ===== MODAL ===== -->
+  <div id="customModal" class="info-modal">
+    <div class="info-modal-content">
+      <button class="modal-close-btn" id="modalCloseBtn">✕</button>
+      <h4 id="modalTitle">Information</h4>
+      <div id="modalBody"></div>
+    </div>
   </div>
-</div>
 
-<!-- ===== MODAL ===== -->
-<div id="customInfoModal" class="info-modal">
-  <div class="info-modal-content">
-    <button class="modal-close-btn" id="modalCloseBtn">✕</button>
-    <h4 id="modalTitle">Information</h4>
-    <div id="modalBody"></div>
-  </div>
-</div>
+  <!-- ===== MAIN CONTAINER ===== -->
+  <div class="container" id="mainContainer">
 
-<!-- ===== MAIN CONTAINER ===== -->
-<div class="container" id="mainContainer">
-  <!-- HOME PAGE GRID (only Yono Games card) -->
-  <div id="allAppsGrid" class="cards-grid"></div>
-  <!-- DOWNLOAD PAGE -->
-  <div id="downloadPageContainer" class="hidden"></div>
-</div>
-
-<!-- ===== TAG TEMPLATE for collapsible tags ===== -->
-<div class="tag-template" id="tagTemplate">
-  <div class="tag-box">
-    <div class="tag-title tag-title-premium">Yono Games APK Download – Get <span class="tag-bonus">₹313</span> Instant Bonus!</div>
-    <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-bonus">Unlock ₹313 Bonus in Yono Games App!</div>
-    <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-games">Yono Games – Signup for ₹313-₹500 Free Bonus</div>
-    <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-cash">Experience Yono Games – ₹313 Welcome Bonus on Download</div>
-    <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today!</div>
-  </div>
-  <div class="tag-divider"></div>
-  <div class="tag-box">
-    <div class="tag-title tag-title-vip">Dive into Yono Games – India's Top Online Gaming App</div>
-    <div class="tag-content">Get ₹313 signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
-  </div>
-</div>
-
-<script>
-  (function() {
-    // Only Yono Games data (hardcoded)
-    const appData = {
-      name: "Yono Games",
-      bonus: "₹313",
-      withdrawal: "₹100",
-      downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209",
-      img: "https://i.ibb.co/LXqV77rd/yono-games.jpg",
-      category: "Slots",
-      rating: "4.8",
-      size: "65 MB",
-      votes: "5M+",
-      bonusNum: 313
-    };
-
-    // ===== POPULATE APP TAGS (top scroll) =====
-    function populateAppTags() {
-      const container = document.getElementById('appTagsScroll');
-      if (!container) return;
-      const span = document.createElement('span');
-      span.className = 'app-tag-item';
-      span.textContent = appData.name;
-      span.addEventListener('click', function() {
-        navigateToDownloadPage(0);
-      });
-      container.appendChild(span);
-    }
-
-    // ===== RENDER HOME PAGE =====
-    function renderMainGrid() {
-      const gridContainer = document.getElementById('allAppsGrid');
-      if (!gridContainer) return;
-      const app = appData;
-      const displayBonus = app.bonusNum;
-      // Description & benefits
-      const spinDesc = `Join Yono Games today and get ₹${displayBonus} bonus! Play exciting slot machines, unlock jackpots, and earn real cash daily.`;
-      const extraBenefits = `Enjoy free daily spins, referral cash, quick UPI withdrawals, round-the-clock support, and Yono Games exclusive events.`;
-
-      const html = `
-        <div class="card" data-app-index="0">
-          <div class="card-app-name">${app.name}</div>
-          <div class="card-img"><img src="${app.img}" alt="${app.name}" loading="lazy" decoding="async" width="64" height="64" onerror="this.src='https://via.placeholder.com/64?text=App'"></div>
-          <div class="card-stats">
-            <div class="card-stat"><div class="card-stat-value rating-color">${app.rating}</div><div class="card-stat-label">Rating</div></div>
-            <div class="card-stat"><div class="card-stat-value size-color">${app.size}</div><div class="card-stat-label">Size</div></div>
-            <div class="card-stat"><div class="card-stat-value votes-color">${app.votes}</div><div class="card-stat-label">Votes</div></div>
-            <div class="card-stat"><div class="card-stat-value bonus-color">${displayBonus}</div><div class="card-stat-label">Bonus</div></div>
-          </div>
-          <div class="signup-bonus">Sign Up Bonus: ₹${displayBonus}</div>
-          <div class="withdrawal-note">Min Withdrawal: ${app.withdrawal}</div>
-          <button class="download-btn" data-download-index="0">DOWNLOAD ${app.name}</button>
-          <div class="card-spin-desc">${spinDesc}</div>
-          <div class="card-benefits"><strong>Extra Benefits:</strong> ${extraBenefits}</div>
+    <!-- ===== PAGE 1: HOME CARD ===== -->
+    <div id="page1">
+      <div class="home-card">
+        <div class="home-icon">
+          <img src="https://i.ibb.co/LDWqbqc3/yono-game-icon.jpg" alt="Yono Games" loading="lazy" onerror="this.src='https://via.placeholder.com/80?text=Yono'">
         </div>
-      `;
-      gridContainer.innerHTML = html;
-      document.querySelector('#allAppsGrid .download-btn').addEventListener('click', function(e) {
-        navigateToDownloadPage(0);
-      });
-    }
+        <div class="home-title">Yono Games</div>
+        <div class="home-sub">⭐ India's Top Gaming Platform</div>
 
-    // ===== NAVIGATE TO DOWNLOAD PAGE =====
-    function navigateToDownloadPage(selectedIndex) {
-      history.pushState({ page: 'download', index: selectedIndex }, '', '#download');
-      showDownloadPage();
-    }
+        <div class="home-stats">
+          <div class="home-stat"><div class="home-stat-value">4.8</div><div class="home-stat-label">Rating</div></div>
+          <div class="home-stat"><div class="home-stat-value">65 MB</div><div class="home-stat-label">Size</div></div>
+          <div class="home-stat"><div class="home-stat-value">5M+</div><div class="home-stat-label">Votes</div></div>
+          <div class="home-stat"><div class="home-stat-value">₹313</div><div class="home-stat-label">Bonus</div></div>
+        </div>
 
-    // ===== SHOW DOWNLOAD PAGE =====
-    function showDownloadPage() {
-      const app = appData;
-      const displayBonus = app.bonusNum;
-      const description = `Join Yono Games today and get ₹${displayBonus} bonus! Play exciting slot machines, unlock jackpots, and earn real cash daily.`;
-      const extraBenefits = `Enjoy free daily spins, referral cash, quick UPI withdrawals, round-the-clock support, and Yono Games exclusive events.`;
+        <div class="home-info-row">
+          <div class="home-info-item">
+            <div class="label">🔒 Sign Up Bonus</div>
+            <div class="value green">₹313</div>
+          </div>
+          <div class="home-info-item">
+            <div class="label">📋 Min. Withdraw</div>
+            <div class="value red">₹100</div>
+          </div>
+        </div>
 
-      // Tag HTML from template (5 tags)
-      const tagTemplate = document.getElementById('tagTemplate');
-      const tagsHTML = tagTemplate.innerHTML;
+        <button class="home-download-btn" id="homeDownloadBtn">📲 Download Yono Games</button>
 
-      const gridDiv = document.getElementById('allAppsGrid');
-      const downloadContainer = document.getElementById('downloadPageContainer');
-      gridDiv.classList.add('hidden');
-      downloadContainer.classList.remove('hidden');
+        <div class="home-footer">
+          🔒 Safe & Secure &nbsp;•&nbsp; 18+ Only &nbsp;•&nbsp; <a href="#" id="footerHomeLink">Home</a>
+        </div>
+      </div>
+    </div>
 
-      // Hardcoded top offers (5 apps)
-      const topOffers = [
-        { name: "INR Rummy", bonus: "₹267" },
-        { name: "MBM BET", bonus: "₹244" },
-        { name: "567 Slots", bonus: "₹314" },
-        { name: "Saga Slots", bonus: "₹347" },
-        { name: "Jaiho 91", bonus: "₹264" }
-      ];
-      let fiveOptionsHtml = '';
-      topOffers.forEach((item) => {
-        fiveOptionsHtml += `
-          <span class="opt-item" data-opt-name="${item.name}">
-            <span class="opt-app">${item.name}</span> 
-            <span class="opt-bonus">${item.bonus}</span>
-          </span>
-        `;
-      });
-      // + 5 More dummy
-      fiveOptionsHtml += `<span class="opt-item" style="background:#22c55e;color:white;border-color:#22c55e;font-weight:700;">+ 5 More</span>`;
+    <!-- ===== PAGE 2: DOWNLOAD DETAIL PAGE ===== -->
+    <div id="page2" class="hidden">
+      <div class="download-page" id="activeDownloadPage">
 
-      const downloadPageHtml = `
-        <div class="download-page" id="activeDownloadPage">
-          <div class="download-header">
-            <div class="tag-row">
-              <span class="app-name-tag">📥 ${app.name} APK Download</span>
-              <span class="bonus-tag">🎁 Signup Bonus: ₹${displayBonus}</span>
-              <span class="withdraw-tag">🏦 Min Withdrawal: ${app.withdrawal}</span>
+        <!-- Header -->
+        <div class="download-header">
+          <div class="tag-row">
+            <span class="app-name-tag">📥 Yono Games APK Download</span>
+            <span class="bonus-tag">🎁 Signup Bonus: ₹313</span>
+            <span class="withdraw-tag">🏦 Min Withdrawal: ₹100</span>
+          </div>
+        </div>
+
+        <div class="app-highlight" id="topDownloadSection">
+
+          <!-- App Icon & Name -->
+          <div class="app-icon-lg">
+            <img src="https://i.ibb.co/LDWqbqc3/yono-game-icon.jpg" alt="Yono Games" loading="lazy" onerror="this.src='https://via.placeholder.com/72?text=Yono'">
+          </div>
+          <div class="app-name-lg">Yono Games</div>
+
+          <!-- Stats with Colors -->
+          <div class="stats-row-detail">
+            <div class="stat-item-detail">
+              <div class="stat-value-detail green">4.8</div>
+              <div class="stat-label-detail">Rating</div>
+            </div>
+            <div class="stat-item-detail">
+              <div class="stat-value-detail blue">65 MB</div>
+              <div class="stat-label-detail">Size</div>
+            </div>
+            <div class="stat-item-detail">
+              <div class="stat-value-detail cyan">5M+</div>
+              <div class="stat-label-detail">Votes</div>
+            </div>
+            <div class="stat-item-detail">
+              <div class="stat-value-detail red">₹313</div>
+              <div class="stat-label-detail">Bonus</div>
             </div>
           </div>
-          
-          <div class="app-highlight" id="topDownloadSection">
-            <div style="font-size:1.4rem;font-weight:800;margin-bottom:8px;">${app.name}</div>
-            <div style="width:72px;height:72px;margin:0 auto 10px;border-radius:18px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
-              <img src="${app.img}" alt="${app.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://via.placeholder.com/72?text=App'">
+
+          <!-- Download Button -->
+          <a href="https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209" target="_blank" class="final-download-btn">📲 DOWNLOAD Yono Games</a>
+
+          <!-- Description -->
+          <div class="app-description-box">
+            <strong>Join Yono Games today and get ₹313 bonus!</strong> Play exciting slot machines, unlock jackpots, and earn real cash daily.<br><br>
+            <strong>Extra Benefits:</strong> Enjoy free daily spins, referral cash, quick UPI withdrawals, round-the-clock support, and Yono Games exclusive events.
+          </div>
+
+          <!-- Top Offers -->
+          <div class="tag-section">
+            <div class="tag-section-title">Yono Games – Top Offers</div>
+
+            <div class="five-options" id="fiveOptions">
+              <span class="opt-item" data-opt-index="1"><span class="opt-app">INR Rummy</span> <span class="opt-bonus">₹267</span></span>
+              <span class="opt-item" data-opt-index="2"><span class="opt-app">MBM BET</span> <span class="opt-bonus">₹244</span></span>
+              <span class="opt-item" data-opt-index="3"><span class="opt-app">567 Slots</span> <span class="opt-bonus">₹314</span></span>
+              <span class="opt-item" data-opt-index="4"><span class="opt-app">Saga Slots</span> <span class="opt-bonus">₹347</span></span>
+              <span class="opt-item" data-opt-index="5"><span class="opt-app">Jaiho 91</span> <span class="opt-bonus">₹264</span></span>
+              <span class="opt-item opt-more" data-opt-index="more">+ 5 More</span>
             </div>
-            <div class="stats-row">
-              <div class="stat-item"><div class="stat-value rating-color">${app.rating}</div><div class="stat-label">Rating</div></div>
-              <div class="stat-item"><div class="stat-value size-color">${app.size}</div><div class="stat-label">Size</div></div>
-              <div class="stat-item"><div class="stat-value votes-color">${app.votes}</div><div class="stat-label">Votes</div></div>
-              <div class="stat-item"><div class="stat-value bonus-color">${displayBonus}</div><div class="stat-label">Bonus</div></div>
-            </div>
-            <a href="${app.downloadUrl}" target="_blank" class="final-download-btn">📲 DOWNLOAD ${app.name}</a>
-            <div class="app-description">${description}<br><br><strong>Extra Benefits:</strong> ${extraBenefits}</div>
-            
-            <div class="tag-section">
-              <div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">${app.name} – Top Offers</div>
-              
-              <div class="five-options" id="fiveOptions">
-                ${fiveOptionsHtml}
-              </div>
-              
-              <!-- Collapsible tags -->
-              <details class="premium-toggle-tags">
-                <summary>
-                  <span class="toggle-icon">▶</span>
-                  <span style="font-weight:800; color:#8b5cf6; font-size:0.95rem;">📌 View All Tags</span>
-                  <span style="font-size:0.65rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
-                </summary>
-                <div class="details-content">
-                  <div class="tag-grid" id="tagGridContainer">
-                    ${tagsHTML}
+
+            <!-- Collapsible Tags -->
+            <details class="premium-toggle-tags">
+              <summary>
+                <span class="toggle-icon">▶</span>
+                <span style="font-weight:800; color:#8b5cf6; font-size:0.85rem;">📌 View All Tags</span>
+                <span style="font-size:0.6rem; color:#6b7280; margin-left:auto;">(Click to expand)</span>
+              </summary>
+              <div class="details-content">
+                <div class="tag-grid" id="tagGridContainer">
+                  <!-- Tag 1 -->
+                  <div class="tag-box">
+                    <div class="tag-title tag-title-premium">Yono Games APK Download – Get <span class="tag-bonus">₹313</span> Instant Bonus!</div>
+                    <div class="tag-content">Play skill-based Rummy, Teen Patti & slots. Safe withdrawals from ₹100. Start earning real cash in minutes – download APK & claim your bonus today!</div>
+                  </div>
+                  <div class="tag-divider"></div>
+                  <!-- Tag 2 -->
+                  <div class="tag-box">
+                    <div class="tag-title tag-title-bonus">Unlock <span class="tag-bonus">₹313</span> Bonus in Yono Games App!</div>
+                    <div class="tag-content">Enjoy thrilling games like Aviator, Rummy & more. Refer friends for extra cash. Fast, secure withdrawals via bank/UPI. Trusted by millions – start playing now!</div>
+                  </div>
+                  <div class="tag-divider"></div>
+                  <!-- Tag 3 -->
+                  <div class="tag-box">
+                    <div class="tag-title tag-title-games">Yono Games – Signup for <span class="tag-bonus">₹313</span> Free Bonus</div>
+                    <div class="tag-content">Play 20+ exciting games including Dragon vs Tiger & slots. Minimum deposit ₹100, instant payouts. Download now & earn real money daily!</div>
+                  </div>
+                  <div class="tag-divider"></div>
+                  <!-- Tag 4 -->
+                  <div class="tag-box">
+                    <div class="tag-title tag-title-cash">Experience Yono Games – <span class="tag-bonus">₹313</span> Welcome Bonus on Download</div>
+                    <div class="tag-content">Build sequences, join cash tournaments & daily mystery rewards. Safe, fun, and secure gaming – start winning real cash today!</div>
+                  </div>
+                  <div class="tag-divider"></div>
+                  <!-- Tag 5 -->
+                  <div class="tag-box">
+                    <div class="tag-title tag-title-vip">Dive into Yono Games – India's Top Online Gaming App</div>
+                    <div class="tag-content">Get ₹313 signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
                   </div>
                 </div>
-              </details>
-            </div>
-
+              </div>
+            </details>
           </div>
-          <!-- No Other Yono Apps section -->
-          <div class="footer-note" style="margin-top:20px;">🌟 All apps: ₹100 min withdrawal | Trusted platform | 18+</div>
         </div>
-      `;
-      downloadContainer.innerHTML = downloadPageHtml;
 
-      // Re-bind click events for "5 More" options if needed
-      document.querySelectorAll('.opt-item').forEach(el => {
-        el.addEventListener('click', function() {
-          // For demo, just navigate to download page again (or show alert)
-          // In real scenario, we could open other app pages, but we only have one app.
-          alert('More apps coming soon!');
-        });
+        <!-- Other Yono Apps -->
+        <div class="other-apps-title">Other Yono Apps</div>
+        <div class="other-apps-grid" id="otherAppsGrid">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <div class="footer-note" style="margin-top:20px;">All apps: ₹100 min withdrawal | Trusted platform | 18+</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ===== APP DATA =====
+      const allApps = [
+        { name: "Yono Games", bonus: "₹313", withdrawal: "₹100", downloadUrl: "https://yonogamesm.com/?code=LHS49AEHVMR&t=1784314209",
+          img: "https://i.ibb.co/LDWqbqc3/yono-game-icon.jpg", category: "Slots" },
+        { name: "INR Rummy", bonus: "₹267", withdrawal: "₹100", downloadUrl: "https://inrrummy.club/?code=JMQBV8TAPD7&t=1784298106",
+          img: "https://i.ibb.co/Y7ZRkLFp/inr-rummy.jpg", category: "Rummy" },
+        { name: "MBM BET", bonus: "₹244", withdrawal: "₹100", downloadUrl: "https://www.mbmbet3.com/?code=GD3H3VA6YK5&t=1784297830",
+          img: "https://i.ibb.co/sJcmCxK6/mbm-bet.jpg", category: "Casino" },
+        { name: "567 Slots", bonus: "₹314", withdrawal: "₹100", downloadUrl: "https://join567slots0.com/?code=4NYF487URJ6&t=1781505684",
+          img: "https://i.ibb.co/hFytMXY2/1000022725.jpg", category: "Slots" },
+        { name: "Saga Slots", bonus: "₹347", withdrawal: "₹100", downloadUrl: "https://www.sagaslots5.com/?code=0QHJSERZYMV&t=1781505813",
+          img: "https://i.ibb.co/20dzhBZf/1000022725.jpg", category: "Slots" },
+        { name: "Jaiho 91", bonus: "₹264", withdrawal: "₹100", downloadUrl: "https://jaiho91bonus.vip/?code=C42T99ZQHAT&t=1781506067",
+          img: "https://i.ibb.co/zV0C6Xkk/1000022725.jpg", category: "Casino" },
+        { name: "Rummy Ludo", bonus: "₹274", withdrawal: "₹100", downloadUrl: "https://rummyludoapp37.com/",
+          img: "https://i.ibb.co/Z6Xy7y2x/1000022725.jpg", category: "Rummy" },
+        { name: "ABC Rummy", bonus: "₹298", withdrawal: "₹100", downloadUrl: "https://d34i569g8ztoql.cloudfront.net/abcrummy_MeApp.apk",
+          img: "https://i.ibb.co/Ldmd1DHH/1000022725.jpg", category: "Rummy" },
+        { name: "Rummy 91", bonus: "₹281", withdrawal: "₹100", downloadUrl: "https://d16sfv4ssrmnvt.cloudfront.net/rummy91_AGENT.apk",
+          img: "https://i.ibb.co/Fb2j77pp/1000022725.jpg", category: "Rummy" },
+        { name: "Love Rummy", bonus: "₹255", withdrawal: "₹100", downloadUrl: "https://d34i569g8ztoql.cloudfront.net/loverummy_App.apk",
+          img: "https://i.ibb.co/PZ2dpNJ9/1000022725.jpg", category: "Rummy" },
+        { name: "Spin Crush", bonus: "₹302", withdrawal: "₹100", downloadUrl: "https://d292swwe9zki3u.cloudfront.net/spincrush_freecash.apk",
+          img: "https://i.ibb.co/S4C26kVS/1000022725.jpg", category: "Spin" },
+        { name: "Top Rummy", bonus: "₹276", withdrawal: "₹100", downloadUrl: "https://th7.my/BY1JWS/3gvute0",
+          img: "https://i.ibb.co/bRy3w8dN/1000022725.jpg", category: "Rummy" },
+        { name: "Hello Rummy", bonus: "₹295", withdrawal: "₹100", downloadUrl: "https://t.me/allyonogamessite",
+          img: "https://i.ibb.co/27DSP5zR/1000022725.jpg", category: "Rummy" },
+        { name: "Rummy 365", bonus: "₹310", withdrawal: "₹100", downloadUrl: "https://join567slots0.com/?code=4NYF487URJ6&t=1781505684",
+          img: "https://i.ibb.co/Hf9bhrFm/1000022725.jpg", category: "Rummy" },
+        { name: "Teen Patti Gold", bonus: "₹289", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/gold/jm9n7r",
+          img: "https://i.ibb.co/C5XcGXsJ/teen-patti-gold.jpg", category: "Card" },
+        { name: "Teen Patti Master", bonus: "₹256", withdrawal: "₹100", downloadUrl: "https://www.earntp.com/m/jm9n7r",
+          img: "https://i.ibb.co/JjrZjn2n/teen-patti-master.jpg", category: "Card" },
+        { name: "Yono Rummy", bonus: "₹270", withdrawal: "₹100", downloadUrl: "https://yonorummy043.com/?code=VIPYQC5EE9X&t=1781107758",
+          img: "https://i.ibb.co/zTFDGPpX/yono-rummy.jpg", category: "Rummy" },
+        { name: "Slots Winner", bonus: "₹322", withdrawal: "₹100", downloadUrl: "https://slotswinneri.com/?code=PGVC6CBNF53&t=1781107393",
+          img: "https://i.ibb.co/NdbNBtx7/slots-winner.jpg", category: "Slots" },
+        { name: "Good Slots", bonus: "₹288", withdrawal: "₹100", downloadUrl: "https://7sharegoodslots.vip?pid=320806209&channel=2010001&t=pdd2&pkg=com.1",
+          img: "https://i.ibb.co/nq9kMKHZ/good-slots.jpg", category: "Slots" },
+        { name: "Diwa Slot", bonus: "₹336", withdrawal: "₹100", downloadUrl: "https://sharediwaslot1.vip?pid=483455673&channel=2010002&t=pdd2&pkg=com.diwaslotwhl.app",
+          img: "https://i.ibb.co/BKB6QMbD/diwa-slot.jpg", category: "Slots" },
+        { name: "GoGo Rummy", bonus: "₹265", withdrawal: "₹100", downloadUrl: "https://www.gogorummyagent.com/?code=V4UTQA2VYMQ&t=1781196694",
+          img: "https://i.ibb.co/Y7dzDP7z/gogo-rummy.jpg", category: "Rummy" },
+        { name: "Joy Rummy", bonus: "₹293", withdrawal: "₹100", downloadUrl: "https://www.joyrummymax.com/?code=J5KFTAWJ9X5&t=1781198100",
+          img: "https://i.ibb.co/nqD8CD8W/joy-rummy.jpg", category: "Rummy" },
+        { name: "Spin Gold", bonus: "₹307", withdrawal: "₹100", downloadUrl: "https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828",
+          img: "https://i.ibb.co/G3QnY0vY/spin-gold.jpg", category: "Spin" },
+        { name: "Bingo 101", bonus: "₹345", withdrawal: "₹100", downloadUrl: "https://uono-bingo101.com/?code=3WFQ231H9Y2&t=1781197828",
+          img: "https://i.ibb.co/My9tjNgL/bingo101.jpg", category: "Bingo" },
+        { name: "Yes Spin", bonus: "₹300", withdrawal: "₹100", downloadUrl: "https://www.yesspineee.com/?code=47TXJTLU5YY&t=1781198907",
+          img: "https://i.ibb.co/m5qzq7W4/yes-spin.jpg", category: "Spin" },
+        { name: "Yono Arcade", bonus: "₹315", withdrawal: "₹100", downloadUrl: "https://yonoarcadeapk9.com/?code=96LNEL9FQXZ&t=1781199006",
+          img: "https://i.ibb.co/mCzSG1L7/yono-arcade.jpg", category: "Arcade" },
+        { name: "SVIP 777", bonus: "₹333", withdrawal: "₹100", downloadUrl: "https://www.svip777.life?pid=297924008&channel=2050001&t=pdd2&pkg=com.svip777.h5",
+          img: "https://i.ibb.co/vfWZMLm/svip777.jpg", category: "Casino" },
+        { name: "OK Rummy", bonus: "₹291", withdrawal: "₹100", downloadUrl: "https://www.okrummy22.com/?code=H2GU92WUXXA&t=1781199220",
+          img: "https://i.ibb.co/99fCMbNC/ok-rummy.jpg", category: "Rummy" },
+        { name: "Hind 777", bonus: "₹325", withdrawal: "₹100", downloadUrl: "https://www.hindi777agent5.com/?code=7LFFR8WPHEG&t=1781199307",
+          img: "https://i.ibb.co/5gf3q0Sh/hind777.jpg", category: "Slots" },
+        { name: "Bet 213", bonus: "₹283", withdrawal: "₹100", downloadUrl: "https://www.bet213.rocks/?code=2QTKPV4BYDH&t=1781199576",
+          img: "https://i.ibb.co/YTqq2C4F/bet213.jpg", category: "Betting" },
+        { name: "Boss Rummy", bonus: "₹296", withdrawal: "₹100", downloadUrl: "https://www.bossrummyy.com/?code=LSHTVUZE1NR&t=1781429504",
+          img: "https://i.ibb.co/fdWgRgxk/1000022725.jpg", category: "Rummy" },
+        { name: "Yono 777", bonus: "₹318", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388",
+          img: "https://i.ibb.co/VWz6S3JB/1000022725.jpg", category: "Slots" },
+        { name: "Diwa VIP", bonus: "₹341", withdrawal: "₹100", downloadUrl: "https://uono777refer.vip/?code=F9MPSLKZCV9&t=1781429388",
+          img: "https://i.ibb.co/ynsBHKtg/1000022725.jpg", category: "VIP" },
+        { name: "Diwa 777", bonus: "₹329", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app",
+          img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
+      ];
+
+      // ===== ELEMENTS =====
+      const page1 = document.getElementById('page1');
+      const page2 = document.getElementById('page2');
+      const homeDownloadBtn = document.getElementById('homeDownloadBtn');
+      const footerHomeLink = document.getElementById('footerHomeLink');
+      const homeNavLink = document.getElementById('homeNavLink');
+      const otherAppsGrid = document.getElementById('otherAppsGrid');
+
+      // ===== NAV CLICKS =====
+      const navAbout = document.getElementById('navAbout');
+      const navContact = document.getElementById('navContact');
+      const navDisclaimer = document.getElementById('navDisclaimer');
+      const modal = document.getElementById('customModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+      function showModal(title, content) {
+        modalTitle.textContent = title;
+        modalBody.innerHTML = content;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+
+      modalCloseBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+
+      navAbout.addEventListener('click', function(e) {
+        e.preventDefault();
+        showModal('📋 About - Yono Games Site', `
+          <p><strong>Welcome to Yono Games Site</strong> – your trusted source for discovering genuine Yono Games apps.</p>
+          <p>Our platform helps users find authentic gaming apps safely and confidently.</p>
+          <p><strong>Our Mission:</strong> Provide verified, genuine, and officially released Yono Games apps in one place.</p>
+          <p>✅ Genuine Apps Only<br>✅ Secure & Safe Downloads<br>✅ Regular Updates</p>
+          <p style="margin-top:10px;background:#fef4e6;padding:10px;border-radius:12px;text-align:center;">🌟 <strong>Trusted by 5M+ players</strong></p>
+        `);
       });
-    }
 
-    // ===== GO TO HOME =====
-    function goToMainGrid() {
-      const gridDiv = document.getElementById('allAppsGrid');
-      const downloadContainer = document.getElementById('downloadPageContainer');
-      if (gridDiv && downloadContainer) {
-        gridDiv.classList.remove('hidden');
-        downloadContainer.classList.add('hidden');
+      navContact.addEventListener('click', function(e) {
+        e.preventDefault();
+        showModal('📞 Contact Us - Yono Games Site', `
+          <p><strong>Yono Games Site</strong> does not provide Customer Support for Listed Apps/Games.</p>
+          <p style="margin-top:10px;"><strong>📢 Advertisement/Business Queries</strong></p>
+          <table class="contact-table" style="width:100%;border-collapse:collapse;margin:10px 0;background:#fff9f0;border-radius:12px;overflow:hidden;">
+            <tr><td style="padding:8px 12px;font-weight:700;border-bottom:1px solid #ffcf8a;">Email</td><td style="padding:8px 12px;border-bottom:1px solid #ffcf8a;"><a href="mailto:yonogamesite@gmail.com" style="color:#d50000;font-weight:700;text-decoration:none;">yonogamesite@gmail.com</a></td></tr>
+            <tr><td style="padding:8px 12px;font-weight:700;">Telegram</td><td style="padding:8px 12px;"><a href="https://t.me/yonogamestite" target="_blank" style="color:#0088cc;font-weight:700;text-decoration:none;">@yonogamestite</a></td></tr>
+          </table>
+          <p style="background:#e8f5e9;padding:8px;border-radius:12px;text-align:center;">⚡ We respond within 24 hours</p>
+        `);
+      });
+
+      navDisclaimer.addEventListener('click', function(e) {
+        e.preventDefault();
+        showModal('⚠️ Disclaimer - Yono Games Site', `
+          <div style="background:#fff5e6;padding:10px;border-radius:12px;margin-bottom:10px;text-align:center;">
+            <h3 style="color:#b45900;font-weight:800;font-size:1rem;">Yono Games Site - Disclaimer</h3>
+          </div>
+          <p><strong>1. No Ownership:</strong> We are not developers/owners of Yono Games.</p>
+          <p><strong>2. Play Responsibly:</strong> Gaming can be addictive. Play with control.</p>
+          <p><strong>3. Financial Risk:</strong> Financial transactions may lead to monetary loss.</p>
+          <p><strong>4. 18+ Age Restriction:</strong> Strictly for users 18 years and above.</p>
+          <p><strong>5. No Liability:</strong> We are not liable for any losses or damages.</p>
+          <p><strong>6. Third-Party Links:</strong> External links are not under our control.</p>
+          <p><strong>7. Changes:</strong> Disclaimer may be updated anytime.</p>
+          <p><strong>8. Contact Us:</strong> Reach us via Telegram or Email.</p>
+          <p style="margin-top:10px;background:#ffebee;padding:8px;border-radius:12px;border-left:4px solid #d50000;text-align:center;">🔞 <strong>Strictly for users aged 18+</strong></p>
+        `);
+      });
+
+      // ===== PAGE NAVIGATION =====
+      function showPage1() {
+        page1.classList.remove('hidden');
+        page2.classList.add('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
+        homeNavLink.classList.add('active');
       }
-    }
 
-    // ===== BACK/NAV =====
-    window.addEventListener('popstate', (event) => {
-      if (event.state && event.state.page === 'download') {
-        showDownloadPage();
-      } else {
-        goToMainGrid();
+      function showPage2() {
+        page1.classList.add('hidden');
+        page2.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
+        homeNavLink.classList.add('active');
       }
-    });
-    history.replaceState({ page: 'main' }, '', window.location.pathname);
 
-    function resetToMainGrid() {
-      if (customModal.style.display === 'flex') closeModalAndResetHistory();
-      history.replaceState({ page: 'main' }, '', window.location.pathname);
-      goToMainGrid();
-    }
+      function goHome(e) {
+        if (e) e.preventDefault();
+        showPage1();
+      }
 
-    // ===== MODAL =====
-    const customModal = document.getElementById('customInfoModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
+      homeNavLink.addEventListener('click', goHome);
+      footerHomeLink.addEventListener('click', goHome);
 
-    function showInfoModal(title, contentHtml) {
-      modalTitle.innerText = title;
-      modalBody.innerHTML = contentHtml;
-      customModal.style.display = 'flex';
-      history.pushState({ modal: true }, '');
-      document.body.style.overflow = 'hidden';
-    }
+      homeDownloadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        showPage2();
+      });
 
-    function closeModalAndResetHistory() {
-      customModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-      history.replaceState({ page: 'main' }, '', window.location.pathname);
-    }
+      // ===== POPULATE OTHER APPS =====
+      function populateOtherApps() {
+        if (!otherAppsGrid) return;
+        let html = '';
+        allApps.forEach((app, idx) => {
+          const bonusNum = app.bonus.replace('₹', '');
+          html += `
+            <div class="other-card" data-app-index="${idx}">
+              <div class="other-icon">
+                <img src="${app.img}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/40?text=App'">
+              </div>
+              <div class="app-name">${app.name}</div>
+              <div class="withdraw-green">🏦 Min Withdrawal: ${app.withdrawal}</div>
+              <div class="signup-bonus-small">🔴 Sign Up Bonus: ${app.bonus}</div>
+              <button class="small-download" data-other-index="${idx}">📲 DOWNLOAD</button>
+            </div>
+          `;
+        });
+        otherAppsGrid.innerHTML = html;
 
-    modalCloseBtn.addEventListener('click', closeModalAndResetHistory);
-    window.addEventListener('click', (e) => { if (e.target === customModal) closeModalAndResetHistory(); });
+        document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const idx = parseInt(this.getAttribute('data-other-index'));
+            const app = allApps[idx];
+            if (app) window.open(app.downloadUrl, '_blank');
+          });
+        });
 
-    // ===== NAV CLICKS =====
-    const homeNavLink = document.getElementById('homeNavLink');
-    const navAbout = document.getElementById('navAbout');
-    const navContact = document.getElementById('navContact');
-    const navDisclaimer = document.getElementById('navDisclaimer');
+        // ===== FIVE OPTIONS CLICK =====
+        document.querySelectorAll('#fiveOptions .opt-item').forEach(el => {
+          el.addEventListener('click', function() {
+            const idx = this.getAttribute('data-opt-index');
+            if (idx === 'more') {
+              // Scroll to Other Apps section
+              document.querySelector('.other-apps-title').scrollIntoView({ behavior: 'smooth' });
+              return;
+            }
+            const appIdx = parseInt(idx);
+            const app = allApps[appIdx];
+            if (app) window.open(app.downloadUrl, '_blank');
+          });
+        });
+      }
 
-    homeNavLink.addEventListener('click', (e) => { e.preventDefault(); resetToMainGrid(); document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active')); homeNavLink.classList.add('active'); });
-
-    navAbout.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
-      navAbout.classList.add('active');
-      showInfoModal('About - Yono Games Site', `
-        <p><strong>Welcome to Yono Games Site</strong> – your trusted source for genuine Yono Games apps.</p>
-        <p>Our mission is to provide verified, secure, and up-to-date information about Yono Games and its variants.</p>
-        <p>All apps listed are safe and verified.</p>
-        <div style="margin-top:12px;background:#f5f0ff;padding:10px;border-radius:12px;border-left:4px solid #8b5cf6;">
-          <p style="font-size:0.7rem;color:#333;">⚠️ Please play responsibly. 18+ only.</p>
-        </div>
-      `);
-    });
-
-    navContact.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
-      navContact.classList.add('active');
-      showInfoModal('Contact Us - Yono Games Site', `
-        <p><strong>Yono Games Site</strong></p>
-        <p>For business inquiries or support, contact us:</p>
-        <table class="contact-table">
-          <tr><th>Method</th><th>Details</th></tr>
-          <tr><td><strong>Email</strong></td><td><a href="mailto:yonogamesite@gmail.com" class="contact-email">yonogamesite@gmail.com</a></td></tr>
-          <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/yonogamestite" target="_blank" class="contact-telegram">@yonogamestite</a></td></tr>
-        </table>
-        <div style="margin-top:12px;background:#e8f5e9;padding:8px 12px;border-radius:10px;text-align:center;border:1px solid #a5d6a7;">⚡ We respond within 24 hours</div>
-      `);
-    });
-
-    navDisclaimer.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.querySelectorAll('.top-nav a').forEach(el => el.classList.remove('active'));
-      navDisclaimer.classList.add('active');
-      showInfoModal('Disclaimer - Yono Games Site', `
-        <div style="background:linear-gradient(135deg,#fff5e6,#ffe6cc);padding:10px;border-radius:14px;margin-bottom:12px;text-align:center;">
-          <h3 style="color:#b45900;font-weight:800;font-size:1.1rem;">Disclaimer</h3>
-        </div>
-        <p><strong>1.</strong> We do not own or operate any apps. All apps are managed by third parties.</p>
-        <p><strong>2.</strong> Real-money gaming involves risk. Play responsibly.</p>
-        <p><strong>3.</strong> You must be 18+ to use real-money gaming apps.</p>
-        <p><strong>4.</strong> Bonus amounts are subject to change.</p>
-        <div style="margin-top:14px;background:#fff3e0;padding:10px 12px;border-radius:12px;border:2px solid #ff8c00;">
-          <p style="font-size:0.75rem;color:#d32f2f;font-weight:600;">⚠️ Strictly for users aged 18+</p>
-        </div>
-      `);
-    });
-
-    // ===== INIT =====
-    populateAppTags();
-    renderMainGrid();
-  })();
-</script>
+      // ===== INIT =====
+      populateOtherApps();
+    })();
+  </script>
 
 </body>
 </html>
