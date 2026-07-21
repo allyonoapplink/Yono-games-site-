@@ -8,7 +8,6 @@
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif; }
     body { background: linear-gradient(145deg, #f0f4fa 0%, #e2e8f0 100%); min-height: 100vh; padding-bottom: 30px; }
     
-    /* ====== TOP NAV ====== */
     .top-nav { 
       background: #ffffff; 
       padding: 6px 10px; 
@@ -65,7 +64,6 @@
     .telegram-nav-btn:hover { background: #eef2ff; border-color: #b3c8e6; }
     .telegram-nav-btn img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: block; }
     
-    /* ====== APP TAGS SCROLL ====== */
     .app-tags-wrapper {
       padding: 8px 12px;
       background: #f8fafc;
@@ -107,7 +105,6 @@
       box-shadow: 0 4px 12px rgba(255,207,138,0.3);
     }
     
-    /* ====== MAIN CONTAINER ====== */
     .container { max-width: 100%; margin: 12px auto; padding: 0 8px; }
     .cards-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
     .card { background: white; border-radius: 24px; padding: 14px 12px 16px; width: 100%; max-width: 400px; margin: 0 auto; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid #eef2f8; text-align: center; }
@@ -124,8 +121,29 @@
     .download-btn { display: block; width: 100%; text-align: center; margin-top: 12px; padding: 10px 0; background: #0a0a0a; color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.75rem; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.20); cursor: pointer; border: none; letter-spacing: 0.3px; }
     .download-btn:hover { background: #1a1a1a; transform: scale(0.97); box-shadow: 0 6px 16px rgba(0,0,0,0.30); }
     
-    /* ====== DOWNLOAD PAGE ====== */
-    .hidden { display: none !important; }
+    /* Card description & benefits */
+    .card-spin-desc {
+      font-size: 0.7rem;
+      color: #2d3e2b;
+      line-height: 1.5;
+      margin: 6px 0 4px;
+      text-align: left;
+      padding: 0 2px;
+    }
+    .card-spin-desc strong { color: #1e562a; }
+    .card-benefits {
+      font-size: 0.65rem;
+      color: #1e562a;
+      line-height: 1.5;
+      margin: 4px 0 6px;
+      text-align: left;
+      padding: 6px 10px;
+      background: #f0f9f0;
+      border-radius: 12px;
+      border-left: 3px solid #22c55e;
+    }
+    .card-benefits strong { color: #0a2e1d; }
+    
     .download-page { background: white; border-radius: 28px; padding: 18px 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); margin-bottom: 20px; border: 1px solid #ffe1b3; animation: fadeSlideUp 0.4s ease; }
     @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
     
@@ -144,7 +162,6 @@
     .final-download-btn:hover { transform: scale(0.97); background: #1a1a1a; }
     .app-description { background: white; padding: 14px 16px; border-radius: 24px; text-align: left; margin: 14px 0; font-size: 0.8rem; line-height: 1.5; color: #2d3e2b; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     
-    /* ====== TAG SECTION (hidden initially, shown by + button) ====== */
     .tag-section { margin: 14px 0; }
     .tag-grid { display: flex; flex-direction: column; gap: 12px; }
     .tag-box { background: #f8fafc; border-radius: 16px; padding: 14px 16px; border-left: 4px solid #22c55e; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 1px solid #e9edf4; border-right: 1px solid #e9edf4; border-bottom: 1px solid #e9edf4; }
@@ -153,7 +170,6 @@
     .tag-box .tag-bonus { color: #dc2626; font-weight: 700; font-size: 0.85rem; }
     .tag-divider { height: 1px; background: linear-gradient(to right, transparent, #d0d9e8, transparent); margin: 0 10px; }
     
-    /* Color variants for tag titles */
     .tag-title-premium { color: #f59e0b; }
     .tag-title-bonus { color: #dc2626; }
     .tag-title-games { color: #2563eb; }
@@ -161,7 +177,6 @@
     .tag-title-vip { color: #8b5cf6; }
     .tag-title-download { color: #06b6d4; }
     
-    /* ----- + BUTTON (black) ----- */
     .toggle-tags-btn {
       display: inline-block;
       background: #000000;
@@ -193,7 +208,6 @@
     .extra-tag-box .tag-content ul li { padding: 2px 0; font-size: 0.75rem; color: #334155; }
     .extra-tag-box .tag-content ul li::before { content: "• "; color: #8b5cf6; font-weight: 700; }
     
-    /* ====== 5+ OPTIONS ====== */
     .five-options {
       display: flex;
       flex-wrap: wrap;
@@ -219,21 +233,13 @@
       border-color: #0a2e1d;
       transform: scale(1.05);
     }
-    .five-options .opt-item .opt-bonus {
-      color: #dc2626;
-      font-weight: 700;
-    }
-    .five-options .opt-item .opt-app {
-      font-weight: 700;
-      color: #1e562a;
-    }
+    .five-options .opt-item .opt-bonus { color: #dc2626; font-weight: 700; }
+    .five-options .opt-item .opt-app { font-weight: 700; color: #1e562a; }
     
-    /* ====== FAQ ====== */
     .faq-item { margin-bottom: 12px; }
     .faq-item .faq-q { font-weight: 700; color: #b45900; font-size: 0.8rem; margin-bottom: 2px; }
     .faq-item .faq-a { font-size: 0.75rem; color: #334155; padding-left: 10px; }
     
-    /* ====== OTHER APPS ====== */
     .other-apps-title { font-size: 1.1rem; font-weight: 800; margin: 24px 0 12px; color: #1e293b; border-left: 4px solid #2ecc71; padding-left: 12px; }
     .other-apps-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 10px; background: #ecf9f0; padding: 12px 10px; border-radius: 28px; }
     .other-card { background: #fefcf5; border-radius: 24px; padding: 12px 10px; width: 160px; transition: 0.2s; border: 1px solid #a8d5ba; text-align: center; }
@@ -244,7 +250,6 @@
     .small-download:hover { background: #1a1a1a; transform: scale(0.97); }
     .footer-note { text-align: center; background: #ecf9f0; border-radius: 40px; padding: 10px; font-weight: 500; font-size: 0.6rem; margin-top: 14px; }
     
-    /* ====== MODAL ====== */
     .info-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 300; justify-content: center; align-items: center; }
     .info-modal-content { background: white; max-width: 400px; width: 92%; border-radius: 28px; padding: 20px 16px; text-align: left; animation: fadeInUp 0.3s ease; box-shadow: 0 30px 40px rgba(0,0,0,0.3); border: 1px solid #ffcf8a; max-height: 80vh; overflow-y: auto; }
     .info-modal-content h4 { font-size: 1.2rem; margin-bottom: 12px; color: #1e562a; border-left: 4px solid #ff8c00; padding-left: 12px; }
@@ -300,9 +305,7 @@
 
 <!-- ===== APP TAGS SCROLL ===== -->
 <div class="app-tags-wrapper">
-  <div class="app-tags-scroll" id="appTagsScroll">
-    <!-- Will be populated by JavaScript -->
-  </div>
+  <div class="app-tags-scroll" id="appTagsScroll"></div>
 </div>
 
 <!-- ===== MODAL ===== -->
@@ -314,7 +317,7 @@
   </div>
 </div>
 
-<!-- ===== TAG TEMPLATE (no emojis, colored titles) ===== -->
+<!-- ===== TAG TEMPLATE ===== -->
 <div class="tag-template" id="tagTemplate">
   <div class="tag-box">
     <div class="tag-title tag-title-premium"><span class="app-name-placeholder">AppName</span> APK Download – Get <span class="tag-bonus">₹<span class="bonus-placeholder">0</span></span> Instant Bonus!</div>
@@ -341,7 +344,6 @@
     <div class="tag-content">Get ₹<span class="bonus-placeholder6">0</span> signup bonus, play Rummy, Teen Patti, slots & Aviator. Withdraw from ₹100, join 1Cr+ players & claim daily bonuses. Download APK now!</div>
   </div>
 
-  <!-- Extra tags (FAQ, Overview, Features, etc.) -->
   <div class="extra-tag-box">
     <div class="tag-title">Frequently Asked Questions</div>
     <div class="tag-content">
@@ -462,6 +464,45 @@
       { name: "Diwa 777", bonus: "₹45", withdrawal: "₹100", downloadUrl: "https://sharediwa7771.top?pid=287747863&channel=2010001&t=pdd2&pkg=com.diwa777.app", img: "https://i.ibb.co/Kx2RKNvN/1000022725.jpg", category: "Slots" }
     ];
 
+    // ===== UNIQUE SPIN & WIN DESCRIPTION PER APP =====
+    function getSpinWinDescription(appName, bonusNum, category) {
+      const catMap = {
+        'Slots': 'slot machines',
+        'Rummy': 'rummy tables',
+        'Casino': 'casino games',
+        'Spin': 'spin wheels',
+        'Card': 'card games',
+        'Bingo': 'bingo halls',
+        'Arcade': 'arcade games',
+        'Betting': 'betting tables',
+        'VIP': 'VIP rooms'
+      };
+      const gameType = catMap[category] || 'games';
+      
+      const descs = [
+        `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`,
+        `Play ${appName} and grab ₹${bonusNum} welcome bonus! Enjoy thrilling ${gameType}, daily rewards, and fast UPI withdrawals.`,
+        `${appName} gives you ₹${bonusNum} free cash on signup! Experience the best ${gameType}, win real money, and withdraw instantly.`,
+        `Join ${appName} today and get ₹${bonusNum} bonus! Play exciting ${gameType}, unlock jackpots, and earn real cash daily.`,
+        `${appName} – ₹${bonusNum} joining bonus! Spin, play & win with premium ${gameType}. Fast payouts and 24/7 support.`
+      ];
+      const idx = Math.abs(bonusNum) % descs.length;
+      return descs[idx];
+    }
+
+    // ===== UNIQUE EXTRA BENEFITS PER APP =====
+    function getExtraBenefits(appName, bonusNum, category) {
+      const benefits = [
+        `Daily login rewards, referral cashback, fast UPI withdrawals, 24/7 customer support, and exclusive ${appName} tournaments.`,
+        `Earn referral bonuses, daily free spins, instant UPI payouts, VIP support, and weekly ${appName} cashback offers.`,
+        `Get daily rewards, friend referral bonuses, fast withdrawals, priority support, and special ${appName} festival offers.`,
+        `Unlock daily login bonuses, referral earnings, instant bank transfers, 24/7 help, and ${appName} loyalty rewards.`,
+        `Enjoy free daily spins, referral cash, quick UPI withdrawals, round-the-clock support, and ${appName} exclusive events.`
+      ];
+      const idx = Math.abs(bonusNum * 3) % benefits.length;
+      return benefits[idx];
+    }
+
     // ===== POPULATE APP TAGS =====
     function populateAppTags() {
       const container = document.getElementById('appTagsScroll');
@@ -489,7 +530,8 @@
       const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
       const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
       const idx = Math.abs(hash) % ratings.length;
-      const bonusNum = 20 + (Math.abs(hash) % 481);
+      // Bonus between 200-400
+      const bonusNum = 200 + (Math.abs(hash) % 201);
       return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNum };
     }
 
@@ -506,11 +548,40 @@
       return { rating: ratings[idx], size: sizes[idx], votes: votes[idx] };
     }
 
-    function getDescription(appName, category, bonusAmount) {
-      if (category === "Rummy") return `Join the best rummy experience on ${appName}. Compete with real players, win cash prizes, and enjoy daily tournaments. ₹${bonusAmount} welcome bonus + ₹100 min withdrawal.`;
-      if (category === "Slots") return `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusAmount} joining bonus. Play premium slot machines and withdraw your winnings instantly.`;
-      if (category === "Spin") return `Exciting spin games on ${appName}. Get ₹${bonusAmount} free cash, daily rewards, and fast UPI withdrawals.`;
-      return `Download ${appName} APK and get ₹${bonusAmount} signup bonus instantly. Play exciting ${category.toLowerCase()} games, win real money, earn daily rewards, and withdraw cash directly via UPI.`;
+    function getDescription(appName, category, bonusNum) {
+      const catMap = {
+        'Slots': 'slot machines',
+        'Rummy': 'rummy tables',
+        'Casino': 'casino games',
+        'Spin': 'spin wheels',
+        'Card': 'card games',
+        'Bingo': 'bingo halls',
+        'Arcade': 'arcade games',
+        'Betting': 'betting tables',
+        'VIP': 'VIP rooms'
+      };
+      const gameType = catMap[category] || 'games';
+      const descs = [
+        `Spin & win with ${appName}! Huge jackpots, free spins, and ₹${bonusNum} joining bonus. Play premium ${gameType} and withdraw your winnings instantly.`,
+        `Play ${appName} and grab ₹${bonusNum} welcome bonus! Enjoy thrilling ${gameType}, daily rewards, and fast UPI withdrawals.`,
+        `${appName} gives you ₹${bonusNum} free cash on signup! Experience the best ${gameType}, win real money, and withdraw instantly.`,
+        `Join ${appName} today and get ₹${bonusNum} bonus! Play exciting ${gameType}, unlock jackpots, and earn real cash daily.`,
+        `${appName} – ₹${bonusNum} joining bonus! Spin, play & win with premium ${gameType}. Fast payouts and 24/7 support.`
+      ];
+      const idx = Math.abs(bonusNum) % descs.length;
+      return descs[idx];
+    }
+
+    function getBenefitsText(appName, bonusNum, category) {
+      const benefits = [
+        `Daily login rewards, referral cashback, fast UPI withdrawals, 24/7 customer support, and exclusive ${appName} tournaments.`,
+        `Earn referral bonuses, daily free spins, instant UPI payouts, VIP support, and weekly ${appName} cashback offers.`,
+        `Get daily rewards, friend referral bonuses, fast withdrawals, priority support, and special ${appName} festival offers.`,
+        `Unlock daily login bonuses, referral earnings, instant bank transfers, 24/7 help, and ${appName} loyalty rewards.`,
+        `Enjoy free daily spins, referral cash, quick UPI withdrawals, round-the-clock support, and ${appName} exclusive events.`
+      ];
+      const idx = Math.abs(bonusNum * 3) % benefits.length;
+      return benefits[idx];
     }
 
     // ===== CLONE TAG TEMPLATE =====
@@ -527,7 +598,7 @@
       }
       const bonusArray = [];
       for (let i = 1; i <= 17; i++) {
-        bonusArray.push(20 + (Math.abs(seed * i) % 481));
+        bonusArray.push(200 + (Math.abs(seed * i) % 201));
       }
 
       const placeholders = clone.querySelectorAll('.app-name-placeholder');
@@ -577,6 +648,9 @@
       appsData.forEach((app, idx) => {
         const stats = getCardStats(app.name, app.bonus);
         const displayBonus = stats.bonus;
+        const spinDesc = getSpinWinDescription(app.name, displayBonus, app.category);
+        const extraBenefits = getExtraBenefits(app.name, displayBonus, app.category);
+        
         html += `
           <div class="card" data-app-index="${idx}">
             <div class="card-app-name">${app.name}</div>
@@ -590,6 +664,9 @@
             <div class="signup-bonus">Sign Up Bonus: ₹${displayBonus}</div>
             <div class="withdrawal-note">Min Withdrawal: ${app.withdrawal}</div>
             <button class="download-btn" data-download-index="${idx}">DOWNLOAD ${app.name}</button>
+            
+            <div class="card-spin-desc">${spinDesc}</div>
+            <div class="card-benefits"><strong>Extra Benefits:</strong> ${extraBenefits}</div>
           </div>
         `;
       });
@@ -619,18 +696,17 @@
         hash = ((hash << 5) - hash) + selectedApp.name.charCodeAt(i);
         hash |= 0;
       }
-      const bonusNum = 20 + (Math.abs(hash) % 481);
+      const bonusNum = 200 + (Math.abs(hash) % 201);
       const description = getDescription(selectedApp.name, selectedApp.category, bonusNum);
+      const extraBenefits = getBenefitsText(selectedApp.name, bonusNum, selectedApp.category);
 
       const gridDiv = document.getElementById('allAppsGrid');
       const downloadContainer = document.getElementById('downloadPageContainer');
       gridDiv.classList.add('hidden');
       downloadContainer.classList.remove('hidden');
 
-      // Generate tags HTML
       const tagsHTML = createTagsHTML(selectedApp.name, bonusNum);
 
-      // 5+ options
       const fiveApps = appsData.filter((_, idx) => idx !== selectedIndex).slice(0, 5);
       let fiveOptionsHtml = '';
       fiveApps.forEach((app) => {
@@ -639,7 +715,7 @@
           h = ((h << 5) - h) + app.name.charCodeAt(i);
           h |= 0;
         }
-        const relBonus = 20 + (Math.abs(h) % 481);
+        const relBonus = 200 + (Math.abs(h) % 201);
         const origIdx = appsData.findIndex(a => a.name === app.name);
         fiveOptionsHtml += `
           <span class="opt-item" data-opt-index="${origIdx}">
@@ -658,7 +734,7 @@
           h = ((h << 5) - h) + app.name.charCodeAt(i);
           h |= 0;
         }
-        const relBonus = 20 + (Math.abs(h) % 481);
+        const relBonus = 200 + (Math.abs(h) % 201);
         otherAppsHtml += `
           <div class="other-card">
             <div style="width:48px;height:48px;margin:0 auto 4px;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;background:#fff5e6;">
@@ -694,18 +770,16 @@
               <div class="stat-item"><div class="stat-value">${bonusNum}</div><div class="stat-label">Bonus</div></div>
             </div>
             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">DOWNLOAD ${selectedApp.name}</a>
-            <div class="app-description">${description}<br><br><strong>Extra Benefits:</strong> Daily login rewards, referral cashback, and fast UPI withdrawals. 24/7 customer support.</div>
+            <div class="app-description">${description}<br><br><strong>Extra Benefits:</strong> ${extraBenefits}</div>
             
             <div class="tag-section">
               <div class="tag-title" style="font-weight:700; font-size:0.95rem; margin-bottom:8px; color:#0b1e33;">${selectedApp.name} – Top Offers</div>
               
-              <!-- 5+ OPTIONS -->
               <div class="five-options" id="fiveOptions">
                 ${fiveOptionsHtml}
                 <span class="opt-item" style="background:#22c55e;color:white;border-color:#22c55e;font-weight:700;">+ 5 More</span>
               </div>
               
-              <!-- + BUTTON to toggle all tags -->
               <button class="toggle-tags-btn" id="toggleTagsBtn">+</button>
               
               <div class="tags-wrapper" id="tagsWrapper">
@@ -723,16 +797,15 @@
       `;
       downloadContainer.innerHTML = downloadPageHtml;
 
-      // ===== TOGGLE TAGS WITH + BUTTON =====
+      // Toggle tags
       const toggleBtn = document.getElementById('toggleTagsBtn');
       const tagsWrapper = document.getElementById('tagsWrapper');
       let isOpen = false;
-
       toggleBtn.addEventListener('click', function() {
         isOpen = !isOpen;
         if (isOpen) {
           tagsWrapper.classList.add('open');
-          this.textContent = '−'; // change to minus sign
+          this.textContent = '−';
         } else {
           tagsWrapper.classList.remove('open');
           this.textContent = '+';
@@ -747,7 +820,6 @@
         });
       });
 
-      // Other apps download buttons
       document.querySelectorAll('#otherAppsGrid .small-download').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const otherIdx = btn.getAttribute('data-other-index');
