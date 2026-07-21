@@ -61,8 +61,6 @@
     .top-nav a:hover .icon-contact { box-shadow: 0 0 12px rgba(59,130,246,0.8); }
     .top-nav a:hover .icon-disclaimer { box-shadow: 0 0 12px rgba(239,68,68,0.8); }
     
-    .nav-spacer { flex: 1; }
-    
     .telegram-nav-btn {
       display: inline-flex;
       align-items: center;
@@ -145,7 +143,7 @@
     .featured-card .card-stat-value { font-size: 0.95rem; }
     .featured-card .card-info-row { padding: 8px 14px; }
     .featured-card .card-info-row .ci-value { font-size: 0.9rem; }
-    .featured-card .card-desc { font-size: 0.8rem; }
+    .featured-card .card-spin-desc { font-size: 0.8rem; }
     .featured-card .card-benefits { font-size: 0.75rem; }
     .featured-card .download-btn { font-size: 0.9rem; padding: 12px 0; }
     
@@ -190,8 +188,8 @@
     .card-img img { width: 100%; height: 100%; object-fit: cover; }
     .card-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; background: #fef4e6; padding: 8px 8px; border-radius: 40px; margin: 8px 0 6px; }
     .card-stat { text-align: center; min-width: 44px; }
-    .card-stat-value { font-size: 0.8rem; font-weight: 800; color: #1e562a; }
-    .card-stat-label { font-size: 0.45rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.2px; }
+    .card-stat-value { font-size: 0.8rem; font-weight: 800; }
+    .card-stat-label { font-size: 0.45rem; font-weight: 700; color: #6c7a5a; letter-spacing: 0.2px; text-transform: uppercase; }
     .signup-bonus { color: #dc2626; font-weight: 800; font-size: 0.75rem; margin-top: 4px; }
     .withdrawal-note { font-size: 0.55rem; font-weight: 700; color: #06b6d4; background: #ecfdf5; display: inline-block; padding: 2px 12px; border-radius: 40px; margin-top: 3px; border: 1px solid #a5f3fc; }
     .download-btn { display: block; width: 100%; text-align: center; margin-top: 12px; padding: 10px 0; background: #0a0a0a; color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.75rem; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.20); cursor: pointer; border: none; letter-spacing: 0.3px; }
@@ -207,6 +205,16 @@
     .card-info-row .ci-value { font-size: 0.7rem; font-weight: 800; }
     .card-info-row .ci-value.bonus-c { color: #dc2626; }
     .card-info-row .ci-value.withdraw-c { color: #06b6d4; }
+    
+    /* ===== COLOR VARIATIONS ===== */
+    .rating-green { color: #22c55e; }
+    .rating-pink { color: #ec4899; }
+    .size-cyan { color: #06b6d4; }
+    .size-yellow { color: #eab308; }
+    .votes-dark { color: #1e293b; }
+    .votes-black { color: #000000; }
+    .bonus-green { color: #22c55e; }
+    .bonus-red { color: #dc2626; }
     
     /* ===== DETAIL PAGE ===== */
     .hidden { display: none !important; }
@@ -703,12 +711,14 @@
         hash = ((hash << 5) - hash) + appName.charCodeAt(i);
         hash |= 0;
       }
-      const ratings = ["4.2", "4.5", "4.7", "4.3", "4.8", "4.6", "4.4", "4.9"];
-      const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
-      const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
+      const ratings = ["4.2", "4.5", "4.7", "4.3", "4.8", "4.6", "4.4", "4.9", "4.1", "4.0"];
+      const sizes = ["48 MB", "52 MB", "58 MB", "62 MB", "65 MB", "68 MB", "72 MB", "75 MB", "78 MB", "55 MB", "60 MB", "70 MB"];
+      const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K", "250K", "180K", "320K"];
       const idx = Math.abs(hash) % ratings.length;
+      const bIdx = Math.abs(hash * 2) % sizes.length;
+      const vIdx = Math.abs(hash * 3) % votes.length;
       const bonusNum = 200 + (Math.abs(hash) % 201);
-      return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNum };
+      return { rating: ratings[idx], size: sizes[bIdx], votes: votes[vIdx], bonus: bonusNum };
     }
 
     function getAppStats(appName) {
@@ -758,6 +768,15 @@
       ];
       const idx = Math.abs(bonusNum * 3) % benefits.length;
       return benefits[idx];
+    }
+
+    // ===== GET COLOR CLASSES BASED ON INDEX =====
+    function getColorClasses(idx) {
+      const ratingClass = (idx % 2 === 0) ? 'rating-green' : 'rating-pink';
+      const sizeClass = (idx % 2 === 0) ? 'size-cyan' : 'size-yellow';
+      const votesClass = (idx % 2 === 0) ? 'votes-dark' : 'votes-black';
+      const bonusClass = (idx % 2 === 0) ? 'bonus-green' : 'bonus-red';
+      return { ratingClass, sizeClass, votesClass, bonusClass };
     }
 
     // ===== CLONE TAG TEMPLATE =====
@@ -832,6 +851,7 @@
       const yonoBonus = yonoStats.bonus;
       const yonoSpinDesc = getSpinWinDescription(yonoApp.name, yonoBonus, yonoApp.category);
       const yonoExtraBenefits = getExtraBenefits(yonoApp.name, yonoBonus, yonoApp.category);
+      const yonoColors = getColorClasses(yonoIdx);
 
       // Build featured card HTML
       let featuredHtml = `
@@ -839,10 +859,10 @@
           <div class="card-img"><img src="${yonoApp.img}" alt="${yonoApp.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/80?text=App'"></div>
           <div class="card-app-name">${yonoApp.name}</div>
           <div class="card-stats">
-            <div class="card-stat"><div class="card-stat-value">${yonoStats.rating}</div><div class="card-stat-label">Rating</div></div>
-            <div class="card-stat"><div class="card-stat-value">${yonoStats.size}</div><div class="card-stat-label">Size</div></div>
-            <div class="card-stat"><div class="card-stat-value">${yonoStats.votes}</div><div class="card-stat-label">Votes</div></div>
-            <div class="card-stat"><div class="card-stat-value">${yonoBonus}</div><div class="card-stat-label">Bonus</div></div>
+            <div class="card-stat"><div class="card-stat-value ${yonoColors.ratingClass}">${yonoStats.rating}</div><div class="card-stat-label">Rating</div></div>
+            <div class="card-stat"><div class="card-stat-value ${yonoColors.sizeClass}">${yonoStats.size}</div><div class="card-stat-label">Size</div></div>
+            <div class="card-stat"><div class="card-stat-value ${yonoColors.votesClass}">${yonoStats.votes}</div><div class="card-stat-label">Votes</div></div>
+            <div class="card-stat"><div class="card-stat-value ${yonoColors.bonusClass}">${yonoBonus}</div><div class="card-stat-label">Bonus</div></div>
           </div>
           <div class="card-info-row">
             <div class="ci-item"><div class="ci-label">Sign Up Bonus</div><div class="ci-value bonus-c">₹${yonoBonus}</div></div>
@@ -860,6 +880,7 @@
         if (idx === yonoIdx) return;
         const stats = getCardStats(app.name, app.bonus);
         const displayBonus = stats.bonus;
+        const colors = getColorClasses(idx);
         const spinDesc = getSpinWinDescription(app.name, displayBonus, app.category);
         const extraBenefits = getExtraBenefits(app.name, displayBonus, app.category);
         otherHtml += `
@@ -867,10 +888,10 @@
             <div class="card-img"><img src="${app.img}" alt="${app.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/48?text=App'"></div>
             <div class="card-app-name">${app.name}</div>
             <div class="card-stats">
-              <div class="card-stat"><div class="card-stat-value">${stats.rating}</div><div class="card-stat-label">Rating</div></div>
-              <div class="card-stat"><div class="card-stat-value">${stats.size}</div><div class="card-stat-label">Size</div></div>
-              <div class="card-stat"><div class="card-stat-value">${stats.votes}</div><div class="card-stat-label">Votes</div></div>
-              <div class="card-stat"><div class="card-stat-value">${displayBonus}</div><div class="card-stat-label">Bonus</div></div>
+              <div class="card-stat"><div class="card-stat-value ${colors.ratingClass}">${stats.rating}</div><div class="card-stat-label">Rating</div></div>
+              <div class="card-stat"><div class="card-stat-value ${colors.sizeClass}">${stats.size}</div><div class="card-stat-label">Size</div></div>
+              <div class="card-stat"><div class="card-stat-value ${colors.votesClass}">${stats.votes}</div><div class="card-stat-label">Votes</div></div>
+              <div class="card-stat"><div class="card-stat-value ${colors.bonusClass}">${displayBonus}</div><div class="card-stat-label">Bonus</div></div>
             </div>
             <div class="signup-bonus">₹${displayBonus}</div>
             <div class="withdrawal-note">₹${app.withdrawal}</div>
@@ -986,10 +1007,10 @@
               <img src="${selectedApp.img}" alt="${selectedApp.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://via.placeholder.com/72?text=App'">
             </div>
             <div class="stats-row">
-              <div class="stat-item"><div class="stat-value">${stats.rating}</div><div class="stat-label">Rating</div></div>
-              <div class="stat-item"><div class="stat-value">${stats.size}</div><div class="stat-label">Size</div></div>
-              <div class="stat-item"><div class="stat-value">${stats.votes}</div><div class="stat-label">Votes</div></div>
-              <div class="stat-item"><div class="stat-value">${bonusNum}</div><div class="stat-label">Bonus</div></div>
+              <div class="stat-item"><div class="stat-value" style="color:#22c55e;">${stats.rating}</div><div class="stat-label">Rating</div></div>
+              <div class="stat-item"><div class="stat-value" style="color:#06b6d4;">${stats.size}</div><div class="stat-label">Size</div></div>
+              <div class="stat-item"><div class="stat-value" style="color:#1e293b;">${stats.votes}</div><div class="stat-label">Votes</div></div>
+              <div class="stat-item"><div class="stat-value" style="color:#dc2626;">${bonusNum}</div><div class="stat-label">Bonus</div></div>
             </div>
             <a href="${selectedApp.downloadUrl}" target="_blank" class="final-download-btn">DOWNLOAD ${selectedApp.name}</a>
             <div class="app-description">${description}<br><br><strong>Extra Benefits:</strong> ${extraBenefits}</div>
