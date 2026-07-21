@@ -39,9 +39,29 @@
       transition: 0.2s; 
       letter-spacing: 0.2px;
       border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
     .top-nav a:hover { background: #f1f5f9; border-color: #d0d9e8; }
     .top-nav a.active { background: #eef2ff; color: #1e293b; border-color: #b3c8e6; }
+    
+    /* ===== Premium Icon Colors ===== */
+    .icon-about, .icon-contact, .icon-disclaimer {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+    .icon-about { background: #8b5cf6; box-shadow: 0 0 6px rgba(139,92,246,0.5); }
+    .icon-contact { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.5); }
+    .icon-disclaimer { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+    .top-nav a:hover .icon-about { box-shadow: 0 0 12px rgba(139,92,246,0.8); }
+    .top-nav a:hover .icon-contact { box-shadow: 0 0 12px rgba(59,130,246,0.8); }
+    .top-nav a:hover .icon-disclaimer { box-shadow: 0 0 12px rgba(239,68,68,0.8); }
+    
     .nav-spacer { flex: 1; }
     
     .telegram-nav-btn {
@@ -121,27 +141,9 @@
     .download-btn { display: block; width: 100%; text-align: center; margin-top: 12px; padding: 10px 0; background: #0a0a0a; color: white; text-decoration: none; border-radius: 60px; font-weight: 800; font-size: 0.75rem; transition: 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.20); cursor: pointer; border: none; letter-spacing: 0.3px; }
     .download-btn:hover { background: #1a1a1a; transform: scale(0.97); box-shadow: 0 6px 16px rgba(0,0,0,0.30); }
     
-    /* Card description & benefits */
-    .card-spin-desc {
-      font-size: 0.7rem;
-      color: #2d3e2b;
-      line-height: 1.5;
-      margin: 6px 0 4px;
-      text-align: left;
-      padding: 0 2px;
-    }
+    .card-spin-desc { font-size: 0.7rem; color: #2d3e2b; line-height: 1.5; margin: 6px 0 4px; text-align: left; padding: 0 2px; }
     .card-spin-desc strong { color: #1e562a; }
-    .card-benefits {
-      font-size: 0.65rem;
-      color: #1e562a;
-      line-height: 1.5;
-      margin: 4px 0 6px;
-      text-align: left;
-      padding: 6px 10px;
-      background: #f0f9f0;
-      border-radius: 12px;
-      border-left: 3px solid #22c55e;
-    }
+    .card-benefits { font-size: 0.65rem; color: #1e562a; line-height: 1.5; margin: 4px 0 6px; text-align: left; padding: 6px 10px; background: #f0f9f0; border-radius: 12px; border-left: 3px solid #22c55e; }
     .card-benefits strong { color: #0a2e1d; }
     
     .download-page { background: white; border-radius: 28px; padding: 18px 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); margin-bottom: 20px; border: 1px solid #ffe1b3; animation: fadeSlideUp 0.4s ease; }
@@ -293,9 +295,9 @@
   </div>
   <div class="nav-links">
     <a href="#" class="active" id="homeNavLink">HOME</a>
-    <a href="#" id="navAbout">About</a>
-    <a href="#" id="navContact">Contact</a>
-    <a href="#" id="navDisclaimer">Disclaimer</a>
+    <a href="#" id="navAbout"><span class="icon-about"></span> About</a>
+    <a href="#" id="navContact"><span class="icon-contact"></span> Contact</a>
+    <a href="#" id="navDisclaimer"><span class="icon-disclaimer"></span> Disclaimer</a>
   </div>
   <a href="https://t.me/yonogamestite" target="_blank" rel="noopener noreferrer" class="telegram-nav-btn" id="telegramNavBtn">
     <img src="https://i.ibb.co/S7P1xcCq/telegram-icon.jpg" alt="Telegram" loading="eager">
@@ -530,7 +532,6 @@
       const sizes = ["48 MB", "59 MB", "42 MB", "67 MB", "38 MB", "55 MB", "72 MB", "33 MB"];
       const votes = ["122K", "222K", "95K", "310K", "178K", "89K", "405K", "150K"];
       const idx = Math.abs(hash) % ratings.length;
-      // Bonus between 200-400
       const bonusNum = 200 + (Math.abs(hash) % 201);
       return { rating: ratings[idx], size: sizes[idx], votes: votes[idx], bonus: bonusNum };
     }
